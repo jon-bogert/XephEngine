@@ -1,0 +1,11 @@
+#pragma once
+#include "XephEngine/Engine.h"
+#include "../src/Resources.h"
+
+using namespace xe;
+
+class @World : public World
+{
+	void LoadGameObjects();
+};
+

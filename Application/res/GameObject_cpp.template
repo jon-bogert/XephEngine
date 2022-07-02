@@ -1,0 +1,6 @@
+#include "@.h"
+
+void @::LoadComponents()
+{
+	//AddComponent(new Component());
+}

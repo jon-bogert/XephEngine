@@ -39,6 +39,10 @@ namespace xe
 		void SetParent(GameObject* newParent);
 		std::string GetTag() const;
 		void SetTag(const std::string newTag);
+
+	protected:
+		virtual void LoadCompnents();
+		void AddComponent(Component* newComponent);
 	};
 
 

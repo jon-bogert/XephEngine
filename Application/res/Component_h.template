@@ -1,0 +1,16 @@
+#pragma once
+#include "XephEngine/Engine.h"
+#include "../src/Resources.h"
+
+using namespace xe;
+
+class @ : public Component
+{
+protected:
+	//member variables here
+
+public:
+	void Start();
+	void Update();
+};
+

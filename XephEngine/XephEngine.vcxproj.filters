@@ -42,15 +42,6 @@
     <ClInclude Include="src\Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="res\NewComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="res\NewScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="res\NewWorld.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">
@@ -69,15 +60,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Component.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="res\NewComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="res\NewScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="res\NewWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

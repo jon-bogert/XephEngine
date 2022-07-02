@@ -1,0 +1,18 @@
+#pragma once
+#include "XephEngine/Engine.h"
+#include "../src/Resources.h"
+
+using namespace xe;
+
+class @Scene : public Scene
+{
+protected:
+	@World* world;
+	@Overlay* overlay;
+
+public:
+	NewScene();
+	~NewScene();
+
+};
+

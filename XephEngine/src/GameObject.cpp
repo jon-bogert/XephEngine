@@ -101,3 +101,14 @@ void xe::GameObject::SetTag(const std::string newTag)
 {
 	tag = newTag;
 }
+
+void xe::GameObject::LoadCompnents()
+{
+
+}
+
+
+void xe::GameObject::AddComponent(Component* newComponent)
+{
+	components.push_back(newComponent);
+}
