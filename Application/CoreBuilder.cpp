@@ -4,7 +4,7 @@
 
 using namespace xe;
 
-bool UTIL_OVERRIDE = true; // Set to true to skip Utilty Menu
+bool UTIL_OVERRIDE = false; // Set to true to skip Utilty Menu
 
 void RunApplication();
 char UtilMenu();

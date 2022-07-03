@@ -10,5 +10,5 @@ void TestComp::Start()
 
 void TestComp::Update()
 {
-	std::cout << "Test update has been called" << std::endl;
+
 }

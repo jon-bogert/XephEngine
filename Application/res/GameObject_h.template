@@ -6,7 +6,7 @@ using namespace xe;
 
 class @ : public GameObject
 {
-protected:
+public:
 	Transform transform =
 	{
 		{0.f, 0.f}, // Position
@@ -14,7 +14,6 @@ protected:
 		{0.f, 0.f}  // Scale
 	};
 
-public:
 	@();
 	
 protected:

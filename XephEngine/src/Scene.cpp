@@ -18,6 +18,17 @@ void xe::Scene::Runtime()
 
     while (Engine::GetWindow()->IsOpen())
     {
+        Time::UpdateDelta();
+
+        // TODO Replace with InputSystem Interaction
+        sf::Event event;
+        while (Engine::GetWindow()->SF_Window()->pollEvent(event)) 
+        {
+            // "close requested" event: we close the window
+            if (event.type == sf::Event::Closed)
+                Engine::GetWindow()->Close();
+        }
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) Engine::GetWindow()->Close();
         
         world->Update();
@@ -29,4 +40,20 @@ void xe::Scene::Runtime()
 xe::World* xe::Scene::GetWorld()
 {
     return world;
+}
+
+xe::Transform& xe::Scene::GetCamera()
+{
+    return camera;
+}
+
+void xe::Scene::AddTexture(const std::string fileName, const std::string name)
+{
+    std::string path = "Assets/Textures/";
+    path.append(fileName);
+    textures.insert({ new Texture(path), name });
+}
+
+void xe::Scene::LoadTextures()
+{
 }

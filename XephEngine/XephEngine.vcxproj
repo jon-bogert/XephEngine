@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Component.h" />
+    <ClInclude Include="src\EngineUtils.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\Scene.h" />
     <ClInclude Include="src\Application.h" />
@@ -28,14 +29,17 @@
     <ClInclude Include="src\Structs.h" />
     <ClInclude Include="src\Window.h" />
     <ClInclude Include="src\World.h" />
+    <ClInclude Include="src\Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Component.cpp" />
+    <ClCompile Include="src\EngineUtils.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\Window.cpp" />
     <ClCompile Include="src\World.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

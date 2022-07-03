@@ -17,10 +17,14 @@ namespace xe
 
 	protected:
 		GameObject* gameObject = nullptr;
+		bool drawable = false;
+		void AddDrawable(); //Call in on Start();
+		void RemoveDrawable(); // Called on Destructor
 
 	public:
 		Component(GameObject* gameObject);
 		Component() = default;
+		~Component();
 
 		void SetSceneRef();
 
@@ -28,6 +32,7 @@ namespace xe
 		virtual void Start();
 		virtual void Update();
 		virtual void OnDeath();
+		virtual sf::Drawable* Draw();
 
 		GameObject* GetGameObject();
 

@@ -11,7 +11,6 @@ namespace xe
 	class GameObject
 	{
 	protected:
-		Transform transform{};
 		std::string tag{};
 		std::vector<Component*> components{};
 		GameObject* parent = nullptr;
@@ -21,6 +20,7 @@ namespace xe
 		void OnDeath();
 
 	public:
+		Transform transform{};
 		GameObject();
 		GameObject(GameObject* parent);
 		GameObject(Transform tranform);
@@ -39,6 +39,7 @@ namespace xe
 		void SetParent(GameObject* newParent);
 		std::string GetTag() const;
 		void SetTag(const std::string newTag);
+
 
 	protected:
 		virtual void LoadComponents();

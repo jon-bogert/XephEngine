@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CoreBuilder.cpp" />
+    <ClCompile Include="Scripts\Components\SimpleSprite.cpp" />
     <ClCompile Include="Scripts\Components\TestComp.cpp" />
     <ClCompile Include="Scripts\GameObjects\TestObj.cpp" />
     <ClCompile Include="Scripts\Scenes\DefaultScene.cpp" />
@@ -160,6 +161,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scripts\Components\SimpleSprite.h" />
     <ClInclude Include="Scripts\Components\TestComp.h" />
     <ClInclude Include="Scripts\GameObjects\TestObj.h" />
     <ClInclude Include="Scripts\Scenes\DefaultScene.h" />

@@ -8,5 +8,6 @@ TestObj::TestObj()
 
 void TestObj::LoadComponents()
 {
-	AddComponent(new TestComp(this));
+	//AddComponent(new TestComp(this));
+	AddComponent(new SimpleSprite(this));
 }

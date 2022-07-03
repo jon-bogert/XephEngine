@@ -10,6 +10,8 @@ class @Scene : public Scene
 {
 public:
 	@Scene();
+protected:
+	void LoadTextures();
 };
 
 // ===== WORLD =====

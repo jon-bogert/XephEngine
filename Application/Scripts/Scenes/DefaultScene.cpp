@@ -4,8 +4,14 @@
 
 DefaultScene::DefaultScene()
 {
+	LoadTextures();
 	world = new DefaultWorld();
 	//overlay = new DefaultOverlay();
+}
+void DefaultScene::LoadTextures()
+{
+	//Note: Files placed in "Assets/Textures/"
+	AddTexture("test.png", "test");
 }
 
 // ===== WORLD =====

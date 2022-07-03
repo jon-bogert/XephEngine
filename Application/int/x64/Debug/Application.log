@@ -1,2 +1,8 @@
-﻿  TestComp.cpp
-  Application.vcxproj -> D:\repos\C++\XephEngine_Dev\x64\Debug\Application.exe
+﻿  CoreBuilder.cpp
+  SimpleSprite.cpp
+  TestComp.cpp
+  TestObj.cpp
+  DefaultScene.cpp
+  Generating Code...
+SimpleSprite.obj : error LNK2019: unresolved external symbol "public: class xe::Texture * __cdecl xe::Scene::FindTexture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?FindTexture@Scene@xe@@QEAAPEAVTexture@2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) referenced in function "public: virtual void __cdecl SimpleSprite::Start(void)" (?Start@SimpleSprite@@UEAAXXZ)
+D:\repos\C++\XephEngine_Dev\x64\Debug\Application.exe : fatal error LNK1120: 1 unresolved externals

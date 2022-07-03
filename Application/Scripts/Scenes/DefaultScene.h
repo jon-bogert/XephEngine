@@ -10,6 +10,8 @@ class DefaultScene : public Scene
 {
 public:
 	DefaultScene();
+protected:
+	void LoadTextures();
 };
 
 // ===== WORLD =====
