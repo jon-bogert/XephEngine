@@ -6,6 +6,10 @@ namespace xe
 	{
 		float x = 0.f;
 		float y = 0.f;
+
+		Vector2() = default;
+		Vector2(float x, float y) : x(x), y(y) {};
+		Vector2(int x, int y) : x(x), y(y) {};
 	};
 	typedef Vector2 Vector2f;
 
@@ -13,6 +17,10 @@ namespace xe
 	{
 		int x = 0;
 		int y = 0;
+
+		Vector2i() = default;
+		Vector2i(int x, int y) : x(x), y(y) {};
+		Vector2i(float x, float y) : x(x), y(y) {};
 	};
 
 	template <class T>
@@ -20,6 +28,9 @@ namespace xe
 	{
 		T x;
 		T y;
+
+		Vector2T() = default;
+		Vector2T(T x, T y) : x(x), y(y) {}
 	};
 
 	class Rotator
@@ -70,5 +81,26 @@ namespace xe
 		Vector2 postion;
 		Rotator rotation;
 		Vector2 scale = {1.f, 1.f};
+	};
+
+	struct Rectangle
+	{
+		float x = 0.f;
+		float y = 0.f;
+		float width = 0.f;
+		float height = 0.f;
+
+		Rectangle() = default;
+		Rectangle(float x, float y, float width, float height)
+			:x(x), y(y), width(width), height(height) {}
+
+		float GetRight()
+		{
+			return x + width;
+		}
+		float GetBottom()
+		{
+			return y + height;
+		}
 	};
 }

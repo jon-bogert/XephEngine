@@ -24,5 +24,13 @@ namespace xe
 		{
 			return Vector2i{ (int)v2.x, (int)v2.y };
 		}
+		sf::Rect<float> SF_RECT(Rectangle r)
+		{
+			return sf::Rect<float>(r.x, r.y, r.width, r.height);
+		}
+		Rectangle SF_RECT(sf::FloatRect r)
+		{
+			return Rectangle(r.left, r.top, r.width, r.height);
+		}
 	}
 }

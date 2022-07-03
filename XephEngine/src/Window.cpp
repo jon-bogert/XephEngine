@@ -21,19 +21,29 @@ void xe::Window::Draw()
 {
 	window->clear(sf::Color::Black); // TODO from Camera
 
-	for (Component* comp : drawables)
+	for (Component* comp : sprites)
 		DrawCalc(comp);
+
+	//sf::Texture t;
+	//t.loadFromFile("Assets/Textures/test.png");
+	//sf::Sprite s;
+	//s.setTexture(t);
+	//window->draw(s);
 
 	window->display();
 }
 
 void xe::Window::DrawCalc(Component* comp)
 {
+	
 	// Safeguard
-	if (comp->Draw() == nullptr)
-		std::cout << "[INFO] No Drawable found on Component type: " << typeid(*comp).name() << std::endl; return;
+	if (comp->DrawSprite() == nullptr)
+	{
+		std::cout << "[INFO] No Drawable found on Component type: " << typeid(*comp).name() << std::endl;
+		return;
+	}
 
-	window->draw(*comp->Draw());
+	window->draw(*comp->DrawSprite());
 }
 
 bool xe::Window::IsOpen()
@@ -67,9 +77,9 @@ void xe::Window::ResetFrameClock()
 	clock->restart();
 }
 
-std::vector <xe::Component* > & xe::Window::GetDrawables()
+std::vector <xe::Component* > & xe::Window::GetSprites()
 {
-	return drawables;
+	return sprites;
 }
 
 float xe::Window::GetPixelsPerUnit() const
@@ -120,16 +130,16 @@ void xe::Draw::SpriteCalc(sf::Sprite* drawable, Component* comp)
 	Transform goTransform = comp->GetGameObject()->transform;
 	Transform camera = Engine::GetActiveScene()->GetCamera();
 	drawable->setPosition
-	(
-		(goTransform.postion.x
-			- (camera.postion.x + (camera.scale.x / 2)))
-		* Engine::GetWindow()->GetPixelsPerUnit()
-		* Engine::GetWindow()->GetResolutionScale(),
+	( goTransform.postion.x, goTransform.postion.y
+		//(goTransform.postion.x
+		//	- (camera.postion.x + (camera.scale.x / 2)))
+		//* Engine::GetWindow()->GetPixelsPerUnit()
+		//* Engine::GetWindow()->GetResolutionScale(),
 
-		(goTransform.postion.y
-			- (camera.postion.y + (camera.scale.y / 2)))
-		* Engine::GetWindow()->GetPixelsPerUnit()
-		* Engine::GetWindow()->GetResolutionScale()
+		//(goTransform.postion.y
+		//	- (camera.postion.y + (camera.scale.y / 2)))
+		//* Engine::GetWindow()->GetPixelsPerUnit()
+		//* Engine::GetWindow()->GetResolutionScale()
 	);
 
 	drawable->setScale(goTransform.scale.x * camera.scale.x, goTransform.scale.y * camera.scale.y);

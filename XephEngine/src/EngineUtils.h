@@ -11,5 +11,8 @@ namespace xe
 		Vector2 SF_Vector2(sf::Vector2f v2);
 		Vector2 SF_Vector2(sf::Vector2u v2);
 		Vector2i SF_Vector2i(sf::Vector2u v2);
+
+		sf::Rect<float> SF_RECT(Rectangle r);
+		Rectangle SF_RECT(sf::FloatRect r);
 	}
 }

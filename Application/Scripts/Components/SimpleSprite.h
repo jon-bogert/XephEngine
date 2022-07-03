@@ -7,7 +7,8 @@ using namespace xe;
 class SimpleSprite : public Component
 {
 protected:
-	sf::Sprite* sprite;
+	Sprite* sprite = nullptr;
+	Texture* tempTexture = nullptr; // TODO Use from Scene
 
 public:
 	SimpleSprite(GameObject* gameObject);
@@ -15,6 +16,6 @@ public:
 	
 	void Start();
 	void Update();
-	sf::Drawable* Draw();
+	sf::Sprite* DrawSprite();
 };
 

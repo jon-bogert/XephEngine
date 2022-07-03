@@ -3,18 +3,21 @@
 SimpleSprite::SimpleSprite(GameObject* gameObject)
 	:Component(gameObject)
 {
-	AddDrawable();
-	sprite = new sf::Sprite();
+	AddSprite();
 }
 
 SimpleSprite::~SimpleSprite()
 {
 	delete sprite;
+	delete tempTexture;
 }
 	
 void SimpleSprite::Start()
 {
-	sprite->setTexture(*Engine::GetActiveScene()->FindTexture("test")->UnWrap());
+	//sprite = new Sprite(Engine::GetActiveScene()->FindTexture("test"));
+	tempTexture = new Texture("Assets/Textures/test.png");
+	sprite = new Sprite(tempTexture);
+
 }
 
 void SimpleSprite::Update()
@@ -22,8 +25,9 @@ void SimpleSprite::Update()
 	
 }
 
-sf::Drawable* SimpleSprite::Draw()
+sf::Sprite* SimpleSprite::DrawSprite()
 {
-	Draw::SpriteCalc(sprite, this);
-	return sprite;
+	Draw::SpriteCalc(sprite->UnWrap(), this);
+	//std::cout << sprite->UnWrap()->getPosition().x << " " << sprite->UnWrap()->getPosition().y << std::endl;
+	return sprite->UnWrap();
 }

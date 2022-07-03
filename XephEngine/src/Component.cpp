@@ -15,20 +15,20 @@ void xe::Component::SetSceneRef()
 	sceneRef = Engine::GetActiveScene();
 }
 
-void xe::Component::AddDrawable()
+void xe::Component::AddSprite()
 {
 	drawable = true;
-	Engine::GetWindow()->GetDrawables().push_back(this);
+	Engine::GetWindow()->GetSprites().push_back(this);
 }
 
 void xe::Component::RemoveDrawable()
 {
 	if (drawable)
 	{
-		for (int i = 0; i < Engine::GetWindow()->GetDrawables().size(); i++)
+		for (int i = 0; i < Engine::GetWindow()->GetSprites().size(); i++)
 		{
-			if (Engine::GetWindow()->GetDrawables()[i] == this)
-				Engine::GetWindow()->GetDrawables().erase(Engine::GetWindow()->GetDrawables().begin() + i); return;
+			if (Engine::GetWindow()->GetSprites()[i] == this)
+				Engine::GetWindow()->GetSprites().erase(Engine::GetWindow()->GetSprites().begin() + i); return;
 		}
 		std::cout << "[INFO] Component type: " << typeid(*this).name() << " was tagged as 'Drawable' incorrectly" << std::endl;
 	}
@@ -60,7 +60,7 @@ void xe::Component::OnDeath()
 {
 }
 
-sf::Drawable* xe::Component::Draw()
+sf::Sprite* xe::Component::DrawSprite()
 {
 	return nullptr;
 }
