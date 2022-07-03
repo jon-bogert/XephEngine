@@ -40,6 +40,11 @@ namespace xe
 		}
 
 	public:
+		Rotator() = default;
+		Rotator(float value) : value(value)
+		{
+			Fix();
+		}
 		void Add(const float amt)
 		{
 			value += amt;
@@ -55,7 +60,10 @@ namespace xe
 			value = newValue;
 			Fix();
 		}
-		float GetRotation() const;
+		float GetRotation() const
+		{
+			return value;
+		}
 	};
 	struct Transform
 	{

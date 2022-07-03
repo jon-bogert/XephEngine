@@ -1,5 +1,8 @@
-﻿  NewComponent.cpp
-  Component.cpp
+﻿  Component.cpp
+  GameObject.cpp
+  Scene.cpp
+  Application.cpp
+  Window.cpp
   World.cpp
   Generating Code...
   XephEngine.vcxproj -> D:\repos\C++\XephEngine_Dev\x64\Debug\XephEngine.lib
