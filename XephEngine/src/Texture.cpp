@@ -1,7 +1,8 @@
 #include "Texture.h"
 #include "EngineUtils.h"
 
-xe::Texture::Texture(std::string path)
+xe::Texture::Texture(std::string path/*, std::string name*/)
+	//: name(name)
 {
 	//Note: path must be full path from project folder by this point
 	texture = new sf::Texture();
@@ -33,3 +34,8 @@ bool xe::Texture::IsAntiAliased() const
 {
 	return texture->isSmooth();
 }
+
+//std::string xe::Texture::GetName() const
+//{
+//	return name;
+//}

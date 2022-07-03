@@ -15,7 +15,7 @@ namespace xe
 		//Overlay overlay = nullptr;
 
 		Transform camera;
-		std::map<Texture*, std::string> textures;
+		std::map<std::string, Texture*> textures;
 
 
 	public:

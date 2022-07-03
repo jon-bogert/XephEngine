@@ -3,6 +3,7 @@
 TestObj::TestObj()
 	: GameObject()
 {
+	transform = startTransform;
 	LoadComponents();
 }
 

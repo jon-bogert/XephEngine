@@ -8,6 +8,10 @@ xe::Scene::Scene()
 xe::Scene::~Scene()
 {
 	//delete overlay
+    for (std::pair<std::string, Texture*> t : textures)
+    {
+        delete t.second;
+    }
 	delete world;
 }
 
@@ -51,7 +55,12 @@ void xe::Scene::AddTexture(const std::string fileName, const std::string name)
 {
     std::string path = "Assets/Textures/";
     path.append(fileName);
-    textures.insert({ new Texture(path), name });
+    textures.insert({ name, new Texture(path) });
+}
+
+xe::Texture* xe::Scene::FindTexture(const std::string name)
+{
+    return textures[name];
 }
 
 void xe::Scene::LoadTextures()

@@ -7,11 +7,11 @@ using namespace xe;
 class TestObj : public GameObject
 {
 public:
-	Transform transform =
+	Transform startTransform =
 	{
-		{0.f, 0.f}, // Position
+		{5.f, 0.f}, // Position
 		{0.f},		// Rotation
-		{0.f, 0.f}  // Scale
+		{1.f, 1.f}  // Scale
 	};
 
 	TestObj();

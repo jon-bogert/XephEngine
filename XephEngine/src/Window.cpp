@@ -125,22 +125,23 @@ void xe::Time::ResetDelta()
 	Engine::GetWindow()->ResetFrameClock();
 }
 
-void xe::Draw::SpriteCalc(sf::Sprite* drawable, Component* comp)
+void xe::Draw::SpriteCalc(sf::Sprite* drawable, Component* comp) // TODO - Implement Camera Scale and Rotation
 {
 	Transform goTransform = comp->GetGameObject()->transform;
 	Transform camera = Engine::GetActiveScene()->GetCamera();
 	drawable->setPosition
-	( goTransform.postion.x, goTransform.postion.y
-		//(goTransform.postion.x
-		//	- (camera.postion.x + (camera.scale.x / 2)))
-		//* Engine::GetWindow()->GetPixelsPerUnit()
-		//* Engine::GetWindow()->GetResolutionScale(),
+	( //goTransform.postion.x, goTransform.postion.y
+		(goTransform.postion.x
+			- (camera.postion.x /*+ (camera.scale.x / 2)*/))
+		* Engine::GetWindow()->GetPixelsPerUnit()
+		* Engine::GetWindow()->GetResolutionScale(),
 
-		//(goTransform.postion.y
-		//	- (camera.postion.y + (camera.scale.y / 2)))
-		//* Engine::GetWindow()->GetPixelsPerUnit()
-		//* Engine::GetWindow()->GetResolutionScale()
+		(goTransform.postion.y
+			- (camera.postion.y /*+ (camera.scale.y / 2)*/))
+		* Engine::GetWindow()->GetPixelsPerUnit()
+		* Engine::GetWindow()->GetResolutionScale()
 	);
 
-	drawable->setScale(goTransform.scale.x * camera.scale.x, goTransform.scale.y * camera.scale.y);
+	drawable->setScale(goTransform.scale.x * camera.scale.x * Engine::GetWindow()->GetResolutionScale(),
+		goTransform.scale.y * camera.scale.y * Engine::GetWindow()->GetResolutionScale());
 }

@@ -16,7 +16,7 @@ namespace xe
 		sf::RenderWindow* window;
 		Vector2i resolution = {1920, 1080};
 		Vector2i referenceResolution = {1920, 1080};
-		float pixelsPerUnit = 10.f;
+		float pixelsPerUnit = 100.f;
 		float resolutionScale = 1.f;
 		std::string title = "XephEngine Application";
 		enum windowModeEnum {Windowed, Borderless, Fullscreen };
@@ -35,7 +35,6 @@ namespace xe
 		~Window();
 
 		void Draw();
-		void DrawCalc(Component* comp);
 
 		bool IsOpen();
 		void Close();
@@ -50,6 +49,9 @@ namespace xe
 		float GetResolutionScale() const;
 		float WidthInUnits() const;
 		float HeightInUnits() const;
+
+	protected:
+		void DrawCalc(Component* comp);
 	};
 
 	namespace Time
