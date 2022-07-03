@@ -28,7 +28,7 @@ namespace xe
 		sf::Clock* clock;
 
 		//Drawables
-		std::vector<Component*> sprites{};
+		std::vector<Component*> drawables{};
 
 	public:
 		Window();
@@ -45,7 +45,7 @@ namespace xe
 		void UpdateFrameClock();
 		void ResetFrameClock();
 
-		std::vector<Component*>& GetSprites();
+		std::vector<Component*>& GetDrawables();
 		float GetPixelsPerUnit() const;
 		float GetResolutionScale() const;
 		float WidthInUnits() const;

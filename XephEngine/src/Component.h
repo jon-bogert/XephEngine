@@ -18,8 +18,7 @@ namespace xe
 	protected:
 		GameObject* gameObject = nullptr;
 		bool drawable = false;
-		void AddSprite(); //Call in on Start();
-		//void AddText();
+		void AddToDrawables(); //Call in on Start();
 		void RemoveDrawable(); // Called on Destructor
 
 	public:
@@ -33,8 +32,7 @@ namespace xe
 		virtual void Start();
 		virtual void Update();
 		virtual void OnDeath();
-		virtual sf::Sprite* DrawSprite();
-		//virtual sf::Text* DrawText();
+		virtual sf::Drawable* Draw();
 
 		GameObject* GetGameObject();
 

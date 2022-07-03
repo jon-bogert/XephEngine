@@ -21,7 +21,7 @@ void xe::Window::Draw()
 {
 	window->clear(sf::Color::Black); // TODO from Camera
 
-	for (Component* comp : sprites)
+	for (Component* comp : drawables)
 		DrawCalc(comp);
 
 	//sf::Texture t;
@@ -37,13 +37,13 @@ void xe::Window::DrawCalc(Component* comp)
 {
 	
 	// Safeguard
-	if (comp->DrawSprite() == nullptr)
+	if (comp->Draw() == nullptr)
 	{
 		std::cout << "[INFO] No Drawable found on Component type: " << typeid(*comp).name() << std::endl;
 		return;
 	}
 
-	window->draw(*comp->DrawSprite());
+	window->draw(*comp->Draw());
 }
 
 bool xe::Window::IsOpen()
@@ -77,9 +77,9 @@ void xe::Window::ResetFrameClock()
 	clock->restart();
 }
 
-std::vector <xe::Component* > & xe::Window::GetSprites()
+std::vector <xe::Component* > & xe::Window::GetDrawables()
 {
-	return sprites;
+	return drawables;
 }
 
 float xe::Window::GetPixelsPerUnit() const

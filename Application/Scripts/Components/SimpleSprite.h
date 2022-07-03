@@ -16,6 +16,6 @@ public:
 	
 	void Start();
 	void Update();
-	sf::Sprite* DrawSprite();
+	sf::Drawable* Draw();
 };
 
