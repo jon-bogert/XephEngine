@@ -13,9 +13,9 @@ namespace xe
 	protected:
 		Transform transform{};
 		std::string tag{};
-		std::vector<Component*> components;
+		std::vector<Component*> components{};
 		GameObject* parent = nullptr;
-		std::vector<GameObject*> children;
+		std::vector<GameObject*> children{};
 
 		void Awake();
 		void OnDeath();
@@ -41,7 +41,7 @@ namespace xe
 		void SetTag(const std::string newTag);
 
 	protected:
-		virtual void LoadCompnents();
+		virtual void LoadComponents();
 		void AddComponent(Component* newComponent);
 	};
 

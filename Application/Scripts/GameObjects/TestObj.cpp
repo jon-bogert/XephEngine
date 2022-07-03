@@ -1,0 +1,12 @@
+#include "TestObj.h"
+
+TestObj::TestObj()
+	: GameObject()
+{
+	LoadComponents();
+}
+
+void TestObj::LoadComponents()
+{
+	AddComponent(new TestComp(this));
+}

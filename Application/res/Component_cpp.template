@@ -1,10 +1,14 @@
 #include "@.h"
 
+@::@(GameObject* gameObject)
+	:Component(gameObject){}
+	
 void @::Start()
 {
+	
 }
 
 void @::Update()
 {
-
+	
 }

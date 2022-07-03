@@ -150,8 +150,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CoreBuilder.cpp" />
+    <ClCompile Include="Scripts\Components\TestComp.cpp" />
+    <ClCompile Include="Scripts\GameObjects\TestObj.cpp" />
     <ClCompile Include="Scripts\Scenes\DefaultScene.cpp" />
-    <ClCompile Include="Scripts\Scenes\DefaultWorld.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XephEngine\XephEngine.vcxproj">
@@ -159,8 +160,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scripts\Components\TestComp.h" />
+    <ClInclude Include="Scripts\GameObjects\TestObj.h" />
     <ClInclude Include="Scripts\Scenes\DefaultScene.h" />
-    <ClInclude Include="Scripts\Scenes\DefaultWorld.h" />
     <ClInclude Include="src\Resources.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

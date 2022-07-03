@@ -21,18 +21,13 @@ namespace xe
 		{
 			return appRef->GetActiveScene();
 		}
-
-		void EngineTest()
-		{
-			std::cout << "Hello There" << std::endl;
-		}
 	}
 
 	Application::Application()
 	{
 		appRef = this;
 		window = new Window();
-		scenes.push_back(new Scene()); // TODO Move to External Function
+		//scenes.push_back(new Scene()); // TODO Move to External Function
 	}
 
 	Application::~Application()

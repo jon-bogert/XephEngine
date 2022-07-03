@@ -10,6 +10,8 @@ protected:
 	//member variables here
 
 public:
+	@(GameObject* gameObject);
+	
 	void Start();
 	void Update();
 };

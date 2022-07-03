@@ -64,7 +64,11 @@ void xe::GameObject::Awake()
 
 void xe::GameObject::Start()
 {
-	for (Component* comp : components) comp->Start();
+	for (Component* comp : components)
+	{
+		comp->SetSceneRef();
+		comp->Start();
+	}
 }
 
 void xe::GameObject::Update()
@@ -102,9 +106,8 @@ void xe::GameObject::SetTag(const std::string newTag)
 	tag = newTag;
 }
 
-void xe::GameObject::LoadCompnents()
+void xe::GameObject::LoadComponents()
 {
-
 }
 
 

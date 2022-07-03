@@ -15,6 +15,9 @@ protected:
 	};
 
 public:
+	@();
+	
+protected:
 	void LoadComponents();
 };
 

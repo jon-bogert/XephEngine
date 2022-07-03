@@ -10,7 +10,7 @@ namespace xe
 	class Scene
 	{
 	protected:
-		World* world = nullptr;
+		World* world;
 		//Overlay overlay = nullptr;
 
 	public:

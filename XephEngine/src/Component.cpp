@@ -10,8 +10,13 @@ std::vector<xe::Component*> xe::Component::GetObjectComponents()
 	return gameObject->GetComponents();
 }
 
+void xe::Component::SetSceneRef()
+{
+	sceneRef = Engine::GetActiveScene();
+}
+
 xe::Component::Component(GameObject* gameObject)
-	: gameObject(gameObject), sceneRef(Engine::GetActiveScene())
+	: gameObject(gameObject)
 {
 }
 
@@ -43,7 +48,6 @@ xe::GameObject* xe::Component::FindObjectByTag(std::string _tag)
 	//	if (go->GetTag() == _tag)
 	//		return go;
 	//}
-	Engine::EngineTest();
 
 	return nullptr;
 }

@@ -1,5 +1,8 @@
 #include "@.h"
 
+@::@()
+	: GameObject(){LoadComponents();}
+
 void @::LoadComponents()
 {
 	//AddComponent(new Component());

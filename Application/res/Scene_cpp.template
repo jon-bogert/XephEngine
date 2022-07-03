@@ -1,10 +1,21 @@
-#include "@Scene.h"
+#include "@.h"
 
-NewScene::@Scene()
+// ===== SCENE =====
+
+@Scene::@Scene()
 {
-	//world = new @World();
+	world = new @World();
+	overlay = new @Overlay();
 }
 
-@Scene::~@Scene()
+// ===== WORLD =====
+
+void @World::LoadGameObjects()
 {
+	//AddGameObject(new GameObject());
 }
+
+@World::@World()
+	:World(){LoadGameObjects();}
+	
+// ===== OVERLAY =====

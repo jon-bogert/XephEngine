@@ -22,6 +22,8 @@ namespace xe
 		Component(GameObject* gameObject);
 		Component() = default;
 
+		void SetSceneRef();
+
 		virtual void Awake();
 		virtual void Start();
 		virtual void Update();

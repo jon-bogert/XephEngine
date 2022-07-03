@@ -6,6 +6,18 @@ xe::World::~World()
 		delete go;
 }
 
+void xe::World::Start()
+{
+	for (GameObject* go : gameObjects)
+		go->Start();
+}
+
+void xe::World::Update()
+{
+	for (GameObject* go : gameObjects)
+		go->Update();
+}
+
 void xe::World::LoadGameObjects()
 {
 }

@@ -18,10 +18,13 @@
     <ClCompile Include="CoreBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Scenes\DefaultScene.cpp">
+    <ClCompile Include="Scripts\Components\TestComp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Scenes\DefaultWorld.cpp">
+    <ClCompile Include="Scripts\GameObjects\TestObj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Scenes\DefaultScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,7 +32,10 @@
     <ClInclude Include="src\Resources.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Scenes\DefaultWorld.h">
+    <ClInclude Include="Scripts\Components\TestComp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\GameObjects\TestObj.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Scenes\DefaultScene.h">

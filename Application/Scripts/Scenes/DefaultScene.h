@@ -1,20 +1,27 @@
 #pragma once
 #include "XephEngine/Engine.h"
-#include "../../src/Resources.h"
+#include "../src/Resources.h"
 
 using namespace xe;
 
-class DefaultWorld;
-
+// ===== SCENE =====
+ 
 class DefaultScene : public Scene
 {
-protected:
-	DefaultWorld* world;
-	//NewOverlay* overlay;
-
 public:
 	DefaultScene();
-	~DefaultScene();
-
 };
+
+// ===== WORLD =====
+
+class DefaultWorld : public World
+{
+protected:
+	void LoadGameObjects();
+	
+public:
+	DefaultWorld();
+};
+
+// ===== OVERLAY =====
 

@@ -30,7 +30,6 @@ namespace xe
 		Application* GetApplication();
 		Window* GetWindow();
 		Scene* GetActiveScene();
-		void EngineTest();
 	}
 }
 

@@ -18,6 +18,9 @@ namespace xe
 		World() = default; // TODO load GameObjects from external function
 		~World();
 
+		void Start();
+		void Update();
+
 		std::vector<GameObject*> GetGameObjects();
 
 	protected:
