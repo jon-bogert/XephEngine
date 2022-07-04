@@ -2,10 +2,13 @@
 
 #include "../../src/Application.h"
 #include "../../src/Component.h"
+#include "../../src/Font.h"
 #include "../../src/GameObject.h"
 #include "../../src/Scene.h"
 #include "../../src/Sprite.h"
 #include "../../src/Structs.h"
+#include "../../src/TextData.h"
 #include "../../src/Texture.h"
+#include "../../src/Timer.h"
 #include "../../src/Window.h"
 #include "../../src/World.h"

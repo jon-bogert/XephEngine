@@ -4,6 +4,8 @@
 
 @Scene::@Scene()
 {
+	LoadTextures();
+	LoadFonts();
 	world = new @World();
 	overlay = new @Overlay();
 }
@@ -11,6 +13,11 @@ void @Scene::LoadTextures()
 {
 	//Note: Files placed in "Assets/Textures/"
 	//AddTexture(fileName, name);
+}
+void @Scene::LoadFonts()
+{
+	//Note: Files placed in "Assets/Fonts/"
+	AddFont("Retro Gaming.ttf", "default");
 }
 
 // ===== WORLD =====

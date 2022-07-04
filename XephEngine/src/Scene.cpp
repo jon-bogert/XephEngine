@@ -63,6 +63,24 @@ xe::Texture* xe::Scene::FindTexture(const std::string name)
     return textures[name];
 }
 
+void xe::Scene::AddFont(const std::string fileName, const std::string name)
+{
+    std::string path = "Assets/Fonts/";
+    path.append(fileName);
+    fonts.insert({ name, new Font(path) });
+}
+
+xe::Font* xe::Scene::FindFont(const std::string name)
+{
+    return fonts[name];
+}
+
+// ===== PROTECTED =====
+
 void xe::Scene::LoadTextures()
+{
+}
+
+void xe::Scene::LoadFonts()
 {
 }

@@ -43,7 +43,7 @@ namespace xe
 
 	protected:
 		virtual void LoadComponents();
-		void AddComponent(Component* newComponent);
+		Component* AddComponent(Component* newComponent);
 	};
 
 

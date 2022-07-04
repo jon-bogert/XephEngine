@@ -1,5 +1,6 @@
 #include "Window.h"
 #include "Libraries.h"
+#include "EngineUtils.h"
 
 float deltaTime = 0.f;
 
@@ -8,27 +9,21 @@ xe::Window::Window()
 	//TODO Run Project Settings Script
 	UpdateResolutionScale();
 	window = new sf::RenderWindow(sf::VideoMode(resolution.x, resolution.y), title, sf::Style::Close);
-	clock = new sf::Clock();
+	frameTimer = new Timer;
 }
 
 xe::Window::~Window()
 {
-	delete clock;
+	delete frameTimer;
 	delete window;
 }
 
 void xe::Window::Draw()
 {
-	window->clear(sf::Color::Black); // TODO from Camera
+	window->clear(Engine::SF_COLOR(backgroundColor));
 
 	for (Component* comp : drawables)
 		DrawCalc(comp);
-
-	//sf::Texture t;
-	//t.loadFromFile("Assets/Textures/test.png");
-	//sf::Sprite s;
-	//s.setTexture(t);
-	//window->draw(s);
 
 	window->display();
 }
@@ -66,15 +61,15 @@ void xe::Window::UpdateResolutionScale()
 	resolutionScale = resolution.y / (float)referenceResolution.y;
 }
 
-void xe::Window::UpdateFrameClock()
+void xe::Window::UpdateFrameTimer()
 {
-	deltaTime = clock->getElapsedTime().asSeconds();
-	clock->restart();
+	deltaTime = frameTimer->GetElapsed();
+	frameTimer->Reset();
 }
 
-void xe::Window::ResetFrameClock()
+void xe::Window::ResetFrameTimer()
 {
-	clock->restart();
+	frameTimer->Reset();
 }
 
 std::vector <xe::Component* > & xe::Window::GetDrawables()
@@ -117,15 +112,36 @@ float xe::Time::FPS()
 
 void xe::Time::UpdateDelta()
 {
-	Engine::GetWindow()->UpdateFrameClock();
+	Engine::GetWindow()->UpdateFrameTimer();
 }
 
 void xe::Time::ResetDelta()
 {
-	Engine::GetWindow()->ResetFrameClock();
+	Engine::GetWindow()->ResetFrameTimer();
 }
 
 void xe::Draw::SpriteCalc(sf::Sprite* drawable, Component* comp) // TODO - Implement Camera Scale and Rotation
+{
+	Transform goTransform = comp->GetGameObject()->transform;
+	Transform camera = Engine::GetActiveScene()->GetCamera();
+	drawable->setPosition
+	( //goTransform.postion.x, goTransform.postion.y
+		(goTransform.postion.x
+			- (camera.postion.x /*+ (camera.scale.x / 2)*/))
+		* Engine::GetWindow()->GetPixelsPerUnit()
+		* Engine::GetWindow()->GetResolutionScale(),
+
+		(goTransform.postion.y
+			- (camera.postion.y /*+ (camera.scale.y / 2)*/))
+		* Engine::GetWindow()->GetPixelsPerUnit()
+		* Engine::GetWindow()->GetResolutionScale()
+	);
+
+	drawable->setScale(goTransform.scale.x * camera.scale.x * Engine::GetWindow()->GetResolutionScale(),
+		goTransform.scale.y * camera.scale.y * Engine::GetWindow()->GetResolutionScale());
+}
+
+void xe::Draw::TextCalc(sf::Text* drawable, Component* comp)
 {
 	Transform goTransform = comp->GetGameObject()->transform;
 	Transform camera = Engine::GetActiveScene()->GetCamera();

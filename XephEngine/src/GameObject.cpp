@@ -20,7 +20,7 @@ xe::GameObject::GameObject(Transform tranform)
 }
 
 xe::GameObject::GameObject(GameObject* parent, Transform transform)
-	:transform(transform)
+	: transform(transform)
 {
 	SetParent(parent);
 	parent->GetChildren().push_back(this);
@@ -111,7 +111,8 @@ void xe::GameObject::LoadComponents()
 }
 
 
-void xe::GameObject::AddComponent(Component* newComponent)
+xe::Component* xe::GameObject::AddComponent(Component* newComponent)
 {
 	components.push_back(newComponent);
+	return newComponent;
 }

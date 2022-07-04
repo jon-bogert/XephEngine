@@ -4,6 +4,7 @@
 #include "Application.h"
 #include "GameObject.h"
 #include "Component.h"
+#include "Timer.h"
 
 namespace xe
 {
@@ -23,9 +24,10 @@ namespace xe
 		windowModeEnum windowMode = Fullscreen;
 		bool hasFrameLimit = false;
 		int frameLimit = 60;
+		Color backgroundColor = Colour(0,0,0);
 
 		//Frame Timing
-		sf::Clock* clock;
+		Timer* frameTimer;
 
 		//Drawables
 		std::vector<Component*> drawables{};
@@ -41,8 +43,8 @@ namespace xe
 		sf::RenderWindow* SF_Window(); // TODO remove
 
 		void UpdateResolutionScale();
-		void UpdateFrameClock();
-		void ResetFrameClock();
+		void UpdateFrameTimer();
+		void ResetFrameTimer();
 
 		std::vector<Component*>& GetDrawables();
 		float GetPixelsPerUnit() const;
@@ -65,6 +67,7 @@ namespace xe
 	namespace Draw
 	{
 		void SpriteCalc(sf::Sprite* drawable, Component* comp);
+		void TextCalc(sf::Text* drawable, Component* comp);
 	}
 }
 

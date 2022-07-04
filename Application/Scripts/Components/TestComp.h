@@ -7,7 +7,6 @@ using namespace xe;
 class TestComp : public Component
 {
 protected:
-	bool hasFired = false;
 
 public:
 	TestComp(GameObject* gameObject);

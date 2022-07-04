@@ -1,9 +1,9 @@
 #include "@.h"
 
 @::@()
-	: GameObject(), transform(startTransform){LoadComponents();}
+	: GameObject() {transform=startTransform;LoadComponents();}
 
 void @::LoadComponents()
 {
-	//AddComponent(new Component());
+	//AddComponent(new Component(this));
 }

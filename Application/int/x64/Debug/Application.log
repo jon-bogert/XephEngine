@@ -1,4 +1,4 @@
-﻿  SimpleSprite.cpp
+﻿  DefaultScene.cpp
 D:\repos\C++\XephEngine_Dev\XephEngine\src\Structs.h(12,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 D:\repos\C++\XephEngine_Dev\XephEngine\src\Structs.h(12,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 D:\repos\C++\XephEngine_Dev\XephEngine\src\Structs.h(23,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data

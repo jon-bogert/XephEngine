@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "World.h"
 #include "Texture.h"
+#include "Font.h"
 
 namespace xe
 {
@@ -16,6 +17,7 @@ namespace xe
 
 		Transform camera;
 		std::map<std::string, Texture*> textures;
+		std::map<std::string, Font*> fonts;
 
 
 	public:
@@ -31,8 +33,12 @@ namespace xe
 		void AddTexture(const std::string fileName, const std::string name);
 		Texture* FindTexture(const std::string name);
 
+		void AddFont(const std::string fileName, const std::string name);
+		Font* FindFont(const std::string name);
+
 	protected:
 		virtual void LoadTextures();
+		virtual void LoadFonts();
 	};
 }
 

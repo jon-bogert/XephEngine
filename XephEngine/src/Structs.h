@@ -103,4 +103,28 @@ namespace xe
 			return y + height;
 		}
 	};
+
+	struct Color
+	{
+		int r = 255;
+		int g = 255;
+		int b = 255;
+		int a = 255;
+
+		Color() = default;
+		Color(int r, int g, int b) : r(r), g(g), b(b) {}
+		Color(int r, int g, int b, int a) : r(r), g(g), b(b), a(a) {}
+
+		void Transparent() { a = 0; }
+		void Opaque() { a = 255; }
+		void Translucent() { a = 127; }
+		void Sample(const Color newColor, bool keepOpacity = true)
+		{
+			r = newColor.r;
+			g = newColor.g;
+			b = newColor.b;
+			if (!keepOpacity) a = newColor.a;
+		}
+	};
+	typedef Color Colour;
 }

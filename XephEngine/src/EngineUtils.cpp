@@ -32,5 +32,13 @@ namespace xe
 		{
 			return Rectangle(r.left, r.top, r.width, r.height);
 		}
+		sf::Color SF_COLOR(Color c)
+		{
+			return sf::Color(c.r, c.g, c.b, c.a);
+		}
+		Color SF_COLOR(sf::Color c)
+		{
+			return Color(c.r, c.g, c.b, c.a);
+		}
 	}
 }

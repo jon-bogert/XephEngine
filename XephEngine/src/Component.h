@@ -38,6 +38,7 @@ namespace xe
 
 		template <class T>
 		T* GetComponent();
+
 		
 		template <class T>
 		T* FindObjectOfType();
@@ -49,11 +50,23 @@ namespace xe
 	template<class T>
 	inline T* Component::GetComponent()
 	{
+		//class Name __cdecl(void)
 		T temp();
+		std::string raw = typeid(temp).name();
+		std::string proc{};
+		bool spaceCount{};
+		for (char c : raw)
+		{
+			if (c == ' ' && spaceCount)
+				break;
+			if (c == ' ')
+				spaceCount = true;
 
+			proc.push_back(c);
+		}
 		for (xe::Component* comp : GetObjectComponents())
 		{
-			if (typeid(*comp).name() == typeid(temp).name()) return comp;
+			if (typeid(*comp).name() == proc) return (T*)comp;
 		}
 		return nullptr;
 	}

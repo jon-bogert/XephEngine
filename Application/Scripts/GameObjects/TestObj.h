@@ -9,7 +9,7 @@ class TestObj : public GameObject
 public:
 	Transform startTransform =
 	{
-		{5.f, 0.f}, // Position
+		{9.f, 4.f}, // Position
 		{0.f},		// Rotation
 		{1.f, 1.f}  // Scale
 	};

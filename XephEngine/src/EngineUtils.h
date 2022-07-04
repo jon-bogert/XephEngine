@@ -14,5 +14,8 @@ namespace xe
 
 		sf::Rect<float> SF_RECT(Rectangle r);
 		Rectangle SF_RECT(sf::FloatRect r);
+
+		sf::Color SF_COLOR(Color c);
+		Color SF_COLOR(sf::Color c);
 	}
 }

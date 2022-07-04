@@ -12,6 +12,7 @@ public:
 	DefaultScene();
 protected:
 	void LoadTextures();
+	void LoadFonts();
 };
 
 // ===== WORLD =====

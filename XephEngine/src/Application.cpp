@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "Libraries.h"
+#include "EngineUtils.h"
 
 xe::Application* appRef;
 
