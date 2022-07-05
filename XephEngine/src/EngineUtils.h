@@ -1,6 +1,6 @@
 #pragma once
 #include "Libraries.h"
-#include "Structs.h"
+#include "data/Structs.h"
 
 namespace xe
 {

@@ -1,15 +1,20 @@
 #pragma once
 
-#include "../../src/Application.h"
-#include "../../src/Component.h"
-#include "../../src/Font.h"
-#include "../../src/GameObject.h"
-#include "../../src/InputSystem.h"
-#include "../../src/Scene.h"
-#include "../../src/Sprite.h"
-#include "../../src/Structs.h"
-#include "../../src/TextData.h"
-#include "../../src/Texture.h"
-#include "../../src/Timer.h"
-#include "../../src/Window.h"
-#include "../../src/World.h"
+//Data
+#include "../../src/data/Structs.h"
+#include "../../src/data/Sprite.h"
+#include "../../src/data/TextData.h"
+#include "../../src/data/Texture.h"
+#include "../../src/data/Timer.h"
+#include "../../src/data/Font.h"
+
+//Systems
+#include "../../src/systems/InputSystem.h"
+
+//Application
+#include "../../src/application/Application.h"
+#include "../../src/application/Component.h"
+#include "../../src/application/GameObject.h"
+#include "../../src/application/Scene.h"
+#include "../../src/application/Window.h"
+#include "../../src/application/World.h"

@@ -19,37 +19,37 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\InputSystem.h" />
-    <ClInclude Include="src\Font.h" />
-    <ClInclude Include="src\Sprite.h" />
-    <ClInclude Include="src\Component.h" />
+    <ClInclude Include="src\application\Application.h" />
+    <ClInclude Include="src\application\Component.h" />
+    <ClInclude Include="src\application\GameObject.h" />
+    <ClInclude Include="src\application\Scene.h" />
+    <ClInclude Include="src\application\Window.h" />
+    <ClInclude Include="src\application\World.h" />
+    <ClInclude Include="src\data\Font.h" />
+    <ClInclude Include="src\data\Sprite.h" />
+    <ClInclude Include="src\data\Structs.h" />
+    <ClInclude Include="src\data\TextData.h" />
+    <ClInclude Include="src\data\Texture.h" />
+    <ClInclude Include="src\data\Timer.h" />
+    <ClInclude Include="src\systems\InputSystem.h" />
     <ClInclude Include="src\EngineUtils.h" />
-    <ClInclude Include="src\GameObject.h" />
-    <ClInclude Include="src\Scene.h" />
-    <ClInclude Include="src\Application.h" />
     <ClInclude Include="lib\XephEngine\Engine.h" />
     <ClInclude Include="src\Libraries.h" />
-    <ClInclude Include="src\Structs.h" />
-    <ClInclude Include="src\Window.h" />
-    <ClInclude Include="src\World.h" />
-    <ClInclude Include="src\Texture.h" />
-    <ClInclude Include="src\Timer.h" />
-    <ClInclude Include="src\TextData.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\InputSystem.cpp" />
-    <ClCompile Include="src\Font.cpp" />
-    <ClCompile Include="src\Sprite.cpp" />
-    <ClCompile Include="src\Component.cpp" />
+    <ClCompile Include="src\application\Application.cpp" />
+    <ClCompile Include="src\application\Component.cpp" />
+    <ClCompile Include="src\application\GameObject.cpp" />
+    <ClCompile Include="src\application\Scene.cpp" />
+    <ClCompile Include="src\application\Window.cpp" />
+    <ClCompile Include="src\application\World.cpp" />
+    <ClCompile Include="src\data\Font.cpp" />
+    <ClCompile Include="src\data\Sprite.cpp" />
+    <ClCompile Include="src\data\TextData.cpp" />
+    <ClCompile Include="src\data\Texture.cpp" />
+    <ClCompile Include="src\data\Timer.cpp" />
+    <ClCompile Include="src\systems\InputSystem.cpp" />
     <ClCompile Include="src\EngineUtils.cpp" />
-    <ClCompile Include="src\GameObject.cpp" />
-    <ClCompile Include="src\Scene.cpp" />
-    <ClCompile Include="src\Application.cpp" />
-    <ClCompile Include="src\Window.cpp" />
-    <ClCompile Include="src\World.cpp" />
-    <ClCompile Include="src\Texture.cpp" />
-    <ClCompile Include="src\Timer.cpp" />
-    <ClCompile Include="src\TextData.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
