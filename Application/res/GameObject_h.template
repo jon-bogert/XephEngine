@@ -1,22 +1,25 @@
 #pragma once
 #include "XephEngine/Engine.h"
-#include "../src/Resources.h"
+#include "src/Resources.h"
 
 using namespace xe;
 
-class @ : public GameObject
+namespace O
 {
-public:
-	Transform startTransform =
+	class @ : public GameObject
 	{
-		{0.f, 0.f}, // Position
-		{0.f},		// Rotation
-		{1.f, 1.f}  // Scale
-	};
-
-	@();
+	public:
+		Transform startTransform =
+		{
+			{0.f, 0.f}, // Position
+			{0.f},		// Rotation
+			{1.f, 1.f}  // Scale
+		};
 	
-protected:
-	void LoadComponents();
-};
+		@();
+		
+	protected:
+		void LoadComponents();
+	};
+}
 

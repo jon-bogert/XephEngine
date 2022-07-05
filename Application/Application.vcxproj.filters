@@ -15,28 +15,28 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CoreBuilder.cpp">
+    <ClCompile Include="src\CoreBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Components\TestComp.cpp">
+    <ClCompile Include="Scripts\Components\C_TestComp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\GameObjects\TestObj.cpp">
+    <ClCompile Include="Scripts\GameObjects\O_TestObj.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Scenes\DefaultScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="core\Components\SimpleSprite.cpp">
+    <ClCompile Include="core\Components\C_SimpleSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="core\Components\SpriteSheet.cpp">
+    <ClCompile Include="core\Components\C_SpriteSheet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="core\Components\Text.cpp">
+    <ClCompile Include="core\Components\C_Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="core\GameObjects\G_FPSCounter.cpp">
+    <ClCompile Include="core\GameObjects\O_FPSCounter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="core\Components\C_FPSCounter.cpp">
@@ -47,32 +47,35 @@
     <ClInclude Include="src\Resources.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Components\TestComp.h">
+    <ClInclude Include="Scripts\Components\C_TestComp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\GameObjects\TestObj.h">
+    <ClInclude Include="Scripts\GameObjects\O_TestObj.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Scenes\DefaultScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="core\Components\SimpleSprite.h">
+    <ClInclude Include="core\Components\C_SimpleSprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="core\Components\SpriteSheet.h">
+    <ClInclude Include="core\Components\C_SpriteSheet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\CoreLibrary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="core\Components\Text.h">
+    <ClInclude Include="core\Components\C_Text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="core\GameObjects\G_FPSCounter.h">
+    <ClInclude Include="core\GameObjects\O_FPSCounter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\Components\C_FPSCounter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="XephEngine_Utility.exe" />
   </ItemGroup>
 </Project>

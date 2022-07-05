@@ -1,9 +1,13 @@
-#include "@.h"
+#include "O_@.h"
 
-@::@()
-	: GameObject() {transform=startTransform;LoadComponents();}
-
-void @::LoadComponents()
+namespace O
 {
-	//AddComponent(new Component(this));
+	@::@()
+		: GameObject() {transform=startTransform;LoadComponents();}
+	
+	void @::LoadComponents()
+	{
+$		AddComponent(new C::@(this));
+		//AddComponent(new Component(this));
+	}
 }

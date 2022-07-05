@@ -1,6 +1,6 @@
 #pragma once
 #include "XephEngine/Engine.h"
-#include "../src/Resources.h"
+#include "src/Resources.h"
 
 using namespace xe;
 

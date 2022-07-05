@@ -71,18 +71,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)int\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)int\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>$(ProjectDir)int\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(ProjectDir)int\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -91,11 +93,13 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)XephEngine\lib;lib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)XephEngine\lib;$(SolutionDir)XephEngine\include;$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -107,13 +111,15 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)XephEngine\lib;lib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)XephEngine\lib;$(SolutionDir)XephEngine\include;$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -123,11 +129,13 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)XephEngine\lib;lib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)XephEngine\lib;$(SolutionDir)XephEngine\include;$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -139,24 +147,26 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)XephEngine\lib;lib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)XephEngine\lib;$(SolutionDir)XephEngine\include;$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CoreBuilder.cpp" />
-    <ClCompile Include="core\Components\SimpleSprite.cpp" />
-    <ClCompile Include="core\Components\SpriteSheet.cpp" />
+    <ClCompile Include="src\CoreBuilder.cpp" />
+    <ClCompile Include="core\Components\C_SimpleSprite.cpp" />
+    <ClCompile Include="core\Components\C_SpriteSheet.cpp" />
     <ClCompile Include="core\Components\C_FPSCounter.cpp" />
-    <ClCompile Include="Scripts\Components\TestComp.cpp" />
-    <ClCompile Include="core\Components\Text.cpp" />
-    <ClCompile Include="core\GameObjects\G_FPSCounter.cpp" />
-    <ClCompile Include="Scripts\GameObjects\TestObj.cpp" />
+    <ClCompile Include="Scripts\Components\C_TestComp.cpp" />
+    <ClCompile Include="core\Components\C_Text.cpp" />
+    <ClCompile Include="core\GameObjects\O_FPSCounter.cpp" />
+    <ClCompile Include="Scripts\GameObjects\O_TestObj.cpp" />
     <ClCompile Include="Scripts\Scenes\DefaultScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,16 +175,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="core\Components\SimpleSprite.h" />
-    <ClInclude Include="core\Components\SpriteSheet.h" />
+    <ClInclude Include="core\Components\C_SimpleSprite.h" />
+    <ClInclude Include="core\Components\C_SpriteSheet.h" />
     <ClInclude Include="core\CoreLibrary.h" />
     <ClInclude Include="core\Components\C_FPSCounter.h" />
-    <ClInclude Include="Scripts\Components\TestComp.h" />
-    <ClInclude Include="core\Components\Text.h" />
-    <ClInclude Include="core\GameObjects\G_FPSCounter.h" />
-    <ClInclude Include="Scripts\GameObjects\TestObj.h" />
+    <ClInclude Include="Scripts\Components\C_TestComp.h" />
+    <ClInclude Include="core\Components\C_Text.h" />
+    <ClInclude Include="core\GameObjects\O_FPSCounter.h" />
+    <ClInclude Include="Scripts\GameObjects\O_TestObj.h" />
     <ClInclude Include="Scripts\Scenes\DefaultScene.h" />
     <ClInclude Include="src\Resources.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="XephEngine_Utility.exe" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

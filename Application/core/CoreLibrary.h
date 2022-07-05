@@ -1,10 +1,10 @@
 #pragma once
 
 // COMPONENTS
-#include "Components/SimpleSprite.h"
-#include "Components/SpriteSheet.h"
-#include "Components/Text.h"
+#include "Components/C_SimpleSprite.h"
+#include "Components/C_SpriteSheet.h"
+#include "Components/C_Text.h"
 
 //GAMEOBJECTS
-#include "GameObjects/G_FPSCounter.h"
+#include "GameObjects/O_FPSCounter.h"
 #include "Components/C_FPSCounter.h"
