@@ -4,6 +4,7 @@
 #include "../../src/Component.h"
 #include "../../src/Font.h"
 #include "../../src/GameObject.h"
+#include "../../src/InputSystem.h"
 #include "../../src/Scene.h"
 #include "../../src/Sprite.h"
 #include "../../src/Structs.h"

@@ -9,6 +9,7 @@ namespace C
 	class TestComp : public Component
 	{
 	protected:
+		Text* text = nullptr;
 
 	public:
 		TestComp(GameObject* gameObject);

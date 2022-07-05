@@ -51,7 +51,7 @@ void xe::Window::Close()
 	window->close();
 }
 
-sf::RenderWindow* xe::Window::SF_Window()
+sf::RenderWindow* xe::Window::UnWrap()
 {
 	return window;
 }

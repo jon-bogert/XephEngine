@@ -40,7 +40,7 @@ namespace xe
 
 		bool IsOpen();
 		void Close();
-		sf::RenderWindow* SF_Window(); // TODO remove
+		sf::RenderWindow* UnWrap(); // TODO remove
 
 		void UpdateResolutionScale();
 		void UpdateFrameTimer();

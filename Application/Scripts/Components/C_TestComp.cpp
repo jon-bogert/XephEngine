@@ -7,11 +7,15 @@ namespace C
 
 	void TestComp::Start()
 	{
-		GetComponent<C::Text>()->SetString("Hello There");
+		text = GetComponent<C::Text>();
+		text->SetString("Boring...");
 	}
 
 	void TestComp::Update()
 	{
-
+		if (InputSystem::KeyDown(Key::Space))
+			text->SetString("YAYYYYY!!!!");
+		else
+			text->SetString("Boring...");
 	}
 }

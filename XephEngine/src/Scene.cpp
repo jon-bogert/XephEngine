@@ -12,6 +12,10 @@ xe::Scene::~Scene()
     {
         delete t.second;
     }
+    for (std::pair<std::string, Font*> f : fonts)
+    {
+        delete f.second;
+    }
 	delete world;
 }
 
@@ -24,19 +28,12 @@ void xe::Scene::Runtime()
     {
         Time::UpdateDelta();
 
-        // TODO Replace with InputSystem Interaction
-        sf::Event event;
-        while (Engine::GetWindow()->SF_Window()->pollEvent(event)) 
-        {
-            // "close requested" event: we close the window
-            if (event.type == sf::Event::Closed)
-                Engine::GetWindow()->Close();
-        }
-
+        InputSystem::Update();
+        if (InputSystem::CloseWindow()) Engine::GetWindow()->Close();
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) Engine::GetWindow()->Close();
         
         world->Update();
-
+        //TODO Call Overlay Draw
         Engine::GetWindow()->Draw();
     }
 }

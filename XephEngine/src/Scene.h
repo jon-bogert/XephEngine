@@ -4,6 +4,7 @@
 #include "World.h"
 #include "Texture.h"
 #include "Font.h"
+#include "InputSystem.h"
 
 namespace xe
 {
