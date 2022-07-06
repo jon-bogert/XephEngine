@@ -42,7 +42,11 @@ namespace xe
 		bool Update();
 
         bool CloseWindow();
-		bool KeyDown(const Key key);
+
+		bool KeyHold(const Key key);
+        bool KeyPress(const Key key);
+
+        void Typing(std::string& out_str);
 	}
 }
 

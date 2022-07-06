@@ -8,14 +8,15 @@ namespace C
 	void TestComp::Start()
 	{
 		text = GetComponent<C::Text>();
-		text->SetString("Boring...");
+		//text->SetString("Boring...");
 	}
 
 	void TestComp::Update()
 	{
-		if (InputSystem::KeyDown(Key::Space))
-			text->SetString("YAYYYYY!!!!");
-		else
-			text->SetString("Boring...");
+		std::string str = text->GetString();
+		InputSystem::Typing(str);
+		text->SetString(str);
+
+
 	}
 }
