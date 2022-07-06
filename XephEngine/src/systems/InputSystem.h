@@ -4,6 +4,8 @@
 
 namespace xe
 {
+    enum Event {None, Pressed, Released};
+
 	enum class Key // NOTE: Can Typecast to sf::Keyboard::Key
 	{
         Unkwn = -1, 
@@ -44,7 +46,7 @@ namespace xe
         bool CloseWindow();
 
 		bool KeyHold(const Key key);
-        bool KeyPress(const Key key);
+        Event KeyEvent(const Key key);
 
         void Typing(std::string& out_str);
 	}
