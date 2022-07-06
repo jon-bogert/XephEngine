@@ -13,10 +13,10 @@ namespace C
 
 	void TestComp::Update()
 	{
-		std::string str = text->GetString();
-		InputSystem::Typing(str);
-		text->SetString(str);
-
+		//std::string str = text->GetString();
+		//InputSystem::Typing(str);
+		//text->SetString(str);
+		InputSystem::TestFunction();
 
 	}
 }

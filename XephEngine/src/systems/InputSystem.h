@@ -25,20 +25,18 @@ namespace xe
     {
         Left, Right, Middle, Button4, Button5
     };
-    enum class Xbox // NOTE does NOT Typecast
+    enum class Button // NOTE does NOT Typecast
     {
-        A, B, X, Y, Start, Select, LB, RB, LT, RT, LS_Press, RS_Press,
+        A, B, X, Y, LB, RB, Select, Start, LS_Press, RS_Press, LT, RT,
         LS_Up, LS_Down, LS_Left, LS_Right,
         RS_Up, RS_Down, RS_Left, RS_Right,
         DPad_Up, DPad_Down, DPad_Left, DPad_Right
     };
-    enum class PlayStation // NOTE does NOT Typecast
+    enum class Axis
     {
-        Cross, Circle, Square, Triangle, Start, Touchpad, L1, R1, L2, R2, L3, R3,
-        LS_Up, LS_Down, LS_Left, LS_Right,
-        RS_Up, RS_Down, RS_Left, RS_Right,
-        DPad_Up, DPad_Down, DPad_Left, DPad_Right
+        LS, RS, DPad, Trig
     };
+
 	namespace InputSystem
 	{
 		bool Update();
@@ -47,6 +45,12 @@ namespace xe
 
 		bool KeyHold(const Key key);
         Event KeyEvent(const Key key);
+
+        Vector2 GetAxis(int playerIndex, Axis axis); // For triggers-> X is LT, Y is RT (0.->1. only)
+        bool ButtonHold(const int playerIndex, const Button button);
+        Event ButtonEvent(const int playerIndex, const Button button);
+
+        void TestFunction();
 
         void Typing(std::string& out_str);
 	}
