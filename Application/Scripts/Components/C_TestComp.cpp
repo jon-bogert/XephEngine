@@ -16,7 +16,8 @@ namespace C
 		//std::string str = text->GetString();
 		//InputSystem::Typing(str);
 		//text->SetString(str);
-		InputSystem::TestFunction();
+		Vector2 v2 = InputSystem::KeyAxis2D(Key::D, Key::A, Key::S, Key::W);
+		std::cout << "X:" << v2.x << " Y:" << v2.y << std::endl;
 
 	}
 }

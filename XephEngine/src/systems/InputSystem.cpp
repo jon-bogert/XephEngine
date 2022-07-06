@@ -6,6 +6,8 @@ sf::Event inputEvent;
 
 std::vector<xe::Key> keyHold;
 std::vector<std::pair<int, xe::Button>> buttonHold;
+std::vector <std::pair<std::string, xe::Vector2>> keyAxis2Dbuffer;
+float axisThrow = 15.f;
 
 struct XE_CONTROLLER_TRIG { float LT = 0.f; float RT = 0.f; };
 float deadZoneMin = 0.3f;
@@ -51,6 +53,102 @@ bool xe::InputSystem::Update()
 bool xe::InputSystem::CloseWindow()
 {
 	return (inputEvent.type == sf::Event::Closed);
+}
+
+float xe::InputSystem::ButtonAxis1D(const Button pos, const Button neg)
+{
+	return 0.0f;
+}
+
+xe::Vector2 xe::InputSystem::KeyAxis2D(const Key posX, const Key negX, const Key posY, const Key negY)
+{
+	Vector2 target{};
+	std::string axisId{};
+	//get AxisID
+	axisId.append(std::to_string((int)posX));
+	axisId.append(std::to_string((int)negX));
+	axisId.append(std::to_string((int)posY));
+	axisId.append(std::to_string((int)negY));
+
+	//Find initial direcrions
+	if (KeyHold(posX) && !KeyHold(negX))
+		target.x = 1;
+	else if (!KeyHold(posX) && KeyHold(negX))
+		target.x = -1;
+
+	if (KeyHold(posY) && !KeyHold(negY))
+		target.y = 1;
+	else if (!KeyHold(posY) && KeyHold(negY))
+		target.y = -1;
+
+	if (target.x != 0 && target.y != 0)
+	{
+		target.x = sqrtf(0.5f)* target.x;
+		target.y = sqrtf(0.5f)* target.y;
+	}
+
+	//check exist in buffer
+	bool inBuffer{};
+	int index{};
+
+	for (std::pair<std::string, Vector2> entry : keyAxis2Dbuffer)
+	{
+		if (entry.first == axisId)
+		{
+			inBuffer = true;
+			break;
+		}
+		else index++;
+	}
+
+	//Check to destroy
+	if (inBuffer && target.x == 0 && target.y == 0
+		&& keyAxis2Dbuffer[index].second.x == 0
+		&& keyAxis2Dbuffer[index].second.y == 0)
+	{
+		keyAxis2Dbuffer.erase(keyAxis2Dbuffer.begin() + index);
+	}
+	//Buffer needs to exist
+	else
+	{
+		float axisThrowDT = axisThrow * Time::DeltaTime();
+		//Create buffer if doesn't exist
+		if (!inBuffer)
+			keyAxis2Dbuffer.push_back({ axisId, Vector2() });
+
+		//Apply Throw
+		if ((keyAxis2Dbuffer[index].second.x < target.x) && (keyAxis2Dbuffer[index].second.x + axisThrowDT < target.x))
+		{
+			keyAxis2Dbuffer[index].second.x += axisThrowDT;
+		}
+		else if ((keyAxis2Dbuffer[index].second.x > target.x) && (keyAxis2Dbuffer[index].second.x - axisThrowDT > target.x))
+		{
+			keyAxis2Dbuffer[index].second.x -= axisThrowDT;
+		}
+		else if (((keyAxis2Dbuffer[index].second.x < target.x) && (keyAxis2Dbuffer[index].second.x + axisThrowDT >= target.x))
+			|| ((keyAxis2Dbuffer[index].second.x > target.x) && (keyAxis2Dbuffer[index].second.x - axisThrowDT <= target.x)))
+		{
+			keyAxis2Dbuffer[index].second.x = target.x;
+		}
+
+		if ((keyAxis2Dbuffer[index].second.y < target.y) && (keyAxis2Dbuffer[index].second.y + axisThrowDT < target.y))
+		{
+			keyAxis2Dbuffer[index].second.y += axisThrowDT;
+		}
+		else if ((keyAxis2Dbuffer[index].second.y > target.y) && (keyAxis2Dbuffer[index].second.y - axisThrowDT > target.y))
+		{
+			keyAxis2Dbuffer[index].second.y -= axisThrowDT;
+		}
+		else if (((keyAxis2Dbuffer[index].second.y < target.y) && (keyAxis2Dbuffer[index].second.y + axisThrowDT >= target.y))
+			|| ((keyAxis2Dbuffer[index].second.y > target.y) && (keyAxis2Dbuffer[index].second.y - axisThrowDT <= target.y)))
+		{
+			keyAxis2Dbuffer[index].second.y = target.y;
+		}
+
+		return keyAxis2Dbuffer[index].second;
+	}
+
+	return Vector2();
 }
 
 bool xe::InputSystem::KeyHold(const Key key)
