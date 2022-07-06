@@ -43,7 +43,7 @@ namespace xe
 
         bool CloseWindow();
 
-        float ButtonAxis1D(const Button pos, const Button neg);
+        float KeyAxis1D(const Key pos, const Key neg);
         Vector2 KeyAxis2D(const Key posX, const Key negX, const Key posY, const Key negY);
 
 		bool KeyHold(const Key key);

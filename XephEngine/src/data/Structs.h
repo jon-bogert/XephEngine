@@ -1,4 +1,5 @@
 #pragma once
+#include "../Libraries.h"
 
 namespace xe
 {
@@ -13,6 +14,12 @@ namespace xe
 		Vector2() = default;
 		Vector2(float x, float y) : x(x), y(y) {};
 		Vector2(int x, int y) : x(x), y(y) {};
+
+		friend std::ostream& operator<<(std::ostream& os, const Vector2& v2)
+		{
+			os << "X:" << v2.x << ", Y:" << v2.y;
+			return os;
+		}
 	};
 	typedef Vector2 Vector2f;
 
@@ -24,6 +31,12 @@ namespace xe
 		Vector2i() = default;
 		Vector2i(int x, int y) : x(x), y(y) {};
 		Vector2i(float x, float y) : x(x), y(y) {};
+
+		friend std::ostream& operator<<(std::ostream& os, const Vector2i& v2)
+		{
+			os << "X:" << v2.x << ", Y:" << v2.y;
+			return os;
+		}
 	};
 
 	template <class T>

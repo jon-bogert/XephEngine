@@ -6,7 +6,8 @@ sf::Event inputEvent;
 
 std::vector<xe::Key> keyHold;
 std::vector<std::pair<int, xe::Button>> buttonHold;
-std::vector <std::pair<std::string, xe::Vector2>> keyAxis2Dbuffer;
+std::vector<std::pair<std::string, xe::Vector2>> keyAxis2DBuffer;
+std::vector<std::pair<std::string, float >> keyAxis1DBuffer;
 float axisThrow = 15.f;
 
 struct XE_CONTROLLER_TRIG { float LT = 0.f; float RT = 0.f; };
@@ -55,9 +56,66 @@ bool xe::InputSystem::CloseWindow()
 	return (inputEvent.type == sf::Event::Closed);
 }
 
-float xe::InputSystem::ButtonAxis1D(const Button pos, const Button neg)
+float xe::InputSystem::KeyAxis1D(const Key pos, const Key neg)
 {
-	return 0.0f;
+	float target{};
+	std::string axisId{};
+	//get AxisID
+	axisId.append(std::to_string((int)pos));
+	axisId.append(std::to_string((int)neg));
+
+	//Find initial direcrions
+	if (KeyHold(pos) && !KeyHold(neg))
+		target = 1;
+	else if (!KeyHold(pos) && KeyHold(neg))
+		target = -1;
+
+	//check exist in buffer
+	bool inBuffer{};
+	int index{};
+
+	for (std::pair<std::string, float> entry : keyAxis1DBuffer)
+	{
+		if (entry.first == axisId)
+		{
+			inBuffer = true;
+			break;
+		}
+		else index++;
+	}
+
+	//Check to destroy
+	if (inBuffer && target == 0 && keyAxis1DBuffer[index].second == 0)
+	{
+		keyAxis1DBuffer.erase(keyAxis1DBuffer.begin() + index);
+	}
+	//Buffer needs to exist
+	else
+	{
+		float axisThrowDT = axisThrow * Time::DeltaTime();
+		//Create buffer if doesn't exist
+		if (!inBuffer)
+			keyAxis1DBuffer.push_back({ axisId, 0.f });
+
+		//Apply Throw
+		if ((keyAxis1DBuffer[index].second < target) && (keyAxis1DBuffer[index].second + axisThrowDT < target))
+		{
+			keyAxis1DBuffer[index].second += axisThrowDT;
+		}
+		else if ((keyAxis1DBuffer[index].second > target) && (keyAxis1DBuffer[index].second - axisThrowDT > target))
+		{
+			keyAxis1DBuffer[index].second -= axisThrowDT;
+		}
+		else if (((keyAxis1DBuffer[index].second < target) && (keyAxis1DBuffer[index].second + axisThrowDT >= target))
+			|| ((keyAxis1DBuffer[index].second > target) && (keyAxis1DBuffer[index].second - axisThrowDT <= target)))
+		{
+			keyAxis1DBuffer[index].second = target;
+		}
+
+		return keyAxis1DBuffer[index].second;
+	}
+
+	return 0.f;
 }
 
 xe::Vector2 xe::InputSystem::KeyAxis2D(const Key posX, const Key negX, const Key posY, const Key negY)
@@ -91,7 +149,7 @@ xe::Vector2 xe::InputSystem::KeyAxis2D(const Key posX, const Key negX, const Key
 	bool inBuffer{};
 	int index{};
 
-	for (std::pair<std::string, Vector2> entry : keyAxis2Dbuffer)
+	for (std::pair<std::string, Vector2> entry : keyAxis2DBuffer)
 	{
 		if (entry.first == axisId)
 		{
@@ -103,10 +161,10 @@ xe::Vector2 xe::InputSystem::KeyAxis2D(const Key posX, const Key negX, const Key
 
 	//Check to destroy
 	if (inBuffer && target.x == 0 && target.y == 0
-		&& keyAxis2Dbuffer[index].second.x == 0
-		&& keyAxis2Dbuffer[index].second.y == 0)
+		&& keyAxis2DBuffer[index].second.x == 0
+		&& keyAxis2DBuffer[index].second.y == 0)
 	{
-		keyAxis2Dbuffer.erase(keyAxis2Dbuffer.begin() + index);
+		keyAxis2DBuffer.erase(keyAxis2DBuffer.begin() + index);
 	}
 	//Buffer needs to exist
 	else
@@ -114,38 +172,38 @@ xe::Vector2 xe::InputSystem::KeyAxis2D(const Key posX, const Key negX, const Key
 		float axisThrowDT = axisThrow * Time::DeltaTime();
 		//Create buffer if doesn't exist
 		if (!inBuffer)
-			keyAxis2Dbuffer.push_back({ axisId, Vector2() });
+			keyAxis2DBuffer.push_back({ axisId, Vector2() });
 
 		//Apply Throw
-		if ((keyAxis2Dbuffer[index].second.x < target.x) && (keyAxis2Dbuffer[index].second.x + axisThrowDT < target.x))
+		if ((keyAxis2DBuffer[index].second.x < target.x) && (keyAxis2DBuffer[index].second.x + axisThrowDT < target.x))
 		{
-			keyAxis2Dbuffer[index].second.x += axisThrowDT;
+			keyAxis2DBuffer[index].second.x += axisThrowDT;
 		}
-		else if ((keyAxis2Dbuffer[index].second.x > target.x) && (keyAxis2Dbuffer[index].second.x - axisThrowDT > target.x))
+		else if ((keyAxis2DBuffer[index].second.x > target.x) && (keyAxis2DBuffer[index].second.x - axisThrowDT > target.x))
 		{
-			keyAxis2Dbuffer[index].second.x -= axisThrowDT;
+			keyAxis2DBuffer[index].second.x -= axisThrowDT;
 		}
-		else if (((keyAxis2Dbuffer[index].second.x < target.x) && (keyAxis2Dbuffer[index].second.x + axisThrowDT >= target.x))
-			|| ((keyAxis2Dbuffer[index].second.x > target.x) && (keyAxis2Dbuffer[index].second.x - axisThrowDT <= target.x)))
+		else if (((keyAxis2DBuffer[index].second.x < target.x) && (keyAxis2DBuffer[index].second.x + axisThrowDT >= target.x))
+			|| ((keyAxis2DBuffer[index].second.x > target.x) && (keyAxis2DBuffer[index].second.x - axisThrowDT <= target.x)))
 		{
-			keyAxis2Dbuffer[index].second.x = target.x;
-		}
-
-		if ((keyAxis2Dbuffer[index].second.y < target.y) && (keyAxis2Dbuffer[index].second.y + axisThrowDT < target.y))
-		{
-			keyAxis2Dbuffer[index].second.y += axisThrowDT;
-		}
-		else if ((keyAxis2Dbuffer[index].second.y > target.y) && (keyAxis2Dbuffer[index].second.y - axisThrowDT > target.y))
-		{
-			keyAxis2Dbuffer[index].second.y -= axisThrowDT;
-		}
-		else if (((keyAxis2Dbuffer[index].second.y < target.y) && (keyAxis2Dbuffer[index].second.y + axisThrowDT >= target.y))
-			|| ((keyAxis2Dbuffer[index].second.y > target.y) && (keyAxis2Dbuffer[index].second.y - axisThrowDT <= target.y)))
-		{
-			keyAxis2Dbuffer[index].second.y = target.y;
+			keyAxis2DBuffer[index].second.x = target.x;
 		}
 
-		return keyAxis2Dbuffer[index].second;
+		if ((keyAxis2DBuffer[index].second.y < target.y) && (keyAxis2DBuffer[index].second.y + axisThrowDT < target.y))
+		{
+			keyAxis2DBuffer[index].second.y += axisThrowDT;
+		}
+		else if ((keyAxis2DBuffer[index].second.y > target.y) && (keyAxis2DBuffer[index].second.y - axisThrowDT > target.y))
+		{
+			keyAxis2DBuffer[index].second.y -= axisThrowDT;
+		}
+		else if (((keyAxis2DBuffer[index].second.y < target.y) && (keyAxis2DBuffer[index].second.y + axisThrowDT >= target.y))
+			|| ((keyAxis2DBuffer[index].second.y > target.y) && (keyAxis2DBuffer[index].second.y - axisThrowDT <= target.y)))
+		{
+			keyAxis2DBuffer[index].second.y = target.y;
+		}
+
+		return keyAxis2DBuffer[index].second;
 	}
 
 	return Vector2();
