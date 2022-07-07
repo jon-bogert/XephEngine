@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\data\SaveData.h" />
+    <ClInclude Include="src\systems\FileSystem.h" />
     <ClInclude Include="src\application\Application.h" />
     <ClInclude Include="src\application\Component.h" />
     <ClInclude Include="src\application\GameObject.h" />
@@ -37,6 +39,8 @@
     <ClInclude Include="src\Libraries.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\data\SaveData.cpp" />
+    <ClCompile Include="src\systems\FileSystem.cpp" />
     <ClCompile Include="src\application\Application.cpp" />
     <ClCompile Include="src\application\Component.cpp" />
     <ClCompile Include="src\application\GameObject.cpp" />

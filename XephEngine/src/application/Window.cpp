@@ -126,13 +126,13 @@ void xe::Draw::SpriteCalc(sf::Sprite* drawable, Component* comp) // TODO - Imple
 	Transform camera = Engine::GetActiveScene()->GetCamera();
 	drawable->setPosition
 	( //goTransform.postion.x, goTransform.postion.y
-		(goTransform.postion.x
-			- (camera.postion.x /*+ (camera.scale.x / 2)*/))
+		(goTransform.position.x
+			- (camera.position.x /*+ (camera.scale.x / 2)*/))
 		* Engine::GetWindow()->GetPixelsPerUnit()
 		* Engine::GetWindow()->GetResolutionScale(),
 
-		(goTransform.postion.y
-			- (camera.postion.y /*+ (camera.scale.y / 2)*/))
+		(goTransform.position.y
+			- (camera.position.y /*+ (camera.scale.y / 2)*/))
 		* Engine::GetWindow()->GetPixelsPerUnit()
 		* Engine::GetWindow()->GetResolutionScale()
 	);
@@ -147,13 +147,13 @@ void xe::Draw::TextCalc(sf::Text* drawable, Component* comp)
 	Transform camera = Engine::GetActiveScene()->GetCamera();
 	drawable->setPosition
 	( //goTransform.postion.x, goTransform.postion.y
-		(goTransform.postion.x
-			- (camera.postion.x /*+ (camera.scale.x / 2)*/))
+		(goTransform.position.x
+			- (camera.position.x /*+ (camera.scale.x / 2)*/))
 		* Engine::GetWindow()->GetPixelsPerUnit()
 		* Engine::GetWindow()->GetResolutionScale(),
 
-		(goTransform.postion.y
-			- (camera.postion.y /*+ (camera.scale.y / 2)*/))
+		(goTransform.position.y
+			- (camera.position.y /*+ (camera.scale.y / 2)*/))
 		* Engine::GetWindow()->GetPixelsPerUnit()
 		* Engine::GetWindow()->GetResolutionScale()
 	);

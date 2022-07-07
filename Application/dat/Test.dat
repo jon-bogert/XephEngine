@@ -1,0 +1,7 @@
+STR_TestMessage=This is a test message. I hope it works!
+STR_NameFirst=Jonathan
+STR_NameLast=Bogert
+STR_Username=Xepherin
+INT_Age=23
+BOOL_OfAge=true
+VEC2_Position=100.000000/-98.000000

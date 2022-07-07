@@ -94,7 +94,7 @@ namespace xe
 	};
 	struct Transform
 	{
-		Vector2 postion;
+		Vector2 position;
 		Rotator rotation;
 		Vector2 scale = {1.f, 1.f};
 	};

@@ -1,6 +1,7 @@
 #pragma once
 
 //Data
+#include "../../src/data/SaveData.h"
 #include "../../src/data/Structs.h"
 #include "../../src/data/Sprite.h"
 #include "../../src/data/TextData.h"
@@ -9,6 +10,7 @@
 #include "../../src/data/Font.h"
 
 //Systems
+#include "../../src/systems/FileSystem.h"
 #include "../../src/systems/InputSystem.h"
 
 //Application
