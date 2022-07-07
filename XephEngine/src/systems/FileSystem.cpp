@@ -37,15 +37,15 @@ xe::SaveData xe::FileSystem::Load(std::string name)
 				type.push_back(c);
 			else if (stage == 1)
 				key.push_back(c);
-			else if (stage == 3)
+			else if (stage == 2)
 				info0.push_back(c);
-			else if (stage == 4)
+			else if (stage == 3)
 				info1.push_back(c);
-			else if (stage == 5)
+			else if (stage == 4)
 				info2.push_back(c);
-			else if (stage == 6)
+			else if (stage == 5)
 				info3.push_back(c);
-			else if (stage == 7)
+			else if (stage == 6)
 				info4.push_back(c);
 		}
 		std::cout << type << " " << key << " " << info0 << std::endl;;
@@ -97,6 +97,7 @@ xe::SaveData xe::FileSystem::Load(std::string name)
 		{
 			data.AddRectangle(key, Rectangle(atof(info0.c_str()), atof(info1.c_str()), atof(info2.c_str()), atof(info3.c_str())));
 		}
+		type.clear(); key.clear(); info0.clear(); info1.clear(); info2.clear(); info3.clear(); info4.clear();
 	}
 	file.close();
 	return data;
