@@ -37,6 +37,7 @@ void RunApplication()
 {
 	Application app;
 	LoadScenes(app);
+	//app.GetWindow()->UpdateSettings(FileSystem::LoadProjSettings());
 	app.Runtime();
 }
 

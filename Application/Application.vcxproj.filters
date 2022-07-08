@@ -77,5 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="XephEngine_Utility.exe" />
+    <None Include="ProjSettings.dat" />
   </ItemGroup>
 </Project>

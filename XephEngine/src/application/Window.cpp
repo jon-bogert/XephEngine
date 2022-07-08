@@ -6,9 +6,8 @@ float deltaTime = 0.f;
 
 xe::Window::Window()
 {
-	//TODO Run Project Settings Script
 	UpdateResolutionScale();
-	window = new sf::RenderWindow(sf::VideoMode(resolution.x, resolution.y), title, sf::Style::Close);
+	RefreshWindow();
 	frameTimer = new Timer;
 }
 
@@ -16,6 +15,31 @@ xe::Window::~Window()
 {
 	delete frameTimer;
 	delete window;
+}
+
+void xe::Window::UpdateSettings(SaveData settings)
+{
+	resolution = { (int)settings.GetVector2("Resolution").x, (int)settings.GetVector2("Resolution").y };
+	referenceResolution = { (int)settings.GetVector2("ReferenceResolution").x, (int)settings.GetVector2("ReferenceResolution").y };
+	UpdateResolutionScale();
+	pixelsPerUnit = settings.GetFloat("PixelsPerUnit");
+	title = settings.GetString("AppTitle");
+	hasFrameLimit = settings.GetBool("HasFrameLimit");
+	frameLimit = settings.GetInt("FrameLimit");
+	backgroundColor = settings.GetColor("BackgroundColor");
+
+	std::string windowModeStr = settings.GetString("WindowMode");
+	if (windowModeStr == "Fullscreen") windowMode = WindowMode::Fullscreen;
+	else if (windowModeStr == "Borderless") windowMode = WindowMode::Borderless;
+	else windowMode = WindowMode::Windowed;
+
+	RefreshWindow();
+}
+
+void xe::Window::RefreshWindow()
+{
+	delete window;
+	window = new sf::RenderWindow(sf::VideoMode(resolution.x, resolution.y), title, sf::Style::Close);
 }
 
 void xe::Window::Draw()

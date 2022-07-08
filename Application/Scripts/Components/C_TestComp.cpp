@@ -18,16 +18,11 @@ namespace C
 		//saveData.AddVector2("Position", Vector2(100, -98));
 		//saveData.AddBool("OfAge", true);
 
-		SaveData saveData = FileSystem::Load("Test");
+		//SaveData saveData = FileSystem::Load("Test");
 
-		saveData.ChangeName("Test2");
+		//saveData.ChangeName("Test2");
 
-		FileSystem::Save(saveData);
-
-		std::string str;
-		int num  = 25;
-		str = std::to_string(num);
-		std::cout << str << std::endl;
+		//FileSystem::Save(saveData);
 	}
 
 	void TestComp::Update()

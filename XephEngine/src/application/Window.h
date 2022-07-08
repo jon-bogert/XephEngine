@@ -7,17 +7,18 @@ namespace xe
 	class GameObject;
 	class Component;
 
+	enum class WindowMode { Windowed, Borderless, Fullscreen };
+
 	class Window
 	{
 		//Window Settings
-		sf::RenderWindow* window;
+		sf::RenderWindow* window = nullptr;
 		Vector2i resolution = {1920, 1080};
 		Vector2i referenceResolution = {1920, 1080};
 		float pixelsPerUnit = 100.f;
 		float resolutionScale = 1.f;
 		std::string title = "XephEngine Application";
-		enum windowModeEnum {Windowed, Borderless, Fullscreen };
-		windowModeEnum windowMode = Fullscreen;
+		WindowMode windowMode = WindowMode::Fullscreen;
 		bool hasFrameLimit = false;
 		int frameLimit = 60;
 		Color backgroundColor = Colour(0,0,0);
@@ -31,6 +32,8 @@ namespace xe
 	public:
 		Window();
 		~Window();
+
+		void UpdateSettings(SaveData settings);
 
 		void Draw();
 
@@ -50,6 +53,7 @@ namespace xe
 
 	protected:
 		void DrawCalc(Component* comp);
+		void RefreshWindow();
 	};
 
 	namespace Time

@@ -10,22 +10,23 @@ namespace xe
 		std::string name;
 
 		//first => key, second => data
-		std::vector<std::pair<std::string, std::string>> dataStr;
-		std::vector<std::pair<std::string, int>> dataInt;
-		std::vector<std::pair<std::string, float>> dataFlt;
-		std::vector<std::pair<std::string, char>> dataChr;
-		std::vector<std::pair<std::string, bool>> dataBool;
-		std::vector<std::pair<std::string, Vector2>> dataVec2;
-		std::vector<std::pair<std::string, Transform>> dataTrans;
-		std::vector<std::pair<std::string, Color>> dataCol;
-		std::vector<std::pair<std::string, Rectangle>> dataRect;
+		std::vector<std::pair<std::string, std::string>>* dataStr = nullptr;
+		std::vector<std::pair<std::string, int>>* dataInt = nullptr;
+		std::vector<std::pair<std::string, float>>* dataFlt = nullptr;
+		std::vector<std::pair<std::string, char>>* dataChr = nullptr;
+		std::vector<std::pair<std::string, bool>>* dataBool = nullptr;
+		std::vector<std::pair<std::string, Vector2>>* dataVec2 = nullptr;
+		std::vector<std::pair<std::string, Transform>>* dataTrans = nullptr;
+		std::vector<std::pair<std::string, Color>>* dataCol = nullptr;
+		std::vector<std::pair<std::string, Rectangle>>* dataRect = nullptr;
 
 		template <class T>
-		T Search(std::string key, std::vector<std::pair<std::string, T>> data) const;
+		T Search(std::string key, std::vector<std::pair<std::string, T>>* data) const;
 		template <class T>
-		int SearchIndex(std::string key, std::vector<std::pair<std::string, T>> data) const;
+		int SearchIndex(std::string key, std::vector<std::pair<std::string, T>>* data) const;
 	public:
-		SaveData(std::string name) : name(name) {};
+		SaveData(std::string name);
+		~SaveData();
 
 		std::string GetName() const;
 		void ChangeName(const std::string _name);
@@ -67,9 +68,9 @@ namespace xe
 	};
 
 	template<class T>
-	inline T SaveData::Search(std::string key, std::vector<std::pair<std::string, T>> data) const
+	inline T SaveData::Search(std::string key, std::vector<std::pair<std::string, T>>* data) const
 	{
-		for (std::pair<std::string, T> pair : data)
+		for (std::pair<std::string, T> pair : *data)
 		{
 			if (pair.first == key) return pair.second;
 		}
@@ -78,10 +79,10 @@ namespace xe
 		return T();
 	}
 	template<class T>
-	inline int SaveData::SearchIndex(std::string key, std::vector<std::pair<std::string, T>> data) const
+	inline int SaveData::SearchIndex(std::string key, std::vector<std::pair<std::string, T>>* data) const
 	{
 		int index = 0;
-		for (std::pair<std::string, T> pair : data)
+		for (std::pair<std::string, T> pair : *data)
 		{
 			if (pair.first == key) return index;
 			index++;

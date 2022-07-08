@@ -8,6 +8,7 @@ namespace xe
 	namespace FileSystem
 	{
 		SaveData Load(std::string name);
+		SaveData LoadProjSettings();
 		SaveData LoadEncrypted(std::string name);
 
 		bool Save(SaveData saveData);

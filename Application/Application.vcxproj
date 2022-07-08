@@ -187,6 +187,7 @@
     <ClInclude Include="src\Resources.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ProjSettings.dat" />
     <None Include="XephEngine_Utility.exe" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
