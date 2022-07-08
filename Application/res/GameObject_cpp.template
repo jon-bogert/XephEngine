@@ -7,7 +7,8 @@ namespace O
 	
 	void @::LoadComponents()
 	{
-$		AddComponent(new C::@(this));
 		//AddComponent(new Component(this));
+
+$		AddComponent(new C::@(this));
 	}
 }
