@@ -7,7 +7,8 @@ float deltaTime = 0.f;
 xe::Window::Window()
 {
 	UpdateResolutionScale();
-	RefreshWindow();
+	//RefreshWindow();
+	UpdateSettings(FileSystem::LoadProjSettings());
 	frameTimer = new Timer;
 }
 
@@ -40,6 +41,7 @@ void xe::Window::RefreshWindow()
 {
 	delete window;
 	window = new sf::RenderWindow(sf::VideoMode(resolution.x, resolution.y), title, sf::Style::Close);
+	if (hasFrameLimit) window->setFramerateLimit(frameLimit);
 }
 
 void xe::Window::Draw()

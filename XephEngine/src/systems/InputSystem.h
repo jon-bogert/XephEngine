@@ -53,6 +53,14 @@ namespace xe
         bool ButtonHold(const int playerIndex, const Button button);
         Event ButtonEvent(const int playerIndex, const Button button);
 
+        bool MouseHold(const Mouse mouseButton);
+        Event MouseEvent(const Mouse mouseButton);
+        int MouseScroll();
+        Vector2 MouseDelta();
+        Vector2 MousePosition();
+        float GetMouseSensitivity();
+        void SetMouseSensitivity(const float newSensitivity);
+
         void TestFunction();
 
         void Typing(std::string& out_str);

@@ -13,7 +13,7 @@ namespace xe
 	{
 		//Window Settings
 		sf::RenderWindow* window = nullptr;
-		Vector2i resolution = {1920, 1080};
+		Vector2i resolution = {720, 480};
 		Vector2i referenceResolution = {1920, 1080};
 		float pixelsPerUnit = 100.f;
 		float resolutionScale = 1.f;

@@ -1,10 +1,12 @@
 #include "InputSystem.h"
+#include "../EngineUtils.h"
 #include <windows.h>
 #include <xinput.h>
 
 sf::Event inputEvent;
 
 std::vector<xe::Key> keyHold;
+std::vector<xe::Mouse> mButtonHold;
 std::vector<std::pair<int, xe::Button>> buttonHold;
 std::vector<std::pair<std::string, xe::Vector2>> keyAxis2DBuffer;
 std::vector<std::pair<std::string, float >> keyAxis1DBuffer;
@@ -13,6 +15,9 @@ float axisThrow = 15.f;
 struct XE_CONTROLLER_TRIG { float LT = 0.f; float RT = 0.f; };
 float deadZoneMin = 0.3f;
 float deadZoneMax = 1.f;
+
+xe::Vector2 mousePosPrev = { 0,0 };
+float mouseSensitivity = 1.f;
 
 XE_CONTROLLER_TRIG GetTriggerPosition(int playrIndex)
 {
@@ -360,24 +365,72 @@ xe::Event xe::InputSystem::ButtonEvent(const int playerIndex, const Button butto
 	return None;
 }
 
+bool xe::InputSystem::MouseHold(const Mouse mouseButton)
+{
+	return sf::Mouse::isButtonPressed((sf::Mouse::Button)mouseButton);
+}
+
+xe::Event xe::InputSystem::MouseEvent(const Mouse mouseButton)
+{
+	bool buttonFound{};
+	int index{};
+	for (Mouse b : mButtonHold)
+	{
+		if (b == mouseButton)
+		{
+			buttonFound = true;
+			break;
+		}
+		else index++;
+	}
+
+	if (MouseHold(mouseButton))
+	{
+		if (!buttonFound)
+		{
+			mButtonHold.push_back(mouseButton);
+			return Pressed;
+		}
+	}
+	else if (buttonFound)
+	{
+		mButtonHold.erase(mButtonHold.begin() + index);
+		return Released;
+	}
+
+	return None;
+}
+
+int xe::InputSystem::MouseScroll()
+{
+	return (int)inputEvent.mouseWheelScroll.delta;
+}
+
+xe::Vector2 xe::InputSystem::MouseDelta()
+{ 
+	Vector2 delta = { MousePosition().x - mousePosPrev.x, MousePosition().y - mousePosPrev.y };
+	mousePosPrev = MousePosition();
+	return delta;
+}
+
+xe::Vector2 xe::InputSystem::MousePosition()
+{
+	return Vector2((float)sf::Mouse::getPosition(*Engine::GetWindow()->UnWrap()).x, (float)sf::Mouse::getPosition(*Engine::GetWindow()->UnWrap()).y);
+}
+
+float xe::InputSystem::GetMouseSensitivity()
+{
+	return mouseSensitivity;
+}
+
+void xe::InputSystem::SetMouseSensitivity(const float newSensitivity)
+{
+	mouseSensitivity = newSensitivity;
+}
+
 void xe::InputSystem::TestFunction()
 {
-	if (ButtonEvent(0, Button::LT) == Released) std::cout << "LT" << std::endl;
-	if (ButtonEvent(0, Button::RT) == Released) std::cout << "RT" << std::endl;
-	if (ButtonEvent(0, Button::LS_Up) == Released) std::cout << "LUp" << std::endl;
-	if (ButtonEvent(0, Button::LS_Down) == Released) std::cout << "LDown" << std::endl;
-	if (ButtonEvent(0, Button::LS_Left) == Released) std::cout << "LLeft" << std::endl;
-	if (ButtonEvent(0, Button::LS_Right) == Released) std::cout << "LRight" << std::endl;
-	if (ButtonEvent(0, Button::RS_Up) == Released) std::cout << "RUp" << std::endl;
-	if (ButtonEvent(0, Button::RS_Down) == Released) std::cout << "RDown" << std::endl;
-	if (ButtonEvent(0, Button::RS_Left) == Released) std::cout << "RLeft" << std::endl;
-	if (ButtonEvent(0, Button::RS_Right) == Released) std::cout << "RRight" << std::endl;
-	if (ButtonEvent(0, Button::DPad_Up) == Released) std::cout << "DUp" << std::endl;
-	if (ButtonEvent(0, Button::DPad_Down) == Released) std::cout << "DDown" << std::endl;
-	if (ButtonEvent(0, Button::DPad_Left) == Released) std::cout << "DLeft" << std::endl;
-	if (ButtonEvent(0, Button::DPad_Right) == Released) std::cout << "DRight" << std::endl;
-	if (ButtonEvent(0, Button::A) == Released) std::cout << "A" << std::endl;
-
+	std::cout << MouseDelta() << std::endl;
 }
 
 void xe::InputSystem::Typing(std::string& out_str)

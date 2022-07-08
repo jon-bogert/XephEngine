@@ -30,7 +30,10 @@ xe::GameObject::GameObject(GameObject* parent, Transform transform)
 xe::GameObject::~GameObject()
 {
 	for (Component* comp : components)
+	{
+		comp->OnDeath();
 		delete comp;
+	}
 	if (parent != nullptr)
 	{
 		int i = 0;
