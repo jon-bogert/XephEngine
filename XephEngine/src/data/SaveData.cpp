@@ -4,28 +4,6 @@
 xe::SaveData::SaveData(std::string name)
 	: name(name)
 {
-	dataStr = new std::vector<std::pair<std::string, std::string>>;
-	dataInt = new std::vector<std::pair<std::string, int>>;
-	dataFlt = new std::vector<std::pair<std::string, float>>;
-	dataChr = new std::vector<std::pair<std::string, char>>;
-	dataBool = new std::vector<std::pair<std::string, bool>>;
-	dataVec2 = new std::vector<std::pair<std::string, Vector2>>;
-	dataTrans = new std::vector<std::pair<std::string, Transform>>;
-	dataCol = new std::vector<std::pair<std::string, Color>>;
-	dataRect = new std::vector<std::pair<std::string, Rectangle>>;
-}
-
-xe::SaveData::~SaveData()
-{
-	delete dataStr;
-	delete dataInt;
-	delete dataFlt;
-	delete dataChr;
-	delete dataBool;
-	delete dataVec2;
-	delete dataTrans;
-	delete dataCol;
-	delete dataRect;
 }
 
 std::string xe::SaveData::GetName() const
@@ -90,42 +68,42 @@ xe::Rectangle xe::SaveData::GetRectangle(const std::string key) const
 
 void xe::SaveData::AddString(const std::string key, const std::string data)
 {
-	dataStr->push_back({ key, data });
+	dataStr.push_back({ key, data });
 }
 
 void xe::SaveData::AddInt(const std::string key, const int data)
 {
-	dataInt->push_back({ key, data });
+	dataInt.push_back({ key, data });
 }
 
 void xe::SaveData::AddFloat(const std::string key, const float data)
 {
-	dataFlt->push_back({ key, data });
+	dataFlt.push_back({ key, data });
 }
 
 void xe::SaveData::AddChar(const std::string key, const char data)
 {
-	dataChr->push_back({ key, data });
+	dataChr.push_back({ key, data });
 }
 
 void xe::SaveData::AddBool(const std::string key, const bool data)
 {
-	dataBool->push_back({ key, data });
+	dataBool.push_back({ key, data });
 }
 
 void xe::SaveData::AddVector2(const std::string key, const Vector2 data)
 {
-	dataVec2->push_back({ key, data });
+	dataVec2.push_back({ key, data });
 }
 
 void xe::SaveData::AddTransform(const std::string key, const Transform data)
 {
-	dataTrans->push_back({ key, data });
+	dataTrans.push_back({ key, data });
 }
 
 void xe::SaveData::AddColor(const std::string key, const Color data)
 {
-	dataCol->push_back({ key, data });
+	dataCol.push_back({ key, data });
 }
 
 void xe::SaveData::AddColour(const std::string key, const Colour data)
@@ -135,7 +113,7 @@ void xe::SaveData::AddColour(const std::string key, const Colour data)
 
 void xe::SaveData::AddRectangle(const std::string key, const Rectangle data)
 {
-	dataRect->push_back({ key, data });
+	dataRect.push_back({ key, data });
 }
 
 bool xe::SaveData::RemoveString(const std::string key)
@@ -143,7 +121,7 @@ bool xe::SaveData::RemoveString(const std::string key)
 	int index = SearchIndex(key, dataStr);
 	if (index >= 0)
 	{
-		dataStr->erase(dataStr->begin() + index);
+		dataStr.erase(dataStr.begin() + index);
 		return true;
 	}
 	return false;
@@ -154,7 +132,7 @@ bool xe::SaveData::RemoveInt(const std::string key)
 	int index = SearchIndex(key, dataInt);
 	if (index >= 0)
 	{
-		dataInt->erase(dataInt->begin() + index);
+		dataInt.erase(dataInt.begin() + index);
 		return true;
 	}
 	return false;
@@ -165,7 +143,7 @@ bool xe::SaveData::RemoveFloat(const std::string key)
 	int index = SearchIndex(key, dataFlt);
 	if (index >= 0)
 	{
-		dataFlt->erase(dataFlt->begin() + index);
+		dataFlt.erase(dataFlt.begin() + index);
 		return true;
 	}
 	return false;
@@ -176,7 +154,7 @@ bool xe::SaveData::RemoveChar(const std::string key)
 	int index = SearchIndex(key, dataChr);
 	if (index >= 0)
 	{
-		dataChr->erase(dataChr->begin() + index);
+		dataChr.erase(dataChr.begin() + index);
 		return true;
 	}
 	return false;
@@ -187,7 +165,7 @@ bool xe::SaveData::RemoveBool(const std::string key)
 	int index = SearchIndex(key, dataBool);
 	if (index >= 0)
 	{
-		dataBool->erase(dataBool->begin() + index);
+		dataBool.erase(dataBool.begin() + index);
 		return true;
 	}
 	return false;
@@ -198,7 +176,7 @@ bool xe::SaveData::RemoveVector2(const std::string key)
 	int index = SearchIndex(key, dataVec2);
 	if (index >= 0)
 	{
-		dataVec2->erase(dataVec2->begin() + index);
+		dataVec2.erase(dataVec2.begin() + index);
 		return true;
 	}
 	return false;
@@ -209,7 +187,7 @@ bool xe::SaveData::RemoveTransform(const std::string key)
 	int index = SearchIndex(key, dataTrans);
 	if (index >= 0)
 	{
-		dataTrans->erase(dataTrans->begin() + index);
+		dataTrans.erase(dataTrans.begin() + index);
 		return true;
 	}
 	return false;
@@ -220,7 +198,7 @@ bool xe::SaveData::RemoveColor(const std::string key)
 	int index = SearchIndex(key, dataCol);
 	if (index >= 0)
 	{
-		dataCol->erase(dataCol->begin() + index);
+		dataCol.erase(dataCol.begin() + index);
 		return true;
 	}
 	return false;
@@ -236,7 +214,7 @@ bool xe::SaveData::RemoveRectangle(const std::string key)
 	int index = SearchIndex(key, dataRect);
 	if (index >= 0)
 	{
-		dataRect->erase(dataRect->begin() + index);
+		dataRect.erase(dataRect.begin() + index);
 		return true;
 	}
 	return false;
@@ -246,31 +224,31 @@ std::vector<std::pair<std::string, std::string>> xe::SaveData::Compile() const
 {
 	std::vector<std::pair<std::string, std::string>> data;
 
-	for (std::pair<std::string, std::string> pair : *dataStr)
+	for (std::pair<std::string, std::string> pair : dataStr)
 	{
 		std::string key = "STR_";
 		key.append(pair.first);
 		data.push_back({ key, pair.second });
 	}
-	for (std::pair<std::string, int> pair : *dataInt)
+	for (std::pair<std::string, int> pair : dataInt)
 	{
 		std::string key = "INT_";
 		key.append(pair.first);
 		data.push_back({ key, std::to_string(pair.second)});
 	}
-	for (std::pair<std::string, float> pair : *dataFlt)
+	for (std::pair<std::string, float> pair : dataFlt)
 	{
 		std::string key = "FLT_";
 		key.append(pair.first);
 		data.push_back({ key, std::to_string(pair.second) });
 	}
-	for (std::pair<std::string, char> pair : *dataChr)
+	for (std::pair<std::string, char> pair : dataChr)
 	{
 		std::string key = "CHR_";
 		key.append(pair.first);
 		data.push_back({ key, std::to_string(pair.second) });
 	}
-	for (std::pair<std::string, bool> pair : *dataBool)
+	for (std::pair<std::string, bool> pair : dataBool)
 	{
 		std::string key = "BOOL_";
 		key.append(pair.first);
@@ -279,7 +257,7 @@ std::vector<std::pair<std::string, std::string>> xe::SaveData::Compile() const
 		else
 			data.push_back({ key, "false" });
 	}
-	for (std::pair<std::string, Vector2> pair : *dataVec2)
+	for (std::pair<std::string, Vector2> pair : dataVec2)
 	{
 		std::string key = "VEC2_";
 		key.append(pair.first);
@@ -288,7 +266,7 @@ std::vector<std::pair<std::string, std::string>> xe::SaveData::Compile() const
 		comp.append(std::to_string(pair.second.y));
 		data.push_back({ key, comp });
 	}
-	for (std::pair<std::string, Transform> pair : *dataTrans)
+	for (std::pair<std::string, Transform> pair : dataTrans)
 	{
 		std::string key = "TRAN_";
 		key.append(pair.first);
@@ -303,7 +281,7 @@ std::vector<std::pair<std::string, std::string>> xe::SaveData::Compile() const
 		comp.append(std::to_string(pair.second.scale.y));
 		data.push_back({ key, comp });
 	}
-	for (std::pair<std::string, Color> pair : *dataCol)
+	for (std::pair<std::string, Color> pair : dataCol)
 	{
 		std::string key = "COL_";
 		key.append(pair.first);
@@ -316,7 +294,7 @@ std::vector<std::pair<std::string, std::string>> xe::SaveData::Compile() const
 		comp.append(std::to_string(pair.second.a));
 		data.push_back({ key, comp });
 	}
-	for (std::pair<std::string, Rectangle> pair : *dataRect)
+	for (std::pair<std::string, Rectangle> pair : dataRect)
 	{
 		std::string key = "RECT_";
 		key.append(pair.first);

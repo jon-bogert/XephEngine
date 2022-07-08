@@ -99,6 +99,7 @@ namespace xe
 			type.clear(); key.clear(); info0.clear(); info1.clear(); info2.clear(); info3.clear(); info4.clear();
 		}
 		file.close();
+		return data;
 	}
 }
 

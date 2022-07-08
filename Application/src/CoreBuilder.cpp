@@ -37,7 +37,8 @@ void RunApplication()
 {
 	Application app;
 	LoadScenes(app);
-	//app.GetWindow()->UpdateSettings(FileSystem::LoadProjSettings());
+	app.GetWindow()->UpdateSettings(FileSystem::LoadProjSettings());
+	//std::cout << FileSystem::Load("Test2").GetString("Hello") << std::endl;
 	app.Runtime();
 }
 
