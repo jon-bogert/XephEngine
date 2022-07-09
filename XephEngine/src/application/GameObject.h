@@ -15,6 +15,7 @@ namespace xe
 		std::vector<Component*> components{};
 		GameObject* parent = nullptr;
 		std::vector<GameObject*> children{};
+		bool isActive = true;
 
 		void Awake();
 		void OnDeath();
@@ -30,10 +31,13 @@ namespace xe
 		void Start();
 		void Update();
 
+		bool GetIsActive() const;
+		void SetIsActive(const bool setTo);
+
 		std::vector<Component*> GetComponents();
 
 		template <class T>
-		T* GetComponent();
+		T* GetComponent(); // TODO Test and Fix
 
 		std::vector<GameObject*>& GetChildren();
 		void SetParent(GameObject* newParent);

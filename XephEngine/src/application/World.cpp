@@ -15,7 +15,10 @@ void xe::World::Start()
 void xe::World::Update()
 {
 	for (GameObject* go : gameObjects)
-		go->Update();
+	{
+		if (go->GetIsActive())
+			go->Update();
+	}
 }
 
 void xe::World::LoadGameObjects()

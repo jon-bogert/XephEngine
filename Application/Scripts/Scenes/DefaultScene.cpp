@@ -26,8 +26,9 @@ void DefaultScene::LoadFonts()
 
 void DefaultWorld::LoadGameObjects()
 {
-	AddGameObject(new O::TestObj());
-	AddGameObject(new O::FPSCounter());
+	//AddGameObject(new O::FPSCounter());
+	AddGameObject(new O::MyTestObj());
+	AddGameObject(new O::OtherTestObj());
 }
 
 DefaultWorld::DefaultWorld()

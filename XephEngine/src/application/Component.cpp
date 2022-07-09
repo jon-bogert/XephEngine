@@ -60,6 +60,14 @@ void xe::Component::OnDeath()
 {
 }
 
+void xe::Component::OnEnable()
+{
+}
+
+void xe::Component::OnDisable()
+{
+}
+
 sf::Drawable* xe::Component::Draw()
 {
 	return nullptr;
@@ -68,6 +76,23 @@ sf::Drawable* xe::Component::Draw()
 xe::GameObject* xe::Component::GetGameObject()
 {
 	return gameObject;
+}
+
+bool xe::Component::GetIsEnabled() const
+{
+	return isEnabled;
+}
+
+void xe::Component::SetIsEnabled(const bool setTo)
+{
+	if (isEnabled != setTo)
+	{
+		if (setTo)
+			OnEnable();
+		else
+			OnDisable();
+	}
+	isEnabled = setTo;
 }
 
 xe::GameObject* xe::Component::FindObjectByTag(std::string _tag)

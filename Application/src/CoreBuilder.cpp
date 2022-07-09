@@ -4,7 +4,7 @@
 
 using namespace xe;
 
-bool UTIL_OVERRIDE = false; // Set to true to skip Utilty Menu
+bool UTIL_OVERRIDE = true; // Set to true to skip Utilty Menu
 
 void RunApplication();
 char UtilMenu();
@@ -37,8 +37,7 @@ void RunApplication()
 {
 	Application app;
 	LoadScenes(app);
-	//app.GetWindow()->UpdateSettings(FileSystem::LoadProjSettings());
-	//std::cout << FileSystem::Load("Test2").GetString("Hello") << std::endl;
+	std::cout << "Initializing..." << std::endl;
 	app.Runtime();
 }
 

@@ -1,52 +1,6 @@
-﻿  Application.cpp
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  Component.cpp
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  GameObject.cpp
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  Scene.cpp
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  Window.cpp
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  World.cpp
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  FileSystem.cpp
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\systems\FileSystem.cpp(62,28): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\systems\FileSystem.cpp(66,28): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\systems\FileSystem.cpp(80,66): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\systems\FileSystem.cpp(86,47): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\systems\FileSystem.cpp(87,19): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\systems\FileSystem.cpp(88,47): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\systems\FileSystem.cpp(97,105): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\systems\FileSystem.cpp(97,84): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\systems\FileSystem.cpp(97,63): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\systems\FileSystem.cpp(97,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  InputSystem.cpp
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
-  XephEngine.vcxproj -> D:\repos\C++\XephEngine_Dev\Build\x64\Debug\XephEngine.lib
+﻿  GameObject.cpp
+C:\Users\lcv2142940\Desktop\XephEngine\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\lcv2142940\Desktop\XephEngine\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\lcv2142940\Desktop\XephEngine\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\lcv2142940\Desktop\XephEngine\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  XephEngine.vcxproj -> C:\Users\lcv2142940\Desktop\XephEngine\Build\x64\Debug\XephEngine.lib

@@ -42,7 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -159,14 +159,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Scripts\Components\C_MyTestObj.cpp" />
+    <ClCompile Include="Scripts\Components\C_OtherTestObj.cpp" />
+    <ClCompile Include="Scripts\GameObjects\O_MyTestObj.cpp" />
+    <ClCompile Include="Scripts\GameObjects\O_OtherTestObj.cpp" />
     <ClCompile Include="src\CoreBuilder.cpp" />
     <ClCompile Include="core\Components\C_SimpleSprite.cpp" />
     <ClCompile Include="core\Components\C_SpriteSheet.cpp" />
     <ClCompile Include="core\Components\C_FPSCounter.cpp" />
-    <ClCompile Include="Scripts\Components\C_TestComp.cpp" />
     <ClCompile Include="core\Components\C_Text.cpp" />
     <ClCompile Include="core\GameObjects\O_FPSCounter.cpp" />
-    <ClCompile Include="Scripts\GameObjects\O_TestObj.cpp" />
     <ClCompile Include="Scripts\Scenes\DefaultScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -179,10 +181,12 @@
     <ClInclude Include="core\Components\C_SpriteSheet.h" />
     <ClInclude Include="core\CoreLibrary.h" />
     <ClInclude Include="core\Components\C_FPSCounter.h" />
-    <ClInclude Include="Scripts\Components\C_TestComp.h" />
     <ClInclude Include="core\Components\C_Text.h" />
     <ClInclude Include="core\GameObjects\O_FPSCounter.h" />
-    <ClInclude Include="Scripts\GameObjects\O_TestObj.h" />
+    <ClInclude Include="Scripts\Components\C_MyTestObj.h" />
+    <ClInclude Include="Scripts\Components\C_OtherTestObj.h" />
+    <ClInclude Include="Scripts\GameObjects\O_MyTestObj.h" />
+    <ClInclude Include="Scripts\GameObjects\O_OtherTestObj.h" />
     <ClInclude Include="Scripts\Scenes\DefaultScene.h" />
     <ClInclude Include="src\Resources.h" />
   </ItemGroup>

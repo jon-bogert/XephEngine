@@ -71,12 +71,45 @@ void xe::GameObject::Start()
 	{
 		comp->SetSceneRef();
 		comp->Start();
+		if (comp->GetIsEnabled() && isActive)
+			comp->OnEnable();
 	}
 }
 
 void xe::GameObject::Update()
 {
-	for (Component* comp : components) comp->Update();
+	for (Component* comp : components)
+	{
+		if (comp->GetIsEnabled())
+			comp->Update();
+	}
+}
+
+bool xe::GameObject::GetIsActive() const
+{
+	return isActive;
+}
+
+void xe::GameObject::SetIsActive(const bool setTo)
+{
+	if (isActive != setTo)
+	{
+		if (setTo)
+		{
+			for (Component* c : components)
+			{
+				c->OnEnable();
+			}
+		}
+		else
+		{
+			for (Component* c : components)
+			{
+				c->OnDisable();
+			}
+		}
+	}
+	isActive = setTo;
 }
 
 void xe::GameObject::OnDeath()

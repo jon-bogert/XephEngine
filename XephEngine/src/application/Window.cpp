@@ -56,15 +56,17 @@ void xe::Window::Draw()
 
 void xe::Window::DrawCalc(Component* comp)
 {
-	
-	// Safeguard
-	if (comp->Draw() == nullptr)
+	if (comp->GetGameObject()->GetIsActive() && comp->GetIsEnabled())
 	{
-		std::cout << "[INFO] No Drawable found on Component type: " << typeid(*comp).name() << std::endl;
-		return;
-	}
+		// Safeguard
+		if (comp->Draw() == nullptr)
+		{
+			std::cout << "[INFO] No Drawable found on Component type: " << typeid(*comp).name() << std::endl;
+			return;
+		}
 
-	window->draw(*comp->Draw());
+		window->draw(*comp->Draw());
+	}
 }
 
 bool xe::Window::IsOpen()
