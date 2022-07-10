@@ -21,10 +21,10 @@ namespace xe
 		void Update();
 
 		std::vector<GameObject*> GetGameObjects();
+		void AddGameObject(GameObject* obj);
 
 	protected:
 		virtual void LoadGameObjects();
-		void AddGameObject(GameObject* obj);
 	};
 }
 

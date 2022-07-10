@@ -6,11 +6,11 @@ namespace C
 		
 	void OtherTestObj::Start()
 	{
-		myTestObj = FindObjectOfType<MyTestObj>();
+		//myTestObj = FindObjectOfType<MyTestObj>();
 	}
 	
 	void OtherTestObj::Update()
 	{
-		if (InputSystem::KeyEvent(Key::Space) == Pressed) myTestObj->GetGameObject()->SetIsActive(!myTestObj->GetGameObject()->GetIsActive());
+		if (InputSystem::KeyEvent(Key::Space) == Pressed) Instantiate(new O::MyTestObj());
 	}
 }

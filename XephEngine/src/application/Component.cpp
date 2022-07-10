@@ -95,6 +95,12 @@ void xe::Component::SetIsEnabled(const bool setTo)
 	isEnabled = setTo;
 }
 
+void xe::Component::Instantiate(GameObject* gameObject)
+{
+	Engine::GetActiveScene()->GetWorld()->AddGameObject(gameObject);
+	gameObject->Start();
+}
+
 xe::GameObject* xe::Component::FindObjectByTag(std::string _tag)
 {
 	//for (GameObject* go : Engine::GetActiveScene()->GetWorld()->GetGameObjects())

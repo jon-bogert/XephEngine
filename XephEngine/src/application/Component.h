@@ -42,6 +42,8 @@ namespace xe
 		template <class T>
 		T* GetComponent();
 
+		void Instantiate(GameObject* gameObject);
+
 		
 		template <class T>
 		T* FindObjectOfType();
