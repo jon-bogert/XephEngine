@@ -11,6 +11,7 @@ std::vector<std::pair<int, xe::Button>> buttonHold;
 std::vector<std::pair<std::string, xe::Vector2>> keyAxis2DBuffer;
 std::vector<std::pair<std::string, float >> keyAxis1DBuffer;
 float axisThrow = 15.f;
+bool init = true;
 
 struct XE_CONTROLLER_TRIG { float LT = 0.f; float RT = 0.f; };
 float deadZoneMin = 0.3f;
@@ -58,7 +59,12 @@ bool xe::InputSystem::Update()
 
 bool xe::InputSystem::CloseWindow()
 {
-	return (inputEvent.type == sf::Event::Closed);
+	if (!init)
+		return (inputEvent.type == sf::Event::Closed);
+	else if (inputEvent.type != sf::Event::Closed)
+		init = false;
+
+	return false;
 }
 
 float xe::InputSystem::KeyAxis1D(const Key pos, const Key neg)

@@ -125,6 +125,15 @@ float xe::Window::HeightInUnits() const
 	return referenceResolution.y / pixelsPerUnit;
 }
 
+bool xe::Window::GetCloseWindow() const
+{
+	return closeWindow;
+}
+
+void xe::Window::CloseWindow()
+{
+}
+
 float xe::Time::DeltaTime()
 {
 	return deltaTime;

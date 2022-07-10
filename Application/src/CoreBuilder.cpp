@@ -38,6 +38,7 @@ void RunApplication()
 	Application app;
 	LoadScenes(app);
 	std::cout << "Initializing..." << std::endl;
+	//system("pause");
 	app.Runtime();
 }
 

@@ -23,6 +23,8 @@ namespace xe
 		int frameLimit = 60;
 		Color backgroundColor = Colour(0,0,0);
 
+		bool closeWindow;
+
 		//Frame Timing
 		Timer* frameTimer;
 
@@ -50,6 +52,8 @@ namespace xe
 		float GetResolutionScale() const;
 		float WidthInUnits() const;
 		float HeightInUnits() const;
+		bool GetCloseWindow() const;
+		void CloseWindow();
 
 	protected:
 		void DrawCalc(Component* comp);
