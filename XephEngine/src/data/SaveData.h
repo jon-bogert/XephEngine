@@ -1,6 +1,7 @@
 #pragma once
 #include "../Libraries.h"
 #include "Structs.h"
+#include "../systems/Debug.h"
 
 namespace xe
 {
@@ -74,7 +75,7 @@ namespace xe
 			if (pair.first == key) return pair.second;
 		}
 
-		std::cout << "[ERROR] Could not find data with key: " << key << std::endl;
+		Debug::LogErr("Could not find data with key : &s", key.c_str());
 		return T();
 	}
 	template<class T>
@@ -87,7 +88,7 @@ namespace xe
 			index++;
 		}
 
-		std::cout << "[ERROR] Could not find data with key: " << key << std::endl;
+		Debug::LogErr("Could not find data with key : &s", key.c_str());
 		return -1;
 	}
 }

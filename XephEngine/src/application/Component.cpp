@@ -30,7 +30,7 @@ void xe::Component::RemoveDrawable()
 			if (Engine::GetWindow()->GetDrawables()[i] == this)
 				Engine::GetWindow()->GetDrawables().erase(Engine::GetWindow()->GetDrawables().begin() + i); return;
 		}
-		std::cout << "[INFO] Component type: " << typeid(*this).name() << " was tagged as 'Drawable' incorrectly" << std::endl;
+		Debug::LogInfo("Component type: %s was tagged as 'Drawable' incorrectly", typeid(*this).name());
 	}
 }
 
@@ -56,7 +56,7 @@ void xe::Component::Update()
 {
 }
 
-void xe::Component::OnDeath()
+void xe::Component::OnDestroy()
 {
 }
 
@@ -99,6 +99,15 @@ void xe::Component::Instantiate(GameObject* gameObject)
 {
 	Engine::GetActiveScene()->GetWorld()->AddGameObject(gameObject);
 	gameObject->Start();
+}
+
+void xe::Component::Destroy(GameObject* gameObject)
+{
+	if (gameObject != nullptr)
+	{
+		gameObject->OnDestroy();
+		Engine::GetActiveScene()->GetWorld()->DestroyGameObject(gameObject);
+	}
 }
 
 xe::GameObject* xe::Component::FindObjectByTag(std::string _tag)

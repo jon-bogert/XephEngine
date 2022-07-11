@@ -18,7 +18,6 @@ namespace xe
 		bool isActive = true;
 
 		void Awake();
-		void OnDeath();
 
 	public:
 		Transform transform{};
@@ -30,6 +29,7 @@ namespace xe
 		
 		void Start();
 		void Update();
+		void OnDestroy();
 
 		bool GetIsActive() const;
 		void SetIsActive(const bool setTo);

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\systems\Debug.h" />
     <ClInclude Include="src\data\SaveData.h" />
     <ClInclude Include="src\systems\FileSystem.h" />
     <ClInclude Include="src\application\Application.h" />
@@ -39,6 +40,7 @@
     <ClInclude Include="src\Libraries.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\systems\Debug.cpp" />
     <ClCompile Include="src\data\SaveData.cpp" />
     <ClCompile Include="src\systems\FileSystem.cpp" />
     <ClCompile Include="src\application\Application.cpp" />

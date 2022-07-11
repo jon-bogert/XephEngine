@@ -19,7 +19,7 @@ namespace xe
 
 		if (!file.is_open())
 		{
-			std::cout << "[WARN] File at " << filePath << " not found. Creating new SaveData with name: " << name << std::endl;
+			Debug::LogWarn("File at %s not found. Creating new SaveData with name: %s", filePath.c_str(), name.c_str());
 			return data;
 		}
 
@@ -47,7 +47,6 @@ namespace xe
 				else if (stage == 6)
 					info4.push_back(c);
 			}
-			std::cout << type << " " << key << " " << info0 << std::endl;;
 
 			if (type == "STR")
 			{
@@ -116,7 +115,7 @@ xe::SaveData xe::FileSystem::LoadProjSettings()
 
 xe::SaveData xe::FileSystem::LoadEncrypted(std::string name)
 {
-	std::cout << "[ERROR] Encryped saving/loading not yet supported." << std::endl;
+	Debug::LogErr("Encryped saving/loading not yet supported.");
 	return SaveData("null");
 }
 
@@ -143,6 +142,6 @@ bool xe::FileSystem::Save(SaveData saveData)
 
 bool xe::FileSystem::SaveEncrypted(SaveData saveData)
 {
-	std::cout << "[ERROR] Encryped saving/loading not yet supported." << std::endl;
+	Debug::LogErr("Encryped saving / loading not yet supported.");
 	return false;
 }

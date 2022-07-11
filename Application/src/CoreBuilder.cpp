@@ -24,7 +24,7 @@ int main()
 			Utility();
 			break;
 		default:
-			std::cout << "Exiting...";
+			Debug::LogInfo("Exiting...");
 		}
 	}
 	else
@@ -37,8 +37,6 @@ void RunApplication()
 {
 	Application app;
 	LoadScenes(app);
-	std::cout << "Initializing..." << std::endl;
-	//system("pause");
 	app.Runtime();
 }
 

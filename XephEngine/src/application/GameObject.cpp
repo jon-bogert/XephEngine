@@ -31,7 +31,7 @@ xe::GameObject::~GameObject()
 {
 	for (Component* comp : components)
 	{
-		comp->OnDeath();
+		comp->OnDestroy();
 		delete comp;
 	}
 	if (parent != nullptr)
@@ -112,9 +112,9 @@ void xe::GameObject::SetIsActive(const bool setTo)
 	isActive = setTo;
 }
 
-void xe::GameObject::OnDeath()
+void xe::GameObject::OnDestroy()
 {
-	for (Component* comp : components) comp->OnDeath();
+	for (Component* comp : components) comp->OnDestroy();
 }
 
 std::vector<xe::Component*> xe::GameObject::GetComponents()

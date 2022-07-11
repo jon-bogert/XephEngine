@@ -30,7 +30,7 @@ namespace xe
 		virtual void Awake();
 		virtual void Start();
 		virtual void Update();
-		virtual void OnDeath();
+		virtual void OnDestroy();
 		virtual void OnEnable();
 		virtual void OnDisable();
 		virtual sf::Drawable* Draw();
@@ -43,6 +43,7 @@ namespace xe
 		T* GetComponent();
 
 		void Instantiate(GameObject* gameObject);
+		void Destroy(GameObject* gameObject);
 
 		
 		template <class T>

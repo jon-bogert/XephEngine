@@ -22,6 +22,7 @@ namespace xe
 
 		std::vector<GameObject*> GetGameObjects();
 		void AddGameObject(GameObject* obj);
+		void DestroyGameObject(GameObject* gameObject);
 
 	protected:
 		virtual void LoadGameObjects();

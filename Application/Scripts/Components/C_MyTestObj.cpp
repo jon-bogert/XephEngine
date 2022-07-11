@@ -15,6 +15,6 @@ namespace C
 	}
 	void MyTestObj::PrintTest()
 	{
-		std::cout << "Print Test!" << std::endl;
+		
 	}
 }
