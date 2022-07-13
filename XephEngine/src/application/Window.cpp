@@ -174,6 +174,8 @@ void xe::Draw::SpriteCalc(sf::Sprite* drawable, Component* comp) // TODO - Imple
 		* Engine::GetWindow()->GetResolutionScale()
 	);
 
+	drawable->setRotation(comp->GetGameObject()->transform.rotation.GetRotation());
+
 	drawable->setScale(goTransform.scale.x * camera.scale.x * Engine::GetWindow()->GetResolutionScale(),
 		goTransform.scale.y * camera.scale.y * Engine::GetWindow()->GetResolutionScale());
 }
@@ -194,6 +196,8 @@ void xe::Draw::TextCalc(sf::Text* drawable, Component* comp)
 		* Engine::GetWindow()->GetPixelsPerUnit()
 		* Engine::GetWindow()->GetResolutionScale()
 	);
+
+	drawable->setRotation(comp->GetGameObject()->transform.rotation.GetRotation());
 
 	drawable->setScale(goTransform.scale.x * camera.scale.x * Engine::GetWindow()->GetResolutionScale(),
 		goTransform.scale.y * camera.scale.y * Engine::GetWindow()->GetResolutionScale());

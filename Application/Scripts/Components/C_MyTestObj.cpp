@@ -13,6 +13,7 @@ namespace C
 	void MyTestObj::Update()
 	{
 		//PrintTest();
+		gameObject->transform.rotation.Add(45 * Time::DeltaTime());
 	}
 	void MyTestObj::PrintTest()
 	{
