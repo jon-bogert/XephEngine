@@ -13,5 +13,6 @@ namespace C
 	void C::FPSCounter::Update()
 	{
 		text->SetString(std::to_string((int)Time::FPS()));
+		gameObject->transform.position = text->GetOriginOffset();
 	}
 }

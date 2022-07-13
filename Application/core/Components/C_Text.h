@@ -40,6 +40,8 @@ namespace C
 		float GetOutlineThickness() const;
 		float GetLetterSpacing() const;
 		float GetLineSpacing() const;
+
+		Vector2 GetOriginOffset() const;
 	};
 }
 

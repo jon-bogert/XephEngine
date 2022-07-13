@@ -122,4 +122,9 @@ namespace C
 	{
 		return text->GetLineSpacing();
 	}
+	Vector2 Text::GetOriginOffset() const
+	{
+		float ppu = Engine::GetWindow()->GetPixelsPerUnit();
+		return Vector2(text->GetOriginOffset().x * gameObject->transform.scale.x / ppu, text->GetOriginOffset().y * gameObject->transform.scale.y / ppu);
+	}
 }

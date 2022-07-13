@@ -25,11 +25,13 @@ void xe::Sprite::SetTexture(xe::Texture* texture, bool keepFrame)
 		SetFrame(frame);
 	else
 		SetFrame(Rectangle(0, 0, texture->GetDimensions().x, texture->GetDimensions().y));
+	
 }
 
 void xe::Sprite::SetFrame(int x, int y, int width, int height)
 {
 	SetFrame(Rectangle(x, y, width, height));
+	sprite->setOrigin(width * 0.5f, height * 0.5f);
 }
 
 void xe::Sprite::SetFrame(Rectangle _frame)

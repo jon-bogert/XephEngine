@@ -11,7 +11,7 @@ namespace O
 	public:
 		Transform startTransform =
 		{
-			{0.f, 0.f}, // Position
+			{1.f, 1.f}, // Position
 			{0.f},		// Rotation
 			{1.f, 1.f}  // Scale
 		};

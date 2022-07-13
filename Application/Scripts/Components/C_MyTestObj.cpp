@@ -6,7 +6,8 @@ namespace C
 		
 	void MyTestObj::Start()
 	{
-
+		ss = GetComponent<SpriteSheet>();
+		ss->SetupAnimated({"red", "green", "blue"}, {3, 2, 5});
 	}
 	
 	void MyTestObj::Update()
