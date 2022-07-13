@@ -159,10 +159,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Scripts\Components\C_MyTestObj.cpp" />
-    <ClCompile Include="Scripts\Components\C_OtherTestObj.cpp" />
-    <ClCompile Include="Scripts\GameObjects\O_MyTestObj.cpp" />
-    <ClCompile Include="Scripts\GameObjects\O_OtherTestObj.cpp" />
+    <ClCompile Include="core\Components\C_PhysicsBox.cpp" />
+    <ClCompile Include="Scripts\Components\C_Box0.cpp" />
+    <ClCompile Include="Scripts\Components\C_Box1.cpp" />
+    <ClCompile Include="Scripts\Components\C_Ground.cpp" />
+    <ClCompile Include="Scripts\GameObjects\O_Box0.cpp" />
+    <ClCompile Include="Scripts\GameObjects\O_Box1.cpp" />
+    <ClCompile Include="Scripts\GameObjects\O_Ground.cpp" />
     <ClCompile Include="src\CoreBuilder.cpp" />
     <ClCompile Include="core\Components\C_SimpleSprite.cpp" />
     <ClCompile Include="core\Components\C_SpriteSheet.cpp" />
@@ -183,10 +186,13 @@
     <ClInclude Include="core\Components\C_FPSCounter.h" />
     <ClInclude Include="core\Components\C_Text.h" />
     <ClInclude Include="core\GameObjects\O_FPSCounter.h" />
-    <ClInclude Include="Scripts\Components\C_MyTestObj.h" />
-    <ClInclude Include="Scripts\Components\C_OtherTestObj.h" />
-    <ClInclude Include="Scripts\GameObjects\O_MyTestObj.h" />
-    <ClInclude Include="Scripts\GameObjects\O_OtherTestObj.h" />
+    <ClInclude Include="core\Components\C_PhysicsBox.h" />
+    <ClInclude Include="Scripts\Components\C_Box0.h" />
+    <ClInclude Include="Scripts\Components\C_Box1.h" />
+    <ClInclude Include="Scripts\Components\C_Ground.h" />
+    <ClInclude Include="Scripts\GameObjects\O_Box0.h" />
+    <ClInclude Include="Scripts\GameObjects\O_Box1.h" />
+    <ClInclude Include="Scripts\GameObjects\O_Ground.h" />
     <ClInclude Include="Scripts\Scenes\DefaultScene.h" />
     <ClInclude Include="src\Resources.h" />
   </ItemGroup>

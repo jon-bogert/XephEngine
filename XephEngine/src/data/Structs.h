@@ -87,6 +87,10 @@ namespace xe
 			value = newValue;
 			Fix();
 		}
+		void SetRad(const float newRadValue)
+		{
+			value = newRadValue * (180 / 3.14159);
+		}
 		float GetRotation() const
 		{
 			return value;

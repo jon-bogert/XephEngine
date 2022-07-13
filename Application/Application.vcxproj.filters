@@ -36,16 +36,25 @@
     <ClCompile Include="core\Components\C_FPSCounter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Components\C_MyTestObj.cpp">
+    <ClCompile Include="core\Components\C_PhysicsBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Components\C_OtherTestObj.cpp">
+    <ClCompile Include="Scripts\Components\C_Box0.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\GameObjects\O_MyTestObj.cpp">
+    <ClCompile Include="Scripts\Components\C_Ground.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\GameObjects\O_OtherTestObj.cpp">
+    <ClCompile Include="Scripts\GameObjects\O_Box0.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\GameObjects\O_Ground.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Components\C_Box1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\GameObjects\O_Box1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,16 +83,25 @@
     <ClInclude Include="core\Components\C_FPSCounter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Components\C_MyTestObj.h">
+    <ClInclude Include="core\Components\C_PhysicsBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Components\C_OtherTestObj.h">
+    <ClInclude Include="Scripts\Components\C_Box0.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\GameObjects\O_MyTestObj.h">
+    <ClInclude Include="Scripts\Components\C_Ground.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\GameObjects\O_OtherTestObj.h">
+    <ClInclude Include="Scripts\GameObjects\O_Box0.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\GameObjects\O_Ground.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Components\C_Box1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\GameObjects\O_Box1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

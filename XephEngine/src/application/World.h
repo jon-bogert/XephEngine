@@ -12,9 +12,11 @@ namespace xe
 	{
 	protected:
 		std::vector<GameObject*> gameObjects;
+		b2World* physicsWorld = nullptr;
+		Vector2 gravity{ 0.f, -9.8f };
 
 	public:
-		World() = default; // TODO load GameObjects from external function
+		World();
 		~World();
 
 		void Start();
@@ -24,8 +26,14 @@ namespace xe
 		void AddGameObject(GameObject* obj);
 		void DestroyGameObject(GameObject* gameObject);
 
+		b2World* PhysicsWorld();
+		Vector2 GetGravity() const;
+		void SetGravity(Vector2 newGravity);
+
 	protected:
 		virtual void LoadGameObjects();
 	};
+
+	enum class PhysicsBody {Static, Dynamic, Kinematic};
 }
 

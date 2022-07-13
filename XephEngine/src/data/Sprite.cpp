@@ -38,6 +38,7 @@ void xe::Sprite::SetFrame(Rectangle _frame)
 {
 	frame = _frame;
 	sprite->setTextureRect((sf::IntRect)Engine::SF_RECT(frame));
+	sprite->setOrigin(frame.width * 0.5f, frame.height * 0.5f);
 }
 
 xe::Rectangle xe::Sprite::GetFrame() const
