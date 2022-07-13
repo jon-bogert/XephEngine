@@ -168,7 +168,7 @@ void xe::Draw::SpriteCalc(sf::Sprite* drawable, Component* comp) // TODO - Imple
 		* Engine::GetWindow()->GetPixelsPerUnit()
 		* Engine::GetWindow()->GetResolutionScale(),
 
-		(goTransform.position.y
+		(Engine::GetWindow()->HeightInUnits() - goTransform.position.y
 			- (camera.position.y /*+ (camera.scale.y / 2)*/))
 		* Engine::GetWindow()->GetPixelsPerUnit()
 		* Engine::GetWindow()->GetResolutionScale()
@@ -189,7 +189,7 @@ void xe::Draw::TextCalc(sf::Text* drawable, Component* comp)
 		* Engine::GetWindow()->GetPixelsPerUnit()
 		* Engine::GetWindow()->GetResolutionScale(),
 
-		(goTransform.position.y
+		(Engine::GetWindow()->HeightInUnits() - goTransform.position.y
 			- (camera.position.y /*+ (camera.scale.y / 2)*/))
 		* Engine::GetWindow()->GetPixelsPerUnit()
 		* Engine::GetWindow()->GetResolutionScale()
