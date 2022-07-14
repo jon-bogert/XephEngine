@@ -67,6 +67,8 @@ namespace C
 		void SetFrameRate(const int newRate);
 		int GetFrameRate() const;
 
+		Rectangle GetFrame() const;
+
 	protected:
 		void UpdateFrame();
 		bool AnimatedCheck(bool isAnim);

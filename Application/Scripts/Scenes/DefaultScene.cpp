@@ -14,6 +14,7 @@ void DefaultScene::LoadTextures()
 	//Note: Files placed in "Assets/Textures/"
 	AddTexture("test.png", "test");
 	AddTexture("test-ss.png", "test-ss");
+	AddTexture("test-circle.png", "test-circle");
 }
 
 void DefaultScene::LoadFonts()
@@ -28,6 +29,7 @@ void DefaultWorld::LoadGameObjects()
 {
 	AddGameObject(new O::FPSCounter());
 	AddGameObject(new O::Ground());
+	AddGameObject(new O::TriggerCache());
 	AddGameObject(new O::Box0());
 	AddGameObject(new O::Box1());
 }

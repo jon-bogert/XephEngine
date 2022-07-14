@@ -6,7 +6,7 @@ namespace C
 		
 	void Box1::Start()
 	{
-		
+		Debug::LogInfo("BAM!");
 	}
 	
 	void Box1::Update()

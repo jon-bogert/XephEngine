@@ -34,4 +34,8 @@ namespace C
 		this->textureName = textureName;
 		sprite = new Sprite(Engine::GetActiveScene()->FindTexture(textureName));
 	}
+	Rectangle SimpleSprite::GetFrame() const
+	{
+		return sprite->GetFrame();
+	}
 }

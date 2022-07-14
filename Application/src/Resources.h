@@ -8,3 +8,6 @@
 #include "../Scripts/Components/C_Box0.h"
 #include "../Scripts/GameObjects/O_Box1.h"
 #include "../Scripts/Components/C_Box1.h"
+#include "../Scripts/Components/C_Collider.h"
+#include "../Scripts/GameObjects/O_TriggerCache.h"
+#include "../Scripts/Components/C_TriggerCache.h"

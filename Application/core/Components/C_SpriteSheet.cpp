@@ -276,6 +276,11 @@ namespace C
 		return frameRate;
 	}
 
+	Rectangle SpriteSheet::GetFrame() const
+	{
+		return sprite->GetFrame();
+	}
+
 	// ===== PROTECTED =====
 
 	void SpriteSheet::UpdateFrame()

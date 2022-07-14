@@ -9,7 +9,7 @@ namespace C
 	class Box0 : public Component
 	{
 	protected:
-		//member variables here
+		float speed = 1.f;
 	
 	public:
 		Box0(GameObject* gameObject);

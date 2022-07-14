@@ -21,6 +21,7 @@ namespace C
 		sf::Drawable* Draw();
 
 		void SetTexture(std::string textureName);
+		Rectangle GetFrame() const;
 	};
 }
 

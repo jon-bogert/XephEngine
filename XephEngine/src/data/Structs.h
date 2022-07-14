@@ -124,6 +124,17 @@ namespace xe
 		}
 	};
 
+	struct Circle
+	{
+		float x = 0.f;
+		float y = 0.f;
+		float radius = 0.f;
+
+		Circle() = default;
+		Circle(float x, float y, float radius)
+			: x(x), y(y), radius(radius) {}
+	};
+
 	struct Color
 	{
 		int r = 255;
