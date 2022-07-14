@@ -162,13 +162,13 @@
     <ClCompile Include="core\Components\C_PhysicsBox.cpp" />
     <ClCompile Include="Scripts\Components\C_Box0.cpp" />
     <ClCompile Include="Scripts\Components\C_Box1.cpp" />
-    <ClCompile Include="Scripts\Components\C_Collider.cpp" />
+    <ClCompile Include="core\Components\C_Collider.cpp" />
     <ClCompile Include="Scripts\Components\C_Ground.cpp" />
-    <ClCompile Include="Scripts\Components\C_TriggerCache.cpp" />
+    <ClCompile Include="core\Components\C_TriggerCache.cpp" />
     <ClCompile Include="Scripts\GameObjects\O_Box0.cpp" />
     <ClCompile Include="Scripts\GameObjects\O_Box1.cpp" />
     <ClCompile Include="Scripts\GameObjects\O_Ground.cpp" />
-    <ClCompile Include="Scripts\GameObjects\O_TriggerCache.cpp" />
+    <ClCompile Include="core\GameObjects\O_TriggerCache.cpp" />
     <ClCompile Include="src\CoreBuilder.cpp" />
     <ClCompile Include="core\Components\C_SimpleSprite.cpp" />
     <ClCompile Include="core\Components\C_SpriteSheet.cpp" />
@@ -192,13 +192,13 @@
     <ClInclude Include="core\Components\C_PhysicsBox.h" />
     <ClInclude Include="Scripts\Components\C_Box0.h" />
     <ClInclude Include="Scripts\Components\C_Box1.h" />
-    <ClInclude Include="Scripts\Components\C_Collider.h" />
+    <ClInclude Include="core\Components\C_Collider.h" />
     <ClInclude Include="Scripts\Components\C_Ground.h" />
-    <ClInclude Include="Scripts\Components\C_TriggerCache.h" />
+    <ClInclude Include="core\Components\C_TriggerCache.h" />
     <ClInclude Include="Scripts\GameObjects\O_Box0.h" />
     <ClInclude Include="Scripts\GameObjects\O_Box1.h" />
     <ClInclude Include="Scripts\GameObjects\O_Ground.h" />
-    <ClInclude Include="Scripts\GameObjects\O_TriggerCache.h" />
+    <ClInclude Include="core\GameObjects\O_TriggerCache.h" />
     <ClInclude Include="Scripts\Scenes\DefaultScene.h" />
     <ClInclude Include="src\Resources.h" />
   </ItemGroup>
