@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\repos\C++\XephEngine_Dev\Build\x64\Debug\Application.exe</FullPath>
+      <FullPath>C:\repos\XephEngine_Dev\Build\x64\Debug\Application.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

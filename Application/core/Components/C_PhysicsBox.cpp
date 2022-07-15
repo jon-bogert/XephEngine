@@ -46,4 +46,8 @@ namespace C
 		gameObject->transform.position = { body->GetPosition().x, body->GetPosition().y };
 		gameObject->transform.rotation.SetRad(body->GetAngle() * -1);
 	}
+	void PhysicsBox::AddImpulse(Vector2 impulse)
+	{
+		body->ApplyLinearImpulseToCenter({ impulse.x, impulse.y }, true);
+	}
 }

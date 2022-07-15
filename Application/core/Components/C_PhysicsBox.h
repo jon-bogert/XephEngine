@@ -24,6 +24,8 @@ namespace C
 		
 		void Start();
 		void Update();
+		
+		void AddImpulse(Vector2 impulse);
 	};
 }
 
