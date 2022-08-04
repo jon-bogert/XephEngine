@@ -44,6 +44,7 @@ sf::Font* font = nullptr;
 float spacing = 12;
 float fontSize = 12;
 
+sf::Color bgColor = { 20, 20, 20, 255 };
 sf::Color infoColor = { 200, 200, 200, 255 };
 sf::Color warnColor = { 255, 205, 67, 255 };
 sf::Color errColor = { 255, 0, 0, 255 };
@@ -70,7 +71,7 @@ void xe::Debug::Setup(bool DEBUG_MODE)
 
 	if (DEBUG_MODE)
 	{
-		window = new sf::RenderWindow(sf::VideoMode(800, 600), "Debug Window", sf::Style::Titlebar);
+		window = new sf::RenderWindow(sf::VideoMode(800, 600), "XephEngine - Debug Window", sf::Style::Titlebar);
 		window->setPosition({0, 0});
 
 		font = new sf::Font;
@@ -119,7 +120,7 @@ void Draw()
 {
 	if (window != nullptr)
 	{
-		window->clear({ 20, 20, 20, 255 });
+		window->clear(bgColor);
 		float yOffset = 0;
 		for (xe::Message m : activeMessages)
 		{

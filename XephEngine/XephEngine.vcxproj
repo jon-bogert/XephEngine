@@ -39,6 +39,7 @@
     <ClInclude Include="src\EngineUtils.h" />
     <ClInclude Include="lib\XephEngine\Engine.h" />
     <ClInclude Include="src\Libraries.h" />
+    <ClInclude Include="src\systems\Utility.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\systems\Debug.cpp" />
@@ -58,6 +59,7 @@
     <ClCompile Include="src\systems\InputSystem.cpp" />
     <ClCompile Include="src\EngineUtils.cpp" />
     <ClCompile Include="src\systems\Math.cpp" />
+    <ClCompile Include="src\systems\Utility.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

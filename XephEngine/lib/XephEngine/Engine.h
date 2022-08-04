@@ -14,6 +14,7 @@
 #include "../../src/systems/FileSystem.h"
 #include "../../src/systems/InputSystem.h"
 #include "../../src/systems/Math.h"
+#include "../../src/systems/Utility.h"
 
 //Application
 #include "../../src/application/Application.h"

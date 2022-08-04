@@ -4,25 +4,28 @@
 
 using namespace xe;
 
-bool UTIL_OVERRIDE = false; // Set to true to skip Utilty Menu
-bool DEBUG_MODE = false; // Set to false to disable Debug Window
+const bool DEBUG_MODE = true; // Set to false to disable Debug Utility and Debug Window
 
 void RunApplication();
-char UtilMenu();
 void LoadScenes(Application& app);
-void Utility();
+void RunUtility();
 
-int main()
+int WinMain()
 {
-	if (!UTIL_OVERRIDE)
+	if (DEBUG_MODE)
 	{
-		switch (UtilMenu())
+		int selection{};
 		{
-		case '1':
+			Utility util;
+			selection = util.Runtime();
+		}
+		switch (selection)
+		{
+		case 1:
 			RunApplication();
 			break;
-		case '2':
-			Utility();
+		case 2:
+			RunUtility();
 			break;
 		default:
 			Debug::Log("Exiting...");
@@ -39,20 +42,8 @@ void RunApplication()
 	Debug::Setup(DEBUG_MODE);
 	Application app;
 	LoadScenes(app);
-	Debug::Log("Hello World!");
-	Debug::LogWarn("I have %i %s", 8, "Apples");
 	app.Runtime();
 	Debug::ShutDown();
-}
-
-char UtilMenu()
-{
-	std::cout << "   ==== XEPHENGINE UTILITY MENU ====" << std::endl << std::endl;
-	std::cout << " [1] - Run Application Build" << std::endl;
-	std::cout << " [2] - Utility Options" << std::endl;
-	char selection = _getch();
-	system("cls");
-	return selection;
 }
 
 void LoadScenes(Application& app)
@@ -60,7 +51,7 @@ void LoadScenes(Application& app)
 	app.AddScene(new DefaultScene());
 }
 
-void Utility()
+void RunUtility()
 {
 	system("start XephEngine_Utility.exe");
 }
