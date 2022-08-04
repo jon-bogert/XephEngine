@@ -6,21 +6,29 @@ xe::Utility::Utility()
 	window = new sf::RenderWindow(sf::VideoMode(800, 450), "XephEngine - Debug Utility", sf::Style::Close);
     window->setFramerateLimit(15);
 
-    font.loadFromFile("Assets/Fonts/Retro Gaming.ttf");
+    font.loadFromFile("Assets/xephengine/PixelSplitter-Bold.ttf");
     
-    runText.setString("[1] Run Application");
+    runText.setString("(1) Run Application");
     runText.setFont(font);
     runText.setCharacterSize(fontSize);
     runText.setFillColor(textColor);
     runText.setOrigin({ runText.getLocalBounds().width / 2, runText.getLocalBounds().height / 2 });
     runText.setPosition({ 200, 350 });
 
-    createText.setString("[2] Create Script");
+    createText.setString("(2) Create Script");
     createText.setFont(font);
     createText.setCharacterSize(fontSize);
     createText.setFillColor(textColor);
     createText.setOrigin({ createText.getLocalBounds().width / 2, createText.getLocalBounds().height / 2 });
     createText.setPosition({ 600, 350 });
+
+    logoTexture.loadFromFile("Assets/xephengine/xephengine-logo.png");
+    logoTexture.setSmooth(true);
+    logoSprite.setTexture(logoTexture);
+    logoSprite.setOrigin({ logoTexture.getSize().x / 2.f, logoTexture.getSize().y / 2.f });
+    logoSprite.setPosition({ 400, 150 });
+    logoSprite.setScale(0.2f, 0.2f);
+    logoSprite.setColor(textColor);
 }
 
 xe::Utility::~Utility()
@@ -64,4 +72,5 @@ void xe::Utility::Draw()
 {
     window->draw(runText);
     window->draw(createText);
+    window->draw(logoSprite);
 }

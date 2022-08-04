@@ -20,7 +20,7 @@ void DefaultScene::LoadTextures()
 void DefaultScene::LoadFonts()
 {
 	//Note: Files placed in "Assets/Fonts/"
-	AddFont("Retro Gaming.ttf", "default");
+	AddFont("PixelSplitter-Bold", "default");
 }
 
 // ===== WORLD =====

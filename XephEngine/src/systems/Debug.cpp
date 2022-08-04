@@ -65,9 +65,9 @@ void xe::Debug::Setup(bool DEBUG_MODE)
 	fileName.append(ParseTime(now));
 	fileName.append(".log");
 	
-	file.open(fileName);
+	/*file.open(fileName);
 	assert(file.is_open(), "Could not create log file");
-	file.close();
+	file.close();*/
 
 	if (DEBUG_MODE)
 	{
@@ -75,7 +75,7 @@ void xe::Debug::Setup(bool DEBUG_MODE)
 		window->setPosition({0, 0});
 
 		font = new sf::Font;
-		font->loadFromFile("Assets/Fonts/JetBrainsMono.ttf");
+		font->loadFromFile("Assets/xephengine/JetBrainsMono.ttf");
 	}
 
 	Draw();

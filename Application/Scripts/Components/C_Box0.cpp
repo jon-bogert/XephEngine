@@ -6,7 +6,7 @@ namespace C
 		
 	void Box0::Start()
 	{
-		
+		//Debug::LogErr("Uh Oh, the box was loaded...");
 	}
 	
 	void Box0::Update()

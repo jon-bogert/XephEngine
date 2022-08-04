@@ -17,6 +17,9 @@ namespace xe
 		sf::Text runText;
 		sf::Text createText;
 
+		sf::Texture logoTexture;
+		sf::Sprite logoSprite;
+
 	public:
 		Utility();
 		~Utility();
