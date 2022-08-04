@@ -61,7 +61,7 @@ void xe::Window::DrawCalc(Component* comp)
 		// Safeguard
 		if (comp->Draw() == nullptr)
 		{
-			Debug::LogInfo("No Drawable found on Component type: %s", typeid(*comp).name());
+			Debug::Log("No Drawable found on Component type: %s", typeid(*comp).name());
 			return;
 		}
 

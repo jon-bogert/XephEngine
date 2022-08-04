@@ -31,6 +31,6 @@ namespace C
 		
 
 		/*if (GetComponent<Collider>()->GetTrigger() != nullptr)
-			Debug::LogInfo("Collision");*/
+			Debug::Log("Collision");*/
 	}
 }

@@ -30,7 +30,7 @@ void xe::Component::RemoveDrawable()
 			if (Engine::GetWindow()->GetDrawables()[i] == this)
 				Engine::GetWindow()->GetDrawables().erase(Engine::GetWindow()->GetDrawables().begin() + i); return;
 		}
-		Debug::LogInfo("Component type: %s was tagged as 'Drawable' incorrectly", typeid(*this).name());
+		Debug::Log("Component type: %s was tagged as 'Drawable' incorrectly", typeid(*this).name());
 	}
 }
 

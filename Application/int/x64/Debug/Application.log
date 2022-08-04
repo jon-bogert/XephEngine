@@ -1,13 +1,142 @@
 ﻿  C_Box0.cpp
-C:\repos\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\repos\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\repos\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\repos\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\repos\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\repos\XephEngine_Dev\XephEngine\src\application\Component.h(60,5): warning C4930: 'C::PhysicsBox temp(void)': prototyped function not called (was a variable definition intended?)
-C:\repos\XephEngine_Dev\Application\Scripts\Components\C_Box0.cpp(16): message : see reference to function template instantiation 'T *xe::Component::GetComponent<C::PhysicsBox>(void)' being compiled
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\application\Component.h(60,5): warning C4930: 'C::PhysicsBox temp(void)': prototyped function not called (was a variable definition intended?)
+D:\repos\C++\XephEngine_Dev\Application\Scripts\Components\C_Box0.cpp(16): message : see reference to function template instantiation 'T *xe::Component::GetComponent<C::PhysicsBox>(void)' being compiled
           with
           [
               T=C::PhysicsBox
           ]
-  Application.vcxproj -> C:\repos\XephEngine_Dev\Build\x64\Debug\Application.exe
+  C_Box1.cpp
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  C_Ground.cpp
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  O_Box0.cpp
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  O_Box1.cpp
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  O_Ground.cpp
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  DefaultScene.cpp
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  C_Collider.cpp
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\application\Component.h(60,5): warning C4930: 'C::SimpleSprite temp(void)': prototyped function not called (was a variable definition intended?)
+D:\repos\C++\XephEngine_Dev\Application\core\Components\C_Collider.cpp(8): message : see reference to function template instantiation 'T *xe::Component::GetComponent<C::SimpleSprite>(void)' being compiled
+          with
+          [
+              T=C::SimpleSprite
+          ]
+D:\repos\C++\XephEngine_Dev\XephEngine\src\application\Component.h(60,5): warning C4930: 'C::SpriteSheet temp(void)': prototyped function not called (was a variable definition intended?)
+D:\repos\C++\XephEngine_Dev\Application\core\Components\C_Collider.cpp(9): message : see reference to function template instantiation 'T *xe::Component::GetComponent<C::SpriteSheet>(void)' being compiled
+          with
+          [
+              T=C::SpriteSheet
+          ]
+D:\repos\C++\XephEngine_Dev\XephEngine\src\application\Component.h(83,5): warning C4930: 'C::TriggerCache temp(void)': prototyped function not called (was a variable definition intended?)
+D:\repos\C++\XephEngine_Dev\Application\core\Components\C_Collider.cpp(51): message : see reference to function template instantiation 'T *xe::Component::FindObjectOfType<C::TriggerCache>(void)' being compiled
+          with
+          [
+              T=C::TriggerCache
+          ]
+D:\repos\C++\XephEngine_Dev\XephEngine\src\application\Component.h(60,5): warning C4930: 'C::PhysicsBox temp(void)': prototyped function not called (was a variable definition intended?)
+D:\repos\C++\XephEngine_Dev\Application\core\Components\C_Collider.cpp(57): message : see reference to function template instantiation 'T *xe::Component::GetComponent<C::PhysicsBox>(void)' being compiled
+          with
+          [
+              T=C::PhysicsBox
+          ]
+  C_FPSCounter.cpp
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\application\Component.h(60,5): warning C4930: 'C::Text temp(void)': prototyped function not called (was a variable definition intended?)
+D:\repos\C++\XephEngine_Dev\Application\core\Components\C_FPSCounter.cpp(9): message : see reference to function template instantiation 'T *xe::Component::GetComponent<C::Text>(void)' being compiled
+          with
+          [
+              T=C::Text
+          ]
+  C_PhysicsBox.cpp
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  C_SimpleSprite.cpp
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  C_SpriteSheet.cpp
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\Application\core\Components\C_SpriteSheet.cpp(56,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\Application\core\Components\C_SpriteSheet.cpp(56,38): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  C_Text.cpp
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  C_TriggerCache.cpp
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  O_FPSCounter.cpp
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  O_TriggerCache.cpp
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  CoreBuilder.cpp
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  Application.vcxproj -> D:\repos\C++\XephEngine_Dev\Build\x64\Debug\Application.exe

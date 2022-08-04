@@ -5,6 +5,7 @@
 using namespace xe;
 
 bool UTIL_OVERRIDE = false; // Set to true to skip Utilty Menu
+bool DEBUG_MODE = false; // Set to false to disable Debug Window
 
 void RunApplication();
 char UtilMenu();
@@ -24,7 +25,7 @@ int main()
 			Utility();
 			break;
 		default:
-			Debug::LogInfo("Exiting...");
+			Debug::Log("Exiting...");
 		}
 	}
 	else
@@ -35,9 +36,13 @@ int main()
 
 void RunApplication()
 {
+	Debug::Setup(DEBUG_MODE);
 	Application app;
 	LoadScenes(app);
+	Debug::Log("Hello World!");
+	Debug::LogWarn("I have %i %s", 8, "Apples");
 	app.Runtime();
+	Debug::ShutDown();
 }
 
 char UtilMenu()
