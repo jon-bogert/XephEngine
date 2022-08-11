@@ -38,7 +38,7 @@ std::ofstream file;
 std::string fileName;
 
 sf::RenderWindow* window = nullptr;
-unsigned short maxActiveMsgs = 10;
+unsigned short maxActiveMsgs = 50;
 sf::Font* font = nullptr;
 
 float spacing = 12;
@@ -185,7 +185,11 @@ void xe::Debug::Log(const char* fmt, ...)
 	va_start(args, fmt);
 	(void)vsnprintf(buffer, sizeof(buffer), fmt, args);
 	va_end(args);
+
+	while (activeMessages.size() >= maxActiveMsgs)
+		activeMessages.erase(activeMessages.begin());
 	activeMessages.push_back(Message(MsgType::Info, buffer));
+
 	Draw();
 	Save();
 }
@@ -197,7 +201,10 @@ void xe::Debug::LogWarn(const char* fmt, ...)
 	va_start(args, fmt);
 	(void)vsnprintf(buffer, sizeof(buffer), fmt, args);
 	va_end(args);
+	while (activeMessages.size() >= maxActiveMsgs)
+		activeMessages.erase(activeMessages.begin());
 	activeMessages.push_back(Message(MsgType::Warn, buffer));
+
 	Draw();
 	Save();
 }
@@ -209,7 +216,11 @@ void xe::Debug::LogErr(const char* fmt, ...)
 	va_start(args, fmt);
 	(void)vsnprintf(buffer, sizeof(buffer), fmt, args);
 	va_end(args);
+
+	while (activeMessages.size() >= maxActiveMsgs)
+		activeMessages.erase(activeMessages.begin());
 	activeMessages.push_back(Message(MsgType::Err, buffer));
+
 	Draw();
 	Save();
 }

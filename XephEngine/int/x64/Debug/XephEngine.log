@@ -1,1 +1,3 @@
-﻿  XephEngine.vcxproj -> D:\repos\C++\XephEngine_Dev\Build\x64\Debug\XephEngine.lib
+﻿  Debug.cpp
+D:\repos\C++\XephEngine_Dev\XephEngine\src\systems\Debug.cpp(130,26): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+  XephEngine.vcxproj -> D:\repos\C++\XephEngine_Dev\Build\x64\Debug\XephEngine.lib

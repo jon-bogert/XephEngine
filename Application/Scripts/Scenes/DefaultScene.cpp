@@ -20,7 +20,7 @@ void DefaultScene::LoadTextures()
 void DefaultScene::LoadFonts()
 {
 	//Note: Files placed in "Assets/Fonts/"
-	AddFont("PixelSplitter-Bold", "default");
+	AddFont("PixelSplitter-Bold.ttf", "default");
 }
 
 // ===== WORLD =====

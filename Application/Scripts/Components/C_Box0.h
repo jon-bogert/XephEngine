@@ -10,6 +10,7 @@ namespace C
 	{
 	protected:
 		float speed = 1.f;
+		int count{};
 	
 	public:
 		Box0(GameObject* gameObject);

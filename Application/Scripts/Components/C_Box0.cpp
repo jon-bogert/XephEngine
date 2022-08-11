@@ -6,7 +6,7 @@ namespace C
 		
 	void Box0::Start()
 	{
-		//Debug::LogErr("Uh Oh, the box was loaded...");
+		
 	}
 	
 	void Box0::Update()
@@ -19,7 +19,14 @@ namespace C
 			GetComponent<PhysicsBox>()->AddImpulse({ -5, 2 });
 		if(InputSystem::KeyEvent(Key::Right) == Pressed)
 			GetComponent<PhysicsBox>()->AddImpulse({ 5, 2 });
-
+		
+		count++;
+		if (count % 3 == 0)
+			Debug::Log("Message %i", count);
+		else if (count % 3 == 1)
+			Debug::LogWarn("Message %i", count);
+		else
+			Debug::LogErr("Message %i", count);
 		/*if (InputSystem::KeyHold(Key::Up))
 		{
 			gameObject->transform.position.x += Math::ForwardVector(gameObject->transform.rotation.GetRotation()).x * speed * Time::DeltaTime();
