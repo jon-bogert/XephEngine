@@ -83,6 +83,11 @@ void xe::GameObject::Update()
 		if (comp->GetIsEnabled())
 			comp->Update();
 	}
+	for (Component* comp : components)
+	{
+		if (comp->GetIsEnabled())
+			comp->LateUpdate();
+	}
 }
 
 bool xe::GameObject::GetIsActive() const
@@ -110,6 +115,24 @@ void xe::GameObject::SetIsActive(const bool setTo)
 		}
 	}
 	isActive = setTo;
+}
+
+void xe::GameObject::OnCollision(GameObject* other)
+{
+	for (Component* comp : components)
+	{
+		if (comp->GetIsEnabled())
+			comp->OnCollision(other);
+	}
+}
+
+void xe::GameObject::OnTrigger(GameObject* other)
+{
+	for (Component* comp : components)
+	{
+		if (comp->GetIsEnabled())
+			comp->OnTrigger(other);
+	}
 }
 
 void xe::GameObject::OnDestroy()

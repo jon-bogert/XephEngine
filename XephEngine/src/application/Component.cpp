@@ -56,6 +56,10 @@ void xe::Component::Update()
 {
 }
 
+void xe::Component::LateUpdate()
+{
+}
+
 void xe::Component::OnDestroy()
 {
 }
@@ -71,6 +75,14 @@ void xe::Component::OnDisable()
 sf::Drawable* xe::Component::Draw()
 {
 	return nullptr;
+}
+
+void xe::Component::OnCollision(GameObject* other)
+{
+}
+
+void xe::Component::OnTrigger(GameObject* other)
+{
 }
 
 xe::GameObject* xe::Component::GetGameObject()

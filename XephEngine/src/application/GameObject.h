@@ -34,6 +34,9 @@ namespace xe
 		bool GetIsActive() const;
 		void SetIsActive(const bool setTo);
 
+		void OnCollision(GameObject* other);
+		void OnTrigger(GameObject* other);
+
 		std::vector<Component*> GetComponents();
 
 		template <class T>
