@@ -6,6 +6,8 @@ using namespace xe;
 
 namespace C
 {
+	class Collider;
+
 	class PhysicsCore : public Component
 	{
 	protected:
@@ -28,8 +30,9 @@ namespace C
 		void AddCollider(Collider* newCollider);
 		void RemoveCollider(Collider* oldCollider);
 		bool FindCollider(Collider* _collider);
-		bool AABB(Collider* c1, Collider* c2);
-		bool AABB(const float aLeft, const float aTop, const float aRight, const float aBottom, const float bLeft, const float bTop, const float bRight, const float bBottom);
+
+	private:
+		bool AABB(const Rectangle& rect1, const Rectangle& rect2);
 	};
 }
 

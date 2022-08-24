@@ -7,6 +7,8 @@ xe::World::World()
 
 xe::World::~World()
 {
+	for (GameObject* go : gameObjects)
+		go->OnDestroy();
 	delete physicsWorld;
 	for (GameObject* go : gameObjects)
 		delete go;

@@ -22,11 +22,12 @@ namespace C
 	public:
 		Collider(float width, float height, GameObject* gameObject);
 		
-		void Start();
-		void Update();
-		void LateUpdate();
+		void Start() override;
+		void Update() override;
+		void LateUpdate() override;
 		void Move(Vector2 directionSpeed);
 		void PhysicsApply();
+		void OnDestroy() override;
 
 		bool GetIsTrigger() const;
 		bool GetHasGravity() const;
@@ -42,6 +43,7 @@ namespace C
 		void SetIsStatic(const bool _isStatic);
 
 		void ApplyAcceleration(const Vector2& accel);
+		void ApplyCurrentVelocity();
 		void SetVelocity(const Vector2& newVel);
 		void ResetVelocity();
 		Vector2 GetVelocity() const;
@@ -50,6 +52,10 @@ namespace C
 		void SetPosition(const Vector2 newPosition);
 
 		Vector2 GetMoveBuffer() const;
+		void SetMoveBuffer(const Vector2 newMoveBuffer);
+		Rectangle MoveBufferRect();
+		Rectangle MoveBufferRectX(); //Rectangle where only X direction Move Buffer is applied
+		Rectangle MoveBufferRectY(); //Rectangle where only Y direction Move Buffer is applied
 
 	private:
 		bool CheckStatic();

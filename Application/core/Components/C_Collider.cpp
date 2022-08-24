@@ -10,12 +10,19 @@ namespace C
 		
 	void Collider::Start()
 	{
-		
+		PhysicsCore* physCore = FindObjectOfType<PhysicsCore>();
+		if (physCore == nullptr)
+		{
+			Debug::LogErr("PhysicsCore GameObject must be added to current scene");
+			return;
+		}
+
+		physCore->AddCollider(this);
 	}
 	
 	void Collider::Update()
 	{
-		
+
 	}
 
 	void Collider::LateUpdate()
@@ -50,7 +57,7 @@ namespace C
 	}
 	float Collider::GetTop()
 	{
-		return gameObject->transform.position.y - (height * 0.5f);
+		return gameObject->transform.position.y + (height * 0.5f);
 	}
 	float Collider::GetLeft()
 	{
@@ -64,13 +71,29 @@ namespace C
 	{
 		return gameObject->transform.position.x + (width * 0.5f);
 	}
+	void Collider::PhysicsApply()
+	{
+		//Debug::Log("Before: X%f, Y%f", gameObject->transform.position.x, gameObject->transform.position.y);
+		gameObject->transform.position.x += moveBuffer.x;
+		gameObject->transform.position.y += moveBuffer.y;
+		moveBuffer = { 0.f, 0.f };
+		//Debug::Log("After: X%f, Y%f", gameObject->transform.position.x, gameObject->transform.position.y);
+	}
 	Vector2 Collider::GetPosition() const
 	{
 		return gameObject->transform.position;
 	}
 	float Collider::GetBottom()
 	{
-		return gameObject->transform.position.y + (height * 0.5f);
+		return gameObject->transform.position.y - (height * 0.5f);
+	}
+	void Collider::OnDestroy()
+	{
+		PhysicsCore* physCore = FindObjectOfType<PhysicsCore>();
+		if (physCore != nullptr)
+		{
+			physCore->RemoveCollider(this);
+		}
 	}
 	void Collider::SetPosition(const Vector2 newPosition)
 	{
@@ -103,6 +126,11 @@ namespace C
 		velocity.x += accel.x * Time::DeltaTime();
 		velocity.y += accel.y * Time::DeltaTime();
 	}
+	void Collider::ApplyCurrentVelocity()
+	{
+		moveBuffer.x += velocity.x * Time::DeltaTime();
+		moveBuffer.y += velocity.y * Time::DeltaTime();
+	}
 	bool Collider::CheckStatic()
 	{
 		if (isStatic)
@@ -112,5 +140,23 @@ namespace C
 	Vector2 Collider::GetMoveBuffer() const
 	{
 		return moveBuffer;
+	}
+
+	void Collider::SetMoveBuffer(const Vector2 newMoveBuffer)
+	{
+		moveBuffer = newMoveBuffer;
+	}
+
+	Rectangle Collider::MoveBufferRect()
+	{
+		return { GetLeft() + moveBuffer.x, GetBottom() + moveBuffer.y, width, height };
+	}
+	Rectangle Collider::MoveBufferRectX()
+	{
+		return { GetLeft() + moveBuffer.x, GetBottom(), width, height };
+	}
+	Rectangle Collider::MoveBufferRectY()
+	{
+		return { GetLeft(), GetBottom() + moveBuffer.y, width, height };
 	}
 }

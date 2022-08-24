@@ -10,13 +10,15 @@ namespace C
 	{
 	protected:
 		float speed = 1.f;
-		int count{};
+
+		Collider* collider = nullptr;
 	
 	public:
 		Box0(GameObject* gameObject);
 		
 		void Start();
 		void Update();
+		void OnCollision(GameObject* other) override;
 	};
 }
 

@@ -3,6 +3,6 @@ VEC2_ReferenceResolution=1920/1080
 FLT_PixelsPerUnit=100
 STR_AppTitle=XephEngine Application
 STR_WindowMode=Windowed
-BOOL_HasFrameLimit=true
+BOOL_HasFrameLimit=false
 INT_FrameLimit=165
 COL_BackgroundColor=0/0/0/255

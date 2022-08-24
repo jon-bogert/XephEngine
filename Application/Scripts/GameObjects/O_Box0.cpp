@@ -8,6 +8,7 @@ namespace O
 	void Box0::LoadComponents()
 	{
 		AddComponent(new C::SimpleSprite("test", this));
+		AddComponent(new C::Collider(1, 1, this));
 		AddComponent(new C::Box0(this));
 	}
 }

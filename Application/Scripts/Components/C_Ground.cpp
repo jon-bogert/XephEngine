@@ -6,6 +6,7 @@ namespace C
 		
 	void Ground::Start()
 	{
+		//GetComponent<Collider>()->SetIsTrigger(true);
 	}
 	
 	void Ground::Update()

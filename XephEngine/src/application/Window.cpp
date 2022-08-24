@@ -42,6 +42,7 @@ void xe::Window::RefreshWindow()
 	delete window;
 	window = new sf::RenderWindow(sf::VideoMode(resolution.x, resolution.y), title, sf::Style::Close);
 	if (hasFrameLimit) window->setFramerateLimit(frameLimit);
+	Debug::Log("Has Frame Limit: %i", hasFrameLimit);
 }
 
 void xe::Window::Draw()

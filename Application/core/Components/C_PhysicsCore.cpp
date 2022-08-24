@@ -1,6 +1,6 @@
 #include "C_PhysicsCore.h"
 
-float COLLISION_OFFSET = 0.1f;
+float COLLISION_OFFSET = 0.001f;
 
 namespace C
 {
@@ -9,8 +9,8 @@ namespace C
 		
 	void PhysicsCore::Start()
 	{
-		if (FindObjectOfType<PhysicsCore>() != nullptr)
-			Debug::LogErr("There can only be 1 PhysicsCore Component in the scene.");
+		//if (FindObjectOfType<PhysicsCore>() != nullptr) // TODO - Check if List is greater than 1
+		//	Debug::LogErr("There can only be 1 PhysicsCore Component in the scene."); 
 	}
 	
 	void PhysicsCore::Update()
@@ -19,7 +19,7 @@ namespace C
 		{
 			for (Collider* collider : colliders)
 			{
-				if (!collider->GetIsTrigger() && collider->GetHasGravity())
+				if (collider->GetHasGravity())
 					collider->ApplyAcceleration(gravity);
 			}
 		}
@@ -27,6 +27,11 @@ namespace C
 
 	void PhysicsCore::LateUpdate()
 	{
+		for (Collider* collider : colliders)
+		{
+			collider->ApplyCurrentVelocity();
+		}
+
 		for (int i = 0; i < colliders.size(); i++)
 		{
 			for (int j = i + 1; j < colliders.size(); j++)
@@ -34,7 +39,7 @@ namespace C
 				//Check that one of the objects is not static
 				if (!colliders[i]->GetIsStatic() || !colliders[j]->GetIsStatic())
 				{
-					if (AABB(colliders[i], colliders[j])) // TODO check new Position
+					if (AABB(colliders[i]->MoveBufferRect(), colliders[j]->MoveBufferRect()))
 					{
 						//if one is trigger
 						if ((colliders[i]->GetIsTrigger() || colliders[j]->GetIsTrigger()))
@@ -45,23 +50,54 @@ namespace C
 						else
 						{
 
-							//bool hasCollisionX = (AABB({destPosition.x, position.y, dimensions.x, dimensions.y }, *other));
-							//bool hasCollisionY = (AABB({ position.x, destPosition.y, dimensions.x, dimensions.y }, *other));
+							bool hasCollisionX = (AABB(colliders[i]->MoveBufferRectX(), colliders[j]->MoveBufferRectX()));
+							bool hasCollisionY = (AABB(colliders[i]->MoveBufferRectY(), colliders[j]->MoveBufferRectY()));
 
-							//if (hasCollisionX && (destPosition.x - position.x) > 0.f) // Positive X
-							//	finalPosition.x = other->position.x - dimensions.x - COLLISION_OFFSET;
-							//else if (hasCollisionX) // Negative X
-							//	finalPosition.x = other->position.x + other->dimensions.x + COLLISION_OFFSET;
+							Collider* slower = nullptr;
+							Collider* faster = nullptr;
 
-							//if (hasCollisionY && (destPosition.y - position.y) > 0.f) // Positive Y
-							//{
-							//	finalPosition.y = other->position.y - dimensions.y - COLLISION_OFFSET;
-							//	velocity.y = 0;
-							//}
-							//else if (hasCollisionY) // Negative Y
-							//	finalPosition.y = other->position.y + other->dimensions.y + COLLISION_OFFSET;
+							if (hasCollisionX)
+							{
+								if (fabsf(colliders[i]->GetMoveBuffer().x) > fabsf(colliders[j]->GetMoveBuffer().x))
+								{
+									slower = colliders[j];
+									faster = colliders[i];
+								}
+								else
+								{
+									slower = colliders[i];
+									faster = colliders[j];
+								}
 
+								if (faster->GetMoveBuffer().x > 0.f) // Positive X
+									faster->SetMoveBuffer({ slower->GetLeft() - faster->GetDimensions().x - COLLISION_OFFSET - faster->GetLeft(), faster->GetMoveBuffer().y});
+								else if (hasCollisionX) // Negative X
+									faster->SetMoveBuffer({ slower->GetLeft() + slower->GetDimensions().x + COLLISION_OFFSET - faster->GetLeft(), faster->GetMoveBuffer().y });
 
+								faster->SetVelocity({ 0.f, faster->GetVelocity().y });
+								if (!slower->GetIsStatic()) slower->SetVelocity({ 0.f, slower->GetVelocity().y });
+							}
+							else // collision Y
+							{
+								if (fabsf(colliders[i]->GetMoveBuffer().y) > fabsf(colliders[j]->GetMoveBuffer().y))
+								{
+									slower = colliders[j];
+									faster = colliders[i];
+								}
+								else
+								{
+									slower = colliders[i];
+									faster = colliders[j];
+								}
+
+								if (faster->GetMoveBuffer().y > 0.f) // Positive Y
+									faster->SetMoveBuffer({ faster->GetMoveBuffer().x,  slower->GetBottom() - faster->GetDimensions().y - COLLISION_OFFSET - faster->GetBottom()});
+								else if (hasCollisionY) // Negative Y
+									faster->SetMoveBuffer({ faster->GetMoveBuffer().x,  slower->GetBottom() + slower->GetDimensions().y + COLLISION_OFFSET - faster->GetBottom()});
+
+								faster->SetVelocity({ faster->GetVelocity().x, 0.f });
+								if (!slower->GetIsStatic()) slower->SetVelocity({ slower->GetVelocity().x, 0.f });
+							}
 
 							colliders[i]->GetGameObject()->OnCollision(colliders[j]->GetGameObject()); // TODO Add Command Pattern and run after physics applied
 							colliders[j]->GetGameObject()->OnCollision(colliders[i]->GetGameObject());
@@ -73,7 +109,7 @@ namespace C
 
 		for (Collider* collider : colliders)
 		{
-			collider->PhysicsApply();
+			if (!collider->GetIsStatic()) collider->PhysicsApply();
 		}
 	}
 
@@ -127,8 +163,11 @@ namespace C
 		}
 		return false;
 	}
-	bool PhysicsCore::AABB(Collider* c1, Collider* c2)
+	bool PhysicsCore::AABB(const Rectangle& rect1, const Rectangle& rect2)
 	{
-		return false;
+		return (rect1.x < rect2.x + rect2.width &&
+			rect1.x + rect1.width > rect2.x &&
+			rect1.y < rect2.y + rect2.height &&
+			rect1.y + rect1.height > rect2.y);
 	}
 }

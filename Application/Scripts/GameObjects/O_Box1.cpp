@@ -8,6 +8,7 @@ namespace O
 	void Box1::LoadComponents()
 	{
 		AddComponent(new C::SimpleSprite("test-circle", this));
+		AddComponent(new C::Collider(1, 1, this));
 		AddComponent(new C::Box1(this));
 	}
 }

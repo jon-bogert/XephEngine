@@ -31,7 +31,7 @@ xe::GameObject::~GameObject()
 {
 	for (Component* comp : components)
 	{
-		comp->OnDestroy();
+		//comp->OnDestroy();
 		delete comp;
 	}
 	if (parent != nullptr)
