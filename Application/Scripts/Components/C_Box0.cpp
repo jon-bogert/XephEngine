@@ -6,38 +6,32 @@ namespace C
 		
 	void Box0::Start()
 	{
-		
+		FindObjectOfType<PhysicsCore>()->SetUseGravity(true);
+
+		collider = GetComponent<Collider>();
+
+		//collider->SetHasGravity(true);
+		collider->SetIsStatic(false);
+
 	}
 	
 	void Box0::Update()
 	{
+		if (InputSystem::KeyHold(Key::D))
+			collider->Move({ 10 * Time::DeltaTime(), 0.f });
+		if (InputSystem::KeyHold(Key::A))
+			collider->Move({ -10 * Time::DeltaTime(), 0.f });
+		if (InputSystem::KeyHold(Key::S))
+			collider->Move({ 0.f, -10 * Time::DeltaTime() });
+		if (InputSystem::KeyHold(Key::W))
+			collider->Move({ 0.f,  10 * Time::DeltaTime()});
 
-		if (InputSystem::KeyEvent(Key::Space) == Pressed)
-			GetComponent<PhysicsBox>()->AddImpulse({ 0, 10 });
-
-		if(InputSystem::KeyEvent(Key::Left) == Pressed)
-			GetComponent<PhysicsBox>()->AddImpulse({ -5, 2 });
-		if(InputSystem::KeyEvent(Key::Right) == Pressed)
-			GetComponent<PhysicsBox>()->AddImpulse({ 5, 2 });
-		
-		count++;
-		if (count % 3 == 0)
-			Debug::Log("Message %i", count);
-		else if (count % 3 == 1)
-			Debug::LogWarn("Message %i", count);
-		else
-			Debug::LogErr("Message %i", count);
-		/*if (InputSystem::KeyHold(Key::Up))
+	}
+	void Box0::OnCollision(GameObject* other)
+	{
+		if (other->GetComponent<Ground>() != nullptr)
 		{
-			gameObject->transform.position.x += Math::ForwardVector(gameObject->transform.rotation.GetRotation()).x * speed * Time::DeltaTime();
-			gameObject->transform.position.y += Math::ForwardVector(gameObject->transform.rotation.GetRotation()).y * speed * Time::DeltaTime();
+			Debug::Log("Collision with Ground!");
 		}
-
-		if (InputSystem::KeyHold(Key::Right)) gameObject->transform.rotation.Add(90 * Time::DeltaTime());
-		if (InputSystem::KeyHold(Key::Left)) gameObject->transform.rotation.Add(-90 * Time::DeltaTime());*/
-		
-
-		/*if (GetComponent<Collider>()->GetTrigger() != nullptr)
-			Debug::Log("Collision");*/
 	}
 }

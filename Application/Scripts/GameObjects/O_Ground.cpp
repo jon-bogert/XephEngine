@@ -8,7 +8,7 @@ namespace O
 	void Ground::LoadComponents()
 	{
 		AddComponent(new C::SimpleSprite("test", this));
-		AddComponent(new C::PhysicsBox(PhysicsBody::Static, { 10, 1 }, this));
+		AddComponent(new C::Collider(10, 1, this));
 		AddComponent(new C::Ground(this));
 	}
 }

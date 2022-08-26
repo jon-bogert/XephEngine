@@ -27,11 +27,11 @@ void DefaultScene::LoadFonts()
 
 void DefaultWorld::LoadGameObjects()
 {
+	AddGameObject(new O::PhysicsCore());
 	AddGameObject(new O::FPSCounter());
 	AddGameObject(new O::Ground());
-	//AddGameObject(new O::TriggerCache());
 	AddGameObject(new O::Box0());
-	//AddGameObject(new O::Box1());
+	AddGameObject(new O::Box1());
 }
 
 DefaultWorld::DefaultWorld()

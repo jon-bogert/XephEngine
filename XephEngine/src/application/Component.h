@@ -30,14 +30,19 @@ namespace xe
 		virtual void Awake();
 		virtual void Start();
 		virtual void Update();
+		virtual void LateUpdate();
 		virtual void OnDestroy();
 		virtual void OnEnable();
 		virtual void OnDisable();
 		virtual sf::Drawable* Draw();
 
+		virtual void OnCollision(GameObject* other);
+		virtual void OnTrigger(GameObject* other);
+
 		GameObject* GetGameObject();
 		bool GetIsEnabled() const;
 		void SetIsEnabled(const bool setTo);
+
 
 		template <class T>
 		T* GetComponent();

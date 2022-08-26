@@ -36,9 +36,6 @@
     <ClCompile Include="core\Components\C_FPSCounter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="core\Components\C_PhysicsBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Scripts\Components\C_Box0.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -57,13 +54,13 @@
     <ClCompile Include="Scripts\GameObjects\O_Box1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="core\Components\C_PhysicsCore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core\GameObjects\O_PhysicsCore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="core\Components\C_Collider.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Components\C_TriggerCache.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="core\GameObjects\O_TriggerCache.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,9 +89,6 @@
     <ClInclude Include="core\Components\C_FPSCounter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="core\Components\C_PhysicsBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Scripts\Components\C_Box0.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -113,13 +107,13 @@
     <ClInclude Include="Scripts\GameObjects\O_Box1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="core\Components\C_PhysicsCore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\GameObjects\O_PhysicsCore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="core\Components\C_Collider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="core\Components\C_TriggerCache.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="core\GameObjects\O_TriggerCache.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

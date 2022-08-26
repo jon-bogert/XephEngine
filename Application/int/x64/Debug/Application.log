@@ -1,13 +1,1 @@
-﻿  C_Box0.cpp
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(16,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(33,39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\data\Structs.h(92,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-D:\repos\C++\XephEngine_Dev\XephEngine\src\application\Component.h(60,5): warning C4930: 'C::PhysicsBox temp(void)': prototyped function not called (was a variable definition intended?)
-D:\repos\C++\XephEngine_Dev\Application\Scripts\Components\C_Box0.cpp(16): message : see reference to function template instantiation 'T *xe::Component::GetComponent<C::PhysicsBox>(void)' being compiled
-          with
-          [
-              T=C::PhysicsBox
-          ]
-  Application.vcxproj -> D:\repos\C++\XephEngine_Dev\Build\x64\Debug\Application.exe
+﻿  Application.vcxproj -> D:\repos\C++\XephEngine_Dev\Build\x64\Debug\Application.exe

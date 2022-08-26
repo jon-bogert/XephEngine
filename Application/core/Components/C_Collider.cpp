@@ -1,156 +1,162 @@
 #include "C_Collider.h"
-#include <math.h>
 namespace C
 {
-	Collider::Collider(ColliderType type, GameObject* gameObject)
-		:Component(gameObject), type(type)
+	Collider::Collider(float width, float height, GameObject* gameObject)
+		: Component(gameObject)
+		, width(width)
+		, height(height)
 	{
-		SimpleSprite* simple = GetComponent<SimpleSprite>();
-		SpriteSheet* sheet = GetComponent<SpriteSheet>();
-
-		if (simple == nullptr && sheet == nullptr)
+	}
+		
+	void Collider::Start()
+	{
+		PhysicsCore* physCore = FindObjectOfType<PhysicsCore>();
+		if (physCore == nullptr)
 		{
-			Debug::LogErr("No Sprite Component found above Collider Component");
+			Debug::LogErr("PhysicsCore GameObject must be added to current scene");
 			return;
 		}
 
-		if (type == ColliderType::Box)
-		{
-			if (simple != nullptr)
-			{
-				width = simple->GetFrame().width;
-				height = simple->GetFrame().height;
-			}
-			if (sheet != nullptr)
-			{
-				radius = (sheet->GetFrame().width > sheet->GetFrame().height) ?
-					sheet->GetFrame().width :
-					sheet->GetFrame().height;
-			}
-		}
-
-	}
-
-
-	Collider::Collider(float width, float height, GameObject* gameObject)
-		: Component(gameObject), width(width), height(height)
-	{
-		type = ColliderType::Box;
-	}
-
-	Collider::Collider(float radius, GameObject* gameObject)
-		: Component(gameObject), radius(radius)
-	{
-		type = ColliderType::Circle;
-	}
-
-	Collider::~Collider()
-	{
-		if (isTrigger)
-		{
-			FindObjectOfType<TriggerCache>()->Remove(this);
-		}
-	}
-
-	void Collider::Start()
-	{
-		if (GetComponent<PhysicsBox>() == nullptr)
-		{
-			isTrigger = true;
-			TriggerCache* cache = FindObjectOfType<TriggerCache>();
-			if (cache == nullptr) // create if doesn't exist
-			{
-				Debug::LogErr("No TriggerCache Object Found");
-				//Engine::GetActiveScene()->GetWorld()->AddGameObject(new O::TriggerCache());
-				//cache = FindObjectOfType<TriggerCache>();
-			}
-			cache->triggers.push_back(this);
-		}
+		physCore->AddCollider(this);
 	}
 	
 	void Collider::Update()
 	{
-		
+
 	}
 
-	ColliderType Collider::GetType() const
+	void Collider::LateUpdate()
 	{
-		return type;
+
 	}
 
-	xe::Rectangle C::Collider::GetBox() const
+	void Collider::Move(Vector2 directionSpeed)
 	{
-		if (type != ColliderType::Box)
+		if (CheckStatic()) return;
+
+		moveBuffer.x += directionSpeed.x;
+		moveBuffer.y += directionSpeed.y;
+	}
+
+
+	bool Collider::GetIsTrigger() const
+	{
+		return isTrigger;
+	}
+	bool Collider::GetHasGravity() const
+	{
+		return hasGravity;
+	}
+	Vector2 Collider::GetDimensions() const
+	{
+		return Vector2(width, height);
+	}
+	void Collider::SetIsTrigger(const bool _isTrigger)
+	{
+		isTrigger = _isTrigger;
+	}
+	float Collider::GetTop()
+	{
+		return gameObject->transform.position.y + (height * 0.5f);
+	}
+	float Collider::GetLeft()
+	{
+		return gameObject->transform.position.x - (width * 0.5f);
+	}
+	void Collider::SetHasGravity(const bool _hasGravity)
+	{
+		hasGravity = _hasGravity;
+	}
+	float Collider::GetRight()
+	{
+		return gameObject->transform.position.x + (width * 0.5f);
+	}
+	void Collider::PhysicsApply()
+	{
+		//Debug::Log("Before: X%f, Y%f", gameObject->transform.position.x, gameObject->transform.position.y);
+		gameObject->transform.position.x += moveBuffer.x;
+		gameObject->transform.position.y += moveBuffer.y;
+		moveBuffer = { 0.f, 0.f };
+		//Debug::Log("After: X%f, Y%f", gameObject->transform.position.x, gameObject->transform.position.y);
+	}
+	Vector2 Collider::GetPosition() const
+	{
+		return gameObject->transform.position;
+	}
+	float Collider::GetBottom()
+	{
+		return gameObject->transform.position.y - (height * 0.5f);
+	}
+	void Collider::OnDestroy()
+	{
+		PhysicsCore* physCore = FindObjectOfType<PhysicsCore>();
+		if (physCore != nullptr)
 		{
-			Debug::LogErr("Collider not of type Box");
-			return Rectangle();
+			physCore->RemoveCollider(this);
 		}
-		return Rectangle(gameObject->transform.position.x - (width * 0.5f), gameObject->transform.position.y - (height * 0.5f), width, height);
 	}
-	xe::Circle C::Collider::GetCircle() const
+	void Collider::SetPosition(const Vector2 newPosition)
 	{
-		if (type != ColliderType::Circle)
-		{
-			Debug::LogErr("Collider not of type Circle");
-			return Circle();
-		}
-		return Circle(gameObject->transform.position.x, gameObject->transform.position.y, radius);
+		gameObject->transform.position = newPosition;
 	}
-
-	Collider* C::Collider::GetTrigger()
+	bool Collider::GetIsStatic() const
 	{
-		std::vector<Collider*> triggers = FindObjectOfType<TriggerCache>()->triggers;
-		for (Collider* other : triggers)
-		{
-			if (other != this)
-			{
-
-				if (type == ColliderType::Box && other->GetType() == ColliderType::Box)
-				{
-					if (BoxOnBox(other)) return other;
-				}
-				else if (type == ColliderType::Circle && other->GetType() == ColliderType::Circle)
-				{
-					if (CircleOnCircle(other)) return other;
-				}
-				else
-				{
-					if (BoxOnCircle(other)) return other;
-				}
-			}
-		}
-		return nullptr;
+		return (isStatic);
 	}
-
-	bool Collider::BoxOnBox(Collider* other)
+	void Collider::SetVelocity(const Vector2& newVel)
 	{
-		Rectangle otherBox = other->GetBox();
-
-		if (GetBox().x < otherBox.x + otherBox.width &&
-			GetBox().x + GetBox().width > otherBox.x &&
-			GetBox().y < otherBox.y + otherBox.height &&
-			GetBox().y + GetBox().height > otherBox.y)
-		{
-			return true;
-		}
-		return false;
+		if (CheckStatic()) return;
+		velocity = newVel;
 	}
-	bool Collider::CircleOnCircle(Collider* other)
+	void Collider::ResetVelocity()
 	{
-		Circle otherCircle = other->GetCircle();
-
-		if (GetCircle().radius + otherCircle.radius >
-			sqrtf(powf(otherCircle.x - GetCircle().x, 2) + powf(otherCircle.y - GetCircle().y, 2)))
-		{
-			return true;
-		}
-		return false;
-
+		velocity = { 0.f, 0.f };
 	}
-	bool Collider::BoxOnCircle(Collider* other)
+	Vector2 Collider::GetVelocity() const
 	{
-		Debug::LogWarn("Box on Circle Collision not yet implemented");
-		return false;
+		return velocity;
+	}
+	void Collider::SetIsStatic(const bool _isStatic)
+	{
+		isStatic = _isStatic;
+	}
+	void Collider::ApplyAcceleration(const Vector2& accel)
+	{
+		if (CheckStatic()) return;
+		velocity.x += accel.x * Time::DeltaTime();
+		velocity.y += accel.y * Time::DeltaTime();
+	}
+	void Collider::ApplyCurrentVelocity()
+	{
+		moveBuffer.x += velocity.x * Time::DeltaTime();
+		moveBuffer.y += velocity.y * Time::DeltaTime();
+	}
+	bool Collider::CheckStatic()
+	{
+		if (isStatic)
+			Debug::LogWarn("Must call .SetIsStatic(false) on collider to move");
+		return isStatic;
+	}
+	Vector2 Collider::GetMoveBuffer() const
+	{
+		return moveBuffer;
 	}
 
+	void Collider::SetMoveBuffer(const Vector2 newMoveBuffer)
+	{
+		moveBuffer = newMoveBuffer;
+	}
+
+	Rectangle Collider::MoveBufferRect()
+	{
+		return { GetLeft() + moveBuffer.x, GetBottom() + moveBuffer.y, width, height };
+	}
+	Rectangle Collider::MoveBufferRectX()
+	{
+		return { GetLeft() + moveBuffer.x, GetBottom(), width, height };
+	}
+	Rectangle Collider::MoveBufferRectY()
+	{
+		return { GetLeft(), GetBottom() + moveBuffer.y, width, height };
+	}
 }

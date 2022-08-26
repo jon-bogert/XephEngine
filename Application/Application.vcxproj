@@ -99,7 +99,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;xinput.lib;box2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;xinput.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -119,7 +119,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;box2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -135,7 +135,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;xinput.lib;box2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;xinput.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -155,20 +155,19 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;box2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="core\Components\C_PhysicsBox.cpp" />
     <ClCompile Include="Scripts\Components\C_Box0.cpp" />
     <ClCompile Include="Scripts\Components\C_Box1.cpp" />
     <ClCompile Include="core\Components\C_Collider.cpp" />
     <ClCompile Include="Scripts\Components\C_Ground.cpp" />
-    <ClCompile Include="core\Components\C_TriggerCache.cpp" />
+    <ClCompile Include="core\Components\C_PhysicsCore.cpp" />
     <ClCompile Include="Scripts\GameObjects\O_Box0.cpp" />
     <ClCompile Include="Scripts\GameObjects\O_Box1.cpp" />
     <ClCompile Include="Scripts\GameObjects\O_Ground.cpp" />
-    <ClCompile Include="core\GameObjects\O_TriggerCache.cpp" />
+    <ClCompile Include="core\GameObjects\O_PhysicsCore.cpp" />
     <ClCompile Include="src\CoreBuilder.cpp" />
     <ClCompile Include="core\Components\C_SimpleSprite.cpp" />
     <ClCompile Include="core\Components\C_SpriteSheet.cpp" />
@@ -189,16 +188,15 @@
     <ClInclude Include="core\Components\C_FPSCounter.h" />
     <ClInclude Include="core\Components\C_Text.h" />
     <ClInclude Include="core\GameObjects\O_FPSCounter.h" />
-    <ClInclude Include="core\Components\C_PhysicsBox.h" />
     <ClInclude Include="Scripts\Components\C_Box0.h" />
     <ClInclude Include="Scripts\Components\C_Box1.h" />
     <ClInclude Include="core\Components\C_Collider.h" />
     <ClInclude Include="Scripts\Components\C_Ground.h" />
-    <ClInclude Include="core\Components\C_TriggerCache.h" />
+    <ClInclude Include="core\Components\C_PhysicsCore.h" />
     <ClInclude Include="Scripts\GameObjects\O_Box0.h" />
     <ClInclude Include="Scripts\GameObjects\O_Box1.h" />
     <ClInclude Include="Scripts\GameObjects\O_Ground.h" />
-    <ClInclude Include="core\GameObjects\O_TriggerCache.h" />
+    <ClInclude Include="core\GameObjects\O_PhysicsCore.h" />
     <ClInclude Include="Scripts\Scenes\DefaultScene.h" />
     <ClInclude Include="src\Resources.h" />
   </ItemGroup>
