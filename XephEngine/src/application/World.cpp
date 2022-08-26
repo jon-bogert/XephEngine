@@ -2,14 +2,12 @@
 
 xe::World::World()
 {
-	physicsWorld = new b2World({ gravity.x, gravity.y });
 }
 
 xe::World::~World()
 {
 	for (GameObject* go : gameObjects)
 		go->OnDestroy();
-	delete physicsWorld;
 	for (GameObject* go : gameObjects)
 		delete go;
 }
@@ -27,7 +25,6 @@ void xe::World::Update()
 		if (go->GetIsActive())
 			go->Update();
 	}
-	physicsWorld->Step(Time::DeltaTime(), 6, 2); // TODO - Make Parameters
 }
 
 void xe::World::LoadGameObjects()
@@ -58,20 +55,4 @@ void xe::World::DestroyGameObject(GameObject* gameObject)
 		else index++;
 	}
 	Debug::LogWarn("GameObject not destryed.");
-}
-
-b2World* xe::World::PhysicsWorld()
-{
-	return physicsWorld;
-}
-
-xe::Vector2 xe::World::GetGravity() const
-{
-	return gravity;
-}
-
-void xe::World::SetGravity(Vector2 newGravity)
-{
-	gravity = newGravity;
-	physicsWorld->SetGravity({ gravity.x, gravity.y });
 }

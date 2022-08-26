@@ -12,8 +12,6 @@ namespace xe
 	{
 	protected:
 		std::vector<GameObject*> gameObjects;
-		b2World* physicsWorld = nullptr;
-		Vector2 gravity{ 0.f, -9.8f };
 
 	public:
 		World();
@@ -25,10 +23,6 @@ namespace xe
 		std::vector<GameObject*> GetGameObjects();
 		void AddGameObject(GameObject* obj);
 		void DestroyGameObject(GameObject* gameObject);
-
-		b2World* PhysicsWorld();
-		Vector2 GetGravity() const;
-		void SetGravity(Vector2 newGravity);
 
 	protected:
 		virtual void LoadGameObjects();
