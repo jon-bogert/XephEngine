@@ -12,7 +12,7 @@ namespace C
 
 		//collider->SetHasGravity(true);
 		collider->SetIsStatic(false);
-
+		audio = GetComponent<Audio>();
 	}
 	
 	void Box0::Update()

@@ -6,6 +6,7 @@
 {
 	LoadTextures();
 	LoadFonts();
+	LoadAudio();
 	world = new @World();
 	overlay = new @Overlay();
 }
@@ -18,6 +19,12 @@ void @Scene::LoadFonts()
 {
 	//Note: Files placed in "Assets/Fonts/"
 	AddFont("Retro Gaming.ttf", "default");
+}
+void @Scene::LoadAudio()
+{
+	//Note: Files placed in "Assets/Audio/"
+	//AddAudioSource(fileName, name); // Audio Stored in Memory
+	//AddAudioStream(fileName, name); // Audio Streamed from Disk
 }
 
 // ===== WORLD =====

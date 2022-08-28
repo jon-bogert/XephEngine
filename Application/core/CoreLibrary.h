@@ -1,6 +1,7 @@
 #pragma once
 
 // COMPONENTS
+#include "Components/C_Audio.h"
 #include "Components/C_Collider.h"
 #include "Components/C_SimpleSprite.h"
 #include "Components/C_SpriteSheet.h"

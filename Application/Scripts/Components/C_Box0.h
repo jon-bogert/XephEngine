@@ -6,12 +6,14 @@ using namespace xe;
 
 namespace C
 {
+	class Audio;
 	class Box0 : public Component
 	{
 	protected:
 		float speed = 1.f;
 
 		Collider* collider = nullptr;
+		Audio* audio = nullptr;
 	
 	public:
 		Box0(GameObject* gameObject);

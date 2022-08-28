@@ -16,6 +16,14 @@ xe::Scene::~Scene()
     {
         delete f.second;
     }
+    for (std::pair<std::string, AudioStream*> a : audioStreams)
+    {
+        delete a.second;
+    }
+    for (std::pair<std::string, AudioSource*> a : audioSources)
+    {
+        delete a.second;
+    }
 	delete world;
 }
 
@@ -72,6 +80,30 @@ xe::Font* xe::Scene::FindFont(const std::string name)
     return fonts[name];
 }
 
+void xe::Scene::AddAudioStream(const std::string fileName, const std::string name)
+{
+    std::string path = "Assets/Audio/";
+    path.append(fileName);
+    audioStreams.insert( { name, new AudioStream(path) });
+}
+
+xe::AudioStream* xe::Scene::FindAudioStream(const std::string name)
+{
+    return audioStreams[name];
+}
+
+void xe::Scene::AddAudioSource(const std::string fileName, const std::string name)
+{
+    std::string path = "Assets/Audio/";
+    path.append(fileName);
+    audioSources.insert({ name, new AudioSource(path) });
+}
+
+xe::AudioSource* xe::Scene::FindAudioSource(const std::string name)
+{
+    return audioSources[name];
+}
+
 // ===== PROTECTED =====
 
 void xe::Scene::LoadTextures()
@@ -79,5 +111,9 @@ void xe::Scene::LoadTextures()
 }
 
 void xe::Scene::LoadFonts()
+{
+}
+
+void xe::Scene::LoadAudio()
 {
 }

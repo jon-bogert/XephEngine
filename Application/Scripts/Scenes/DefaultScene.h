@@ -13,6 +13,7 @@ public:
 protected:
 	void LoadTextures();
 	void LoadFonts();
+	void LoadAudio();
 };
 
 // ===== WORLD =====

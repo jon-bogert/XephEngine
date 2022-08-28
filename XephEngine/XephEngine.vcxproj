@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\data\AudioStream.h" />
+    <ClInclude Include="src\data\AudioSource.h" />
     <ClInclude Include="src\systems\Math.h" />
     <ClInclude Include="src\systems\Debug.h" />
     <ClInclude Include="src\data\SaveData.h" />
@@ -42,6 +44,8 @@
     <ClInclude Include="src\systems\Utility.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\data\AudioStream.cpp" />
+    <ClCompile Include="src\data\AudioSource.cpp" />
     <ClCompile Include="src\systems\Debug.cpp" />
     <ClCompile Include="src\data\SaveData.cpp" />
     <ClCompile Include="src\systems\FileSystem.cpp" />

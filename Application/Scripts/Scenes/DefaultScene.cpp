@@ -6,6 +6,7 @@ DefaultScene::DefaultScene()
 {
 	LoadTextures();
 	LoadFonts();
+	LoadAudio();
 	world = new DefaultWorld();
 	//overlay = new DefaultOverlay();
 }
@@ -21,6 +22,11 @@ void DefaultScene::LoadFonts()
 {
 	//Note: Files placed in "Assets/Fonts/"
 	AddFont("PixelSplitter-Bold.ttf", "default");
+}
+
+void DefaultScene::LoadAudio()
+{
+	//Note: Files placed in "Assets/Audio/"
 }
 
 // ===== WORLD =====

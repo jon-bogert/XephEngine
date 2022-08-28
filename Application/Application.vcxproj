@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="core\Components\C_Audio.cpp" />
     <ClCompile Include="Scripts\Components\C_Box0.cpp" />
     <ClCompile Include="Scripts\Components\C_Box1.cpp" />
     <ClCompile Include="core\Components\C_Collider.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="core\Components\C_FPSCounter.h" />
     <ClInclude Include="core\Components\C_Text.h" />
     <ClInclude Include="core\GameObjects\O_FPSCounter.h" />
+    <ClInclude Include="core\Components\C_Audio.h" />
     <ClInclude Include="Scripts\Components\C_Box0.h" />
     <ClInclude Include="Scripts\Components\C_Box1.h" />
     <ClInclude Include="core\Components\C_Collider.h" />

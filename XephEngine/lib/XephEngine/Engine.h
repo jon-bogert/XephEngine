@@ -1,6 +1,8 @@
 #pragma once
 
 //Data
+#include "../../src/data/AudioSource.h"
+#include "../../src/data/AudioStream.h"
 #include "../../src/data/SaveData.h"
 #include "../../src/data/Structs.h"
 #include "../../src/data/Sprite.h"
