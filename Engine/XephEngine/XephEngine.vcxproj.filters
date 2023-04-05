@@ -8,4 +8,20 @@
       <UniqueIdentifier>{baedf5de-05a4-4738-bffa-3620d5347950}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\XephEngine.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Common.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pch.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Pch.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
