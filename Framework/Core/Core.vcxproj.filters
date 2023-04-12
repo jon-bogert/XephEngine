@@ -24,12 +24,24 @@
     <ClInclude Include="include\DebugUtil.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Window.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WindowMessageHandler.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\TimeUtil.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Window.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WindowMessageHandler.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
