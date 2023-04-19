@@ -18,9 +18,18 @@
     <ClInclude Include="src\Pch.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="include\Colors.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GraphicsSystem.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GraphicsSystem.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

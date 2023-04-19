@@ -3,6 +3,7 @@
 #include "AppState.h"
 
 using namespace xe::Core;
+using namespace xe::Graphics;
 
 void xe::App::ChangeState(const std::string& stateName)
 {
@@ -22,6 +23,9 @@ void xe::App::Run(const AppConfig& config)
 		config.winWidth,
 		config.winHeight
 	);
+
+	HWND handle = window.GetWindowHandle();
+	GraphicsSystem::Initialize(handle, false);
 
 	ASSERT(_currentState, "App -- No app state found");
 
@@ -49,10 +53,19 @@ void xe::App::Run(const AppConfig& config)
 		{
 			_currentState->Update(deltaTime);
 		}
+
+		GraphicsSystem& graphicsSystem = GraphicsSystem::Get();
+		graphicsSystem.BeginRender();
+		{
+			_currentState->Draw();
+			_currentState->DebugUI();
+		}
+		graphicsSystem.EndRender();
 	}
 
 	_currentState->Terminate();
 
+	GraphicsSystem::Terminate();
 	window.Terminate();
 }
 

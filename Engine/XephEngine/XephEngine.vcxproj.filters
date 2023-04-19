@@ -32,5 +32,8 @@
     <ClCompile Include="src\App.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="src\XephEngine.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

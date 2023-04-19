@@ -1,2 +1,3 @@
-﻿  Pch.cpp
+﻿  GraphicsSystem.cpp
+C:\Users\lcv2142940\Desktop\GitHub\XephEngine\Framework\Graphics\src\GraphicsSystem.cpp(178,108): warning C4244: 'argument': conversion from 'float' to 'UINT8', possible loss of data
   Graphics.vcxproj -> C:\Users\lcv2142940\Desktop\GitHub\XephEngine\x64\Debug\Graphics.lib
