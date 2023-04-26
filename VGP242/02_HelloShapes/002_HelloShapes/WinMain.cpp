@@ -13,7 +13,8 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 	};
 
 	App& app = MainApp();
-	app.AddState<Triangle>("Triangle");
+	app.AddState<Triforce>("Triforce");
 	app.AddState<Square>("Square");
+	app.AddState<Triangle>("Triangle");
 	app.Run(config);
 }

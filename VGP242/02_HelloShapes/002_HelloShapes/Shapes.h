@@ -18,3 +18,12 @@ protected:
 public:
 	void Update(const float& deltaTime) override;
 };
+
+class Triforce : public GameState
+{
+protected:
+	void CreateShape() override;
+
+public:
+	void Update(const float& deltaTime) override;
+};

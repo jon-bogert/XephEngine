@@ -30,8 +30,37 @@ void Square::CreateShape()
 
 void Square::Update(const float& deltaTime)
 {
+	if (GetAsyncKeyState(VK_UP))
+	{
+		xe::MainApp().ChangeState("Triforce");
+	}
 	if (GetAsyncKeyState(VK_DOWN))
 	{
 		xe::MainApp().ChangeState("Triangle");
+	}
+}
+
+void Triforce::CreateShape()
+{
+	_vertices.push_back({ {-0.25f, 0.0f, 0.0f}, Colors::Yellow });
+	_vertices.push_back({ {0.0f, 0.5f, 0.0f}, Colors::Yellow });
+	_vertices.push_back({ {0.25f, 0.0f, 0.0f}, Colors::Yellow });
+
+
+	_vertices.push_back({ {-0.5f, -0.5f, 0.0f}, Colors::Yellow });
+	_vertices.push_back({ {-0.25f, 0.0f, 0.0f}, Colors::Yellow });
+	_vertices.push_back({ {0.0f, -0.5f, 0.0f}, Colors::Yellow });
+
+
+	_vertices.push_back({ {0.0f, -0.5f, 0.0f}, Colors::Yellow });
+	_vertices.push_back({ {0.25f, 0.0f, 0.0f}, Colors::Yellow });
+	_vertices.push_back({ {0.5f, -0.5f, 0.0f}, Colors::Yellow });
+}
+
+void Triforce::Update(const float& deltaTime)
+{
+	if (GetAsyncKeyState(VK_DOWN))
+	{
+		xe::MainApp().ChangeState("Square");
 	}
 }
