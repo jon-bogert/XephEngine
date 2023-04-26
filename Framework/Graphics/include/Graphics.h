@@ -3,5 +3,9 @@
 
 #include "Common.h"
 #include "GraphicsSystem.h"
+#include "MeshBuffer.h"
+#include "MeshTypes.h"
+#include "PixelShader.h"
+#include "VertexShader.h"
 
 #endif

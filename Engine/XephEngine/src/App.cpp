@@ -4,6 +4,7 @@
 
 using namespace xe::Core;
 using namespace xe::Graphics;
+using namespace xe::Input;
 
 void xe::App::ChangeState(const std::string& stateName)
 {
@@ -26,6 +27,7 @@ void xe::App::Run(const AppConfig& config)
 
 	HWND handle = window.GetWindowHandle();
 	GraphicsSystem::Initialize(handle, false);
+	InputSystem::Initialize(handle);
 
 	ASSERT(_currentState, "App -- No app state found");
 
@@ -35,7 +37,10 @@ void xe::App::Run(const AppConfig& config)
 	while (_isRunning)
 	{
 		window.ProcessMessage();
-		if (!window.IsActive() || GetAsyncKeyState(VK_ESCAPE)) // TODO Remove ESC from here
+
+		InputSystem& inputSystem = InputSystem::Get();
+		inputSystem.Update();
+		if (!window.IsActive() || inputSystem.IsKeyPressed(Key::Escape)) // TODO Remove ESC from here
 		{
 			Quit();
 			continue;
@@ -65,6 +70,7 @@ void xe::App::Run(const AppConfig& config)
 
 	_currentState->Terminate();
 
+	InputSystem::Terminate();
 	GraphicsSystem::Terminate();
 	window.Terminate();
 }

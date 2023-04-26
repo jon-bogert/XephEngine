@@ -1,6 +1,7 @@
 #include "Shapes.h"
 
 using namespace xe;
+using namespace xe::Input;
 
 void Triangle::CreateShape()
 {
@@ -11,7 +12,7 @@ void Triangle::CreateShape()
 
 void Triangle::Update(const float& deltaTime)
 {
-	if (GetAsyncKeyState(VK_UP))
+	if (InputSystem::Get().IsKeyPressed(Key::UP))
 	{
 		xe::MainApp().ChangeState("Square");
 	}
@@ -30,11 +31,11 @@ void Square::CreateShape()
 
 void Square::Update(const float& deltaTime)
 {
-	if (GetAsyncKeyState(VK_UP))
+	if (InputSystem::Get().IsKeyPressed(Key::UP))
 	{
 		xe::MainApp().ChangeState("Triforce");
 	}
-	if (GetAsyncKeyState(VK_DOWN))
+	if (InputSystem::Get().IsKeyPressed(Key::DOWN))
 	{
 		xe::MainApp().ChangeState("Triangle");
 	}
@@ -59,8 +60,9 @@ void Triforce::CreateShape()
 
 void Triforce::Update(const float& deltaTime)
 {
-	if (GetAsyncKeyState(VK_DOWN))
+	if (InputSystem::Get().IsKeyPressed(Key::DOWN))
 	{
 		xe::MainApp().ChangeState("Square");
 	}
+
 }

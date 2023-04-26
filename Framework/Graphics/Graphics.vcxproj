@@ -167,16 +167,24 @@
     <ClInclude Include="include\Common.h" />
     <ClInclude Include="include\Graphics.h" />
     <ClInclude Include="include\GraphicsSystem.h" />
+    <ClInclude Include="include\MeshBuffer.h" />
+    <ClInclude Include="include\MeshTypes.h" />
+    <ClInclude Include="include\PixelShader.h" />
+    <ClInclude Include="include\VertexShader.h" />
+    <ClInclude Include="include\VertexTypes.h" />
     <ClInclude Include="src\Pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GraphicsSystem.cpp" />
+    <ClCompile Include="src\MeshBuffer.cpp" />
     <ClCompile Include="src\Pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\PixelShader.cpp" />
+    <ClCompile Include="src\VertexShader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

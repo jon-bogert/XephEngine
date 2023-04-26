@@ -2,6 +2,7 @@
 #define XE_GRAPHICS_COMMON_H
 
 #include <Core/include/Core.h>
+#include <Math/include/XEMath.h>
 
 #include <d3d11_1.h>
 #include <d3dcompiler.h>

@@ -1,3 +1,6 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (001_HelloWindow.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  GameState.cpp
   Shapes.cpp
+  WinMain.cpp
+  Generating Code...
   002_HelloShapes.vcxproj -> C:\Users\lcv2142940\Desktop\GitHub\XephEngine\x64\Debug\002_HelloShapes.exe

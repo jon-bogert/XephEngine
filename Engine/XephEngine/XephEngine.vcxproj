@@ -176,6 +176,9 @@
     <ProjectReference Include="..\..\Framework\Graphics\Graphics.vcxproj">
       <Project>{943a5553-fb42-4d44-a6fd-a4505c471306}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Input\Input.vcxproj">
+      <Project>{3629f01a-6fed-42eb-b308-e9f7f1346eaf}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\Math\Math.vcxproj">
       <Project>{559783d1-4643-41a5-8def-067cf092c1e7}</Project>
     </ProjectReference>
