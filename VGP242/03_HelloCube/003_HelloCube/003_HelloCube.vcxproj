@@ -142,6 +142,9 @@
     <ProjectReference Include="..\..\..\Engine\XephEngine\XephEngine.vcxproj">
       <Project>{974fe745-0318-4c3b-ae60-e3c880b4689b}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Framework\Math\Math.vcxproj">
+      <Project>{559783d1-4643-41a5-8def-067cf092c1e7}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameState.h" />

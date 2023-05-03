@@ -39,6 +39,15 @@
     <ClInclude Include="include\MeshTypes.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Camera.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ConstantBuffer.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MeshBuilder.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -54,6 +63,15 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\PixelShader.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Camera.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConstantBuffer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MeshBuilder.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
