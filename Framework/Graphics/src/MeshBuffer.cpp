@@ -63,7 +63,7 @@ void xe::Graphics::MeshBuffer::CreateVertexBuffer(const void* vertices, uint32_t
 	ID3D11Device* device = GraphicsSystem::Get().GetDevice();
 
 	D3D11_BUFFER_DESC bufferDesc{};
-	bufferDesc.ByteWidth = static_cast<UINT>(_vertexSize * _vertexSize);
+	bufferDesc.ByteWidth = static_cast<UINT>(_vertexSize * vertexCount);
 	bufferDesc.Usage = D3D11_USAGE_DEFAULT;
 	bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	bufferDesc.MiscFlags = 0;

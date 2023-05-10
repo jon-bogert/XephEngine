@@ -48,6 +48,12 @@
     <ClInclude Include="include\MeshBuilder.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Texture.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sampler.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -72,6 +78,12 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\MeshBuilder.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Texture.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sampler.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

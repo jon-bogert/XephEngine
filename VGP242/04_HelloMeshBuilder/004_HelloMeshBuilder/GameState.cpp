@@ -11,29 +11,34 @@ namespace fs = std::filesystem;
 void GameState::Initialize()
 {
 	//create space in Normalized Device Coord (NDC) space (-1 -> 1 for x, y, z)
-	MeshPC mesh = MeshBuilder::CreateCylinderPC(8.f, 3.f);
+	MeshPX mesh = MeshBuilder::CreateSkyboxPX(16.f, 16.f, 20.f);
 
-	fs::path shaderFile = L"../../../Assets/Shaders/DoTransform.fx";
+	fs::path shaderFile = L"../../../Assets/Shaders/Texture.fx";
 	ID3D11Device* device = GraphicsSystem::Get().GetDevice();
 
 	_meshBuffer.Initialize(mesh);
-	_vertexShader.Initialize<VertexPC>(shaderFile);
+	_vertexShader.Initialize<VertexPX>(shaderFile);
 	_pixelShader.Initialize(shaderFile);
 
-	_camera.SetPosition({ 0.f, 1.f, -3.f });
+	_camera.SetPosition({ 0.f, 0.f, -5.f });
 	_camera.SetLookAt({ 0.f, 0.f, 0.f });
 
 	_constantBuffer.Initialize(sizeof(Matrix4));
+
+	_diffuseTexture.Initialize(L"../../../Assets/Textures/skysphere/sky.jpg");
+	_sampler.Initialize(Sampler::Filter::Linear, Sampler::AddressMode::Wrap);
 }
 
 void GameState::Terminate()
 {
+	_sampler.Terminate();
+	_diffuseTexture.Terminate();
 	_constantBuffer.Terminate();
-	_vertices.clear();
 	_pixelShader.Terminate();
 	_vertexShader.Terminate();
 	_meshBuffer.Terminate();
 }
+
 float totalTime = 0.f;
 Vector3 position(0.f);
 float yRotation = 0.f;
@@ -48,6 +53,8 @@ void GameState::Draw()
 {
 	_vertexShader.Bind();
 	_pixelShader.Bind();
+	_diffuseTexture.BindPixelShader(0);
+	_sampler.BindPixelShader(0);
 
 	Matrix4 matWorld = Matrix4::RotationY(yRotation) * Matrix4::Translation(position);
 	Matrix4 matView = _camera.GetViewMatrix();

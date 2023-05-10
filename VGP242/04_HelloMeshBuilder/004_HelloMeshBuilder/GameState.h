@@ -5,14 +5,6 @@ class GameState : public xe::AppState
 {
 protected:
 	virtual void CreateShape() {};
-	struct Vertex
-	{
-		xe::Math::Vector3 position;
-		xe::Color color;
-	};
-
-	using Vertices = std::vector<Vertex>;
-	Vertices _vertices;
 
 	xe::Graphics::Camera _camera;
 	xe::Graphics::ConstantBuffer _constantBuffer;
@@ -20,6 +12,9 @@ protected:
 	xe::Graphics::MeshBuffer _meshBuffer;
 	xe::Graphics::VertexShader _vertexShader;
 	xe::Graphics::PixelShader _pixelShader;
+
+	xe::Graphics::Sampler _sampler;
+	xe::Graphics::Texture _diffuseTexture;
 
 public:
 	virtual ~GameState() {};

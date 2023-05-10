@@ -12,7 +12,7 @@ void Triangle::CreateShape()
 
 void Triangle::Update(const float& deltaTime)
 {
-	if (InputSystem::Get().IsKeyPressed(Key::UP))
+	if (InputSystem::Get().IsKeyPressed(Key::Up))
 	{
 		xe::MainApp().ChangeState("Square");
 	}
@@ -31,11 +31,11 @@ void Square::CreateShape()
 
 void Square::Update(const float& deltaTime)
 {
-	if (InputSystem::Get().IsKeyPressed(Key::UP))
+	if (InputSystem::Get().IsKeyPressed(Key::Up))
 	{
 		xe::MainApp().ChangeState("Triforce");
 	}
-	if (InputSystem::Get().IsKeyPressed(Key::DOWN))
+	if (InputSystem::Get().IsKeyPressed(Key::Down))
 	{
 		xe::MainApp().ChangeState("Triangle");
 	}
@@ -60,7 +60,7 @@ void Triforce::CreateShape()
 
 void Triforce::Update(const float& deltaTime)
 {
-	if (InputSystem::Get().IsKeyPressed(Key::DOWN))
+	if (InputSystem::Get().IsKeyPressed(Key::Down))
 	{
 		xe::MainApp().ChangeState("Square");
 	}

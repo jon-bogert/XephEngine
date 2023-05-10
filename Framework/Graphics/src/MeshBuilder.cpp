@@ -233,6 +233,7 @@ MeshPC xe::Graphics::MeshBuilder::CreateCylinderPC(uint32_t slices, uint32_t rin
 		float rPos = static_cast<float>(ring);
 		for (uint32_t slice = 0; slice <= slices; ++slice)
 		{
+			Color color = GetNextColor(index);
 			float sPos = static_cast<float>(slice);
 			float rotation = (sPos / static_cast<float>(slices)) * Math::Const::TwoPi;
 
@@ -240,23 +241,87 @@ MeshPC xe::Graphics::MeshBuilder::CreateCylinderPC(uint32_t slices, uint32_t rin
 					std::cos(rotation),
 					rPos - halfHeight,
 					std::sin(rotation)},
-				GetNextColor(index)
+				color
 			});
 		}
 	}
 
-	//mesh.vertices.push_back({ {0.f, halfHeight, 0.f}, GetNextColor(index) });
-	//mesh.vertices.push_back({ {0.f, -halfHeight, 0.f}, GetNextColor(index) });
+	mesh.vertices.push_back({ {0.f, halfHeight, 0.f}, GetNextColor(index) });
+	mesh.vertices.push_back({ {0.f, -halfHeight, 0.f}, GetNextColor(index) });
 
 	CreatePlaneIndices(mesh.indices, rings, slices);
-	//CreateCapIndices(mesh.indices, slices, mesh.vertices.size() - 2, mesh.vertices.size() - 1);
+	CreateCapIndices(mesh.indices, slices, mesh.vertices.size() - 2, mesh.vertices.size() - 1);
 
 	return mesh;
 }
 
 MeshPC xe::Graphics::MeshBuilder::CreateUVSpherePC(uint32_t slices, uint32_t rings, float radius)
 {
-	return MeshPC();
+	MeshPC mesh;
+	const float halfHeight = static_cast<float>(rings) * 0.5f;
+
+	int index = 0;
+	float vertRotation = (Math::Const::Pi / static_cast<float>(rings - 1));
+	float horizRotation = (Math::Const::TwoPi / static_cast<float>(slices));
+
+	for (uint32_t ring = 0; ring <= rings; ++ring)
+	{
+		float rPos = static_cast<float>(ring);
+		float phi = rPos * vertRotation;
+		for (uint32_t slice = 0; slice <= slices; ++slice)
+		{
+			Color color = GetNextColor(index);
+			float sPos = static_cast<float>(slice);
+			float rotation = sPos * horizRotation;
+
+			mesh.vertices.push_back({ {
+					radius * sin(rotation) * sin(phi),
+					radius * cos(phi),
+					radius * cos(rotation) * sin(phi)},
+				color
+				});
+		}
+	}
+
+	CreatePlaneIndices(mesh.indices, rings, slices);
+
+	return mesh;
+}
+
+MeshPX xe::Graphics::MeshBuilder::CreateUVSpherePX(uint32_t slices, uint32_t rings, float radius)
+{
+	MeshPX mesh;
+	const float halfHeight = static_cast<float>(rings) * 0.5f;
+
+	float vertRotation = (Math::Const::Pi / static_cast<float>(rings - 1));
+	float horizRotation = (Math::Const::TwoPi / static_cast<float>(slices));
+	float uStep = 1.f / static_cast<float>(slices);
+	float vStep = 1.f / static_cast<float>(rings);
+
+	for (uint32_t ring = 0; ring <= rings; ++ring)
+	{
+		float rPos = static_cast<float>(ring);
+		float phi = rPos * vertRotation;
+		for (uint32_t slice = 0; slice <= slices; ++slice)
+		{
+			float sPos = static_cast<float>(slice);
+			float rotation = sPos * horizRotation;
+
+			float u = 1.f - (uStep * sPos);
+			float v = (vStep * rPos);
+
+			mesh.vertices.push_back({ {
+					radius * sin(rotation) * sin(phi),
+					radius * cos(phi),
+					radius * cos(rotation) * sin(phi)},
+				{u, v}
+				});
+		}
+	}
+
+	CreatePlaneIndices(mesh.indices, rings, slices);
+
+	return mesh;
 }
 
 MeshPC xe::Graphics::MeshBuilder::CreatePyramidPC(uint32_t size)
@@ -315,5 +380,41 @@ MeshPC xe::Graphics::MeshBuilder::CreatePyramidPC(uint32_t size, const Color& co
 		0, 2, 4,
 		0, 4, 3
 	};
+	return mesh;
+}
+
+MeshPX xe::Graphics::MeshBuilder::CreateSkyboxPX(uint32_t slices, uint32_t rings, float radius)
+{
+	MeshPX mesh;
+	const float halfHeight = static_cast<float>(rings) * 0.5f;
+
+	float vertRotation = (Math::Const::Pi / static_cast<float>(rings - 1));
+	float horizRotation = (Math::Const::TwoPi / static_cast<float>(slices));
+	float uStep = 1.f / static_cast<float>(slices);
+	float vStep = 1.f / static_cast<float>(rings);
+
+	for (uint32_t ring = 0; ring <= rings; ++ring)
+	{
+		float rPos = static_cast<float>(ring);
+		float phi = rPos * vertRotation;
+		for (uint32_t slice = 0; slice <= slices; ++slice)
+		{
+			float sPos = static_cast<float>(slice);
+			float rotation = sPos * horizRotation;
+
+			float u = 1.f - (uStep * sPos);
+			float v = (vStep * rPos);
+
+			mesh.vertices.push_back({ {
+					radius * cos(rotation) * sin(phi),
+					radius * cos(phi),
+					radius * sin(rotation) * sin(phi)},
+				{u, v}
+			});
+		}
+	}
+
+	CreatePlaneIndices(mesh.indices, rings, slices);
+
 	return mesh;
 }
