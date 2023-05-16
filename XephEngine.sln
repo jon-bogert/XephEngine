@@ -41,6 +41,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{33
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectXTK", "External\DirectXTK\DirectXTK.vcxproj", "{E0B52AE7-E160-4D32-BF3F-910B785E5A8E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "005_HelloMeshSwitcher", "VGP242\05_HelloMeshSwitcher\005_HelloMeshSwitcher\005_HelloMeshSwitcher.vcxproj", "{58B7E45D-9FD2-4E07-B572-78BA34159AAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -129,6 +131,14 @@ Global
 		{E0B52AE7-E160-4D32-BF3F-910B785E5A8E}.Release|x64.Build.0 = Release|x64
 		{E0B52AE7-E160-4D32-BF3F-910B785E5A8E}.Release|x86.ActiveCfg = Release|Win32
 		{E0B52AE7-E160-4D32-BF3F-910B785E5A8E}.Release|x86.Build.0 = Release|Win32
+		{58B7E45D-9FD2-4E07-B572-78BA34159AAB}.Debug|x64.ActiveCfg = Debug|x64
+		{58B7E45D-9FD2-4E07-B572-78BA34159AAB}.Debug|x64.Build.0 = Debug|x64
+		{58B7E45D-9FD2-4E07-B572-78BA34159AAB}.Debug|x86.ActiveCfg = Debug|Win32
+		{58B7E45D-9FD2-4E07-B572-78BA34159AAB}.Debug|x86.Build.0 = Debug|Win32
+		{58B7E45D-9FD2-4E07-B572-78BA34159AAB}.Release|x64.ActiveCfg = Release|x64
+		{58B7E45D-9FD2-4E07-B572-78BA34159AAB}.Release|x64.Build.0 = Release|x64
+		{58B7E45D-9FD2-4E07-B572-78BA34159AAB}.Release|x86.ActiveCfg = Release|Win32
+		{58B7E45D-9FD2-4E07-B572-78BA34159AAB}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -145,6 +155,7 @@ Global
 		{A25215EB-B727-4302-8659-9AD9ABCD9D51} = {39574EA4-28E7-457D-83A9-AE2562EC724A}
 		{812D378E-4AE2-4343-91E2-2F008DAF579B} = {39574EA4-28E7-457D-83A9-AE2562EC724A}
 		{E0B52AE7-E160-4D32-BF3F-910B785E5A8E} = {3309574E-6C6F-4F56-9F90-C4221D1F976C}
+		{58B7E45D-9FD2-4E07-B572-78BA34159AAB} = {39574EA4-28E7-457D-83A9-AE2562EC724A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28EC5016-92B6-4BDC-B48A-2ABEB2890FF5}

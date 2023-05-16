@@ -1,4 +1,1 @@
-﻿  MeshBuilder.cpp
-C:\Users\jonbo\Desktop\XephEngine\Framework\Graphics\src\MeshBuilder.cpp(253,91): warning C4267: 'argument': conversion from 'size_t' to 'uint32_t', possible loss of data
-C:\Users\jonbo\Desktop\XephEngine\Framework\Graphics\src\MeshBuilder.cpp(2440,5): warning C4305: 'argument': truncation from 'double' to 'float'
-  Graphics.vcxproj -> C:\Users\jonbo\Desktop\XephEngine\x64\Debug\Graphics.lib
+﻿  Graphics.vcxproj -> C:\Users\jonbo\Desktop\XephEngine\x64\Debug\Graphics.lib
