@@ -33,6 +33,9 @@ namespace xe::Graphics
 
 		//Skybox
 		static MeshPX CreateSkyboxPX(uint32_t slices, uint32_t rings, float radius);
+
+		//Monkey
+		static MeshPC CreateMonkeyPC();
 	};
 }
 

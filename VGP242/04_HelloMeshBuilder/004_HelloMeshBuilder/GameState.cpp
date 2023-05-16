@@ -11,13 +11,14 @@ namespace fs = std::filesystem;
 void GameState::Initialize()
 {
 	//create space in Normalized Device Coord (NDC) space (-1 -> 1 for x, y, z)
-	MeshPX mesh = MeshBuilder::CreateSkyboxPX(16.f, 16.f, 20.f);
+	//MeshPX mesh = MeshBuilder::CreateSkyboxPX(16.f, 16.f, 20.f);
+	MeshPC mesh = MeshBuilder::CreateMonkeyPC();
 
-	fs::path shaderFile = L"../../../Assets/Shaders/Texture.fx";
+	fs::path shaderFile = L"../../../Assets/Shaders/DoTransform.fx";
 	ID3D11Device* device = GraphicsSystem::Get().GetDevice();
 
 	_meshBuffer.Initialize(mesh);
-	_vertexShader.Initialize<VertexPX>(shaderFile);
+	_vertexShader.Initialize<VertexPC>(shaderFile);
 	_pixelShader.Initialize(shaderFile);
 
 	_camera.SetPosition({ 0.f, 0.f, -5.f });
