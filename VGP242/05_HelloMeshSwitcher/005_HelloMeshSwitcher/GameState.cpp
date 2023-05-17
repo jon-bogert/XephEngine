@@ -29,6 +29,7 @@ void GameState::Initialize()
 	{
 		_meshBuffer.Initialize(_meshesPX[_meshIndex]);
 		_vertexShader.Initialize<VertexPX>(_shaderFileTex);
+		_pixelShader.Initialize(_shaderFileTex);
 	}
 	else
 	{
@@ -38,7 +39,7 @@ void GameState::Initialize()
 	}
 
 
-	_camera.SetPosition({ 0.f, 0.f, -5.f });
+	_camera.SetPosition({ 0.f, 0.f, -1.f });
 	_camera.SetLookAt({ 0.f, 0.f, 0.f });
 
 	_constantBuffer.Initialize(sizeof(Matrix4));
