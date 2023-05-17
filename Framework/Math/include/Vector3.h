@@ -31,5 +31,7 @@ namespace xe::Math
 		constexpr Vector3& operator-=(const Vector3& v) { x -= v.x; y -= v.y; z -= v.z; return *this; }
 		constexpr Vector3& operator*=(float s) { x *= s; y *= s, z *= s; return *this; }
 		constexpr Vector3& operator/=(float s) { x /= s; y /= s, z /= s; return *this; }
+
+		constexpr bool operator==(const Vector3& v) { return (x == v.x && y == v.y && z == v.z); }
 	};
 }

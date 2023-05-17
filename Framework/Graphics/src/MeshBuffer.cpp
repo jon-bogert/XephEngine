@@ -35,6 +35,17 @@ void xe::Graphics::MeshBuffer::SetTopology(Topology topology)
 	}
 }
 
+void xe::Graphics::MeshBuffer::Update(const void* vertices, uint32_t vertexCount)
+{
+	_vertexCount = vertexCount;
+	ID3D11DeviceContext* context = GraphicsSystem::Get().GetContext();
+
+	D3D11_MAPPED_SUBRESOURCE resource;
+	context->Map(_vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
+	std::memcpy(resource.pData, vertices, (vertexCount * _vertexSize));
+	context->Unmap(_vertexBuffer, 0);
+}
+
 void xe::Graphics::MeshBuffer::Draw()
 {
 	ID3D11DeviceContext* context = GraphicsSystem::Get().GetContext();
@@ -60,19 +71,22 @@ void xe::Graphics::MeshBuffer::CreateVertexBuffer(const void* vertices, uint32_t
 	_vertexSize = vertexSize;
 	_vertexCount = vertexCount;
 
+	const bool isDynamic = (vertices == nullptr);
+
 	ID3D11Device* device = GraphicsSystem::Get().GetDevice();
 
 	D3D11_BUFFER_DESC bufferDesc{};
 	bufferDesc.ByteWidth = static_cast<UINT>(_vertexSize * vertexCount);
-	bufferDesc.Usage = D3D11_USAGE_DEFAULT;
+	bufferDesc.Usage = (isDynamic) ? D3D11_USAGE_DYNAMIC : D3D11_USAGE_DEFAULT;
 	bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	bufferDesc.CPUAccessFlags = (isDynamic) ? D3D11_CPU_ACCESS_WRITE : 0;
 	bufferDesc.MiscFlags = 0;
 	bufferDesc.StructureByteStride = 0;
 
 	D3D11_SUBRESOURCE_DATA initData{};
 	initData.pSysMem = vertices;
 
-	HRESULT hResult = device->CreateBuffer(&bufferDesc, &initData, &_vertexBuffer);
+	HRESULT hResult = device->CreateBuffer(&bufferDesc, ((isDynamic) ? nullptr : &initData), &_vertexBuffer);
 	ASSERT(SUCCEEDED(hResult), "Failed to create vertex data");
 }
 

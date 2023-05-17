@@ -28,6 +28,7 @@ void xe::App::Run(const AppConfig& config)
 	HWND handle = window.GetWindowHandle();
 	GraphicsSystem::Initialize(handle, false);
 	InputSystem::Initialize(handle);
+	SimpleDraw::Initialize(config.debugDrawLimit);
 
 	ASSERT(_currentState, "App -- No app state found");
 
@@ -70,6 +71,7 @@ void xe::App::Run(const AppConfig& config)
 
 	_currentState->Terminate();
 
+	SimpleDraw::Terminate();
 	InputSystem::Terminate();
 	GraphicsSystem::Terminate();
 	window.Terminate();

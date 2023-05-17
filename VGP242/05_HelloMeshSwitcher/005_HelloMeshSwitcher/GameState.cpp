@@ -39,7 +39,7 @@ void GameState::Initialize()
 	}
 
 
-	_camera.SetPosition({ 0.f, 0.f, -1.f });
+	_camera.SetPosition({ 0.f, 0.f, -5.f });
 	_camera.SetLookAt({ 0.f, 0.f, 0.f });
 
 	_constantBuffer.Initialize(sizeof(Matrix4));

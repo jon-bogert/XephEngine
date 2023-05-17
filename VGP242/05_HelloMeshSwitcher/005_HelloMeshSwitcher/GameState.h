@@ -22,7 +22,7 @@ protected:
 	size_t _meshIndex = 0;
 
 	std::filesystem::path _shaderFile = L"../../../Assets/Shaders/DoTransform.fx";
-	std::filesystem::path _shaderFileTex = L"../../../Assets/Shaders/Texture.fx";
+	std::filesystem::path _shaderFileTex = L"../../../Assets/Shaders/DoTexture.fx";
 
 public:
 	virtual ~GameState() {};
