@@ -3,8 +3,10 @@
 
 #include "Common.h"
 
+#include "BlendState.h"
 #include "Camera.h"
 #include "ConstantBuffer.h"
+#include "DebugUI.h"
 #include "GraphicsSystem.h"
 #include "MeshBuffer.h"
 #include "MeshBuilder.h"

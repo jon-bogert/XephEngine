@@ -57,6 +57,12 @@
     <ClInclude Include="include\SimpleDraw.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\DebugUI.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BlendState.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -90,6 +96,12 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\SimpleDraw.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DebugUI.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BlendState.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

@@ -21,7 +21,7 @@ namespace xe::Graphics
 		DXGI_SWAP_CHAIN_DESC _swapChainDesc{};
 		D3D11_VIEWPORT _viewport{};
 
-		Color _clearColor = Colors::LightGray;
+		Color _clearColor = {0.1f, 0.1f, 0.1f, 0.1f};
 		UINT _vSync = 1;
 
 		GraphicsSystem(const GraphicsSystem&) = delete;

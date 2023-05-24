@@ -28,12 +28,15 @@ void xe::App::Run(const AppConfig& config)
 	HWND handle = window.GetWindowHandle();
 	GraphicsSystem::Initialize(handle, false);
 	InputSystem::Initialize(handle);
+	DebugUI::Initialize(handle, false, true);
 	SimpleDraw::Initialize(config.debugDrawLimit);
 
 	ASSERT(_currentState, "App -- No app state found");
 
 	_currentState->Initialize();
 	_isRunning = true;
+
+	
 
 	while (_isRunning)
 	{
@@ -64,7 +67,11 @@ void xe::App::Run(const AppConfig& config)
 		graphicsSystem.BeginRender();
 		{
 			_currentState->Draw();
-			_currentState->DebugUI();
+			DebugUI::BeginDraw();
+			{
+				_currentState->DebugUI();
+			}
+			DebugUI::EndDraw();
 		}
 		graphicsSystem.EndRender();
 	}
@@ -72,6 +79,7 @@ void xe::App::Run(const AppConfig& config)
 	_currentState->Terminate();
 
 	SimpleDraw::Terminate();
+	DebugUI::Terminate();
 	InputSystem::Terminate();
 	GraphicsSystem::Terminate();
 	window.Terminate();

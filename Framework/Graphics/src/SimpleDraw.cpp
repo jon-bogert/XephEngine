@@ -1,6 +1,7 @@
 #include "Pch.h"
 #include "SimpleDraw.h"
 
+#include "BlendState.h"
 #include "Camera.h"
 #include "ConstantBuffer.h"
 #include "MeshBuffer.h"
@@ -20,6 +21,7 @@ namespace
 		PixelShader _pixelShader;
 		ConstantBuffer _constantBuffer;
 		MeshBuffer _meshBuffer;
+		BlendState _blendState;
 
 		std::unique_ptr<VertexPC[]> _lineVertices;
 		std::unique_ptr<VertexPC[]> _faceVertices;
@@ -35,6 +37,7 @@ namespace
 			_pixelShader.Initialize(shaderFile);
 			_constantBuffer.Initialize(sizeof(Matrix4));
 			_meshBuffer.Initialize(nullptr, sizeof(VertexPC), maxVertexCount);
+			_blendState.Initialize(BlendState::Mode::AlphaBlend);
 
 			_lineVertices = std::make_unique<VertexPC[]>(maxVertexCount);
 			_faceVertices = std::make_unique<VertexPC[]>(maxVertexCount);
@@ -44,6 +47,7 @@ namespace
 		}
 		void Terminate()
 		{
+			_blendState.Terminate();
 			_meshBuffer.Terminate();
 			_constantBuffer.Terminate();
 			_pixelShader.Terminate();
@@ -61,6 +65,8 @@ namespace
 			_vertexShader.Bind();
 			_pixelShader.Bind();
 
+			_blendState.Set();
+
 			_meshBuffer.Update(_faceVertices.get(), _faceVertexCount);
 			_meshBuffer.SetTopology(MeshBuffer::Topology::Triangles);
 			_meshBuffer.Draw();
@@ -68,6 +74,8 @@ namespace
 			_meshBuffer.Update(_lineVertices.get(), _lineVertexCount);
 			_meshBuffer.SetTopology(MeshBuffer::Topology::Lines);
 			_meshBuffer.Draw();
+
+			BlendState::Clear();
 
 			_lineVertexCount = 0;
 			_faceVertexCount = 0;
