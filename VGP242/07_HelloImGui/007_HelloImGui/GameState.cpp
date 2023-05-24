@@ -63,6 +63,7 @@ void GameState::Draw()
 
 void GameState::DebugUI()
 {
+#ifdef _DEBUG
 	ig::Begin("DebugUI", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 	int currItem = (int)_shapeType;
 	const char* shapeItemsStr[] = {
@@ -91,6 +92,7 @@ void GameState::DebugUI()
 	}
 
 	ig::End();
+#endif // _DEBUG
 }
 
 void GameState::UpdateCameraControl(const float& deltaTime)

@@ -222,6 +222,7 @@ void xe::Graphics::DebugUI::EndDraw()
 }
 
 #else // !_DEBUG
+void xe::Graphics::DebugUI::Initialize(HWND window, bool docking, bool multiViewport) {}
 void xe::Graphics::DebugUI::Terminate() {}
 void xe::Graphics::DebugUI::SetTheme(Theme theme) {}
 void xe::Graphics::DebugUI::BeginDraw() {}
