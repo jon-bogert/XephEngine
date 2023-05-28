@@ -5,6 +5,10 @@
 #include <ImGui/Inc/imgui_impl_dx11.h>
 #include <ImGui/Inc/imgui_impl_win32.h>
 
+//Resources
+#include "../res/BasierSquare_Medium_otf.h"
+#include "../res/JetBrainsMono_ttf.h"
+
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND window, UINT message, WPARAM wParam, LPARAM lParam);
 
 namespace ig = ImGui;
@@ -53,9 +57,7 @@ namespace
 		}
 		return false;
 	}
-}
-namespace
-{
+
 	void SetUIStyle()
 	{
 		ImGuiStyle& style = ImGui::GetStyle();
@@ -72,12 +74,12 @@ namespace
 		//style.FrameRounding = 2.0f;   // Set frame corner rounding to 2 pixels
 		style.ScrollbarSize = 10.0f;  // Set scrollbar size to 10 pixels
 
-		style.Colors[ImGuiCol_Text] = ImVec4(1.00f, 1.00f, 1.00f, 1.00f);
+		style.Colors[ImGuiCol_Text] = ImVec4(0.80f, 0.80f, 0.80f, 1.00f);
 		style.Colors[ImGuiCol_TextDisabled] = ImVec4(0.50f, 0.50f, 0.50f, 1.00f);
 		style.Colors[ImGuiCol_WindowBg] = ImVec4(0.13f, 0.14f, 0.15f, 1.00f);
 		style.Colors[ImGuiCol_ChildBg] = ImVec4(0.13f, 0.14f, 0.15f, 1.00f);
 		style.Colors[ImGuiCol_PopupBg] = ImVec4(0.13f, 0.14f, 0.15f, 1.00f);
-		style.Colors[ImGuiCol_Border] = ImVec4(0.43f, 0.43f, 0.50f, 0.50f);
+		style.Colors[ImGuiCol_Border] = ImVec4(0.f, 0.f, 0.f, 0.f);
 		style.Colors[ImGuiCol_BorderShadow] = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
 		style.Colors[ImGuiCol_FrameBg] = ImVec4(0.25f, 0.25f, 0.25f, 1.00f);
 		style.Colors[ImGuiCol_FrameBgHovered] = ImVec4(0.38f, 0.38f, 0.38f, 1.00f);
@@ -123,6 +125,20 @@ namespace
 		style.Colors[ImGuiCol_NavWindowingDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.20f);
 		style.Colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.35f);
 		style.GrabRounding = style.FrameRounding = 2.3f;
+
+		//Font
+		ImGuiIO& io = ig::GetIO();
+		ImFontAtlas* fontAtlas = io.Fonts;
+		std::unique_ptr<unsigned char[]> fontData;
+		size_t fontDataCount = 0;
+		res::BasierSquare_Medium_otf(fontData, fontDataCount);
+		ImFontConfig fontConfig;
+		fontConfig.FontDataOwnedByAtlas = false; // Important: Set to false so ImGui doesn't try to free the memory
+		ImWchar defaultRange[] = { 0x0020, 0x00FF, 0x0100, 0x017F, 0 }; // Specify the character ranges you want to support
+		ImFont* font = fontAtlas->AddFontFromMemoryTTF((void*)fontData.get(), fontDataCount, 16, &fontConfig, defaultRange);
+		fontAtlas->Build();
+		io.FontDefault = font;
+		
 	}
 }
 
