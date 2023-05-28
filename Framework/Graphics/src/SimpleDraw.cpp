@@ -132,7 +132,7 @@ void xe::Graphics::SimpleDraw::AddFace(const xe::Math::Vector3& v0, const xe::Ma
 
 void xe::Graphics::SimpleDraw::AddBoxWireframe(const xe::Math::Vector3& min, const xe::Math::Vector3& max, const xe::Color& color)
 {
-	AddBoxWireframe(min.x, min.y, min.z, max.z, max.y, max.z, color);
+	AddBoxWireframe(min.x, min.y, min.z, max.x, max.y, max.z, color);
 }
 
 void xe::Graphics::SimpleDraw::AddBoxWireframe(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, const xe::Color& color)
@@ -170,7 +170,7 @@ void xe::Graphics::SimpleDraw::AddBoxWireframe(float minX, float minY, float min
 
 void xe::Graphics::SimpleDraw::AddBoxFilled(const xe::Math::Vector3& min, const xe::Math::Vector3& max, const xe::Color& color)
 {
-	AddBoxFilled(min.x, min.y, min.z, max.z, max.y, max.z, color);
+	AddBoxFilled(min.x, min.y, min.z, max.x, max.y, max.z, color);
 }
 
 void xe::Graphics::SimpleDraw::AddBoxFilled(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, const xe::Color& color)
@@ -199,7 +199,7 @@ void xe::Graphics::SimpleDraw::AddBoxFilled(float minX, float minY, float minZ, 
 
 	//Bottom
 	AddFace(brb, blf, brf, color);
-	AddFace(brb, blb, brf, color);
+	AddFace(brb, blb, blf, color);
 
 	//Right
 	AddFace(trb, brb, brf, color);

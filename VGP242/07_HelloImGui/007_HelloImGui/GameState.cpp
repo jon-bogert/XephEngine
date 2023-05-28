@@ -8,7 +8,7 @@ using namespace xe::Graphics;
 using namespace xe::Input;
 
 namespace fs = std::filesystem;
-namespace ig = ImGui;
+namespace gui = ImGui;
 
 void GameState::Initialize()
 {
@@ -45,13 +45,16 @@ void GameState::Draw()
 		SimpleDraw::AddSphere(32, 32, _sphereRadius, _shapeColor);
 		break;
 	case ShapeType::BoxWireframe:
-		SimpleDraw::AddBoxWireframe({ 1.f, 1.f, 1.f }, { 1.f, 1.f, 1.f }, _shapeColor);
+		SimpleDraw::AddBoxWireframe({ -1.f, -1.f, -1.f }, { 1.f, 1.f, 1.f }, _shapeColor);
 		break;
 	case ShapeType::BoxFilled:
-		SimpleDraw::AddBoxFilled({1.f, 1.f, 1.f}, { 1.f, 1.f, 1.f }, _shapeColor);
+		SimpleDraw::AddBoxFilled({-1.f, -1.f, -1.f}, { 1.f, 1.f, 1.f }, _shapeColor);
 		break;
 	case ShapeType::Custom:
-		//Add Something
+		SimpleDraw::AddTransfrom(Matrix4::Identity.Translation(_transfPosition));
+		SimpleDraw::AddBoxFilled({ 0.95f, -0.05f, -0.05f }, { 1.05f, 0.05f, 0.05f }, Colors::Red); // X
+		SimpleDraw::AddBoxFilled({ -0.05f, 0.95f, -0.05f }, { 0.05f, 1.05f, 0.05f }, Colors::Green); // Y
+		SimpleDraw::AddBoxFilled({ -0.05f, -0.05f, 0.95f }, { 0.05f, 0.05f, 1.05f }, Colors::Blue); // Z
 		break;
 	default:
 		LOG("ShapeType not added");
@@ -64,7 +67,7 @@ void GameState::Draw()
 void GameState::DebugUI()
 {
 #ifdef _DEBUG
-	ig::Begin("DebugUI", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+	gui::Begin("DebugUI", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 	int currItem = (int)_shapeType;
 	const char* shapeItemsStr[] = {
 		"Transform",
@@ -73,42 +76,44 @@ void GameState::DebugUI()
 		"Box Filled",
 		"Custom"
 	};
-	ig::Text("Shape Type");
-	if (ig::Combo("##ShapeType", &currItem, shapeItemsStr, (int)ShapeType::Count))
+	gui::Text("Shape Type");
+	gui::SameLine();
+	if (gui::Combo("##ShapeType", &currItem, shapeItemsStr, (int)ShapeType::Count))
 	{
 		_shapeType = (ShapeType)currItem;
 	}
-	if (_shapeType != ShapeType::Transform)
+	if (_shapeType != ShapeType::Transform && _shapeType != ShapeType::Custom)
 	{
-		ig::Text("Use Transparency:");
-		ig::SameLine();
-		ig::Checkbox("##UseTrasparency", &_useTransp);
+		gui::Text("Use Transparency:");
+		gui::SameLine();
+		gui::Checkbox("##UseTrasparency", &_useTransp);
 		if (_useTransp)
 		{
-			ig::ColorEdit4("##ShapeColor", &_shapeColor.r);
+			gui::ColorEdit4("##ShapeColor", &_shapeColor.r);
 		}
 		else
 		{
-			ig::ColorEdit3("##ShapeColor", &_shapeColor.r);
+			gui::ColorEdit3("##ShapeColor", &_shapeColor.r);
 			_shapeColor.a = 1.f;
 		}
 	}
-	else
+	else if (_shapeType == ShapeType::Transform)
 	{
-		ig::Text("Position:");
-		ig::DragFloat3("##ShapePosition", &_transfPosition.x, 0.01f, -10.f, 10.f);
+		gui::Text("Position:");
+		gui::SameLine();
+		gui::DragFloat3("##ShapePosition", &_transfPosition.x, 0.01f, -10.f, 10.f);
 	}
 
 	if (_shapeType == ShapeType::Sphere)
 	{
-		ig::DragFloat("##SphereRadius", &_sphereRadius, 0.1f, 0.5f, 10.0f);
+		gui::DragFloat("##SphereRadius", &_sphereRadius, 0.1f, 0.5f, 10.0f);
 	}
 	else
 	{
 		_sphereRadius = 1.f;
 	}
 
-	ig::End();
+	gui::End();
 #endif // _DEBUG
 }
 

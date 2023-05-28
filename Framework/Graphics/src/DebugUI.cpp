@@ -11,7 +11,7 @@
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND window, UINT message, WPARAM wParam, LPARAM lParam);
 
-namespace ig = ImGui;
+namespace gui = ImGui;
 
 using namespace xe::Core;
 
@@ -127,7 +127,7 @@ namespace
 		style.GrabRounding = style.FrameRounding = 2.3f;
 
 		//Font
-		ImGuiIO& io = ig::GetIO();
+		ImGuiIO& io = gui::GetIO();
 		ImFontAtlas* fontAtlas = io.Fonts;
 		std::unique_ptr<unsigned char[]> fontData;
 		size_t fontDataCount = 0;
@@ -144,7 +144,7 @@ namespace
 
 LRESULT CALLBACK DebugUIMessageHandler(HWND window, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	ImGuiIO& io = ig::GetIO();
+	ImGuiIO& io = gui::GetIO();
 	if (io.WantCaptureMouse && IsMouseInput(message))
 	{
 		return ImGui_ImplWin32_WndProcHandler(window, message, wParam, lParam);
@@ -167,8 +167,8 @@ LRESULT CALLBACK DebugUIMessageHandler(HWND window, UINT message, WPARAM wParam,
 void xe::Graphics::DebugUI::Initialize(HWND window, bool docking, bool multiViewport)
 {
 	IMGUI_CHECKVERSION();
-	ig::CreateContext();
-	ImGuiIO& io = ig::GetIO();
+	gui::CreateContext();
+	ImGuiIO& io = gui::GetIO();
 	if (docking)
 	{
 		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
@@ -195,7 +195,7 @@ void xe::Graphics::DebugUI::Terminate()
 	windowMessageHandler.UnHook();
 	ImGui_ImplDX11_Shutdown();
 	ImGui_ImplWin32_Shutdown();
-	ig::DestroyContext();
+	gui::DestroyContext();
 }
 
 void xe::Graphics::DebugUI::SetTheme(Theme theme)
@@ -203,13 +203,13 @@ void xe::Graphics::DebugUI::SetTheme(Theme theme)
 	switch (theme)
 	{
 	case Theme::Classic:
-		ig::StyleColorsClassic();
+		gui::StyleColorsClassic();
 		break;
 	case Theme::Dark:
-		ig::StyleColorsDark();
+		gui::StyleColorsDark();
 		break;
 	case Theme::Light:
-		ig::StyleColorsLight();
+		gui::StyleColorsLight();
 		break;
 	case Theme::Custom:
 		SetUIStyle();
@@ -221,19 +221,19 @@ void xe::Graphics::DebugUI::BeginDraw()
 {
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
-	ig::NewFrame();
+	gui::NewFrame();
 }
 
 void xe::Graphics::DebugUI::EndDraw()
 {
-	ig::Render();
-	ImGui_ImplDX11_RenderDrawData(ig::GetDrawData());
+	gui::Render();
+	ImGui_ImplDX11_RenderDrawData(gui::GetDrawData());
 
-	ImGuiIO& io = ig::GetIO();
+	ImGuiIO& io = gui::GetIO();
 	if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
 	{
-		ig::UpdatePlatformWindows();
-		ig::RenderPlatformWindowsDefault();
+		gui::UpdatePlatformWindows();
+		gui::RenderPlatformWindowsDefault();
 	}
 }
 
