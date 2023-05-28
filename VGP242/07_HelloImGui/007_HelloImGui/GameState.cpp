@@ -39,16 +39,16 @@ void GameState::Draw()
 	switch (_shapeType)
 	{
 	case ShapeType::Transform:
-		SimpleDraw::AddTransfrom(Matrix4::Identity);
+		SimpleDraw::AddTransfrom(Matrix4::Identity.Translation(_transfPosition));
 		break;
 	case ShapeType::Sphere:
 		SimpleDraw::AddSphere(32, 32, _sphereRadius, _shapeColor);
 		break;
 	case ShapeType::BoxWireframe:
-		SimpleDraw::AddBoxWireframe({ -1.f, -1.f, -1.f }, { 1.f, 1.f, 1.f }, _shapeColor);
+		SimpleDraw::AddBoxWireframe({ 1.f, 1.f, 1.f }, { 1.f, 1.f, 1.f }, _shapeColor);
 		break;
 	case ShapeType::BoxFilled:
-		SimpleDraw::AddBoxFilled({ -1.f, -1.f, -1.f }, { 1.f, 1.f, 1.f }, _shapeColor);
+		SimpleDraw::AddBoxFilled({1.f, 1.f, 1.f}, { 1.f, 1.f, 1.f }, _shapeColor);
 		break;
 	case ShapeType::Custom:
 		//Add Something
@@ -78,9 +78,26 @@ void GameState::DebugUI()
 	{
 		_shapeType = (ShapeType)currItem;
 	}
-
 	if (_shapeType != ShapeType::Transform)
-		ig::ColorEdit4("##ShapeColor", &_shapeColor.r);
+	{
+		ig::Text("Use Transparency:");
+		ig::SameLine();
+		ig::Checkbox("##UseTrasparency", &_useTransp);
+		if (_useTransp)
+		{
+			ig::ColorEdit4("##ShapeColor", &_shapeColor.r);
+		}
+		else
+		{
+			ig::ColorEdit3("##ShapeColor", &_shapeColor.r);
+			_shapeColor.a = 1.f;
+		}
+	}
+	else
+	{
+		ig::Text("Position:");
+		ig::DragFloat3("##ShapePosition", &_transfPosition.x, 0.01f, -10.f, 10.f);
+	}
 
 	if (_shapeType == ShapeType::Sphere)
 	{

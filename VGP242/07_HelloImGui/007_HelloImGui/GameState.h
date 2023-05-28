@@ -18,6 +18,8 @@ protected:
 	ShapeType _shapeType = ShapeType::Transform;
 	float _sphereRadius = 1.f;
 	Color _shapeColor = Colors::Red;
+	bool _useTransp = false;
+	xe::Math::Vector3 _transfPosition = { 0.f, 0.f, 0.f };
 
 public:
 	
