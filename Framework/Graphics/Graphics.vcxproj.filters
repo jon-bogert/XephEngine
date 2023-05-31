@@ -63,6 +63,18 @@
     <ClInclude Include="include\BlendState.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\RenderObject.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Transform.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SimpleEffect.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RenderTarget.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -102,6 +114,15 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\BlendState.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderObject.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SimpleEffect.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderTarget.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

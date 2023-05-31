@@ -23,6 +23,7 @@ namespace xe::Graphics
 		// Perspective params
 		void SetFov(float fov);
 		void SetAspectRatio(float ratio);
+		float GetAspectRatio();
 
 		// Orthographic params
 		void SetSize(float width, float height);

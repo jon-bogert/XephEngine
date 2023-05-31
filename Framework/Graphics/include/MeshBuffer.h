@@ -38,7 +38,7 @@ namespace xe::Graphics
 		void Terminate();
 		void SetTopology(Topology topology);
 		void Update(const void* vertices, uint32_t vertexCount);
-		void Draw();
+		void Draw() const;
 
 	private:
 		void CreateVertexBuffer(const void* vertices, uint32_t vertexSize, uint32_t vertexCount);

@@ -265,7 +265,7 @@ void xe::Graphics::SimpleDraw::AddGroundPlane(float size, const Color& color)
 	for (uint32_t i = 0; i <= intSize; ++i)
 	{
 		AddLine({ i - halfSize, 0.f, -halfSize }, { i - halfSize, 0.f, halfSize }, color);
-		AddLine({ -halfSize, 0.f, 1 - halfSize}, { halfSize, 0.f, 1 - halfSize }, color);
+		AddLine({ -halfSize, 0.f, i - halfSize}, { halfSize, 0.f, i - halfSize }, color);
 	}
 }
 

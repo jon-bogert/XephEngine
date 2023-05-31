@@ -175,12 +175,16 @@
     <ClInclude Include="include\MeshBuilder.h" />
     <ClInclude Include="include\MeshTypes.h" />
     <ClInclude Include="include\PixelShader.h" />
+    <ClInclude Include="include\RenderObject.h" />
+    <ClInclude Include="include\RenderTarget.h" />
     <ClInclude Include="include\Sampler.h" />
     <ClInclude Include="include\SimpleDraw.h" />
+    <ClInclude Include="include\SimpleEffect.h" />
     <ClInclude Include="include\Texture.h" />
     <ClInclude Include="include\VertexShader.h" />
     <ClInclude Include="include\VertexTypes.h" />
     <ClInclude Include="src\Pch.h" />
+    <ClInclude Include="include\Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BlendState.cpp" />
@@ -197,8 +201,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\PixelShader.cpp" />
+    <ClCompile Include="src\RenderObject.cpp" />
+    <ClCompile Include="src\RenderTarget.cpp" />
     <ClCompile Include="src\Sampler.cpp" />
     <ClCompile Include="src\SimpleDraw.cpp" />
+    <ClCompile Include="src\SimpleEffect.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\VertexShader.cpp" />
   </ItemGroup>

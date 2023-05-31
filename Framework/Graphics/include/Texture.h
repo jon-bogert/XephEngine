@@ -10,6 +10,12 @@ namespace xe::Graphics
 	public:
 		static void UnbindPixelShader(uint32_t slot);
 
+		enum class Format
+		{
+			RGBA_U8,
+			RGBA_U32
+		};
+
 		Texture() = default;
 		virtual ~Texture();
 
@@ -19,13 +25,17 @@ namespace xe::Graphics
 		Texture(Texture&&) noexcept;
 		Texture& operator=(Texture&&) noexcept;
 
-		virtual void Initialize(const std::filesystem::path&& fileName);
-		void Terminate();
+		virtual void Initialize(const std::filesystem::path& fileName);
+		virtual void Initialize(uint32_t width, uint32_t height, Format format);
+		virtual void Terminate();
 
-		void BindVertexShader(uint32_t slot);
-		void BindPixelShader(uint32_t slot);
+		void BindVertexShader(uint32_t slot) const;
+		void BindPixelShader(uint32_t slot) const;
 
 		void* GetRawData() const { return _shaderResourceView; }
+
+	protected:
+		DXGI_FORMAT GetDXGIFormat(Format format);
 	};
 }
 

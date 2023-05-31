@@ -46,7 +46,7 @@ void xe::Graphics::MeshBuffer::Update(const void* vertices, uint32_t vertexCount
 	context->Unmap(_vertexBuffer, 0);
 }
 
-void xe::Graphics::MeshBuffer::Draw()
+void xe::Graphics::MeshBuffer::Draw() const
 {
 	ID3D11DeviceContext* context = GraphicsSystem::Get().GetContext();
 

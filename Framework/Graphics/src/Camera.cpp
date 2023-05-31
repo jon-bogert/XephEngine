@@ -41,6 +41,11 @@ void Camera::SetAspectRatio(float ratio)
 	_aspectRatio = ratio;
 }
 
+float xe::Graphics::Camera::GetAspectRatio()
+{
+	return _aspectRatio;
+}
+
 void Camera::SetSize(float width, float height)
 {
 	_width = width;
