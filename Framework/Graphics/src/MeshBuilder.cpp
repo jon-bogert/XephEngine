@@ -383,7 +383,7 @@ MeshPC xe::Graphics::MeshBuilder::CreatePyramidPC(uint32_t size, const Color& co
 	return mesh;
 }
 
-MeshPX xe::Graphics::MeshBuilder::CreateSkyboxPX(uint32_t slices, uint32_t rings, float radius)
+MeshPX xe::Graphics::MeshBuilder::CreateSkyspherePX(uint32_t slices, uint32_t rings, float radius)
 {
 	MeshPX mesh;
 	const float halfHeight = static_cast<float>(rings) * 0.5f;

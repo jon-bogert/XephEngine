@@ -32,7 +32,7 @@ namespace xe::Graphics
 		static MeshPC CreatePyramidPC(uint32_t size, const Color& color);
 
 		//Skybox
-		static MeshPX CreateSkyboxPX(uint32_t slices, uint32_t rings, float radius);
+		static MeshPX CreateSkyspherePX(uint32_t slices, uint32_t rings, float radius);
 
 		//Monkey
 		static MeshPC CreateMonkeyPC();

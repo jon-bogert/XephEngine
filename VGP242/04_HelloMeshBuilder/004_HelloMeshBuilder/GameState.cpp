@@ -12,7 +12,7 @@ void GameState::Initialize()
 {
 	//create space in Normalized Device Coord (NDC) space (-1 -> 1 for x, y, z)
 	//MeshPX mesh = MeshBuilder::CreateSkyboxPX(16.f, 16.f, 20.f);
-	MeshPX mesh = MeshBuilder::CreateSkyboxPX(16, 16, 25.f);
+	MeshPX mesh = MeshBuilder::CreateSkyspherePX(16, 16, 25.f);
 
 	fs::path shaderFile = L"../../../Assets/Shaders/Texture.fx";
 	ID3D11Device* device = GraphicsSystem::Get().GetDevice();

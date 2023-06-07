@@ -76,7 +76,7 @@ void GameState::Draw()
 void GameState::DebugUI()
 {
 #ifdef _DEBUG
-	gui::Begin("DebugUI", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+	gui::Begin("DebugUI", nullptr, ImGuiWindowFlags_AlwaysAutoResize);   
 	Vector3 pos = _renderObjects[0].transform.position;
 	gui::Text("Position:");
 	gui::SameLine();

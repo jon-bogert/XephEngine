@@ -269,6 +269,23 @@ void xe::Graphics::SimpleDraw::AddGroundPlane(float size, const Color& color)
 	}
 }
 
+void xe::Graphics::SimpleDraw::AddGroundCircle(uint32_t slices, float radius, const xe::Color& color)
+{
+	Vector3 v0 = Vector3::Zero;
+	Vector3 v1 = Vector3::Zero;
+	float horizRotation = (Math::Const::TwoPi / static_cast<float>(slices));
+	for (uint32_t s = 0; s <= slices; ++s)
+	{
+		float slice0 = static_cast<float>(s);
+		float rotation0 = slice0 * horizRotation;
+		float slice1 = static_cast<float>(s + 1);
+		float rotation1 = slice1 * horizRotation;
+		v0 = { radius * std::sin(rotation0), 0.f, radius * std::cos(rotation0) };
+		v1 = { radius * std::sin(rotation1), 0.f, radius * std::cos(rotation1) };
+		AddLine(v0, v1, color);
+	}
+}
+
 void xe::Graphics::SimpleDraw::AddTransfrom(const xe::Math::Matrix4& matrix)
 {
 	const Vector3 side = { matrix._11, matrix._12, matrix._13 };

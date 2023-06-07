@@ -1,2 +1,22 @@
-﻿  DebugUI.cpp
-  Graphics.vcxproj -> C:\Users\lcv2142940\Desktop\GitHub\XephEngine\x64\Release\Graphics.lib
+﻿  Pch.cpp
+  BlendState.cpp
+  Camera.cpp
+  ConstantBuffer.cpp
+  DebugUI.cpp
+C:\Users\lcv2142940.LCIEDUCATION\Desktop\GitHub\XephEngine\Framework\Graphics\src\DebugUI.cpp(138,117): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  GraphicsSystem.cpp
+C:\Users\lcv2142940.LCIEDUCATION\Desktop\GitHub\XephEngine\Framework\Graphics\src\GraphicsSystem.cpp(178,108): warning C4244: 'argument': conversion from 'float' to 'UINT8', possible loss of data
+  MeshBuffer.cpp
+  MeshBuilder.cpp
+C:\Users\lcv2142940.LCIEDUCATION\Desktop\GitHub\XephEngine\Framework\Graphics\src\MeshBuilder.cpp(253,91): warning C4267: 'argument': conversion from 'size_t' to 'uint32_t', possible loss of data
+C:\Users\lcv2142940.LCIEDUCATION\Desktop\GitHub\XephEngine\Framework\Graphics\src\MeshBuilder.cpp(2440,5): warning C4305: 'argument': truncation from 'double' to 'float'
+  PixelShader.cpp
+  RenderObject.cpp
+  RenderTarget.cpp
+C:\Users\lcv2142940.LCIEDUCATION\Desktop\GitHub\XephEngine\Framework\Graphics\src\RenderTarget.cpp(78,76): warning C4244: 'argument': conversion from 'float' to 'UINT8', possible loss of data
+  Sampler.cpp
+  SimpleDraw.cpp
+  SimpleEffect.cpp
+  Texture.cpp
+  VertexShader.cpp
+  Graphics.vcxproj -> C:\Users\lcv2142940.LCIEDUCATION\Desktop\GitHub\XephEngine\x64\Release\Graphics.lib

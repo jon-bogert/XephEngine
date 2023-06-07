@@ -25,6 +25,7 @@ namespace xe::Graphics
 		void AddSphere(uint32_t slices, uint32_t rings, float radius, const Color& color);
 
 		void AddGroundPlane(float size, const Color& color);
+		void AddGroundCircle(uint32_t slices, float radius, const xe::Color& color);
 
 		void AddTransfrom(const xe::Math::Matrix4& matrix);
 	}

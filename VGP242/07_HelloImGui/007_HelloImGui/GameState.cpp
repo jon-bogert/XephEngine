@@ -12,7 +12,7 @@ namespace gui = ImGui;
 
 void GameState::Initialize()
 {
-	MeshPX mesh = MeshBuilder::CreateSkyboxPX(16, 16, 25.f);
+	MeshPX mesh = MeshBuilder::CreateSkyspherePX(16, 16, 25.f);
 
 	fs::path shaderFile = L"../../../Assets/Shaders/Texture.fx";
 	ID3D11Device* device = GraphicsSystem::Get().GetDevice();

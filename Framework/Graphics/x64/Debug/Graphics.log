@@ -1,5 +1,3 @@
-﻿  Camera.cpp
-  SimpleDraw.cpp
-  SimpleEffect.cpp
-  Generating Code...
+﻿  DebugUI.cpp
+C:\Users\lcv2142940.LCIEDUCATION\Desktop\GitHub\XephEngine\Framework\Graphics\src\DebugUI.cpp(138,117): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   Graphics.vcxproj -> C:\Users\lcv2142940.LCIEDUCATION\Desktop\GitHub\XephEngine\x64\Debug\Graphics.lib

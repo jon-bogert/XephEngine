@@ -21,7 +21,7 @@ void GameState::Initialize()
 	_meshesPC.push_back(MeshBuilder::CreateMonkeyPC());
 
 
-	_meshesPX.push_back(MeshBuilder::CreateSkyboxPX(16, 16, 25.f));
+	_meshesPX.push_back(MeshBuilder::CreateSkyspherePX(16, 16, 25.f));
 
 	ID3D11Device* device = GraphicsSystem::Get().GetDevice();
 
