@@ -15,6 +15,9 @@ void GameState::Initialize()
 	_camera.SetPosition({ 0.f, 1.f, -5.f });
 	_camera.SetLookAt({ 0.f, 0.f, 0.f });
 
+	_rtCamera.SetPosition({ 1.f, 1.f, -5.f });
+	_rtCamera.SetAspectRatio(1.f);
+
 	MeshPX sphere = MeshBuilder::CreateUVSpherePX(60, 60, 1.f);
 
 	_renderObjects.emplace_back();
@@ -30,6 +33,10 @@ void GameState::Initialize()
 	_simpleEffect.Initialize();
 	_simpleEffect.SetCamera(_camera);
 
+	_rtSimpleEffect.Initialize();
+	_rtSimpleEffect.SetCamera(_rtCamera);
+	_rtCamera.SetLookAt(_renderObjects.front().transform.position);
+
 	constexpr uint32_t size = 512;
 	_renderTarget.Initialize(size, size, Texture::Format::RGBA_U32);
 }
@@ -37,10 +44,11 @@ void GameState::Initialize()
 void GameState::Terminate()
 {
 	_renderTarget.Terminate();
-	for (size_t i = 0; i < _renderObjects.size(); ++i)
+	for (auto it = _renderObjects.begin(); it!= _renderObjects.end(); ++it)
 	{
-		_renderObjects[i].Terminate();
+		it->Terminate();
 	}
+	_rtSimpleEffect.Terminate();
 	_simpleEffect.Terminate();
 }
 
@@ -52,54 +60,59 @@ void GameState::Update(const float& deltaTime)
 void GameState::Draw()
 {
 	_simpleEffect.Begin();
-	for (size_t i = 0; i < _renderObjects.size(); ++i)
+	for (auto it = _renderObjects.begin(); it != _renderObjects.end(); ++it)
 	{
-		_simpleEffect.Draw(_renderObjects[i]);
+		_simpleEffect.Draw(*it);
 	}
 	_simpleEffect.End();
 
-	float origRatio = _camera.GetAspectRatio();
-	_camera.SetAspectRatio(1.f);
 	_renderTarget.BeginDraw();
 	{
-		_simpleEffect.Begin();
-		for (size_t i = 0; i < _renderObjects.size(); ++i)
+		_rtSimpleEffect.Begin();
+		for (auto it = _renderObjects.begin(); it != _renderObjects.end(); ++it)
 		{
-			_simpleEffect.Draw(_renderObjects[i]);
+			_rtSimpleEffect.Draw(*it);
 		}
-		_simpleEffect.End();
+		_rtSimpleEffect.End();
 	}
 	_renderTarget.EndDraw();
-	_camera.SetAspectRatio(origRatio);
 }
 
 void GameState::DebugUI()
 {
 #ifdef _DEBUG
+	auto& first = _renderObjects.front();
 	gui::Begin("DebugUI", nullptr, ImGuiWindowFlags_AlwaysAutoResize);   
-	Vector3 pos = _renderObjects[0].transform.position;
+	Vector3 pos = first.transform.position;
 	gui::Text("Position:");
 	gui::SameLine();
 	if (gui::DragFloat3("##Position", &pos.x, 0.1f))
 	{
-		_renderObjects[0].transform.position = pos;
+		first.transform.position = pos;
 	}
-	Quaternion rot = _renderObjects[0].transform.rotation;
+	Quaternion rot = first.transform.rotation;
 	gui::Text("Rotation:");
 	gui::SameLine();
 	if (gui::DragFloat4("##Rotation", &rot.x, 0.01f))
 	{
-		_renderObjects[0].transform.rotation = rot;
+		first.transform.rotation = rot;
 	}
-	Vector3 sca = _renderObjects[0].transform.scale;
+	Vector3 sca = first.transform.scale;
 	gui::Text("Scale:");
 	gui::SameLine();
 	if (gui::DragFloat3("##Scale", &sca.x, 0.1f))
 	{
-		_renderObjects[0].transform.scale = sca;
+		first.transform.scale = sca;
 	}
 	gui::Separator();
 	gui::Text("RenderTarget");
+	const char* targetsStr[] = { "Object 1", "Object 2" };
+	if (gui::Combo("##TargetObject", &_selectedObj, targetsStr, 2))
+	{
+		auto it = _renderObjects.begin();
+		std::advance(it, _selectedObj);
+		_rtCamera.SetLookAt(it->transform.position);
+	}
 	gui::Image(
 		_renderTarget.GetRawData(),
 		{ 128, 128 },
@@ -109,17 +122,6 @@ void GameState::DebugUI()
 		{ 1, 1, 1, 1 }
 	);
 
-	gui::End();
-	//gui::GetStyle().WindowPadding = ImVec2(0, 0);
-	gui::Begin("Viewport", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
-	gui::Image(
-		_renderTarget.GetRawData(),
-		{ 512, 512 },
-		{ 0, 0, },
-		{ 1, 1 },
-		{ 1, 1, 1, 1 },
-		{ 1, 1, 1, 1 }
-	);
 	gui::End();
 
 	SimpleDraw::AddGroundPlane(10, Colors::White);

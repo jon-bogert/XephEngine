@@ -16,8 +16,13 @@ class GameState : public xe::AppState
 protected:
 	xe::Graphics::Camera _camera;
 	xe::Graphics::SimpleEffect _simpleEffect;
-	std::vector<xe::Graphics::RenderObject> _renderObjects;
+	std::list<xe::Graphics::RenderObject> _renderObjects;
 	xe::Graphics::RenderTarget _renderTarget;
+
+
+	xe::Graphics::Camera _rtCamera;
+	xe::Graphics::SimpleEffect _rtSimpleEffect;
+	int _selectedObj = 0;
 
 public:
 	
