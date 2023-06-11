@@ -95,6 +95,23 @@ void GameState::DebugUI()
 		for (Planet& p : _planets)
 			p.SetShowOrbit(showOrbit);
 
+	for (Planet& p : _planets)
+	{
+		if (p.GetPlanetName() == "Sun") continue;
+		gui::Text((p.GetPlanetName()).c_str());
+		gui::Text("    Orbit:");
+		gui::SameLine();
+		float orbit = p.GetOrbitSpeed();
+		if (gui::DragFloat(("##Orbit" + p.GetPlanetName()).c_str(), &orbit, 0.01f))
+			p.SetOrbitSpeed(orbit);
+		gui::Text("      Day:");
+		gui::SameLine();
+		float day = p.GetDayRotSpeed();
+		if (gui::DragFloat(("##Day" + p.GetPlanetName()).c_str(), &day, 0.01f))
+			p.SetDayRotSpeed(day);
+		gui::NewLine();
+	}
+
 	gui::End();
 
 	SimpleDraw::Draw(_camera);
