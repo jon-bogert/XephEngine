@@ -57,6 +57,7 @@ void Planet::Init(Size size, std::wstring planetName, float orbitRad, std::list<
 {
 	_planetName = planetName;
 	_orbitRad = orbitRad;
+	_size = size;
 
 	MeshPX mesh = MeshBuilder::CreateUVSpherePX(slices, rings, GetPlanetRadius(size));
 	_renderObject = &renderObjects.emplace_back();
@@ -136,4 +137,12 @@ std::string Planet::GetPlanetName() const
 		name.push_back(static_cast<char>(c));
 	}
 	return name;
+}
+
+void Planet::GetDebugCameraTransfrom(xe::Math::Vector3& position, xe::Math::Vector3& lookAt)
+{
+	Vector3 norm = xe::Math::Normalize(_renderObject->transform.position);
+	position = _renderObject->transform.position - norm * _debugDist;
+	lookAt = _renderObject->transform.position;
+	
 }

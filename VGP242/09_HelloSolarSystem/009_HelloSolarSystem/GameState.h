@@ -20,7 +20,11 @@ protected:
 	std::list<xe::Graphics::RenderObject> _renderObjects;
 	xe::Graphics::RenderTarget _renderTarget;
 
+	xe::Graphics::Camera _debugCamera;
+	xe::Graphics::SimpleEffect _debugSimpleEffect;
+
 	std::vector<Planet> _planets;
+	int _selectedPlanet = 0;
 
 public:
 	

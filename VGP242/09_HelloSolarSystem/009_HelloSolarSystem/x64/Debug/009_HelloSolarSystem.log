@@ -1,4 +1,14 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (001_HelloWindow.vcxproj, 002_HelloShapes.vcxproj, 003_HelloCube.vcxproj, 004_HelloMeshBuilder.vcxproj, 005_HelloMeshSwitcher.vcxproj, 006_HelloSimpleDraw.vcxproj, 007_HelloImGui.vcxproj, 008_HelloRenderTargeti.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   GameState.cpp
-C:\Users\jonbo\Desktop\XephEngine\VGP242\09_HelloSolarSystem\009_HelloSolarSystem\Planet.h(14,8): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\jonbo\Desktop\XephEngine\VGP242\09_HelloSolarSystem\009_HelloSolarSystem\Planet.h(18,8): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Planet.cpp
+C:\Users\jonbo\Desktop\XephEngine\VGP242\09_HelloSolarSystem\009_HelloSolarSystem\Planet.h(18,8): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\jonbo\Desktop\XephEngine\VGP242\09_HelloSolarSystem\009_HelloSolarSystem\Planet.cpp(39,26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\jonbo\Desktop\XephEngine\VGP242\09_HelloSolarSystem\009_HelloSolarSystem\Planet.cpp(40,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\jonbo\Desktop\XephEngine\VGP242\09_HelloSolarSystem\009_HelloSolarSystem\Planet.cpp(41,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\jonbo\Desktop\XephEngine\VGP242\09_HelloSolarSystem\009_HelloSolarSystem\Planet.cpp(42,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  WinMain.cpp
+C:\Users\jonbo\Desktop\XephEngine\VGP242\09_HelloSolarSystem\009_HelloSolarSystem\Planet.h(18,8): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Generating Code...
+C:\Users\jonbo\Desktop\XephEngine\VGP242\09_HelloSolarSystem\009_HelloSolarSystem\Planet.cpp(23): warning C4715: '`anonymous namespace'::GetPlanetRadius': not all control paths return a value
   009_HelloSolarSystem.vcxproj -> C:\Users\jonbo\Desktop\XephEngine\x64\Debug\009_HelloSolarSystem.exe

@@ -15,6 +15,8 @@ void GameState::Initialize()
 	_camera.SetPosition({ 0.f, 1.f, -5.f });
 	_camera.SetLookAt({ 0.f, 0.f, 0.f });
 
+	_debugCamera.SetAspectRatio(1.f);
+
 	MeshPX skysphere = MeshBuilder::CreateSkyspherePX(32, 32, 128);
 
 	//Skysphere
@@ -37,6 +39,9 @@ void GameState::Initialize()
 	_simpleEffect.Initialize();
 	_simpleEffect.SetCamera(_camera);
 
+	_debugSimpleEffect.Initialize();
+	_debugSimpleEffect.SetCamera(_debugCamera);
+
 	constexpr uint32_t size = 512;
 	_renderTarget.Initialize(size, size, Texture::Format::RGBA_U32);
 }
@@ -48,6 +53,7 @@ void GameState::Terminate()
 	{
 		it->Terminate();
 	}
+	_debugSimpleEffect.Terminate();
 	_simpleEffect.Terminate();
 }
 
@@ -69,25 +75,23 @@ void GameState::Draw()
 	}
 	_simpleEffect.End();
 
-	float origRatio = _camera.GetAspectRatio();
-	_camera.SetAspectRatio(1.f);
 	_renderTarget.BeginDraw();
 	{
-		_simpleEffect.Begin();
+		_debugSimpleEffect.Begin();
 		for (auto it = _renderObjects.begin(); it != _renderObjects.end(); ++it)
 		{
-			_simpleEffect.Draw(*it);
+			_debugSimpleEffect.Draw(*it);
 		}
-		_simpleEffect.End();
+		_debugSimpleEffect.End();
 	}
 	_renderTarget.EndDraw();
-	_camera.SetAspectRatio(origRatio);
 }
 
 void GameState::DebugUI()
 {
 #ifdef _DEBUG
-	gui::Begin("Inspector", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+	gui::Begin("Inspector", nullptr, ImGuiWindowFlags_None);
+	//Global Controls
 	gui::Text("Show Orbit:");
 	gui::SameLine();
 	bool showOrbit = _planets[0].GetShowOrbit();
@@ -95,6 +99,34 @@ void GameState::DebugUI()
 		for (Planet& p : _planets)
 			p.SetShowOrbit(showOrbit);
 
+	gui::Text("Select Object:");
+	gui::SameLine();
+	const char* shapeItemsStr[] = {
+		"Mercury",
+		"Venus",
+		"Earth",
+		"Mars",
+		"Jupiter",
+		"Saturn",
+		"Uranus",
+		"Neptune",
+		"Pluto"
+	};
+	gui::Combo("##SelectObject", &_selectedPlanet, shapeItemsStr, 9);
+	Vector3 camPos;
+	Vector3 camLook;
+	_planets.at(_selectedPlanet + 1).GetDebugCameraTransfrom(camPos, camLook);// +1 because the sun;
+	_debugCamera.SetPosition(camPos);
+	_debugCamera.SetLookAt(camLook);
+	gui::Image(
+		_renderTarget.GetRawData(),
+		{ 128, 128 },
+		{ 0, 0, },
+		{ 1, 1 },
+		{ 1, 1, 1, 1 },
+		{ 1, 1, 1, 1 });
+
+	//Planet Rotation Controls
 	for (Planet& p : _planets)
 	{
 		if (p.GetPlanetName() == "Sun") continue;

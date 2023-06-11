@@ -3,6 +3,10 @@
 
 class Planet
 {
+public:
+	enum class Size { XL, L, M, S };
+
+private:
 	xe::Graphics::RenderObject* _renderObject = nullptr;
 	std::wstring _planetName;
 
@@ -15,9 +19,10 @@ class Planet
 
 	bool _showOrbit = true;
 
-public:
+	Size _size;
+	float _debugDist = 2.f;
 
-	enum class Size { XL, L, M, S };
+public:
 
 	void Init(Size size, std::wstring planetName, float orbitRad, std::list<xe::Graphics::RenderObject>& renderObjects);
 	void Update(const float& deltaTime);
@@ -34,4 +39,6 @@ public:
 	void SetDayRotSpeed(const float dayRotSpeed);
 
 	std::string GetPlanetName() const;
+
+	void GetDebugCameraTransfrom(xe::Math::Vector3& position, xe::Math::Vector3& lookAt);
 };
