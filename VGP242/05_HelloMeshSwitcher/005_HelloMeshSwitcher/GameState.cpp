@@ -62,11 +62,11 @@ Vector3 position(0.f);
 float yRotation = 0.f;
 void GameState::Update(const float& deltaTime)
 {
-	if (InputSystem::Get().IsKeyPressed(Key::Up) && _meshIndex < _meshesPC.size() + _meshesPX.size() - 1)
+	if (InputSystem::GetKeyDown(Key::Up) && _meshIndex < _meshesPC.size() + _meshesPX.size() - 1)
 	{
 		SwitchMesh(_meshIndex + 1);
 	}
-	else if (InputSystem::Get().IsKeyPressed(Key::Down) && _meshIndex > 0)
+	else if (InputSystem::GetKeyDown(Key::Down) && _meshIndex > 0)
 	{
 		SwitchMesh(_meshIndex - 1);
 	}

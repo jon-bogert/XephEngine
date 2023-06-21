@@ -4,7 +4,7 @@
 
 using namespace xe::Core;
 using namespace xe::Graphics;
-using namespace xe::Input;
+using namespace xe;
 
 void xe::App::ChangeState(const std::string& stateName)
 {
@@ -42,9 +42,8 @@ void xe::App::Run(const AppConfig& config)
 	{
 		window.ProcessMessage();
 
-		InputSystem& inputSystem = InputSystem::Get();
-		inputSystem.Update();
-		if (!window.IsActive() || inputSystem.IsKeyPressed(Key::Escape)) // TODO Remove ESC from here
+		InputSystem::Update();
+		if (!window.IsActive() || InputSystem::GetKeyDown(xe::Key::Esc)) // TODO Remove ESC from here
 		{
 			Quit();
 			continue;
@@ -80,7 +79,6 @@ void xe::App::Run(const AppConfig& config)
 
 	SimpleDraw::Terminate();
 	DebugUI::Terminate();
-	InputSystem::Terminate();
 	GraphicsSystem::Terminate();
 	window.Terminate();
 }

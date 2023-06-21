@@ -5,7 +5,7 @@
 using namespace xe;
 using namespace xe::Math;
 using namespace xe::Graphics;
-using namespace xe::Input;
+using namespace xe;
 
 namespace fs = std::filesystem;
 namespace gui = ImGui;
@@ -152,40 +152,42 @@ void GameState::DebugUI()
 
 void GameState::UpdateCameraControl(const float& deltaTime)
 {
-	InputSystem& input = InputSystem::Get();
-	const float moveSpeed = input.IsKeyDown(Key::LShift) ? 10.f : 2.f;
+	const float moveSpeed = InputSystem::GetKeyHold(Key::LShift) ? 10.f : 2.f;
 	const float turnSpeed = 0.1f;
 
 	Vector3 moveAxis = Vector3::Zero;
 
-	if (input.IsKeyDown(Key::W))
+	if (InputSystem::GetKeyHold(Key::W))
 	{
 		moveAxis.z = 1;
 	}
-	if (input.IsKeyDown(Key::S))
+	if (InputSystem::GetKeyHold(Key::S))
 	{
 		moveAxis.z = -1;
 	}
-	if (input.IsKeyDown(Key::D))
+	if (InputSystem::GetKeyHold(Key::D))
 	{
 		moveAxis.x = 1;
 	}
-	if (input.IsKeyDown(Key::A))
+	if (InputSystem::GetKeyHold(Key::A))
 	{
 		moveAxis.x = -1;
 	}
-	if (input.IsKeyDown(Key::E))
+	if (InputSystem::GetKeyHold(Key::E))
 	{
 		moveAxis.y = 1;
 	}
-	if (input.IsKeyDown(Key::Q))
+	if (InputSystem::GetKeyHold(Key::Q))
 	{
 		moveAxis.y = -1;
 	}
-	if (input.IsMouseDown(MouseButton::Right))
+	if (InputSystem::GetMouseHold(Mouse::Button::Right))
 	{
-		_camera.Yaw(input.GetMouseMoveX() * turnSpeed * deltaTime);
-		_camera.Pitch(input.GetMouseMoveY() * turnSpeed * deltaTime);
+
+		Vector2 mouseDelta;
+		InputSystem::GetMouseDelta(&mouseDelta.x);
+		_camera.Yaw(mouseDelta.x * turnSpeed * deltaTime);
+		_camera.Pitch(mouseDelta.y * turnSpeed * deltaTime);
 	}
 
 	if (moveAxis == Vector3::Zero) return;

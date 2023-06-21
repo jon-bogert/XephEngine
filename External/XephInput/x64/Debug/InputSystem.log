@@ -1,0 +1,3 @@
+﻿  Main.cpp
+D:\repos\C++\XephInput\InputSystem\Main.cpp(44,10): warning C4101: 'pos': unreferenced local variable
+  InputSystem.vcxproj -> D:\repos\C++\XephInput\x64\Debug\InputSystem.exe

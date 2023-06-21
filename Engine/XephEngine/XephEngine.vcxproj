@@ -170,14 +170,14 @@
     <ClInclude Include="src\Pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\External\XephInput\XephInput.vcxproj">
+      <Project>{a3181ea0-4c3f-451b-a6fa-48ed49a44595}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\Core\Core.vcxproj">
       <Project>{8ad805ae-7bab-40f4-a874-845fcd3f3bd5}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\Graphics\Graphics.vcxproj">
       <Project>{943a5553-fb42-4d44-a6fd-a4505c471306}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Input\Input.vcxproj">
-      <Project>{3629f01a-6fed-42eb-b308-e9f7f1346eaf}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\Math\Math.vcxproj">
       <Project>{559783d1-4643-41a5-8def-067cf092c1e7}</Project>

@@ -20,6 +20,6 @@ C:\Users\jonbo\Desktop\XephEngine\Framework\Graphics\src\RenderTarget.cpp(78,76)
   Texture.cpp
   VertexShader.cpp
   Generating Code...
-C:\Users\jonbo\Desktop\XephEngine\Framework\Graphics\src\Sampler.cpp(22): warning C4715: '`anonymous namespace'::GetFilter': not all control paths return a value
 C:\Users\jonbo\Desktop\XephEngine\Framework\Graphics\src\Sampler.cpp(39): warning C4715: '`anonymous namespace'::GetAddressMode': not all control paths return a value
+C:\Users\jonbo\Desktop\XephEngine\Framework\Graphics\src\Sampler.cpp(22): warning C4715: '`anonymous namespace'::GetFilter': not all control paths return a value
   Graphics.vcxproj -> C:\Users\jonbo\Desktop\XephEngine\x64\Debug\Graphics.lib
