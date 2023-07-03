@@ -31,7 +31,7 @@
 #include <vector>
 #include <string>
 
-#include "XephInput/Enums.h"
+#include "Enums.h"
 
 
 #define XEInputActionCallback(function) static_cast<void*>(this), std::bind(&function, this, std::placeholders::_1)

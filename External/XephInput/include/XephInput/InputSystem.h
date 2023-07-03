@@ -30,8 +30,8 @@
 #include <iostream>
 #include <list>
 
-#include "XephInput/Enums.h"
-#include "XephInput/InputActionMap.h"
+#include "Enums.h"
+#include "InputActionMap.h"
 
 namespace xe
 {
