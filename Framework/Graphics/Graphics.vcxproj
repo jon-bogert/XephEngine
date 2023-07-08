@@ -180,7 +180,9 @@
     <ClInclude Include="include\Sampler.h" />
     <ClInclude Include="include\SimpleDraw.h" />
     <ClInclude Include="include\SimpleEffect.h" />
+    <ClInclude Include="include\StandardEffect.h" />
     <ClInclude Include="include\Texture.h" />
+    <ClInclude Include="include\TextureManager.h" />
     <ClInclude Include="include\VertexShader.h" />
     <ClInclude Include="include\VertexTypes.h" />
     <ClInclude Include="src\Pch.h" />
@@ -206,7 +208,9 @@
     <ClCompile Include="src\Sampler.cpp" />
     <ClCompile Include="src\SimpleDraw.cpp" />
     <ClCompile Include="src\SimpleEffect.cpp" />
+    <ClCompile Include="src\StandardEffect.cpp" />
     <ClCompile Include="src\Texture.cpp" />
+    <ClCompile Include="src\TextureManager.cpp" />
     <ClCompile Include="src\VertexShader.cpp" />
   </ItemGroup>
   <ItemGroup>

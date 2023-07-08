@@ -1,5 +1,5 @@
-#ifndef XE_GRAPHICS_MESHTYPES_H
-#define XE_GRAPHICS_MESHTYPES_H
+#ifndef __XE_GRAPHICS_MESHTYPES_H__
+#define __XE_GRAPHICS_MESHTYPES_H__
 
 #include "VertexTypes.h"
 

@@ -32,7 +32,7 @@ namespace
 	public:
 		void Initialize(uint32_t maxVertexCount)
 		{
-			std::filesystem::path shaderFile = L"../../../Assets/Shaders/SimpleDraw.fx";
+			std::filesystem::path shaderFile = L"../../Assets/Shaders/SimpleDraw.fx";
 			_vertexShader.Initialize<VertexPC>(shaderFile);
 			_pixelShader.Initialize(shaderFile);
 			_constantBuffer.Initialize(sizeof(Matrix4));

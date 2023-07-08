@@ -1,5 +1,5 @@
-#ifndef XE_GRAPHICS_RENDERTARGET_H
-#define XE_GRAPHICS_RENDERTARGET_H
+#ifndef __XE_GRAPHICS_RENDERTARGET_H__
+#define __XE_GRAPHICS_RENDERTARGET_H__
 
 #include "Colors.h"
 #include "Texture.h"

@@ -1,5 +1,5 @@
-#ifndef XE_GRAPHICS_MESHBUILDER_H
-#define XE_GRAPHICS_MESHBUILDER_H
+#ifndef __XE_GRAPHICS_MESHBUILDER_H__
+#define __XE_GRAPHICS_MESHBUILDER_H__
 
 #include "MeshTypes.h"
 
@@ -26,6 +26,7 @@ namespace xe::Graphics
 		//Sphere
 		static MeshPC CreateUVSpherePC(uint32_t slices, uint32_t rings, float radius);
 		static MeshPX CreateUVSpherePX(uint32_t slices, uint32_t rings, float radius);
+		static Mesh CreateUVSphere(uint32_t slices, uint32_t rings, float radius);
 
 		//Pyramid
 		static MeshPC CreatePyramidPC(uint32_t size);

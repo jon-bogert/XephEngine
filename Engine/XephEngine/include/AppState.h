@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XE_XEPHEINGINE_APPSTATE_H__
+#define __XE_XEPHEINGINE_APPSTATE_H__
 
 namespace xe
 {
@@ -13,3 +14,5 @@ namespace xe
 		virtual void DebugUI() {}
 	};
 }
+
+#endif

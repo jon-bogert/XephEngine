@@ -1,5 +1,5 @@
-#ifndef XE_GRAPHICS_COMMON_H
-#define XE_GRAPHICS_COMMON_H
+#ifndef __XE_GRAPHICS_COMMON_H__
+#define __XE_GRAPHICS_COMMON_H__
 
 #include <Core/include/Core.h>
 #include <Math/include/XEMath.h>

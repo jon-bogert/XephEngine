@@ -1,5 +1,5 @@
-#ifndef XE_GRAPHICS_TEXTURE_H
-#define XE_GRAPHICS_TEXTURE_H
+#ifndef __XE_GRAPHICS_TEXTURE_H__
+#define __XE_GRAPHICS_TEXTURE_H__
 namespace xe::Graphics
 {
 	class Texture

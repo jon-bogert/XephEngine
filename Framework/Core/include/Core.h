@@ -1,5 +1,5 @@
-#ifndef XE_CORE_CORE_H
-#define XE_CORE_CORE_H
+#ifndef __XE_CORE_CORE_H__
+#define __XE_CORE_CORE_H__
 
 #include "Common.h"
 

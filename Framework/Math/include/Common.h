@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XE_MATH_COMMON_H__
+#define __XE_MATH_COMMON_H__
 
 #include <Core/include/Core.h>
 
@@ -12,3 +13,5 @@
 #include "Vector4.h"
 #include "Quaternion.h"
 #include "Matrix4.h"
+
+#endif

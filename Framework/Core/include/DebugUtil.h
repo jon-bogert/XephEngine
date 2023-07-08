@@ -1,5 +1,5 @@
-#ifndef XE_CORE_DEBUGUTIL_H
-#define XE_CORE_DEBUGUTIL_H
+#ifndef __XE_CORE_DEBUGUTIL_H__
+#define __XE_CORE_DEBUGUTIL_H__
 
 #include "TimeUtil.h"
 
@@ -18,9 +18,27 @@
 			DebugBreak();\
 		}\
 	}while(false)
+
+#define XE_PROPERTY(type, name, cap) \
+private: \
+    type name; \
+public: \
+    type Get##cap() const { return name; } \
+    void Set##cap(type val) { name = val; }\
+private:
+
+#define XE_PROP_READONLY(type, name, cap) \
+private: \
+    type name; \
+public: \
+    type Get##cap() const { return name; } \
+private:
+
 #else
 #define LOG(format, ...)
 #define ASSERT(condition, format, ...) do{(void)sizeof(condition);} while(false)
 #endif // _DEBUG
+
+
 
 #endif // XE_CORE_DEBUGUTIL_H

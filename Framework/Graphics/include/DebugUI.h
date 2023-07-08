@@ -1,5 +1,5 @@
-#ifndef XE_GRAPHICS_DEBUGUI_H
-#define XE_GRAPHICS_DEBUGUI_H
+#ifndef __XE_GRAPHICS_DEBUGUI_H__
+#define __XE_GRAPHICS_DEBUGUI_H__
 
 namespace xe::Graphics::DebugUI
 {

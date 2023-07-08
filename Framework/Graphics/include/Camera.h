@@ -1,5 +1,5 @@
-#ifndef XE_GRAPHICS_CAMERA_H
-#define XE_GRAPHICS_CAMERA_H
+#ifndef __XE_GRAPHICS_CAMERA_H__
+#define __XE_GRAPHICS_CAMERA_H__
 
 namespace xe::Graphics
 {

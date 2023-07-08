@@ -5,8 +5,8 @@
 // Created by:	Peter Chan
 //====================================================================================================
 
-#ifndef XE_GRAPGICS_COLORS_H
-#define XE_GRAPGICS_COLORS_H
+#ifndef __XE_GRAPGICS_COLORS_H__
+#define __XE_GRAPGICS_COLORS_H__
 
 //#include <Math/include/XEMath.h>
 

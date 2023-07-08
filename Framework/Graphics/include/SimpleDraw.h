@@ -1,5 +1,5 @@
-#ifndef XE_GRAPHICS_SIMPLEDRAW_H
-#define XE_GRAPHICS_SIMPLEDRAW_H
+#ifndef __XE_GRAPHICS_SIMPLEDRAW_H__
+#define __XE_GRAPHICS_SIMPLEDRAW_H__
 
 #include "Colors.h"
 

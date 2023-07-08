@@ -5,12 +5,13 @@
 #include "RenderObject.h"
 #include "VertexTypes.h"
 #include "MeshBuffer.h"
+#include "TextureManager.h"
 
 using namespace xe::Math;
 
 void xe::Graphics::SimpleEffect::Initialize()
 {
-	std::filesystem::path filePath = L"../../../Assets/Shaders/DoTexture.fx";
+	std::filesystem::path filePath = L"../../Assets/Shaders/DoTexture.fx";
 	_vertexShader.Initialize<VertexPX>(filePath);
 	_pixelShader.Initialize(filePath);
 	_constantBuffer.Initialize(sizeof(Matrix4));
@@ -43,7 +44,8 @@ void xe::Graphics::SimpleEffect::Draw(const RenderObject& renderObject)
 
 	_constantBuffer.Update(&wvp);
 
-	renderObject.diffuseTexture.BindPixelShader(0);
+	TextureManager::BindPixelShader(renderObject.diffuseMapID, 0);
+
 	renderObject.meshBuffer.Draw();
 }
 

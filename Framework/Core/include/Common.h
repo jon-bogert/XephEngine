@@ -1,5 +1,5 @@
-#ifndef XE_CORE_COMMON_H
-#define XE_CORE_COMMON_H
+#ifndef __XE_CORE_COMMON_H__
+#define __XE_CORE_COMMON_H__
 
 #define WIN32_LEAN_AND_MEAN
 #define NOMINMAX

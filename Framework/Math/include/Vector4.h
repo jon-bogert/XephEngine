@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XE_MATH_VECTOR4_H__
+#define __XE_MATH_VECTOR4_H__
 
 namespace xe::Math
 {
@@ -25,3 +26,5 @@ namespace xe::Math
 		constexpr Vector4& operator/=(float s) { x /= s; y /= s, z /= s, w /= s; return *this; }
 	};
 }
+
+#endif

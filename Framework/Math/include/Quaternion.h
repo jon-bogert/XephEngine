@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XE_MATH_QUATERNION_H__
+#define __XE_MATH_QUATERNION_H__
 
 namespace xe::Math
 {
@@ -32,3 +33,5 @@ namespace xe::Math
         static const Quaternion Zero;
     };
 }
+
+#endif

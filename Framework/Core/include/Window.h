@@ -1,5 +1,5 @@
-#ifndef XE_CORE_WINDOW_H
-#define XE_CORE_WINDOW_H
+#ifndef __XE_CORE_WINDOW_H__
+#define __XE_CORE_WINDOW_H__
 
 namespace xe::Core
 {

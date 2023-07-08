@@ -1,9 +1,9 @@
-#ifndef XE_GRAPHICS_RENDEROBJECT_H
-#define XE_GRAPHICS_RENDEROBJECT_H
+#ifndef __XE_GRAPHICS_RENDEROBJECT_H__
+#define __XE_GRAPHICS_RENDEROBJECT_H__
 
 #include "Transform.h"
 #include "MeshBuffer.h"
-#include "Texture.h"
+#include "TextureManager.h"
 
 namespace xe::Graphics
 {
@@ -12,15 +12,12 @@ namespace xe::Graphics
 	public:
 		Transform transform;
 		MeshBuffer meshBuffer;
-		Texture diffuseTexture;
+		TextureID diffuseMapID;
 
 		void Terminate()
 		{
-			diffuseTexture.Terminate();
 			meshBuffer.Terminate();
 		}
-
-
 	};
 }
 

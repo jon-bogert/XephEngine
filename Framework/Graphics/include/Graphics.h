@@ -1,5 +1,5 @@
-#ifndef XE_GRAPHICS_GRAPHICS_H
-#define XE_GRAPHICS_GRAPHICS_H
+#ifndef __XE_GRAPHICS_GRAPHICS_H__
+#define __XE_GRAPHICS_GRAPHICS_H__
 
 #include "Common.h"
 
@@ -17,7 +17,9 @@
 #include "Sampler.h"
 #include "SimpleDraw.h"
 #include "SimpleEffect.h"
+#include "StandardEffect.h"
 #include "Texture.h"
+#include "TextureManager.h"
 #include "Transform.h"
 #include "VertexShader.h"
 

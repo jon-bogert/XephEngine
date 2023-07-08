@@ -324,6 +324,44 @@ MeshPX xe::Graphics::MeshBuilder::CreateUVSpherePX(uint32_t slices, uint32_t rin
 	return mesh;
 }
 
+Mesh xe::Graphics::MeshBuilder::CreateUVSphere(uint32_t slices, uint32_t rings, float radius)
+{
+    Mesh mesh;
+    const float halfHeight = static_cast<float>(rings) * 0.5f;
+
+    float vertRotation = (Math::Const::Pi / static_cast<float>(rings - 1));
+    float horizRotation = (Math::Const::TwoPi / static_cast<float>(slices));
+    float uStep = 1.f / static_cast<float>(slices);
+    float vStep = 1.f / static_cast<float>(rings);
+
+    for (uint32_t ring = 0; ring <= rings; ++ring)
+    {
+        float rPos = static_cast<float>(ring);
+        float phi = rPos * vertRotation;
+        for (uint32_t slice = 0; slice <= slices; ++slice)
+        {
+            float sPos = static_cast<float>(slice);
+            float rotation = sPos * horizRotation;
+
+            float u = 1.f - (uStep * sPos);
+            float v = (vStep * rPos);
+
+            float x = radius * sin(rotation) * sin(phi);
+            float y = radius* cos(phi);
+            float z = radius* cos(rotation)* sin(phi);
+
+            const xe::Math::Vector3 pos = { x, y, z };
+            const xe::Math::Vector3 norm = xe::Math::Normalize(pos);
+            const xe::Math::Vector3 tan = xe::Math::Normalize({ -z, 0.f, x });
+            mesh.vertices.push_back({ pos, norm, tan, {u, v} });
+        }
+    }
+
+    CreatePlaneIndices(mesh.indices, rings, slices);
+
+    return mesh;
+}
+
 MeshPC xe::Graphics::MeshBuilder::CreatePyramidPC(uint32_t size)
 {
 	MeshPC mesh;

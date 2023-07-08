@@ -1,5 +1,5 @@
-#ifndef XE_XEPHENGINE_XEPHENGINE_H
-#define XE_XEPHENGINE_XEPHENGINE_H
+#ifndef __XE_XEPHENGINE_XEPHENGINE_H__
+#define __XE_XEPHENGINE_XEPHENGINE_H__
 
 #include "Common.h"
 
@@ -11,4 +11,4 @@ namespace xe
 	App& MainApp();
 }
 
-#endif // XE_XEPHENGINE_XEPHENGINE_H
+#endif // __XE_XEPHENGINE_XEPHENGINE_H__

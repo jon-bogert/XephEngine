@@ -1,5 +1,5 @@
-#ifndef XE_GRAPHICS_SIMPLEEFFECT_H
-#define XE_GRAPHICS_SIMPLEEFFECT_H
+#ifndef __XE_GRAPHICS_SIMPLEEFFECT_H__
+#define __XE_GRAPHICS_SIMPLEEFFECT_H__
 
 #include "ConstantBuffer.h"
 #include "VertexShader.h"

@@ -75,6 +75,12 @@
     <ClInclude Include="include\RenderTarget.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\StandardEffect.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TextureManager.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -123,6 +129,12 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\RenderTarget.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StandardEffect.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextureManager.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

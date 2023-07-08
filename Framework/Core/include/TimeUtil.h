@@ -1,5 +1,5 @@
-#ifndef XE_CORE_TIMEUTIL_H
-#define XE_CORE_TIMEUTIL_H
+#ifndef __XE_CORE_TIMEUTIL_H__
+#define __XE_CORE_TIMEUTIL_H__
 
 namespace xe::Core::TimeUtil
 {

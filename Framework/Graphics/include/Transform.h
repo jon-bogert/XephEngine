@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef XE_GRAPHICS_TRANSFORM_H
-#define XE_GRAPHICS_TRANSFORM_H
+#ifndef __XE_GRAPHICS_TRANSFORM_H__
+#define __XE_GRAPHICS_TRANSFORM_H__
 
 #include "Common.h"
 

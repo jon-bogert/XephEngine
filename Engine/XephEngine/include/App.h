@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __XE_XEPHEINGINE_APP_H__
+#define __XE_XEPHEINGINE_APP_H__
+
 namespace xe
 {
 	class AppState;
@@ -44,3 +46,5 @@ namespace xe
 		void Quit();
 	};
 }
+
+#endif // __XE_XEPHEINGINE_APP_H__

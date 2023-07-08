@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XE_MATH_MATRIX4_H__
+#define __XE_MATH_MATRIX4_H__
 
 namespace xe::Math
 {
@@ -230,3 +231,5 @@ namespace xe::Math
 		}
 	};
 }
+
+#endif

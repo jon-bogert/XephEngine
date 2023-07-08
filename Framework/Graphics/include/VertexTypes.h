@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XE_GRAPHICS_VERTEXTYPES_H__
+#define __XE_GRAPHICS_VERTEXTYPES_H__
 
 #include "Common.h"
 #include "Colors.h"
@@ -77,3 +78,5 @@ namespace xe::Graphics
 // 23 234 255 109 244
 // 23 234 255 109 244
 // 23 234 255 109 244
+
+#endif //__XE_GRAPHICS_VERTEXTYPES_H__

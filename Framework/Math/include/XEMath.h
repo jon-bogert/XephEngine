@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XE_MATH_XEMATH_H__
+#define __XE_MATH_XEMATH_H__
 
 #include "Common.h"
 
@@ -137,3 +138,5 @@ namespace xe::Math
 		};
 	}
 }
+
+#endif

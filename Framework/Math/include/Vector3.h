@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XE_MATH_VECTOR3_H__
+#define __XE_MATH_VECTOR3_H__
 
 namespace xe::Math
 {
@@ -35,3 +36,5 @@ namespace xe::Math
 		constexpr bool operator==(const Vector3& v) { return (x == v.x && y == v.y && z == v.z); }
 	};
 }
+
+#endif
