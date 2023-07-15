@@ -171,6 +171,8 @@
     <ClInclude Include="include\DebugUI.h" />
     <ClInclude Include="include\Graphics.h" />
     <ClInclude Include="include\GraphicsSystem.h" />
+    <ClInclude Include="include\LightType.h" />
+    <ClInclude Include="include\Material.h" />
     <ClInclude Include="include\MeshBuffer.h" />
     <ClInclude Include="include\MeshBuilder.h" />
     <ClInclude Include="include\MeshTypes.h" />
@@ -219,6 +221,9 @@
     </ProjectReference>
     <ProjectReference Include="..\..\External\ImGui\ImGui.vcxproj">
       <Project>{52d656a2-a2f4-4c54-a3c7-653427bed1e8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Math\Math.vcxproj">
+      <Project>{559783d1-4643-41a5-8def-067cf092c1e7}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -14,16 +14,21 @@ void GameState::Initialize()
 	_camera.SetPosition({ 0.f, 1.f, -5.f });
 	_camera.SetLookAt({ 0.f, 0.f, 0.f });
 
+	_directionalLight.direction = xe::Math::Normalize({ 1.f, -1.f, -1.f });
+
 	stdfs::path path = L"../../Assets/Shaders/Standard.fx";
 	_standardEffect.Initialize(path);
 
 	_standardEffect.SetCamera(_camera);
+	_standardEffect.SetDirectionalLight(_directionalLight);
+
 
 	Mesh sphere = MeshBuilder::CreateUVSphere(60, 60, 1.f);
 
 	_renderObjects.emplace_back();
 	_renderObjects.back().meshBuffer.Initialize(sphere);
 	_renderObjects.back().diffuseMapID = TextureManager::LoadTexture("earth.jpg");
+	_renderObjects.back().normalMapID = TextureManager::LoadTexture("earth_normal.jpg");
 	_renderObjects.back().transform.position.y += 1.f;
 }
 
@@ -55,6 +60,33 @@ void GameState::DebugUI()
 {
 #ifdef _DEBUG
 	ImGui::Begin("Inspector", nullptr, ImGuiWindowFlags_None);
+	if (ImGui::CollapsingHeader("Lighting##", ImGuiTreeNodeFlags_DefaultOpen))
+	{
+		if (ImGui::DragFloat3("Direction##Light", &_directionalLight.direction.x, 0.01f, -1.f, 1.f))
+		{
+			_directionalLight.direction = xe::Math::Normalize(_directionalLight.direction);
+		}
+		ImGui::NewLine();
+		ImGui::ColorEdit4("Ambient##Light", &_directionalLight.ambient.r);
+		ImGui::ColorEdit4("Diffuse##Light", &_directionalLight.diffuse.r);
+		ImGui::ColorEdit4("Specular##Light", &_directionalLight.specular.r);
+
+	}
+	ImGui::NewLine();
+	int i = 0;
+	for (auto& it : _renderObjects)
+	{
+		if (ImGui::CollapsingHeader("Material##" + i, ImGuiTreeNodeFlags_DefaultOpen))
+		{
+			ImGui::ColorEdit4("Ambient##Material", &it.material.ambient.r);
+			ImGui::ColorEdit4("Diffuse##Material", &it.material.diffuse.r);
+			ImGui::ColorEdit4("Specular##Material", &it.material.specular.r);
+			ImGui::DragFloat("Specular Intensity##Material" + i, &it.material.power);
+			ImGui::DragFloat("Normal Map Intensity##Material" + i, &it.material.normalMapIntensity, 0.01, 0.f, 1.f);
+		}
+		++i;
+	}
+	ImGui::NewLine();
 	_standardEffect.DebugUI();
 	ImGui::End();
 

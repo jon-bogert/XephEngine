@@ -91,7 +91,7 @@ namespace xe {
 		constexpr Color DarkBlue{ 0.000000000f, 0.000000000f, 0.545098066f, 1.000000000f };
 		constexpr Color DarkCyan{ 0.000000000f, 0.545098066f, 0.545098066f, 1.000000000f };
 		constexpr Color DarkGoldenrod{ 0.721568644f, 0.525490224f, 0.043137256f, 1.000000000f };
-		constexpr Color DarkGray{ 0.662745118f, 0.662745118f, 0.662745118f, 1.000000000f };
+		constexpr Color DarkGray{ 0.2000000000f, 0.2000000000f, 0.2000000000f, 1.000000000f };
 		constexpr Color DarkGreen{ 0.000000000f, 0.392156899f, 0.000000000f, 1.000000000f };
 		constexpr Color DarkKhaki{ 0.741176486f, 0.717647076f, 0.419607878f, 1.000000000f };
 		constexpr Color DarkMagenta{ 0.545098066f, 0.000000000f, 0.545098066f, 1.000000000f };

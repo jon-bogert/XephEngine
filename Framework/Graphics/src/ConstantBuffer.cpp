@@ -29,7 +29,7 @@ void xe::Graphics::ConstantBuffer::Terminate()
 	SafeRelease(_constantBuffer);
 }
 
-void xe::Graphics::ConstantBuffer::Update(const void* data)
+void xe::Graphics::ConstantBuffer::Update(const void* data) const
 {
 	ID3D11DeviceContext* context = GraphicsSystem::Get().GetContext();
 	context->UpdateSubresource(_constantBuffer, 0, nullptr, data, 0, 0);

@@ -15,6 +15,7 @@ class GameState : public xe::AppState
 {
 protected:
 	xe::Graphics::Camera _camera;
+	xe::Graphics::DirectionalLight _directionalLight;
 	std::list<xe::Graphics::RenderObject> _renderObjects;
 
 	xe::Graphics::StandardEffect _standardEffect;

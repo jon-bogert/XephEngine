@@ -4,6 +4,7 @@
 #include "Transform.h"
 #include "MeshBuffer.h"
 #include "TextureManager.h"
+#include "Material.h"
 
 namespace xe::Graphics
 {
@@ -11,8 +12,10 @@ namespace xe::Graphics
 	{
 	public:
 		Transform transform;
+		Material material;
 		MeshBuffer meshBuffer;
 		TextureID diffuseMapID;
+		TextureID normalMapID;
 
 		void Terminate()
 		{
