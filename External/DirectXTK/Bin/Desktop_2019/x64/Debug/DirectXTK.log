@@ -2,16 +2,16 @@
   AlphaTestEffect.cpp
   BasicEffect.cpp
   BasicPostProcess.cpp
-  BinaryReader.cpp
   BufferHelpers.cpp
   CommonStates.cpp
   DDSTextureLoader.cpp
+  DebugEffect.cpp
   DGSLEffect.cpp
   DGSLEffectFactory.cpp
-  DebugEffect.cpp
   DirectXHelpers.cpp
   DualPostProcess.cpp
   DualTextureEffect.cpp
+  BinaryReader.cpp
   EffectCommon.cpp
   EffectFactory.cpp
   EnvironmentMapEffect.cpp
@@ -30,14 +30,14 @@
   NormalMapEffect.cpp
   PBREffect.cpp
   PBREffectFactory.cpp
-  PrimitiveBatch.cpp
   ScreenGrab.cpp
   SimpleMath.cpp
   SkinnedEffect.cpp
   SpriteBatch.cpp
+  PrimitiveBatch.cpp
   SpriteFont.cpp
   ToneMapPostProcess.cpp
   VertexTypes.cpp
   WICTextureLoader.cpp
   Generating Code...
-  DirectXTK.vcxproj -> C:\Users\lcv2142940\Desktop\GitHub\XephEngine\External\DirectXTK\Bin\Desktop_2019\x64\Debug\DirectXTK.lib
+  DirectXTK.vcxproj -> C:\repos\C++\XephEngine\External\DirectXTK\Bin\Desktop_2019\x64\Debug\DirectXTK.lib

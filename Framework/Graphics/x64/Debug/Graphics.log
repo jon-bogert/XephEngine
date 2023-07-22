@@ -1,2 +1,3 @@
 ﻿  StandardEffect.cpp
-  Graphics.vcxproj -> C:\Users\lcv2142940\Desktop\GitHub\XephEngine\x64\Debug\Graphics.lib
+C:\repos\C++\XephEngine\Framework\Graphics\src\StandardEffect.cpp(119,73): warning C4305: 'argument': truncation from 'double' to 'float'
+  Graphics.vcxproj -> C:\repos\C++\XephEngine\x64\Debug\Graphics.lib
