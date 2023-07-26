@@ -17,6 +17,7 @@ namespace xe::Graphics
 		TextureID diffuseMapID;
 		TextureID normalMapID;
 		TextureID displMapID;
+		TextureID specMapID;
 
 		void Terminate()
 		{

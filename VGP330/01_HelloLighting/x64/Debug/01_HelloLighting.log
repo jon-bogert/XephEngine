@@ -1,6 +1,6 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (001_HelloWindow.vcxproj, 002_HelloShapes.vcxproj, 003_HelloCube.vcxproj, 004_HelloMeshBuilder.vcxproj, 005_HelloMeshSwitcher.vcxproj, 006_HelloSimpleDraw.vcxproj, 007_HelloImGui.vcxproj, 008_HelloRenderTargeti.vcxproj, 009_HelloSolarSystem.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   GameState.cpp
-D:\repos\C++\XephEngine\VGP330\01_HelloLighting\GameState.cpp(101,106): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\repos\C++\XephEngine\VGP330\01_HelloLighting\GameState.cpp(102,106): warning C4305: 'argument': truncation from 'double' to 'float'
   WinMain.cpp
   Generating Code...
   01_HelloLighting.vcxproj -> D:\repos\C++\XephEngine\x64\Debug\01_HelloLighting.exe

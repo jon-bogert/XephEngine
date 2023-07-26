@@ -30,6 +30,7 @@ void GameState::Initialize()
 	_renderObjects.back().diffuseMapID = TextureManager::LoadTexture("earth.jpg");
 	_renderObjects.back().normalMapID = TextureManager::LoadTexture("earth_normal.jpg");
 	_renderObjects.back().displMapID = TextureManager::LoadTexture("earth_bump.jpg");
+	_renderObjects.back().specMapID = TextureManager::LoadTexture("earth_spec.jpg");
 	_renderObjects.back().transform.position.y += 1.f;
 
 	const uint32_t size = 512;

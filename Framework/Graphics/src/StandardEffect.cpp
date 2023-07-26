@@ -75,11 +75,13 @@ void xe::Graphics::StandardEffect::Draw(const RenderObject& renderObject)
 	settingsData.useNormalMap = _settingsData.useNormalMap > 0 && renderObject.normalMapID != 0;
 	settingsData.useDisplMap = _settingsData.useDisplMap > 0 && renderObject.displMapID != 0;
 	settingsData.displWeight = _settingsData.displWeight;
+	settingsData.useSpecMap = _settingsData.useSpecMap > 0 && renderObject.specMapID != 0;
 	_settingsBuffer.Update(settingsData);
 
 	TextureManager::BindPixelShader(renderObject.diffuseMapID, 0);
 	TextureManager::BindPixelShader(renderObject.normalMapID, 1);
 	TextureManager::BindVertexShader(renderObject.displMapID, 2);
+	TextureManager::BindPixelShader(renderObject.specMapID, 3);
 
 	renderObject.meshBuffer.Draw();
 }
@@ -115,6 +117,11 @@ void xe::Graphics::StandardEffect::DebugUI()
 			_settingsData.useDisplMap = (useDisplMap) ? 1 : 0;
 		}
 		ImGui::DragFloat("Displacement Weight##", &_settingsData.displWeight, 0.1f, 0.0f, 2.0f);
+		bool useSpecMap = _settingsData.useSpecMap > 0;
+		if (ImGui::Checkbox("Use Specular Map##", &useSpecMap))
+		{
+			_settingsData.useSpecMap = (useSpecMap) ? 1 : 0;
+		}
 	}
 #endif
 }

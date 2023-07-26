@@ -31,11 +31,13 @@ cbuffer SettingBuffer : register (b3)
 	bool useNormalMap;
     bool useDisplMap;
     float displWeight;
+    bool useSpecMap;
 }
 
 Texture2D diffuseMap : register(t0);
 Texture2D normalMap : register(t1);
 Texture2D displMap : register(t2);
+Texture2D specMap : register(t3);
 
 SamplerState textureSampler : register(s0);
 
@@ -111,8 +113,9 @@ float4 PS(VS_OUTPUT input) : SV_Target
 	
 	//Colors from texture
     float4 diffuseMapColor =  (useDiffuseMap) ? diffuseMap.Sample(textureSampler, input.texCoord) : 1.0f;
+    float4 specMapColor = (useSpecMap) ? specMap.Sample(textureSampler, input.texCoord) : 1.0f;
 	
 	//Combine Colors
-	float4 finalColor = (ambient + diffuse + materialEmissive) * diffuseMapColor + specular;
+    float4 finalColor = (ambient + diffuse + materialEmissive) * diffuseMapColor + (specular * specMapColor.r);
 	return finalColor;
 }

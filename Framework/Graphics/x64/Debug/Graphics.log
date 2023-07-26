@@ -1,2 +1,5 @@
-﻿  StandardEffect.cpp
+﻿  RenderObject.cpp
+  SimpleEffect.cpp
+  StandardEffect.cpp
+  Generating Code...
   Graphics.vcxproj -> D:\repos\C++\XephEngine\x64\Debug\Graphics.lib
