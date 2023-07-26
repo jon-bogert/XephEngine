@@ -5,6 +5,7 @@
 
 #include "BlendState.h"
 #include "Camera.h"
+#include "CelEffect.h"
 #include "ConstantBuffer.h"
 #include "DebugUI.h"
 #include "GraphicsSystem.h"

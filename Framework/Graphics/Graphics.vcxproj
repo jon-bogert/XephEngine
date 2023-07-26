@@ -165,6 +165,7 @@
   <ItemGroup>
     <ClInclude Include="include\BlendState.h" />
     <ClInclude Include="include\Camera.h" />
+    <ClInclude Include="include\CelEffect.h" />
     <ClInclude Include="include\Colors.h" />
     <ClInclude Include="include\Common.h" />
     <ClInclude Include="include\ConstantBuffer.h" />
@@ -193,6 +194,7 @@
   <ItemGroup>
     <ClCompile Include="src\BlendState.cpp" />
     <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\CelEffect.cpp" />
     <ClCompile Include="src\ConstantBuffer.cpp" />
     <ClCompile Include="src\DebugUI.cpp" />
     <ClCompile Include="src\GraphicsSystem.cpp" />
