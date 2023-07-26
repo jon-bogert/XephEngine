@@ -28,7 +28,8 @@ namespace xe::Graphics
 		{
 			int useDiffuseMap = 1;
 			int useNormalMap = 1;
-			uint32_t __[2] = { 0 };
+			int useDisplMap = 1;
+			float displWeight = 1.f;
 		};
 
 		using TransformBuffer = TypedContantBuffer<TransfromData>;

@@ -1,4 +1,4 @@
-// Description: Simple shader that does transform.
+// Description: Simple Cel shader that does transform.
 
 cbuffer TransformBuffer : register(b0)
 {
@@ -29,14 +29,10 @@ cbuffer SettingBuffer : register (b3)
 {
 	bool useDiffuseMap;
 	bool useNormalMap;
-    bool useDisplMap;
-    float displWeight;
 }
 
 Texture2D diffuseMap : register(t0);
 Texture2D normalMap : register(t1);
-Texture2D displMap : register(t2);
-
 SamplerState textureSampler : register(s0);
 
 struct VS_INPUT
@@ -64,11 +60,6 @@ VS_OUTPUT VS(VS_INPUT input)
 	matrix toWorld = world;
 	matrix toNDC = wvp;
 	float3 localPosition = input.position;
-	if (useDisplMap)
-    {
-        float displColor = (2.0f * displMap.SampleLevel(textureSampler, input.texCoord, 0.0f).r) - 1.0f;
-        localPosition += (input.normal * displColor * displWeight);
-    }
 	
 	output.position = mul(float4(localPosition, 1.0f), toNDC);
 	output.worldNormal = mul(input.normal, (float3x3) toWorld);

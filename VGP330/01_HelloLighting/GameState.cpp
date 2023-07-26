@@ -23,12 +23,13 @@ void GameState::Initialize()
 	_standardEffect.SetDirectionalLight(_directionalLight);
 
 
-	Mesh sphere = MeshBuilder::CreateUVSphere(60, 60, 1.f);
+	Mesh sphere = MeshBuilder::CreateUVSphere(128, 128, 1.f);
 
 	_renderObjects.emplace_back();
 	_renderObjects.back().meshBuffer.Initialize(sphere);
 	_renderObjects.back().diffuseMapID = TextureManager::LoadTexture("earth.jpg");
 	_renderObjects.back().normalMapID = TextureManager::LoadTexture("earth_normal.jpg");
+	_renderObjects.back().displMapID = TextureManager::LoadTexture("earth_bump.jpg");
 	_renderObjects.back().transform.position.y += 1.f;
 
 	const uint32_t size = 512;

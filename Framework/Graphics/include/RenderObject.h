@@ -16,6 +16,7 @@ namespace xe::Graphics
 		MeshBuffer meshBuffer;
 		TextureID diffuseMapID;
 		TextureID normalMapID;
+		TextureID displMapID;
 
 		void Terminate()
 		{

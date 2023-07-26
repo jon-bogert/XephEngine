@@ -45,6 +45,7 @@ void xe::Graphics::StandardEffect::Begin()
 
 	_materialBuffer.BindPixelShader(2);
 
+	_settingsBuffer.BindVertexShader(3);
 	_settingsBuffer.BindPixelShader(3);
 
 	_sampler.BindVertexShader(0);
@@ -71,11 +72,14 @@ void xe::Graphics::StandardEffect::Draw(const RenderObject& renderObject)
 	_materialBuffer.Update(renderObject.material);
 	SettingsData settingsData;
 	settingsData.useDiffuseMap = _settingsData.useDiffuseMap > 0 && renderObject.diffuseMapID != 0;
-	settingsData.useNormalMap = _settingsData.useNormalMap > 0 && renderObject.diffuseMapID != 0;
+	settingsData.useNormalMap = _settingsData.useNormalMap > 0 && renderObject.normalMapID != 0;
+	settingsData.useDisplMap = _settingsData.useDisplMap > 0 && renderObject.displMapID != 0;
+	settingsData.displWeight = _settingsData.displWeight;
 	_settingsBuffer.Update(settingsData);
 
 	TextureManager::BindPixelShader(renderObject.diffuseMapID, 0);
 	TextureManager::BindPixelShader(renderObject.normalMapID, 1);
+	TextureManager::BindVertexShader(renderObject.displMapID, 2);
 
 	renderObject.meshBuffer.Draw();
 }
@@ -105,6 +109,12 @@ void xe::Graphics::StandardEffect::DebugUI()
 		{
 			_settingsData.useNormalMap = (useNormalMap) ? 1 : 0;
 		}
+		bool useDisplMap = _settingsData.useDisplMap > 0;
+		if (ImGui::Checkbox("Use Displace Map##", &useDisplMap))
+		{
+			_settingsData.useDisplMap = (useDisplMap) ? 1 : 0;
+		}
+		ImGui::DragFloat("Displacement Weight##", &_settingsData.displWeight, 0.1f, 0.0f, 2.0f);
 	}
 #endif
 }
