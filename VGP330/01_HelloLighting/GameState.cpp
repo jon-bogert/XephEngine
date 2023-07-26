@@ -30,10 +30,14 @@ void GameState::Initialize()
 	_renderObjects.back().diffuseMapID = TextureManager::LoadTexture("earth.jpg");
 	_renderObjects.back().normalMapID = TextureManager::LoadTexture("earth_normal.jpg");
 	_renderObjects.back().transform.position.y += 1.f;
+
+	const uint32_t size = 512;
+	_renderTarget.Initialize(size, size, Texture::Format::RGBA_U32);
 }
 
 void GameState::Terminate()
 {
+	_renderTarget.Terminate();
 	for (auto it = _renderObjects.begin(); it != _renderObjects.end(); ++it)
 	{
 		it->Terminate();
@@ -48,6 +52,17 @@ void GameState::Update(const float& deltaTime)
 
 void GameState::Draw()
 {
+	_camera.SetAspectRatio(1.f);
+	_renderTarget.BeginDraw();
+	_standardEffect.Begin();
+	for (auto it = _renderObjects.begin(); it != _renderObjects.end(); it++)
+	{
+		_standardEffect.Draw(*it);
+	}
+	_standardEffect.End();
+	_renderTarget.EndDraw();
+
+	_camera.SetAspectRatio(0.f);
 	_standardEffect.Begin();
 	for (auto it = _renderObjects.begin(); it != _renderObjects.end(); it++)
 	{
@@ -87,6 +102,14 @@ void GameState::DebugUI()
 		++i;
 	}
 	ImGui::NewLine();
+	ImGui::Image(
+		_renderTarget.GetRawData(),
+		{ 128, 128 },
+		{ 0, 0 },
+		{ 1, 1 },
+		{ 1, 1, 1, 1 },
+		{ 1, 1, 1, 1 }
+	);
 	_standardEffect.DebugUI();
 	ImGui::End();
 

@@ -1,18 +1,2 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (InputSystem.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  GamepadHandler.cpp
-C:\Users\lcv2142940\Desktop\GitHub\XephEngine\External\XephInput\src\GamepadHandler.cpp(45,32): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\lcv2142940\Desktop\GitHub\XephEngine\External\XephInput\src\GamepadHandler.cpp(188,20): warning C4244: 'argument': conversion from 'DWORD' to 'uint8_t', possible loss of data
-  InputActionMap.cpp
-  InputSystem.cpp
-C:\Users\lcv2142940\Desktop\GitHub\XephEngine\External\XephInput\src\InputSystem.cpp(41,26): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\lcv2142940\Desktop\GitHub\XephEngine\External\XephInput\src\InputSystem.cpp(223,29): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\lcv2142940\Desktop\GitHub\XephEngine\External\XephInput\src\InputSystem.cpp(224,29): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\lcv2142940\Desktop\GitHub\XephEngine\External\XephInput\src\InputSystem.cpp(229,29): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\lcv2142940\Desktop\GitHub\XephEngine\External\XephInput\src\InputSystem.cpp(230,29): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\lcv2142940\Desktop\GitHub\XephEngine\External\XephInput\src\InputSystem.cpp(246,19): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\lcv2142940\Desktop\GitHub\XephEngine\External\XephInput\src\InputSystem.cpp(247,19): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\lcv2142940\Desktop\GitHub\XephEngine\External\XephInput\src\InputSystem.cpp(251,24): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\lcv2142940\Desktop\GitHub\XephEngine\External\XephInput\src\InputSystem.cpp(252,24): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
-  KeyHandler.cpp
-  Generating Code...
-  XephInput.vcxproj -> C:\Users\lcv2142940\Desktop\GitHub\XephEngine\x64\Debug\XephInput.lib
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (InputSystem.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  XephInput.vcxproj -> D:\repos\C++\XephEngine\x64\Debug\XephInput.lib

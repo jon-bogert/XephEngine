@@ -17,6 +17,7 @@ protected:
 	xe::Graphics::Camera _camera;
 	xe::Graphics::DirectionalLight _directionalLight;
 	std::list<xe::Graphics::RenderObject> _renderObjects;
+	xe::Graphics::RenderTarget _renderTarget;
 
 	xe::Graphics::StandardEffect _standardEffect;
 
