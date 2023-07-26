@@ -23,24 +23,17 @@ void GameState::Initialize()
 	_standardEffect.SetDirectionalLight(_directionalLight);
 
 
-	Mesh sphere = MeshBuilder::CreateUVSphere(128, 128, 1.f);
+	Mesh sphere = MeshBuilder::CreateUVSphere(60, 60, 1.f);
 
 	_renderObjects.emplace_back();
 	_renderObjects.back().meshBuffer.Initialize(sphere);
 	_renderObjects.back().diffuseMapID = TextureManager::LoadTexture("earth.jpg");
 	_renderObjects.back().normalMapID = TextureManager::LoadTexture("earth_normal.jpg");
-	_renderObjects.back().displMapId = TextureManager::LoadTexture("earth_bump.jpg");
-	_renderObjects.back().specMapId = TextureManager::LoadTexture("earth_spec.jpg");
 	_renderObjects.back().transform.position.y += 1.f;
-
-	const int32_t size = 512;
-	_renderTarget.Initialize(size, size, Texture::Format::RGBA_U8);
-
 }
 
 void GameState::Terminate()
 {
-	_renderTarget.Terminate();
 	for (auto it = _renderObjects.begin(); it != _renderObjects.end(); ++it)
 	{
 		it->Terminate();
@@ -55,18 +48,6 @@ void GameState::Update(const float& deltaTime)
 
 void GameState::Draw()
 {
-	_camera.SetAspectRatio(1.f);
-	_renderTarget.BeginDraw();
-	{
-		for (auto it = _renderObjects.begin(); it != _renderObjects.end(); it++)
-		{
-			_standardEffect.Draw(*it);
-		}
-	}
-	_renderTarget.EndDraw();
-
-	_camera.SetAspectRatio(0.f); // 0 sets to back buffer aspect ratio
-
 	_standardEffect.Begin();
 	for (auto it = _renderObjects.begin(); it != _renderObjects.end(); it++)
 	{
@@ -106,17 +87,6 @@ void GameState::DebugUI()
 		++i;
 	}
 	ImGui::NewLine();
-
-	ImGui::Text("Render Target");
-	ImGui::Image(
-		_renderTarget.GetRawData(),
-		{ 128, 128 },
-		{ 0, 0 },
-		{ 1, 1 },
-		{ 1, 1, 1, 1 },
-		{ 1, 1, 1, 1 }
-	);
-
 	_standardEffect.DebugUI();
 	ImGui::End();
 
