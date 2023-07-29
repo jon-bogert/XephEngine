@@ -3,3 +3,4 @@ C:\Users\jonbo\Desktop\XephEngine\External\DirectXTK\Bin\Desktop_2019\x64\Debug\
 C:\Users\LCV2142940\Desktop\GitHub\XephEngine\External\DirectXTK\Bin\Desktop_2019\x64\Debug\DirectXTK.lib
 C:\Users\lcv2142940.LCIEDUCATION\Desktop\GitHub\XephEngine\External\DirectXTK\Bin\Desktop_2019\x64\Debug\DirectXTK.lib
 D:\repos\C++\XephEngine\External\DirectXTK\Bin\Desktop_2019\x64\Debug\DirectXTK.lib
+C:\repos\C++\XephEngine\External\DirectXTK\Bin\Desktop_2019\x64\Debug\DirectXTK.lib

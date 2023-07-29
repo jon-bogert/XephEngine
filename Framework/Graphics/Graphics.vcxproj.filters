@@ -90,6 +90,12 @@
     <ClInclude Include="include\CelEffect.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Model.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ModelIO.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -147,6 +153,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\CelEffect.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ModelIO.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
