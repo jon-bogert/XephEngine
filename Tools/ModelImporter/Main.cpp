@@ -261,9 +261,9 @@ int main(int argc, char* argv[])
 			materialData.material.power = specularPower;
 
 			materialData.diffuseMapName = FindTexture(scene, aiMaterial, aiTextureType_DIFFUSE, args, "_diffuse", materialIndex);
-			materialData.diffuseMapName = FindTexture(scene, aiMaterial, aiTextureType_NORMALS, args, "_normal", materialIndex);
-			materialData.diffuseMapName = FindTexture(scene, aiMaterial, aiTextureType_DISPLACEMENT, args, "_displacement", materialIndex);
-			materialData.diffuseMapName = FindTexture(scene, aiMaterial, aiTextureType_SPECULAR, args, "_specular", materialIndex);
+			materialData.normalMapName = FindTexture(scene, aiMaterial, aiTextureType_NORMALS, args, "_normal", materialIndex);
+			materialData.displMapName = FindTexture(scene, aiMaterial, aiTextureType_DISPLACEMENT, args, "_displacement", materialIndex);
+			materialData.specularMapName = FindTexture(scene, aiMaterial, aiTextureType_SPECULAR, args, "_specular", materialIndex);
 		}
 	}
 

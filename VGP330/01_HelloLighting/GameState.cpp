@@ -17,10 +17,10 @@ void GameState::Initialize()
 	_directionalLight.direction = xe::Math::Normalize({ 1.f, -1.f, -1.f });
 
 	stdfs::path path = L"../../Assets/Shaders/Standard.fx";
-	_celEffect.Initialize(path);
+	_standardEffect.Initialize(path);
 
-	_celEffect.SetCamera(_camera);
-	_celEffect.SetDirectionalLight(_directionalLight);
+	_standardEffect.SetCamera(_camera);
+	_standardEffect.SetDirectionalLight(_directionalLight);
 
 	Mesh sphere = MeshBuilder::CreateUVSphere(128, 128, 1.f);
 
@@ -43,7 +43,7 @@ void GameState::Terminate()
 	{
 		it->Terminate();
 	}
-	_celEffect.Terminate();
+	_standardEffect.Terminate();
 }
 
 void GameState::Update(const float& deltaTime)
@@ -55,21 +55,21 @@ void GameState::Draw()
 {
 	_camera.SetAspectRatio(1.f);
 	_renderTarget.BeginDraw();
-	_celEffect.Begin();
+	_standardEffect.Begin();
 	for (auto it = _renderObjects.begin(); it != _renderObjects.end(); it++)
 	{
-		_celEffect.Draw(*it);
+		_standardEffect.Draw(*it);
 	}
-	_celEffect.End();
+	_standardEffect.End();
 	_renderTarget.EndDraw();
 
 	_camera.SetAspectRatio(0.f);
-	_celEffect.Begin();
+	_standardEffect.Begin();
 	for (auto it = _renderObjects.begin(); it != _renderObjects.end(); it++)
 	{
-		_celEffect.Draw(*it);
+		_standardEffect.Draw(*it);
 	}
-	_celEffect.End();
+	_standardEffect.End();
 }
 
 void GameState::DebugUI()
@@ -111,7 +111,7 @@ void GameState::DebugUI()
 		{ 1, 1, 1, 1 },
 		{ 1, 1, 1, 1 }
 	);
-	_celEffect.DebugUI();
+	_standardEffect.DebugUI();
 	ImGui::End();
 
 #endif // _DEBUG

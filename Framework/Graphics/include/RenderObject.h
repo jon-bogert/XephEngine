@@ -8,6 +8,7 @@
 
 namespace xe::Graphics
 {
+	struct Model;
 	class RenderObject
 	{
 	public:
@@ -19,11 +20,21 @@ namespace xe::Graphics
 		TextureID displMapID;
 		TextureID specMapID;
 
-		void Terminate()
-		{
-			meshBuffer.Terminate();
-		}
+		void Terminate();
 	};
+
+	using RenderGroup = std::vector<RenderObject>;
+	[[nodiscard]] RenderGroup CreateRenderGroup(const Model& model);
+	void CleanupRenderGroup(RenderGroup& renderGroup);
+
+	template<typename Effect>
+	void DrawRenderGroup(Effect& effect, const RenderGroup& renderGroup)
+	{
+		for (const RenderObject& renderObject : renderGroup)
+		{
+			effect.Draw(renderObject);
+		}
+	}
 }
 
 #endif //XE_GRAPHICS_RENDEROBJECT_H

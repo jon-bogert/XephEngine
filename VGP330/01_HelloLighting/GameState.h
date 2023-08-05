@@ -19,7 +19,7 @@ protected:
 	std::list<xe::Graphics::RenderObject> _renderObjects;
 	xe::Graphics::RenderTarget _renderTarget;
 
-	xe::Graphics::StandardEffect _celEffect;
+	xe::Graphics::StandardEffect _standardEffect;
 
 
 public:
