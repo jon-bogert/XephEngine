@@ -24,14 +24,21 @@ void GameState::Initialize()
 
 	Mesh sphere = MeshBuilder::CreateUVSphere(128, 128, 1.f);
 
-	Model model;
-	ModelIO::LoadModel("../../Assets/Models/space-soldier/space-soldier.model", model);
-	ModelIO::LoadMaterial("../../Aassets/Models/space-soldier/space-soldier.material", model);
-	_renderObjects.push_back(CreateRenderGroup(model));
+	ModelID modelID = ModelManager::LoadModel("../../Assets/Models/space-soldier/space-soldier.model");
+	_renderObjects.push_back(CreateRenderGroup(modelID));
+
+	Mesh groundMesh = MeshBuilder::CreateGroundPlane(20, 20, 1.f);
+	_ground.meshBuffer.Initialize(groundMesh);
+	_ground.diffuseMapID = TextureManager::LoadTexture(L"misc/concrete.jpg");
+	_ground.material.ambient = { 0.3f, 0.3f, 0.3f, 1.0f };
+	_ground.material.diffuse = { 0.8f, 0.8f, 0.8f, 1.0f };
+	_ground.material.specular = { 0.9f, 0.9f, 0.9f, 1.0f };
+	_ground.material.power = 20.f;
 }
 
 void GameState::Terminate()
 {
+	_ground.Terminate();
 	for (auto it = _renderObjects.begin(); it != _renderObjects.end(); ++it)
 	{
 		CleanupRenderGroup(*it);
@@ -46,9 +53,10 @@ void GameState::Update(const float& deltaTime)
 
 void GameState::Draw()
 {
-	SimpleDraw::AddGroundPlane(10, xe::Colors::White);
-	SimpleDraw::Draw(_camera);
+	//SimpleDraw::AddGroundPlane(10, xe::Colors::White);
+	//SimpleDraw::Draw(_camera);
 	_standardEffect.Begin();
+	_standardEffect.Draw(_ground);
 	for (auto it = _renderObjects.begin(); it != _renderObjects.end(); it++)
 	{
 		DrawRenderGroup(_standardEffect, *it);

@@ -221,6 +221,42 @@ MeshPC xe::Graphics::MeshBuilder::CreatePlanePC(uint32_t numRows, uint32_t numCo
 	return mesh;
 }
 
+Mesh xe::Graphics::MeshBuilder::CreateGroundPlane(uint32_t numRows, uint32_t numCols, float cellSize)
+{
+    Mesh mesh;
+    const float halfWidth = static_cast<float>(numCols) * cellSize * 0.5f;
+    const float halfHeight = static_cast<float>(numRows) * cellSize * 0.5f;
+    const float uIncr = 1.0f / (halfWidth * 2.f);
+    const float vIncr = 1.0f / (halfHeight * 2.f);
+
+    float x = -halfWidth;
+    float z = -halfHeight;
+    float u = 0.f;
+    float v = 1.f;
+
+    for (uint32_t row = 0; row <= numRows; ++row)
+    {
+        for (uint32_t col = 0; col <= numCols; ++col)
+        {
+            mesh.vertices.push_back({
+                {x, 0.f, z},
+                { 0.0f, 1.0f, 0.0f },
+                { 0.0f, 0.0f, 1.0f },
+                {u, v} });
+            x += cellSize;
+            u += uIncr;
+        }
+        u = 0.0f;
+        v -= vIncr;
+        x = -halfWidth;
+        z += cellSize;
+    }
+
+    CreatePlaneIndices(mesh.indices, numRows, numCols);
+
+    return mesh;
+}
+
 MeshPC xe::Graphics::MeshBuilder::CreateCylinderPC(uint32_t slices, uint32_t rings)
 {
 	MeshPC mesh;

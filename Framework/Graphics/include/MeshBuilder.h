@@ -19,6 +19,7 @@ namespace xe::Graphics
 		//Plane
 		static MeshPC CreatePlanePC(uint32_t numRows, uint32_t numCols, float cellSize);
 		static MeshPC CreatePlanePC(uint32_t numRows, uint32_t numCols, float cellSize, const Color& color);
+		static Mesh CreateGroundPlane(uint32_t numRows, uint32_t numCols, float cellSize);
 
 		//Cylinder
 		static MeshPC CreateCylinderPC(uint32_t slices, uint32_t rings);

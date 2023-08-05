@@ -31,6 +31,7 @@ void xe::App::Run(const AppConfig& config)
 	DebugUI::Initialize(handle, false, true);
 	SimpleDraw::Initialize(config.debugDrawLimit);
 	TextureManager::Initialize("../../Assets/Textures");
+	ModelManager::Initialize();
 
 	ASSERT(_currentState, "App -- No app state found");
 
@@ -77,7 +78,7 @@ void xe::App::Run(const AppConfig& config)
 	}
 
 	_currentState->Terminate();
-
+	ModelManager::Terminate();
 	TextureManager::Terminate();
 	SimpleDraw::Terminate();
 	DebugUI::Terminate();

@@ -96,6 +96,9 @@
     <ClInclude Include="include\ModelIO.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\ModelManager.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -156,6 +159,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\ModelIO.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ModelManager.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

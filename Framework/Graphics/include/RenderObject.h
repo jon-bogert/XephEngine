@@ -5,6 +5,7 @@
 #include "MeshBuffer.h"
 #include "TextureManager.h"
 #include "Material.h"
+#include "ModelManager.h"
 
 namespace xe::Graphics
 {
@@ -20,11 +21,14 @@ namespace xe::Graphics
 		TextureID displMapID;
 		TextureID specMapID;
 
+		ModelID modelID = 0;
+
 		void Terminate();
 	};
 
 	using RenderGroup = std::vector<RenderObject>;
 	[[nodiscard]] RenderGroup CreateRenderGroup(const Model& model);
+	[[nodiscard]] RenderGroup CreateRenderGroup(ModelID modelID);
 	void CleanupRenderGroup(RenderGroup& renderGroup);
 
 	template<typename Effect>

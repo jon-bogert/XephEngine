@@ -44,6 +44,18 @@ xe::Graphics::RenderGroup xe::Graphics::CreateRenderGroup(const xe::Graphics::Mo
 	return renderGroup;
 }
 
+xe::Graphics::RenderGroup xe::Graphics::CreateRenderGroup(ModelID modelID)
+{
+	Model* model = ModelManager::GetModel(modelID);
+	ASSERT(model, "RenderGroup -> ModelID %d is not loaded", modelID);
+	RenderGroup renderGroup = CreateRenderGroup(*model);
+	for (auto& renderObject : renderGroup)
+	{
+		renderObject.modelID = modelID;
+	}
+	return renderGroup;
+}
+
 void xe::Graphics::CleanupRenderGroup(RenderGroup& renderGroup)
 {
 	for (RenderObject& renderObject : renderGroup)

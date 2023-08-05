@@ -7,6 +7,7 @@ C:\repos\C++\XephEngine\Framework\Graphics\src\GraphicsSystem.cpp;C:\repos\C++\X
 C:\repos\C++\XephEngine\Framework\Graphics\src\MeshBuffer.cpp;C:\repos\C++\XephEngine\Framework\Graphics\x64\Debug\MeshBuffer.obj
 C:\repos\C++\XephEngine\Framework\Graphics\src\MeshBuilder.cpp;C:\repos\C++\XephEngine\Framework\Graphics\x64\Debug\MeshBuilder.obj
 C:\repos\C++\XephEngine\Framework\Graphics\src\ModelIO.cpp;C:\repos\C++\XephEngine\Framework\Graphics\x64\Debug\ModelIO.obj
+C:\repos\C++\XephEngine\Framework\Graphics\src\ModelManager.cpp;C:\repos\C++\XephEngine\Framework\Graphics\x64\Debug\ModelManager.obj
 C:\repos\C++\XephEngine\Framework\Graphics\src\Pch.cpp;C:\repos\C++\XephEngine\Framework\Graphics\x64\Debug\Pch.obj
 C:\repos\C++\XephEngine\Framework\Graphics\src\PixelShader.cpp;C:\repos\C++\XephEngine\Framework\Graphics\x64\Debug\PixelShader.obj
 C:\repos\C++\XephEngine\Framework\Graphics\src\RenderObject.cpp;C:\repos\C++\XephEngine\Framework\Graphics\x64\Debug\RenderObject.obj

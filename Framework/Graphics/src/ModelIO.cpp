@@ -124,8 +124,45 @@ void xe::Graphics::ModelIO::SaveMaterial(std::filesystem::path filePath, const M
 		fprintf_s(file, "%s\n", materialData.normalMapName.empty() ? "<none>" : materialData.normalMapName.c_str());
 
 	}
+	fclose(file);
 }
 
 void xe::Graphics::ModelIO::LoadMaterial(std::filesystem::path filePath, Model& model)
 {
+	filePath.replace_extension("material");
+
+	FILE* file = nullptr;
+
+	fopen_s(&file, filePath.u8string().c_str(), "r");
+	if (file == nullptr)
+		return;
+
+	auto TryReadTextureName = [&](auto& filename)
+	{
+		char buffer[MAX_PATH]{};
+		fscanf_s(file, "%s\n", &buffer, (uint32_t)sizeof(buffer));
+		if (strcmp(buffer, "<none>") != 0)
+		{
+			filename = filePath.replace_filename(buffer).string();
+		}
+	};
+
+	uint32_t materialCount = 0;
+	fscanf_s(file, "Material Count: %d\n", &materialCount);
+	model.materialData.resize(materialCount);
+	for (Model::MaterialData& materialData : model.materialData)
+	{
+		const Material& m = materialData.material;
+		fscanf_s(file, "%f %f %f %f\n", &m.ambient.r, &m.ambient.g, &m.ambient.b, &m.ambient.a);
+		fscanf_s(file, "%f %f %f %f\n", &m.diffuse.r, &m.diffuse.g, &m.diffuse.b, &m.diffuse.a);
+		fscanf_s(file, "%f %f %f %f\n", &m.specular.r, &m.specular.g, &m.specular.b, &m.specular.a);
+		fscanf_s(file, "%f %f %f %f\n", &m.emissive.r, &m.emissive.g, &m.emissive.b, &m.emissive.a);
+		fscanf_s(file, "Power; %f\n", &m.power);
+
+		TryReadTextureName(materialData.diffuseMapName);
+		TryReadTextureName(materialData.specularMapName);
+		TryReadTextureName(materialData.displMapName);
+		TryReadTextureName(materialData.normalMapName);
+	}
+	fclose(file);
 }
