@@ -203,6 +203,11 @@ void xe::Graphics::GraphicsSystem::SetVSync(bool isOn)
 	_vSync = (isOn) ? 1: 0;
 }
 
+Color xe::Graphics::GraphicsSystem::GetClearColor() const
+{
+	return _clearColor;
+}
+
 uint32_t xe::Graphics::GraphicsSystem::GetBackBufferWidth() const
 {
 	return _swapChainDesc.BufferDesc.Width;

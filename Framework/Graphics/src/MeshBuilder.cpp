@@ -257,6 +257,19 @@ Mesh xe::Graphics::MeshBuilder::CreateGroundPlane(uint32_t numRows, uint32_t num
     return mesh;
 }
 
+MeshPX xe::Graphics::MeshBuilder::CreateScreenQuad()
+{
+    MeshPX mesh;
+    mesh.vertices.push_back({ { -1.f, -1.f, 0.f }, { 0.f, 1.f } });
+    mesh.vertices.push_back({ { -1.f, 1.f, 0.f }, { 0.f, 0.f } });
+    mesh.vertices.push_back({ { 1.f, 1.f, 0.f }, { 1.f, 0.f } });
+    mesh.vertices.push_back({ { 1.f, -1.f, 0.f }, { 1.f, 1.f } });
+
+    mesh.indices = { 0, 1, 2, 0, 2, 3 };
+
+    return mesh;
+}
+
 MeshPC xe::Graphics::MeshBuilder::CreateCylinderPC(uint32_t slices, uint32_t rings)
 {
 	MeshPC mesh;

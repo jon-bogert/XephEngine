@@ -181,6 +181,7 @@
     <ClInclude Include="include\ModelIO.h" />
     <ClInclude Include="include\ModelManager.h" />
     <ClInclude Include="include\PixelShader.h" />
+    <ClInclude Include="include\PostProcEffect.h" />
     <ClInclude Include="include\RenderObject.h" />
     <ClInclude Include="include\RenderTarget.h" />
     <ClInclude Include="include\Sampler.h" />
@@ -212,6 +213,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\PixelShader.cpp" />
+    <ClCompile Include="src\PostProcEffect.cpp" />
     <ClCompile Include="src\RenderObject.cpp" />
     <ClCompile Include="src\RenderTarget.cpp" />
     <ClCompile Include="src\Sampler.cpp" />

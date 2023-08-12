@@ -52,6 +52,8 @@ namespace xe::Graphics
 		void SetClearColor(const Color& color);
 		void SetVSync(bool isOn);
 
+		Color GetClearColor() const;
+
 		uint32_t GetBackBufferWidth() const;
 		uint32_t GetBackBufferHeight() const;
 

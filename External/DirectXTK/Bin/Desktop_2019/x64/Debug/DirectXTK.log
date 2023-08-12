@@ -1,1 +1,17 @@
-﻿  DirectXTK.vcxproj -> C:\repos\C++\XephEngine\External\DirectXTK\Bin\Desktop_2019\x64\Debug\DirectXTK.lib
+﻿  Keyboard.cpp
+  Model.cpp
+  ModelLoadCMO.cpp
+  ModelLoadSDKMESH.cpp
+  ModelLoadVBO.cpp
+  Mouse.cpp
+  NormalMapEffect.cpp
+  PBREffect.cpp
+  PBREffectFactory.cpp
+  PrimitiveBatch.cpp
+  ScreenGrab.cpp
+  SimpleMath.cpp
+  SkinnedEffect.cpp
+  SpriteBatch.cpp
+  SpriteFont.cpp
+  Generating Code...
+  DirectXTK.vcxproj -> C:\Users\lcv2142940\Desktop\XephEngine\External\DirectXTK\Bin\Desktop_2019\x64\Debug\DirectXTK.lib
