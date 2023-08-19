@@ -29,7 +29,7 @@ namespace xe::Graphics
 		RenderTarget _depthMapRenderTarget;
 
 		xe::Math::Vector3 _focalPoint;
-		float _size = 1.f;
+		float _size = 24.f;
 
 	public:
 		void Initialize();

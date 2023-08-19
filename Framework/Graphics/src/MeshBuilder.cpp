@@ -226,8 +226,8 @@ Mesh xe::Graphics::MeshBuilder::CreateGroundPlane(uint32_t numRows, uint32_t num
     Mesh mesh;
     const float halfWidth = static_cast<float>(numCols) * cellSize * 0.5f;
     const float halfHeight = static_cast<float>(numRows) * cellSize * 0.5f;
-    const float uIncr = 1.0f / (halfWidth * 2.f);
-    const float vIncr = 1.0f / (halfHeight * 2.f);
+    const float uIncr = 1.0f / numCols;
+    const float vIncr = 1.0f / numRows;
 
     float x = -halfWidth;
     float z = -halfHeight;

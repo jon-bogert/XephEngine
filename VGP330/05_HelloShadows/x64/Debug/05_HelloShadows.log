@@ -1,4 +1,8 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (001_HelloWindow.vcxproj, 002_HelloShapes.vcxproj, 003_HelloCube.vcxproj, 004_HelloMeshBuilder.vcxproj, 005_HelloMeshSwitcher.vcxproj, 006_HelloSimpleDraw.vcxproj, 007_HelloImGui.vcxproj, 008_HelloRenderTargeti.vcxproj, 009_HelloSolarSystem.vcxproj, 01_HelloLighting.vcxproj, 03_HelloModel.vcxproj, 04_HelloPostProc.vcxproj).  This can lead to incorrect clean and rebuild behavior.
 C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (InputSystem.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   GameState.cpp
+C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(43,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(44,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(45,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(46,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   05_HelloShadows.vcxproj -> C:\repos\C++\XephEngine\x64\Debug\05_HelloShadows.exe

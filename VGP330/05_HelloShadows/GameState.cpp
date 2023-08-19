@@ -69,6 +69,10 @@ void GameState::Terminate()
 
 void GameState::Update(const float& deltaTime)
 {
+	for (auto& obj : *_renderObjects.begin())
+	{
+		xe::Math::Quaternion::Rotate(obj.transform.rotation, 0.5f * deltaTime, xe::Math::Vector3::YAxis);
+	}
 	UpdateCameraControl(deltaTime);
 	_shadowEffect.SetFocalPoint({ _camera.GetPosition().x, 0.f, _camera.GetPosition().z });
 }

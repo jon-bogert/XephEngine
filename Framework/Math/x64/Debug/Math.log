@@ -1,3 +1,7 @@
 ﻿  Pch.cpp
+C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(43,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(44,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(45,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(46,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   XEMath.cpp
   Math.vcxproj -> C:\repos\C++\XephEngine\x64\Debug\Math.lib

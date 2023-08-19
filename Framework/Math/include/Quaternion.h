@@ -31,6 +31,29 @@ namespace xe::Math
         // Constants
         static const Quaternion Identity;
         static const Quaternion Zero;
+
+        static void Rotate(Quaternion& q, float amt, Vector3 axis)
+        {
+            // Convert the Euler angle to a quaternion
+            double halfAngle = amt * 0.5;
+            double sinHalfAngle = std::sin(halfAngle);
+            double cosHalfAngle = std::cos(halfAngle);
+
+            Quaternion rotationQuaternion;
+            rotationQuaternion.w = cosHalfAngle;
+            rotationQuaternion.x = axis.x * sinHalfAngle;
+            rotationQuaternion.y = axis.y * sinHalfAngle;
+            rotationQuaternion.z = axis.z * sinHalfAngle;
+
+            // Multiply the rotation quaternion with the original quaternion
+            Quaternion rotatedQuaternion;
+            rotatedQuaternion.w = rotationQuaternion.w * q.w - rotationQuaternion.x * q.x - rotationQuaternion.y * q.y - rotationQuaternion.z * q.z;
+            rotatedQuaternion.x = rotationQuaternion.w * q.x + rotationQuaternion.x * q.w + rotationQuaternion.y * q.z - rotationQuaternion.z * q.y;
+            rotatedQuaternion.y = rotationQuaternion.w * q.y - rotationQuaternion.x * q.z + rotationQuaternion.y * q.w + rotationQuaternion.z * q.x;
+            rotatedQuaternion.z = rotationQuaternion.w * q.z + rotationQuaternion.x * q.y - rotationQuaternion.y * q.x + rotationQuaternion.z * q.w;
+
+            q = rotatedQuaternion;
+        }
     };
 }
 

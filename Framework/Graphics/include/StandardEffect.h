@@ -33,7 +33,7 @@ namespace xe::Graphics
 			float displWeight = 1.f;
 			int useSpecMap = 1;
 			int useShadowMap = 1;
-			float depthBias = 0.f;
+			float depthBias = 0.000042f;
 			uint32_t __ { 0 };
 		};
 
