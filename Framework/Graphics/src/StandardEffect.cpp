@@ -54,6 +54,10 @@ void xe::Graphics::StandardEffect::Begin()
 
 void xe::Graphics::StandardEffect::End()
 {
+	if (_shadowMap != nullptr)
+	{
+		Texture::UnbindPixelShader(4);
+	}
 }
 
 void xe::Graphics::StandardEffect::Draw(const RenderObject& renderObject)
@@ -62,21 +66,31 @@ void xe::Graphics::StandardEffect::Draw(const RenderObject& renderObject)
 	const Matrix4& matView = _camera->GetViewMatrix();
 	const Matrix4& matProj = _camera->GetProjectionMatrix();
 
-	TransfromData transformData;
-	transformData.world = xe::Math::Transpose(matWorld);
-	transformData.wvp = Transpose(matWorld * matView * matProj);
-	transformData.viewPosition = _camera->GetPosition();
-	
-	_transformBuffer.Update(transformData);
-	_lightingBuffer.Update(*_directionalLight);
-	_materialBuffer.Update(renderObject.material);
 	SettingsData settingsData;
 	settingsData.useDiffuseMap = _settingsData.useDiffuseMap > 0 && renderObject.diffuseMapID != 0;
 	settingsData.useNormalMap = _settingsData.useNormalMap > 0 && renderObject.normalMapID != 0;
 	settingsData.useDisplMap = _settingsData.useDisplMap > 0 && renderObject.displMapID != 0;
 	settingsData.displWeight = _settingsData.displWeight;
 	settingsData.useSpecMap = _settingsData.useSpecMap > 0 && renderObject.specMapID != 0;
+	settingsData.useShadowMap = _settingsData.useShadowMap > 0 && _shadowMap != nullptr;
 	_settingsBuffer.Update(settingsData);
+
+	TransfromData transformData;
+	transformData.world = xe::Math::Transpose(matWorld);
+	transformData.wvp = Transpose(matWorld * matView * matProj);
+	transformData.viewPosition = _camera->GetPosition();
+	if (settingsData.useShadowMap)
+	{
+		const xe::Math::Matrix4& matLightView = _lightCamera->GetViewMatrix();
+		const xe::Math::Matrix4& matLightProj = _lightCamera->GetProjectionMatrix();
+		transformData.lwvp = Transpose(matWorld * matLightView * matLightProj);
+
+		_shadowMap->BindPixelShader(4);
+	}
+	_transformBuffer.Update(transformData);
+	_lightingBuffer.Update(*_directionalLight);
+	_materialBuffer.Update(renderObject.material);
+
 
 	TextureManager::BindPixelShader(renderObject.diffuseMapID, 0);
 	TextureManager::BindPixelShader(renderObject.normalMapID, 1);
@@ -91,9 +105,19 @@ void xe::Graphics::StandardEffect::SetCamera(const Camera& camera)
 	_camera = &camera;
 }
 
+void xe::Graphics::StandardEffect::SetLightCamera(const Camera& camera)
+{
+	_lightCamera = &camera;
+}
+
 void xe::Graphics::StandardEffect::SetDirectionalLight(const DirectionalLight& directionalLight)
 {
 	_directionalLight = &directionalLight;
+}
+
+void xe::Graphics::StandardEffect::SetShadowMap(const Texture& shadowMap)
+{
+	_shadowMap = &shadowMap;
 }
 
 void xe::Graphics::StandardEffect::DebugUI()
@@ -121,6 +145,11 @@ void xe::Graphics::StandardEffect::DebugUI()
 		if (ImGui::Checkbox("Use Specular Map##", &useSpecMap))
 		{
 			_settingsData.useSpecMap = (useSpecMap) ? 1 : 0;
+		}
+		bool useShadowMap = _settingsData.useShadowMap > 0;
+		if (ImGui::Checkbox("Use Shadow Map##", &useShadowMap))
+		{
+			_settingsData.useShadowMap = (useShadowMap) ? 1 : 0;
 		}
 	}
 #endif

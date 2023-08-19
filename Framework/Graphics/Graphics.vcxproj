@@ -185,6 +185,7 @@
     <ClInclude Include="include\RenderObject.h" />
     <ClInclude Include="include\RenderTarget.h" />
     <ClInclude Include="include\Sampler.h" />
+    <ClInclude Include="include\ShadowEffect.h" />
     <ClInclude Include="include\SimpleDraw.h" />
     <ClInclude Include="include\SimpleEffect.h" />
     <ClInclude Include="include\StandardEffect.h" />
@@ -217,6 +218,7 @@
     <ClCompile Include="src\RenderObject.cpp" />
     <ClCompile Include="src\RenderTarget.cpp" />
     <ClCompile Include="src\Sampler.cpp" />
+    <ClCompile Include="src\ShadowEffect.cpp" />
     <ClCompile Include="src\SimpleDraw.cpp" />
     <ClCompile Include="src\SimpleEffect.cpp" />
     <ClCompile Include="src\StandardEffect.cpp" />

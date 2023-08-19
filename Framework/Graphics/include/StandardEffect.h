@@ -21,6 +21,7 @@ namespace xe::Graphics
 		{
 			xe::Math::Matrix4 world;
 			xe::Math::Matrix4 wvp;
+			xe::Math::Matrix4 lwvp; // ight wvp
 			xe::Math::Vector3 viewPosition;
 			uint32_t __ = 0; // 16-Byte Padding
 		};
@@ -31,7 +32,8 @@ namespace xe::Graphics
 			int useDisplMap = 1;
 			float displWeight = 1.f;
 			int useSpecMap = 1;
-			uint32_t __[3] = { 0 };
+			int useShadowMap = 1;
+			uint32_t __[2] = { 0 };
 		};
 
 		using TransformBuffer = TypedContantBuffer<TransfromData>;
@@ -50,7 +52,9 @@ namespace xe::Graphics
 
 		SettingsData _settingsData;
 		const Camera* _camera = nullptr;
+		const Camera* _lightCamera = nullptr;
 		const DirectionalLight* _directionalLight = nullptr;
+		const Texture* _shadowMap = nullptr;
 
 	public:
 		void Initialize(const std::filesystem::path&);
@@ -62,7 +66,9 @@ namespace xe::Graphics
 		void Draw(const RenderObject& renderObject);
 
 		void SetCamera(const Camera& camera);
+		void SetLightCamera(const Camera& camera);
 		void SetDirectionalLight(const DirectionalLight& directionalLight);
+		void SetShadowMap(const Texture& shadowMap);
 
 		void DebugUI();
 	};

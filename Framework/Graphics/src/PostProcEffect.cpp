@@ -111,6 +111,7 @@ void xe::Graphics::PostProcEffect::SetTexture(const Texture* texture, uint32_t s
 
 void xe::Graphics::PostProcEffect::DebugUI()
 {
+#ifdef _DEBUG
 	if (ImGui::CollapsingHeader("Post Processing Effect##", ImGuiTreeNodeFlags_DefaultOpen))
 	{
 		int currentMode = static_cast<int>(_mode);
@@ -124,6 +125,7 @@ void xe::Graphics::PostProcEffect::DebugUI()
 		ImGui::DragFloat("Blur Amount##", &_blurAmt, 1.f, 0.f, 100.f);
 		ImGui::DragFloat("Chromatic Aberration Amount##", &_chromAbAmt, 0.001, 0.0f, 0.01f);
 	}
+#endif // _DEBUG
 }
 
 void xe::Graphics::PostProcEffect::SetMode(const Mode mode)
