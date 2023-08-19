@@ -34,6 +34,7 @@ cbuffer SettingBuffer : register (b3)
     float displWeight;
     bool useSpecMap;
     bool useShadowMap;
+    float depthBias;
 }
 
 Texture2D diffuseMap : register(t0);
@@ -136,7 +137,7 @@ float4 PS(VS_OUTPUT input) : SV_Target
         {
             float4 savedColor = shadowMap.Sample(textureSampler, float2(u, v));
             float savedDepth = savedColor.r;
-			if (savedDepth > actualDepth)
+			if (savedDepth > actualDepth + depthBias)
             {
                 finalColor = (ambient + materialEmissive) * diffuseMapColor;
             }

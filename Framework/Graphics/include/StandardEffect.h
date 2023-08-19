@@ -33,7 +33,8 @@ namespace xe::Graphics
 			float displWeight = 1.f;
 			int useSpecMap = 1;
 			int useShadowMap = 1;
-			uint32_t __[2] = { 0 };
+			float depthBias = 0.f;
+			uint32_t __ { 0 };
 		};
 
 		using TransformBuffer = TypedContantBuffer<TransfromData>;

@@ -70,6 +70,7 @@ void GameState::Terminate()
 void GameState::Update(const float& deltaTime)
 {
 	UpdateCameraControl(deltaTime);
+	_shadowEffect.SetFocalPoint({ _camera.GetPosition().x, 0.f, _camera.GetPosition().z });
 }
 
 void GameState::Draw()

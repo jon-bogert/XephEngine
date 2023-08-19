@@ -73,6 +73,7 @@ void xe::Graphics::StandardEffect::Draw(const RenderObject& renderObject)
 	settingsData.displWeight = _settingsData.displWeight;
 	settingsData.useSpecMap = _settingsData.useSpecMap > 0 && renderObject.specMapID != 0;
 	settingsData.useShadowMap = _settingsData.useShadowMap > 0 && _shadowMap != nullptr;
+	settingsData.depthBias = _settingsData.depthBias;
 	_settingsBuffer.Update(settingsData);
 
 	TransfromData transformData;
@@ -151,6 +152,7 @@ void xe::Graphics::StandardEffect::DebugUI()
 		{
 			_settingsData.useShadowMap = (useShadowMap) ? 1 : 0;
 		}
+		ImGui::DragFloat("Depth Bias##", &_settingsData.depthBias, 0.0000001f, 0.f, 1.f, "%.6f");
 	}
 #endif
 }
