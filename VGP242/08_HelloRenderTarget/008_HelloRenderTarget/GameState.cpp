@@ -38,12 +38,12 @@ void GameState::Initialize()
 	_rtCamera.SetLookAt(_renderObjects.front().transform.position);
 
 	constexpr uint32_t size = 512;
-	_renderTarget.Initialize(size, size, Texture::Format::RGBA_U32);
+	_baseRenderTarget.Initialize(size, size, Texture::Format::RGBA_U32);
 }
 
 void GameState::Terminate()
 {
-	_renderTarget.Terminate();
+	_baseRenderTarget.Terminate();
 	for (auto it = _renderObjects.begin(); it!= _renderObjects.end(); ++it)
 	{
 		it->Terminate();
@@ -66,7 +66,7 @@ void GameState::Draw()
 	}
 	_simpleEffect.End();
 
-	_renderTarget.BeginDraw();
+	_baseRenderTarget.BeginDraw();
 	{
 		_rtSimpleEffect.Begin();
 		for (auto it = _renderObjects.begin(); it != _renderObjects.end(); ++it)
@@ -75,7 +75,7 @@ void GameState::Draw()
 		}
 		_rtSimpleEffect.End();
 	}
-	_renderTarget.EndDraw();
+	_baseRenderTarget.EndDraw();
 }
 
 void GameState::DebugUI()
@@ -114,7 +114,7 @@ void GameState::DebugUI()
 		_rtCamera.SetLookAt(it->transform.position);
 	}
 	gui::Image(
-		_renderTarget.GetRawData(),
+		_baseRenderTarget.GetRawData(),
 		{ 128, 128 },
 		{ 0, 0, },
 		{ 1, 1 },

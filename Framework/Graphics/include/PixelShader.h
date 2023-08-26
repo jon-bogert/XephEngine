@@ -8,7 +8,7 @@ namespace xe::Graphics
 		ID3D11PixelShader* _pixelShader = nullptr;
 
 	public:
-		void Initialize(const std::filesystem::path& filePath);
+		void Initialize(const std::filesystem::path& filePath, const char* entryPoint = "PS");
 		void Terminate();
 		void Bind();
 	};

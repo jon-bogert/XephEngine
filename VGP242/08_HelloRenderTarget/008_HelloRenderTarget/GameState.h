@@ -17,7 +17,7 @@ protected:
 	xe::Graphics::Camera _camera;
 	xe::Graphics::SimpleEffect _simpleEffect;
 	std::list<xe::Graphics::RenderObject> _renderObjects;
-	xe::Graphics::RenderTarget _renderTarget;
+	xe::Graphics::RenderTarget _baseRenderTarget;
 
 
 	xe::Graphics::Camera _rtCamera;

@@ -21,7 +21,7 @@ protected:
 	xe::Graphics::PostProcEffect _postProcEffect;
 	xe::Graphics::RenderObject _ground;
 	xe::Graphics::RenderObject _screenQuad;
-	xe::Graphics::RenderTarget _renderTarget;
+	xe::Graphics::RenderTarget _baseRenderTarget;
 	xe::Graphics::Texture _combineTexture;
 
 

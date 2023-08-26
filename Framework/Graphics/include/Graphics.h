@@ -4,6 +4,7 @@
 #include "Common.h"
 
 #include "BlendState.h"
+#include "BloomEffect.h"
 #include "Camera.h"
 #include "CelEffect.h"
 #include "ConstantBuffer.h"

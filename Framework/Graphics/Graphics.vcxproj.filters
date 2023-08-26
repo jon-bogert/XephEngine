@@ -105,6 +105,9 @@
     <ClInclude Include="include\ShadowEffect.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\BloomEffect.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -174,6 +177,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\ShadowEffect.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BloomEffect.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

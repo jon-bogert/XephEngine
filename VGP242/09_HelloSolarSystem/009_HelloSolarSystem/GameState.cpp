@@ -43,12 +43,12 @@ void GameState::Initialize()
 	_debugSimpleEffect.SetCamera(_debugCamera);
 
 	constexpr uint32_t size = 512;
-	_renderTarget.Initialize(size, size, Texture::Format::RGBA_U32);
+	_baseRenderTarget.Initialize(size, size, Texture::Format::RGBA_U32);
 }
 
 void GameState::Terminate()
 {
-	_renderTarget.Terminate();
+	_baseRenderTarget.Terminate();
 	for (auto it = _renderObjects.begin(); it != _renderObjects.end(); ++it)
 	{
 		it->Terminate();
@@ -75,7 +75,7 @@ void GameState::Draw()
 	}
 	_simpleEffect.End();
 
-	_renderTarget.BeginDraw();
+	_baseRenderTarget.BeginDraw();
 	{
 		_debugSimpleEffect.Begin();
 		for (auto it = _renderObjects.begin(); it != _renderObjects.end(); ++it)
@@ -84,7 +84,7 @@ void GameState::Draw()
 		}
 		_debugSimpleEffect.End();
 	}
-	_renderTarget.EndDraw();
+	_baseRenderTarget.EndDraw();
 }
 
 void GameState::DebugUI()
@@ -119,7 +119,7 @@ void GameState::DebugUI()
 	_debugCamera.SetPosition(camPos);
 	_debugCamera.SetLookAt(camLook);
 	gui::Image(
-		_renderTarget.GetRawData(),
+		_baseRenderTarget.GetRawData(),
 		{ 128, 128 },
 		{ 0, 0, },
 		{ 1, 1 },

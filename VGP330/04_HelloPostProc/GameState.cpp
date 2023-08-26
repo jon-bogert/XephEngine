@@ -23,12 +23,12 @@ void GameState::Initialize()
 	_standardEffect.SetDirectionalLight(_directionalLight);
 
 	_postProcEffect.Initialize("../../Assets/Shaders/PostProc.fx");
-	_postProcEffect.SetTexture(&_renderTarget);
+	_postProcEffect.SetTexture(&_baseRenderTarget);
 	_postProcEffect.SetTexture(&_combineTexture, 1);
 
 	const uint32_t screenWidth = GraphicsSystem::Get().GetBackBufferWidth();
 	const uint32_t screenHeight = GraphicsSystem::Get().GetBackBufferHeight();
-	_renderTarget.Initialize(screenWidth, screenHeight, RenderTarget::Format::RGBA_U8);
+	_baseRenderTarget.Initialize(screenWidth, screenHeight, RenderTarget::Format::RGBA_U8);
 
 	_combineTexture.Initialize(L"../../Assets/Textures/water/water_texture.jpg");
 
@@ -52,7 +52,7 @@ void GameState::Terminate()
 {
 	_combineTexture.Terminate();
 	_postProcEffect.Terminate();
-	_renderTarget.Terminate();
+	_baseRenderTarget.Terminate();
 	_ground.Terminate();
 	for (auto it = _renderObjects.begin(); it != _renderObjects.end(); ++it)
 	{
@@ -70,7 +70,7 @@ void GameState::Draw()
 {
 	//SimpleDraw::AddGroundPlane(10, xe::Colors::White);
 	//SimpleDraw::Draw(_camera);
-	_renderTarget.BeginDraw(GraphicsSystem::Get().GetClearColor());
+	_baseRenderTarget.BeginDraw(GraphicsSystem::Get().GetClearColor());
 	_standardEffect.Begin();
 	_standardEffect.Draw(_ground);
 	for (auto it = _renderObjects.begin(); it != _renderObjects.end(); it++)
@@ -78,7 +78,7 @@ void GameState::Draw()
 		DrawRenderGroup(_standardEffect, *it);
 	}
 	_standardEffect.End();
-	_renderTarget.EndDraw();
+	_baseRenderTarget.EndDraw();
 
 	_postProcEffect.Begin();
 	_postProcEffect.Draw(_screenQuad);
