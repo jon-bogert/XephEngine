@@ -1,4 +1,9 @@
-﻿  BloomEffect.cpp
-D:\repos\C++\XephEngine\Framework\Graphics\src\BloomEffect.cpp(44,15): warning C4244: '=': conversion from 'const uint32_t' to 'float', possible loss of data
-D:\repos\C++\XephEngine\Framework\Graphics\src\BloomEffect.cpp(45,16): warning C4244: '=': conversion from 'const uint32_t' to 'float', possible loss of data
+﻿  Terrain.cpp
+D:\repos\C++\XephEngine\Framework\Graphics\src\Terrain.cpp(9,2): warning C4477: 'snprintf' : format string '%s' requires an argument of type 'char *', but variadic argument 4 has type 'const std::filesystem::path::value_type *'
+D:\repos\C++\XephEngine\Framework\Graphics\src\Terrain.cpp(9,2): message : consider using '%ls' in the format string
+D:\repos\C++\XephEngine\Framework\Graphics\src\Terrain.cpp(9,2): message : consider using '%lls' in the format string
+D:\repos\C++\XephEngine\Framework\Graphics\src\Terrain.cpp(9,2): message : consider using '%Ls' in the format string
+D:\repos\C++\XephEngine\Framework\Graphics\src\Terrain.cpp(9,2): message : consider using '%ws' in the format string
+D:\repos\C++\XephEngine\Framework\Graphics\src\Terrain.cpp(68,30): warning C4018: '>=': signed/unsigned mismatch
+D:\repos\C++\XephEngine\Framework\Graphics\src\Terrain.cpp(68,51): warning C4018: '>=': signed/unsigned mismatch
   Graphics.vcxproj -> D:\repos\C++\XephEngine\x64\Debug\Graphics.lib

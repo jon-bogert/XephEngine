@@ -108,6 +108,12 @@
     <ClInclude Include="include\BloomEffect.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Terrain.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TerrainEffect.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -180,6 +186,12 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\BloomEffect.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Terrain.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TerrainEffect.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
