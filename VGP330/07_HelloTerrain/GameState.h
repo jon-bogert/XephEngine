@@ -20,12 +20,12 @@ protected:
 	xe::Graphics::StandardEffect _standardEffect;
 	xe::Graphics::ShadowEffect _shadowEffect;
 	xe::Graphics::PostProcEffect _postProcEffect;
-	xe::Graphics::RenderObject _ground;
+	xe::Graphics::RenderObject _water;
 	xe::Graphics::RenderObject _screenQuad;
 	xe::Graphics::RenderTarget _baseRenderTarget;
 	xe::Graphics::Texture _combineTexture;
 	xe::Graphics::Terrain _terrain;
-	xe::Graphics::TerrainEffect _terrainEffect;
+	xe::Graphics::TerrainEffect _waterEffect;
 
 public:
 

@@ -114,6 +114,12 @@
     <ClInclude Include="include\TerrainEffect.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\WaterEffect.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Water.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -192,6 +198,12 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\TerrainEffect.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WaterEffect.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Water.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

@@ -33,5 +33,7 @@
 #include "TextureManager.h"
 #include "Transform.h"
 #include "VertexShader.h"
+#include "Water.h"
+#include "WaterEffect.h"
 
 #endif

@@ -27,10 +27,10 @@ void GameState::Initialize()
 	_shadowEffect.Initialize();
 	_shadowEffect.SetDirectionalLight(_directionalLight);
 
-	_terrainEffect.Initialize();
-	_terrainEffect.SetCamera(_camera);
-	_terrainEffect.SetLightCamera(_shadowEffect.GetLightCamera());
-	_terrainEffect.SetDirectionalLight(_directionalLight);
+	_waterEffect.Initialize();
+	_waterEffect.SetCamera(_camera);
+	_waterEffect.SetLightCamera(_shadowEffect.GetLightCamera());
+	_waterEffect.SetDirectionalLight(_directionalLight);
 
 	_postProcEffect.Initialize("../../Assets/Shaders/PostProc.fx");
 	_postProcEffect.SetTexture(&_baseRenderTarget);
@@ -48,13 +48,13 @@ void GameState::Initialize()
 	_renderObjects.push_back(CreateRenderGroup(modelID));
 
 	_terrain.Initialize("../../Assets/Textures/terrain/heightmap_512x512.raw", 25.f);
-	_ground.meshBuffer.Initialize(_terrain.GetMesh());
-	_ground.diffuseMapID = TextureManager::LoadTexture(L"terrain/grass_2048.jpg");
-	_ground.specMapID = TextureManager::LoadTexture(L"terrain/dirt_seamless.jpg");
-	_ground.material.ambient = { 0.3f, 0.3f, 0.3f, 1.0f };
-	_ground.material.diffuse = { 0.8f, 0.8f, 0.8f, 1.0f };
-	_ground.material.specular = { 0.9f, 0.9f, 0.9f, 1.0f };
-	_ground.material.power = 20.f;
+	_water.meshBuffer.Initialize(_terrain.GetMesh());
+	_water.diffuseMapID = TextureManager::LoadTexture(L"terrain/grass_2048.jpg");
+	_water.specMapID = TextureManager::LoadTexture(L"terrain/dirt_seamless.jpg");
+	_water.material.ambient = { 0.3f, 0.3f, 0.3f, 1.0f };
+	_water.material.diffuse = { 0.8f, 0.8f, 0.8f, 1.0f };
+	_water.material.specular = { 0.9f, 0.9f, 0.9f, 1.0f };
+	_water.material.power = 20.f;
 
 	_screenQuad.meshBuffer.Initialize(MeshBuilder::CreateScreenQuad());
 }
@@ -64,12 +64,12 @@ void GameState::Terminate()
 	_combineTexture.Terminate();
 	_postProcEffect.Terminate();
 	_baseRenderTarget.Terminate();
-	_ground.Terminate();
+	_water.Terminate();
 	for (auto it = _renderObjects.begin(); it != _renderObjects.end(); ++it)
 	{
 		CleanupRenderGroup(*it);
 	}
-	_terrainEffect.Terminate();
+	_waterEffect.Terminate();
 	_shadowEffect.Terminate();
 	_standardEffect.Terminate();
 }
@@ -97,9 +97,9 @@ void GameState::Draw()
 
 
 	_baseRenderTarget.BeginDraw(GraphicsSystem::Get().GetClearColor());
-	_terrainEffect.Begin();
-	_terrainEffect.Draw(_ground);
-	_terrainEffect.End();
+	_waterEffect.Begin();
+	_waterEffect.Draw(_water);
+	_waterEffect.End();
 	_standardEffect.Begin();
 	for (auto it = _renderObjects.begin(); it != _renderObjects.end(); it++)
 	{
@@ -133,7 +133,7 @@ void GameState::DebugUI()
 	_standardEffect.DebugUI();
 	_shadowEffect.DebugUI();
 	_postProcEffect.DebugUI();
-	_terrainEffect.DebugUI();
+	_waterEffect.DebugUI();
 	ImGui::End();
 
 #endif // _DEBUG

@@ -19,7 +19,7 @@ protected:
 	std::list<xe::Graphics::RenderGroup> _renderObjects;
 	xe::Graphics::StandardEffect _standardEffect;
 	xe::Graphics::PostProcEffect _postProcEffect;
-	xe::Graphics::RenderObject _ground;
+	xe::Graphics::RenderObject _water;
 	xe::Graphics::RenderObject _screenQuad;
 	xe::Graphics::RenderTarget _baseRenderTarget;
 	xe::Graphics::Texture _combineTexture;
