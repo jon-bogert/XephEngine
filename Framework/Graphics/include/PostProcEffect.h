@@ -25,6 +25,7 @@ namespace xe::Graphics
 			Combine2,
 			MotionBlur,
 			ChromAberr,
+			SSAO,
 			Count
 		};
 

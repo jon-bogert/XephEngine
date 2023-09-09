@@ -171,6 +171,7 @@
     <ClInclude Include="include\Common.h" />
     <ClInclude Include="include\ConstantBuffer.h" />
     <ClInclude Include="include\DebugUI.h" />
+    <ClInclude Include="include\DepthEffect.h" />
     <ClInclude Include="include\Graphics.h" />
     <ClInclude Include="include\GraphicsSystem.h" />
     <ClInclude Include="include\LightType.h" />
@@ -189,6 +190,7 @@
     <ClInclude Include="include\ShadowEffect.h" />
     <ClInclude Include="include\SimpleDraw.h" />
     <ClInclude Include="include\SimpleEffect.h" />
+    <ClInclude Include="include\SSAOEffect.h" />
     <ClInclude Include="include\StandardEffect.h" />
     <ClInclude Include="include\Terrain.h" />
     <ClInclude Include="include\TerrainEffect.h" />
@@ -206,6 +208,7 @@
     <ClCompile Include="src\CelEffect.cpp" />
     <ClCompile Include="src\ConstantBuffer.cpp" />
     <ClCompile Include="src\DebugUI.cpp" />
+    <ClCompile Include="src\DepthEffect.cpp" />
     <ClCompile Include="src\GraphicsSystem.cpp" />
     <ClCompile Include="src\MeshBuffer.cpp" />
     <ClCompile Include="src\MeshBuilder.cpp" />
@@ -225,6 +228,7 @@
     <ClCompile Include="src\ShadowEffect.cpp" />
     <ClCompile Include="src\SimpleDraw.cpp" />
     <ClCompile Include="src\SimpleEffect.cpp" />
+    <ClCompile Include="src\SSAOEffect.cpp" />
     <ClCompile Include="src\StandardEffect.cpp" />
     <ClCompile Include="src\Terrain.cpp" />
     <ClCompile Include="src\TerrainEffect.cpp" />

@@ -10,7 +10,6 @@ namespace
 	using namespace xe::Graphics;
 	std::vector<D3D11_INPUT_ELEMENT_DESC> GetVertexLayout(uint32_t vertexFormat)
 	{
-
 		std::vector<D3D11_INPUT_ELEMENT_DESC> desc;
 
 		if (vertexFormat & VE_Position)

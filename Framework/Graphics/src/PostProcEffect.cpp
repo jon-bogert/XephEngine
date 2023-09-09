@@ -18,6 +18,7 @@ namespace
 			"Combine2",
 			"Motion Blur",
 			"Chromatic Aberration",
+			"SSAO"
 	};
 }
 

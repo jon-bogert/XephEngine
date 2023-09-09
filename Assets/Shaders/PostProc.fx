@@ -33,6 +33,9 @@ VS_OUTPUT VS(VS_INPUT input)
     return output;
 }
 
+#define KERNEL_SIZE 16
+float3 sampleKernel[KERNEL_SIZE];
+
 float4 PS(VS_OUTPUT input) : SV_Target
 {
     float4 finalColor = { 0.f, 0.f, 0.f, 1.f};
@@ -106,6 +109,32 @@ float4 PS(VS_OUTPUT input) : SV_Target
         float4 blueChannel = textureMap0.Sample(textureSampler, input.texCoord + distortion.y * input.texCoord);
         
         finalColor = float4(redChannel.r, greenChannel.g, blueChannel.b, 1.0f);
+    }
+    else if (mode == 8) // SSAO
+    {
+        float4 baseColor = textureMap0.Sample(textureSampler, input.texCoord);
+        float depth = textureMap2.Sample(textureSampler, input.texCoord).r;
+        float ao;
+    
+        for (int i = 0; i < KERNEL_SIZE; i++)
+        {
+            float3 sample = float3(texCoord, depth) + sampleKernel[i] * param0;
+        
+        // Convert sample point to clip space
+            float4 offset = float4(sample, 1.0);
+            offset = mul(offset, wvp);
+        
+        // Get the depth at the sample point
+            float sampleDepth = textureMap0.Sample(textureSampler, offset.xy).r;
+        
+        // Compare the sample depth to the original point's depth
+            float rangeCheck = smoothstep(0.02, 0.03, param0 / abs(depth - sampleDepth));
+            ao += (depth > sampleDepth ? 1.0 : 0.0) * rangeCheck;
+        }
+
+        ao = 1.0 - (ao / float(KERNEL_SIZE));
+        
+        finalColor = baseColor * depth;
     }
     return finalColor;
 }
