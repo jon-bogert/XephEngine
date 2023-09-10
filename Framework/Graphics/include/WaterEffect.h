@@ -59,6 +59,7 @@ namespace xe::Graphics
 		void Begin();
 		void End();
 
+		void Update(const float deltaTime);
 		void Draw(const RenderObject& renderObject);
 
 		void DebugUI();

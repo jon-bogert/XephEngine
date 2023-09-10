@@ -59,6 +59,11 @@ void xe::Graphics::WaterEffect::End()
 	}
 }
 
+void xe::Graphics::WaterEffect::Update(const float deltaTime)
+{
+	_settingsData.time += deltaTime;
+}
+
 void xe::Graphics::WaterEffect::Draw(const RenderObject& renderObject)
 {
 	ASSERT(_camera != nullptr, "TerrainEffect: no camera specified");
@@ -82,6 +87,7 @@ void xe::Graphics::WaterEffect::Draw(const RenderObject& renderObject)
 	SettingsData settingsData;
 	settingsData.useShadowMap = (_settingsData.useShadowMap > 0 && _shadowMap != nullptr) ? 1 : 0;
 	settingsData.depthBias = _settingsData.depthBias;
+	settingsData.time = _settingsData.time;
 	if (settingsData.useShadowMap)
 	{
 		_shadowMap->BindPixelShader(2);

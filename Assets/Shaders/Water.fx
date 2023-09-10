@@ -63,9 +63,10 @@ VS_OUTPUT VS(VS_INPUT input)
     matrix toNDC = wvp;
     float3 localPosition = input.position;
     
-    localPosition.y += sin((localPosition.x + time) * 10.0f);
-	
-    output.position = mul(float4(localPosition, 1.0f), toNDC);
+    float4 ndcPos = mul(float4(localPosition, 1.0f), toNDC);
+    ndcPos.y += sin((localPosition.x + time) * 1.0f);
+    
+    output.position = ndcPos;
     output.worldNormal = mul(input.normal, (float3x3) toWorld);
     output.dirToLight = -lightDirection;
     output.dirToView = normalize(viewPosition - mul(float4(localPosition, 1.0f), toWorld).xyz);

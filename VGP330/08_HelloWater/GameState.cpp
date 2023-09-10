@@ -47,7 +47,7 @@ void GameState::Initialize()
 	ModelID modelID = ModelManager::LoadModel("../../Assets/Models/space-soldier/space-soldier.model");
 	_renderObjects.push_back(CreateRenderGroup(modelID));
 
-	Mesh groundMesh = MeshBuilder::CreateGroundPlane(128, 128, 0.1f);
+	Mesh groundMesh = MeshBuilder::CreateGroundPlane(1024, 1024, 0.01f);
 	_water.meshBuffer.Initialize(groundMesh);
 	_water.diffuseMapID = TextureManager::LoadTexture(L"terrain/grass_2048.jpg");
 	_water.specMapID = TextureManager::LoadTexture(L"terrain/dirt_seamless.jpg");
@@ -76,6 +76,7 @@ void GameState::Terminate()
 
 void GameState::Update(const float& deltaTime)
 {
+	_waterEffect.Update(deltaTime);
 	for (auto& obj : *_renderObjects.begin())
 	{
 		xe::Math::Quaternion::Rotate(obj.transform.rotation, 0.5f * deltaTime, xe::Math::Vector3::YAxis);
