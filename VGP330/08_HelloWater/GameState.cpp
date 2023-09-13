@@ -49,8 +49,8 @@ void GameState::Initialize()
 
 	Mesh groundMesh = MeshBuilder::CreateGroundPlane(1024, 1024, 0.01f);
 	_water.meshBuffer.Initialize(groundMesh);
-	_water.diffuseMapID = TextureManager::LoadTexture(L"terrain/grass_2048.jpg");
-	_water.specMapID = TextureManager::LoadTexture(L"terrain/dirt_seamless.jpg");
+	_water.diffuseMapID = TextureManager::LoadTexture(L"toon-water.png");
+	//_water.specMapID = TextureManager::LoadTexture(L"terrain/dirt_seamless.jpg");
 	_water.material.ambient = { 0.3f, 0.3f, 0.3f, 1.0f };
 	_water.material.diffuse = { 0.8f, 0.8f, 0.8f, 1.0f };
 	_water.material.specular = { 0.9f, 0.9f, 0.9f, 1.0f };
