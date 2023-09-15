@@ -26,10 +26,12 @@ namespace xe::Graphics
 		};
 		struct SettingsData
 		{
-			int useShadowMap = 0;
-			float depthBias = 0.f;
+			float wavelength = 1.f;
+			float amplitude = 1.f;
+			float waveSpeed = 1.f;
+			float textureSpeed = 0.05f;
 			float time = 0.f;
-			float padding = 0 ;
+			float __[3] = { 0.f };
 		};
 
 		using TransformBuffer = TypedContantBuffer<TransfromData>;

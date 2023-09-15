@@ -26,8 +26,10 @@ cbuffer MaterialBuffer : register(b2)
 
 cbuffer SettingBuffer : register(b3)
 {
-    bool useShadowMap;
-    float depthBias;
+    float wavelength;
+    float amplitude;
+    float waveSpeed;
+    float textureSpeed;
     float time;
 }
 
@@ -64,7 +66,7 @@ VS_OUTPUT VS(VS_INPUT input)
     float3 localPosition = input.position;
     
     float4 ndcPos = mul(float4(localPosition, 1.0f), toNDC);
-    ndcPos.y += sin((localPosition.x + time) * 1.0f);
+    ndcPos.y += amplitude * sin((localPosition.x + time * waveSpeed) * wavelength);
     
     output.position = ndcPos;
     output.worldNormal = mul(input.normal, (float3x3) toWorld);
@@ -97,8 +99,10 @@ float4 PS(VS_OUTPUT input) : SV_Target
     float4 specular = s * lightSpecular * materialSpecular;
 	
 	//Colors from texture
-    float4 diffuseMapColor = diffuseMap.Sample(textureSampler, input.texCoord);
-    float4 specMapColor = specMap.Sample(textureSampler, input.texCoord);
+    float2 finalTexCoord = input.texCoord;
+    finalTexCoord.x += (time * textureSpeed);
+    float4 diffuseMapColor = diffuseMap.Sample(textureSampler, finalTexCoord);
+    float4 specMapColor = specMap.Sample(textureSampler, finalTexCoord);
     float4 colorToUse = diffuseMapColor;
     if (input.worldPosition.y > 15.0f)
     {
@@ -112,22 +116,5 @@ float4 PS(VS_OUTPUT input) : SV_Target
 	
 	//Combine Colors
     float4 finalColor = (ambient + diffuse + materialEmissive) * colorToUse + specular;
-	
-    if (useShadowMap)
-    {
-        float actualDepth = 1.0f - (input.lightNDCPosition.z / input.lightNDCPosition.w);
-        float2 shadowUV = input.lightNDCPosition.xy / input.lightNDCPosition.w;
-        float u = (shadowUV.x + 1.0f) * 0.5f;
-        float v = 1.0 - (shadowUV.y + 1.0f) * 0.5f;
-        if (saturate(u) == u && saturate(v) == v)
-        {
-            float4 savedColor = shadowMap.Sample(textureSampler, float2(u, v));
-            float savedDepth = savedColor.r;
-            if (savedDepth > actualDepth + depthBias)
-            {
-                finalColor = (ambient + materialEmissive) * colorToUse;
-            }
-        }
-    }
     return finalColor;
 }

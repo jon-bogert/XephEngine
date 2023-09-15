@@ -85,13 +85,11 @@ void xe::Graphics::WaterEffect::Draw(const RenderObject& renderObject)
 	}
 
 	SettingsData settingsData;
-	settingsData.useShadowMap = (_settingsData.useShadowMap > 0 && _shadowMap != nullptr) ? 1 : 0;
-	settingsData.depthBias = _settingsData.depthBias;
+	settingsData.wavelength = _settingsData.wavelength;
+	settingsData.amplitude = _settingsData.amplitude;
+	settingsData.waveSpeed = _settingsData.waveSpeed;
+	settingsData.textureSpeed = _settingsData.textureSpeed;
 	settingsData.time = _settingsData.time;
-	if (settingsData.useShadowMap)
-	{
-		_shadowMap->BindPixelShader(2);
-	}
 
 	_transformBuffer.Update(transformData);
 	_settingsBuffer.Update(settingsData);
@@ -109,13 +107,11 @@ void xe::Graphics::WaterEffect::DebugUI()
 #ifdef _DEBUG
 	if (ImGui::CollapsingHeader("Water##Effect", ImGuiTreeNodeFlags_DefaultOpen))
 	{
-		bool useShadowMap = _settingsData.useShadowMap > 0;
-		if (ImGui::Checkbox("Use Shadow Map##Water", &useShadowMap))
-		{
-			_settingsData.useShadowMap = (useShadowMap) ? 1 : 0;
-		}
-		ImGui::DragFloat("Depth Bias##Water", &_settingsData.depthBias, 0.0000001f, 0.f, 1.f, "%.6f");
-		ImGui::DragFloat("Time##Water", &_settingsData.time, 0.001f, 0.f, 10.f, "%.6f");
+		ImGui::DragFloat("Wavelength Modifier##Water", &_settingsData.wavelength, 0.01f);
+		ImGui::DragFloat("Amplitude Modifier##Water", &_settingsData.amplitude, 0.01f);
+		ImGui::DragFloat("Wave Speed Modifier##Water", &_settingsData.waveSpeed, 0.01f);
+		ImGui::DragFloat("Texture Speed Modifier##Water", &_settingsData.textureSpeed, 0.01f);
+		ImGui::Text("Time: %.2f", _settingsData.time);
 	}
 #endif // _DEBUG
 }
