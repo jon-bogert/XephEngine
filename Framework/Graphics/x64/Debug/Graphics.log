@@ -1,2 +1,72 @@
-﻿  WaterEffect.cpp
+﻿  Pch.cpp
+D:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(63,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(64,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(65,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(66,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  BlendState.cpp
+  BloomEffect.cpp
+D:\repos\C++\XephEngine\Framework\Graphics\src\BloomEffect.cpp(44,15): warning C4244: '=': conversion from 'const uint32_t' to 'float', possible loss of data
+D:\repos\C++\XephEngine\Framework\Graphics\src\BloomEffect.cpp(45,16): warning C4244: '=': conversion from 'const uint32_t' to 'float', possible loss of data
+  Camera.cpp
+  CelEffect.cpp
+  ConstantBuffer.cpp
+  DebugUI.cpp
+D:\repos\C++\XephEngine\Framework\Graphics\src\DebugUI.cpp(138,117): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  GraphicsSystem.cpp
+D:\repos\C++\XephEngine\Framework\Graphics\src\GraphicsSystem.cpp(178,108): warning C4244: 'argument': conversion from 'float' to 'UINT8', possible loss of data
+  MeshBuffer.cpp
+  MeshBuilder.cpp
+D:\repos\C++\XephEngine\Framework\Graphics\src\MeshBuilder.cpp(302,91): warning C4267: 'argument': conversion from 'size_t' to 'uint32_t', possible loss of data
+D:\repos\C++\XephEngine\Framework\Graphics\src\MeshBuilder.cpp(2527,5): warning C4305: 'argument': truncation from 'double' to 'float'
+  ModelIO.cpp
+D:\repos\C++\XephEngine\Framework\Graphics\src\ModelIO.cpp(156,18): warning C4477: 'fscanf_s' : format string '%f' requires an argument of type 'float *', but variadic argument 1 has type 'const float *'
+D:\repos\C++\XephEngine\Framework\Graphics\src\ModelIO.cpp(156,18): warning C4477: 'fscanf_s' : format string '%f' requires an argument of type 'float *', but variadic argument 2 has type 'const float *'
+D:\repos\C++\XephEngine\Framework\Graphics\src\ModelIO.cpp(156,18): warning C4477: 'fscanf_s' : format string '%f' requires an argument of type 'float *', but variadic argument 3 has type 'const float *'
+D:\repos\C++\XephEngine\Framework\Graphics\src\ModelIO.cpp(156,18): warning C4477: 'fscanf_s' : format string '%f' requires an argument of type 'float *', but variadic argument 4 has type 'const float *'
+D:\repos\C++\XephEngine\Framework\Graphics\src\ModelIO.cpp(157,18): warning C4477: 'fscanf_s' : format string '%f' requires an argument of type 'float *', but variadic argument 1 has type 'const float *'
+D:\repos\C++\XephEngine\Framework\Graphics\src\ModelIO.cpp(157,18): warning C4477: 'fscanf_s' : format string '%f' requires an argument of type 'float *', but variadic argument 2 has type 'const float *'
+D:\repos\C++\XephEngine\Framework\Graphics\src\ModelIO.cpp(157,18): warning C4477: 'fscanf_s' : format string '%f' requires an argument of type 'float *', but variadic argument 3 has type 'const float *'
+D:\repos\C++\XephEngine\Framework\Graphics\src\ModelIO.cpp(157,18): warning C4477: 'fscanf_s' : format string '%f' requires an argument of type 'float *', but variadic argument 4 has type 'const float *'
+D:\repos\C++\XephEngine\Framework\Graphics\src\ModelIO.cpp(158,18): warning C4477: 'fscanf_s' : format string '%f' requires an argument of type 'float *', but variadic argument 1 has type 'const float *'
+D:\repos\C++\XephEngine\Framework\Graphics\src\ModelIO.cpp(158,18): warning C4477: 'fscanf_s' : format string '%f' requires an argument of type 'float *', but variadic argument 2 has type 'const float *'
+D:\repos\C++\XephEngine\Framework\Graphics\src\ModelIO.cpp(158,18): warning C4477: 'fscanf_s' : format string '%f' requires an argument of type 'float *', but variadic argument 3 has type 'const float *'
+D:\repos\C++\XephEngine\Framework\Graphics\src\ModelIO.cpp(158,18): warning C4477: 'fscanf_s' : format string '%f' requires an argument of type 'float *', but variadic argument 4 has type 'const float *'
+D:\repos\C++\XephEngine\Framework\Graphics\src\ModelIO.cpp(159,18): warning C4477: 'fscanf_s' : format string '%f' requires an argument of type 'float *', but variadic argument 1 has type 'const float *'
+D:\repos\C++\XephEngine\Framework\Graphics\src\ModelIO.cpp(159,18): warning C4477: 'fscanf_s' : format string '%f' requires an argument of type 'float *', but variadic argument 2 has type 'const float *'
+D:\repos\C++\XephEngine\Framework\Graphics\src\ModelIO.cpp(159,18): warning C4477: 'fscanf_s' : format string '%f' requires an argument of type 'float *', but variadic argument 3 has type 'const float *'
+D:\repos\C++\XephEngine\Framework\Graphics\src\ModelIO.cpp(159,18): warning C4477: 'fscanf_s' : format string '%f' requires an argument of type 'float *', but variadic argument 4 has type 'const float *'
+D:\repos\C++\XephEngine\Framework\Graphics\src\ModelIO.cpp(160,18): warning C4477: 'fscanf_s' : format string '%f' requires an argument of type 'float *', but variadic argument 1 has type 'const float *'
+  ModelManager.cpp
+  PixelShader.cpp
+  PostProcEffect.cpp
+D:\repos\C++\XephEngine\Framework\Graphics\src\PostProcEffect.cpp(126,85): warning C4305: 'argument': truncation from 'double' to 'float'
+  RenderObject.cpp
+D:\repos\C++\XephEngine\Framework\Graphics\src\RenderObject.cpp(50,2): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 4 has type 'xe::Graphics::ModelID'
+D:\repos\C++\XephEngine\Framework\Graphics\src\RenderObject.cpp(50,2): message : consider using '%zd' in the format string
+  RenderTarget.cpp
+D:\repos\C++\XephEngine\Framework\Graphics\src\RenderTarget.cpp(78,76): warning C4244: 'argument': conversion from 'float' to 'UINT8', possible loss of data
+  Sampler.cpp
+  ShadowEffect.cpp
+  SimpleDraw.cpp
+  SimpleEffect.cpp
+  StandardEffect.cpp
+  Generating Code...
+D:\repos\C++\XephEngine\Framework\Graphics\src\Sampler.cpp(39): warning C4715: '`anonymous namespace'::GetAddressMode': not all control paths return a value
+D:\repos\C++\XephEngine\Framework\Graphics\src\Sampler.cpp(22): warning C4715: '`anonymous namespace'::GetFilter': not all control paths return a value
+  Compiling...
+  Terrain.cpp
+D:\repos\C++\XephEngine\Framework\Graphics\src\Terrain.cpp(9,2): warning C4477: 'snprintf' : format string '%s' requires an argument of type 'char *', but variadic argument 4 has type 'const std::filesystem::path::value_type *'
+D:\repos\C++\XephEngine\Framework\Graphics\src\Terrain.cpp(9,2): message : consider using '%ls' in the format string
+D:\repos\C++\XephEngine\Framework\Graphics\src\Terrain.cpp(9,2): message : consider using '%lls' in the format string
+D:\repos\C++\XephEngine\Framework\Graphics\src\Terrain.cpp(9,2): message : consider using '%Ls' in the format string
+D:\repos\C++\XephEngine\Framework\Graphics\src\Terrain.cpp(9,2): message : consider using '%ws' in the format string
+D:\repos\C++\XephEngine\Framework\Graphics\src\Terrain.cpp(68,30): warning C4018: '>=': signed/unsigned mismatch
+D:\repos\C++\XephEngine\Framework\Graphics\src\Terrain.cpp(68,51): warning C4018: '>=': signed/unsigned mismatch
+  TerrainEffect.cpp
+  Texture.cpp
+  TextureManager.cpp
+  VertexShader.cpp
+  Water.cpp
+  WaterEffect.cpp
+  Generating Code...
   Graphics.vcxproj -> D:\repos\C++\XephEngine\x64\Debug\Graphics.lib

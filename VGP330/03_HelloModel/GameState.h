@@ -18,7 +18,7 @@ protected:
 	xe::Graphics::DirectionalLight _directionalLight;
 	std::list<xe::Graphics::RenderGroup> _renderObjects;
 	xe::Graphics::StandardEffect _standardEffect;
-	xe::Graphics::RenderObject _water;
+	xe::Graphics::RenderObject _ground;
 
 
 public:

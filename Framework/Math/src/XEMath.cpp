@@ -26,3 +26,137 @@ const Matrix4 Matrix4::Identity({ 1, 0, 0, 0,
 
 const Quaternion Quaternion::Identity = { 0.0f, 0.0f, 0.0f, 1.0f };
 const Quaternion Quaternion::Zero = { 0.0f, 0.0f, 0.0f, 0.0f };
+
+void Quaternion::Conjugate() noexcept
+{
+    x = -x;
+    y = -y;
+    z = -z;
+}
+
+void Quaternion::Inverse() noexcept
+{
+    Conjugate();
+    *this = *this / MagnitudeSquared();
+}
+
+float Quaternion::MagnitudeSquared() const noexcept
+{
+    return x * x + y * y + z * z + w * w;
+}
+
+float Quaternion::Magnitude() const noexcept
+{
+    return sqrtf(MagnitudeSquared());
+}
+
+void Quaternion::Normalize() noexcept
+{
+    *this = *this / Magnitude();
+}
+
+float Quaternion::Dot(const Quaternion& q) const noexcept
+{
+    return x * q.x + y * q.y + z * q.z + w * q.w;
+}
+
+Quaternion Quaternion::Conjugate(const Quaternion& q)
+{
+    Quaternion result;
+    result.x = -q.x;
+    result.y = -q.y;
+    result.z = -q.z;
+    return result;
+}
+
+float Quaternion::MagnitudeSquared(const Quaternion& q)
+{
+    return q.x * q.x + q.y * q.y + q.z * q.z + q.w * q.w;
+}
+
+float Quaternion::Magnitude(const Quaternion& q)
+{
+    return sqrtf(MagnitudeSquared(q));
+}
+
+Quaternion Quaternion::Normalize(const Quaternion& q)
+{
+    return q / Quaternion::Magnitude(q);
+}
+
+Quaternion Quaternion::CreateFromAxisAngle(const Vector3& axis, float angle) noexcept
+{
+    const float c = cosf(angle * 0.5f);
+    const float s = sinf(angle * 0.5f);
+    const Vector3 a = Math::Normalize(axis);
+    return { a.x * s, a.y * s, a.z * s, c };
+}
+
+Quaternion Quaternion::CreateFromYawPitchRoll(float yaw, float pitch, float roll) noexcept
+{
+    const float cy = cosf(yaw * 0.5f);
+    const float sy = sinf(yaw * 0.5f);
+    const float cp = cosf(pitch * 0.5f);
+    const float sp = sinf(pitch * 0.5f);
+    const float cr = cosf(roll * 0.5f);
+    const float sr = sinf(roll * 0.5f);
+    return {
+        sr * cp * cy - cr * sp * sy,
+        cr * sp * cy + sr * cp * sy,
+        cr * cp * sy - sr * sp * cy,
+        cr * cp * cy + sr * sp * sy
+    };
+}
+
+Quaternion Quaternion::CreateFromRotationMatrix(const Matrix4& m) noexcept
+{
+    const float w = sqrtf(m._11 + m._22 + m._33 + 1) * 0.5f;
+    const float x = sqrtf(m._11 - m._22 - m._33 + 1) * 0.5f;
+    const float y = sqrtf(-m._11 + m._22 - m._33 + 1) * 0.5f;
+    const float z = sqrtf(-m._11 - m._22 + m._33 + 1) * 0.5f;
+
+    Quaternion q;
+    if (w >= x && w >= y && w >= z)
+    {
+        q.w = w;
+        q.x = (m._23 - m._32) / (4.f * w);
+        q.y = (m._31 - m._13) / (4.f * w);
+        q.z = (m._12 - m._21) / (4.f * w);
+    }
+    else if (x >= w && x >= y && x >= z)
+    {
+        q.w = (m._23 - m._32) / (4.f * x);
+        q.x = x;
+        q.y = (m._12 - m._21) / (4.f * x);
+        q.z = (m._31 - m._13) / (4.f * x);
+    }
+    else if (y >= w && y >= x && y >= z)
+    {
+        q.w = (m._31 - m._13) / (4.f * y);
+        q.x = (m._12 - m._21) / (4.f * y);
+        q.y = y;
+        q.z = (m._23 - m._32) / (4.f * y);
+    }
+    else if (z >= w && z >= x && z >= y)
+    {
+        q.w = (m._12 - m._21) / (4.f * z);
+        q.x = (m._31 - m._13) / (4.f * z);
+        q.y = (m._23 - m._32) / (4.f * z);
+        q.z = z;
+    }
+
+    return q;
+}
+
+Quaternion Quaternion::Lerp(const Quaternion& q0, const Quaternion& q1, float t)
+{
+    return q0 * (1.f - t) + (q1 * t);
+}
+
+Quaternion Quaternion::Slerp(const Quaternion& q0, const Quaternion& q1, float t)
+{
+    float dot = q0.Dot(q1);
+    float omega = std::acosf(dot);
+    float invSinOmega = 1.f / sinf(omega);
+    return q0 * (sinf((1.f - t) * omega) / sinf(omega)) + q1 * (sinf(t * omega) / invSinOmega);
+}

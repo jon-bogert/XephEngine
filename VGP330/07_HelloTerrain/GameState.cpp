@@ -48,13 +48,13 @@ void GameState::Initialize()
 	_renderObjects.push_back(CreateRenderGroup(modelID));
 
 	_terrain.Initialize("../../Assets/Textures/terrain/heightmap_512x512.raw", 25.f);
-	_water.meshBuffer.Initialize(_terrain.GetMesh());
-	_water.diffuseMapID = TextureManager::LoadTexture(L"terrain/grass_2048.jpg");
-	_water.specMapID = TextureManager::LoadTexture(L"terrain/dirt_seamless.jpg");
-	_water.material.ambient = { 0.3f, 0.3f, 0.3f, 1.0f };
-	_water.material.diffuse = { 0.8f, 0.8f, 0.8f, 1.0f };
-	_water.material.specular = { 0.9f, 0.9f, 0.9f, 1.0f };
-	_water.material.power = 20.f;
+	_ground.meshBuffer.Initialize(_terrain.GetMesh());
+	_ground.diffuseMapID = TextureManager::LoadTexture(L"terrain/grass_2048.jpg");
+	_ground.specMapID = TextureManager::LoadTexture(L"terrain/dirt_seamless.jpg");
+	_ground.material.ambient = { 0.3f, 0.3f, 0.3f, 1.0f };
+	_ground.material.diffuse = { 0.8f, 0.8f, 0.8f, 1.0f };
+	_ground.material.specular = { 0.9f, 0.9f, 0.9f, 1.0f };
+	_ground.material.power = 20.f;
 
 	_screenQuad.meshBuffer.Initialize(MeshBuilder::CreateScreenQuad());
 }
@@ -64,7 +64,7 @@ void GameState::Terminate()
 	_combineTexture.Terminate();
 	_postProcEffect.Terminate();
 	_baseRenderTarget.Terminate();
-	_water.Terminate();
+	_ground.Terminate();
 	for (auto it = _renderObjects.begin(); it != _renderObjects.end(); ++it)
 	{
 		CleanupRenderGroup(*it);
@@ -98,7 +98,7 @@ void GameState::Draw()
 
 	_baseRenderTarget.BeginDraw(GraphicsSystem::Get().GetClearColor());
 	_waterEffect.Begin();
-	_waterEffect.Draw(_water);
+	_waterEffect.Draw(_ground);
 	_waterEffect.End();
 	_standardEffect.Begin();
 	for (auto it = _renderObjects.begin(); it != _renderObjects.end(); it++)
