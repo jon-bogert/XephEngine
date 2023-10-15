@@ -156,6 +156,29 @@ Quaternion Quaternion::Lerp(const Quaternion& q0, const Quaternion& q1, float t)
 Quaternion Quaternion::Slerp(const Quaternion& q0, const Quaternion& q1, float t)
 {
     float dot = q0.Dot(q1);
+    float q1Scale = 1.f;
+    if (dot < 0.f)
+    {
+        dot = -dot;
+        q1Scale = -1.f;
+    }
+    if (dot > 0.999f)
+    {
+        return Normalize(Lerp(q0, q1, t));
+    }
+    float theta = acosf(dot);
+    float sinTheta = sinf(theta);
+    float scale0 = sinf(theta * (1.f - t)) / sinTheta;
+    float scale1 = sinf(theta * t) / sinTheta;
+
+    return
+    {
+        (q0.x * scale0) + (q1.x * scale1),
+        (q0.y * scale0) + (q1.y * scale1),
+        (q0.z * scale0) + (q1.z * scale1),
+        (q0.w * scale0) + (q1.w * scale1)
+    };
+
     float omega = std::acosf(dot);
     float invSinOmega = 1.f / sinf(omega);
     return q0 * (sinf((1.f - t) * omega) / sinf(omega)) + q1 * (sinf(t * omega) / invSinOmega);

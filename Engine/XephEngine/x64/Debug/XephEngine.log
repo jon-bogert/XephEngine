@@ -1,10 +1,10 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (InputSystem.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (InputSystem.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Pch.cpp
-D:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(63,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-D:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(64,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-D:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(65,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-D:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(66,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(63,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(64,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(65,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(66,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   App.cpp
   XephEngine.cpp
   Generating Code...
-  XephEngine.vcxproj -> D:\repos\C++\XephEngine\x64\Debug\XephEngine.lib
+  XephEngine.vcxproj -> C:\repos\C++\XephEngine\x64\Debug\XephEngine.lib

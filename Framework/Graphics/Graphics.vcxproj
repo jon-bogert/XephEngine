@@ -163,8 +163,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\Animation.h" />
+    <ClInclude Include="include\AnimationBuilder.h" />
     <ClInclude Include="include\BlendState.h" />
     <ClInclude Include="include\BloomEffect.h" />
+    <ClInclude Include="include\Bone.h" />
     <ClInclude Include="include\Camera.h" />
     <ClInclude Include="include\CelEffect.h" />
     <ClInclude Include="include\Colors.h" />
@@ -173,6 +176,7 @@
     <ClInclude Include="include\DebugUI.h" />
     <ClInclude Include="include\Graphics.h" />
     <ClInclude Include="include\GraphicsSystem.h" />
+    <ClInclude Include="include\Keyframe.h" />
     <ClInclude Include="include\LightType.h" />
     <ClInclude Include="include\Material.h" />
     <ClInclude Include="include\MeshBuffer.h" />
@@ -189,6 +193,7 @@
     <ClInclude Include="include\ShadowEffect.h" />
     <ClInclude Include="include\SimpleDraw.h" />
     <ClInclude Include="include\SimpleEffect.h" />
+    <ClInclude Include="include\Skeleton.h" />
     <ClInclude Include="include\StandardEffect.h" />
     <ClInclude Include="include\Terrain.h" />
     <ClInclude Include="include\TerrainEffect.h" />
@@ -202,6 +207,8 @@
     <ClInclude Include="include\Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Animation.cpp" />
+    <ClCompile Include="src\AnimationBuilder.cpp" />
     <ClCompile Include="src\BlendState.cpp" />
     <ClCompile Include="src\BloomEffect.cpp" />
     <ClCompile Include="src\Camera.cpp" />

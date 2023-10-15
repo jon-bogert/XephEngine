@@ -120,6 +120,21 @@
     <ClInclude Include="include\Water.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Keyframe.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Animation.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AnimationBuilder.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Bone.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Skeleton.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -204,6 +219,12 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\Water.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Animation.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AnimationBuilder.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
