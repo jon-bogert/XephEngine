@@ -5,41 +5,41 @@
 
 namespace xe::Math
 {
-    template<class T>
-    constexpr T Min(T a, T b)
-    {
-        return (a < b) ? a : b;
-    }
+	template<class T>
+	constexpr T Min(T a, T b)
+	{
+		return (a < b) ? a : b;
+	}
 
-    template<class T>
-    constexpr T Max(T a, T b)
-    {
-        return (a > b) ? a : b;
-    }
+	template<class T>
+	constexpr T Max(T a, T b)
+	{
+		return (a > b) ? a : b;
+	}
 
-    template<class T>
-    constexpr T Clamp(T value, T min, T max)
-    {
-        return Max(min, Min(max, value));
-    }
+	template<class T>
+	constexpr T Clamp(T value, T min, T max)
+	{
+		return Max(min, Min(max, value));
+	}
 
-    template<class T>
-    constexpr T Lerp(T a, T b, float t)
-    {
-        return a + ((b - a) * t);
-    }
+	template<class T>
+	constexpr T Lerp(T a, T b, float t)
+	{
+		return a + ((b - a) * t);
+	}
 
-    template<class T>
-    constexpr T Abs(T value)
-    {
-        return value >= 0 ? value : -value;
-    }
+	template<class T>
+	constexpr T Abs(T value)
+	{
+		return value >= 0 ? value : -value;
+	}
 
-    template<class T>
-    constexpr T Sqr(T value)
-    {
-        return value * value;
-    }
+	template<class T>
+	constexpr T Sqr(T value)
+	{
+		return value * value;
+	}
 
 	constexpr float Dot(Vector3 a, Vector3 b)
 	{
@@ -136,6 +136,27 @@ namespace xe::Math
 
 			0.0f, 0.0f, 0.0f, 1.0f
 		};
+	}
+
+	inline Vector3 GetTranslation(const Matrix4& m)
+	{
+		return { m._41, m._42, m._43 };
+	}
+	inline Vector3 GetRight(const Matrix4& m)
+	{
+		return { m._11, m._12, m._13 };
+	}
+	inline Vector3 GetUp(const Matrix4& m)
+	{
+		return { m._21, m._22, m._23 };
+	}
+	inline Vector3 GetLook(const Matrix4& m)
+	{
+		return { m._31, m._32, m._33 };
+	}
+	inline Vector3 GetScale(const Matrix4& m)
+	{
+		return { m._11, m._22, m._33 };
 	}
 }
 

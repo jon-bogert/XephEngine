@@ -3,6 +3,7 @@
 
 #include "MeshTypes.h"
 #include "Material.h"
+#include "Skeleton.h"
 
 namespace xe::Graphics
 {

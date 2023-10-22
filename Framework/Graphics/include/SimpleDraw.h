@@ -23,6 +23,7 @@ namespace xe::Graphics
 		void AddBoxFilled(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, const xe::Color& color);
 
 		void AddSphere(uint32_t slices, uint32_t rings, float radius, const Color& color);
+		void AddSphere(xe::Math::Vector3 origin, uint32_t slices, uint32_t rings, float radius, const Color& color);
 
 		void AddGroundPlane(float size, const Color& color);
 		void AddGroundCircle(uint32_t slices, float radius, const xe::Color& color);

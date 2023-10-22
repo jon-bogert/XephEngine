@@ -165,6 +165,7 @@
   <ItemGroup>
     <ClInclude Include="include\Animation.h" />
     <ClInclude Include="include\AnimationBuilder.h" />
+    <ClInclude Include="include\AnimationUtil.h" />
     <ClInclude Include="include\BlendState.h" />
     <ClInclude Include="include\BloomEffect.h" />
     <ClInclude Include="include\Bone.h" />
@@ -209,6 +210,7 @@
   <ItemGroup>
     <ClCompile Include="src\Animation.cpp" />
     <ClCompile Include="src\AnimationBuilder.cpp" />
+    <ClCompile Include="src\AnimationUtil.cpp" />
     <ClCompile Include="src\BlendState.cpp" />
     <ClCompile Include="src\BloomEffect.cpp" />
     <ClCompile Include="src\Camera.cpp" />

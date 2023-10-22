@@ -5,6 +5,7 @@
 
 #include "Animation.h"
 #include "AnimationBuilder.h"
+#include "AnimationUtil.h"
 #include "BlendState.h"
 #include "BloomEffect.h"
 #include "Bone.h"

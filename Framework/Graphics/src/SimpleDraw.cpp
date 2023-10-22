@@ -257,6 +257,53 @@ void xe::Graphics::SimpleDraw::AddSphere(uint32_t slices, uint32_t rings, float 
 	}
 }
 
+void xe::Graphics::SimpleDraw::AddSphere(Vector3 origin, uint32_t slices, uint32_t rings, float radius, const Color& color)
+{
+	Vector3 v0 = Vector3::Zero;
+	Vector3 v1 = Vector3::Zero;
+
+	float vertRotation = (Math::Const::Pi / static_cast<float>(rings - 1));
+	float horizRotation = (Math::Const::TwoPi / static_cast<float>(slices));
+
+	for (uint32_t ring = 0; ring < rings; ++ring)
+	{
+		float rPos0 = static_cast<float>(ring);
+		float phi0 = rPos0 * vertRotation;
+		float rPos1 = static_cast<float>(ring + 1);
+		float phi1 = rPos1 * vertRotation;
+		for (uint32_t slice = 0; slice <= slices; ++slice)
+		{
+			float sPos0 = static_cast<float>(slice);
+			float rotation0 = sPos0 * horizRotation;
+
+			float sPos1 = static_cast<float>(slice + 1);
+			float rotation1 = sPos1 * horizRotation;
+
+			v0 = {
+					radius * sin(rotation0) * sin(phi0),
+					radius * cos(phi0),
+					radius * cos(rotation0) * sin(phi0)
+			};
+
+			v1 = {
+					radius * sin(rotation1) * sin(phi0),
+					radius * cos(phi0),
+					radius * cos(rotation1) * sin(phi0)
+			};
+
+			AddLine(v0 + origin, v1 + origin, color);
+
+			v1 = {
+					radius * sin(rotation0) * sin(phi1),
+					radius * cos(phi1),
+					radius * cos(rotation0) * sin(phi1)
+			};
+
+			AddLine(v0 + origin, v1 + origin, color);
+		}
+	}
+}
+
 void xe::Graphics::SimpleDraw::AddGroundPlane(float size, const Color& color)
 {
 	const float halfSize = size * 0.5f;

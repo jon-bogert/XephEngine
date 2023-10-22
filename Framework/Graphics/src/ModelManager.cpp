@@ -34,6 +34,7 @@ xe::Graphics::ModelID xe::Graphics::ModelManager::LoadModel(const std::filesyste
 		modelPtr = std::make_unique<Model>();
 		ModelIO::LoadModel(filepath, *modelPtr);
 		ModelIO::LoadMaterial(filepath, *modelPtr);
+		ModelIO::LoadSkeleton(filepath, *modelPtr);
 	}
 	return modelID;
 }

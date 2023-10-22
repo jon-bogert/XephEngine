@@ -8,7 +8,9 @@
 
 using namespace xe;
 using namespace xe::Graphics;
-using namespace xe::Math;
+using namespace xe::Math; 
+
+using BoneIndexLookup = std::map <std::string, uint32_t>;
 
 namespace stdfs = std::filesystem;
 
@@ -158,6 +160,68 @@ std::string FindTexture(const aiScene* scene, const aiMaterial* aiMaterial, aiTe
 	return textureName.filename().u8string();
 }
 
+Bone* BuildSkeleton(const aiNode& sceneNode, Bone* parent, Skeleton& skeleton, BoneIndexLookup& boneIndexLookup)
+{
+	Bone* bone = nullptr;
+	std::string boneName = sceneNode.mName.C_Str();
+	auto iter = boneIndexLookup.find(boneName);
+	if (iter != boneIndexLookup.end())
+	{
+		bone = skeleton.bones[iter->second].get();
+	}
+	else
+	{
+		bone = skeleton.bones.emplace_back(std::make_unique<Bone>()).get();
+		bone->index = static_cast<int> (skeleton.bones.size()) - 1;
+		bone->offsetTransform = Matrix4::Identity;
+		if (boneName.empty())
+		{
+			bone->name = "NoName" + std::to_string(bone->index);
+		}
+		else
+		{
+			bone->name = std::move(boneName);
+		}
+		boneIndexLookup.emplace(bone->name, bone->index);
+	}
+
+	if (skeleton.root == nullptr && parent == nullptr)
+	{
+		skeleton.root = bone;
+	}
+
+	bone->parent = parent;
+	bone->parentIndex = parent ? parent->index : -1;
+	bone->toParentTransform = ToMatrix4(sceneNode.mTransformation);
+
+	bone->children.reserve(sceneNode.mNumChildren);
+	for (uint32_t i = 0; i < sceneNode.mNumChildren; ++i)
+	{
+		Bone* child = BuildSkeleton(*(sceneNode.mChildren[i]), bone, skeleton, boneIndexLookup);
+		bone->children.push_back(child);
+		bone->childrenIndices.push_back(child->index);
+	}
+
+	return bone;
+}
+
+uint32_t GetBoneIndex(const aiBone* nodeBone, const BoneIndexLookup& boneIndexLookup)
+{
+	std::string boneName = nodeBone->mName.C_Str();
+	ASSERT(!boneName.empty(), "ERROR: aiBone does not have a name");
+	auto iter = boneIndexLookup.find(boneName);
+	ASSERT(iter != boneIndexLookup.end(), "ERROR: aiBone was not found in the index map");
+	return iter->second;
+}
+
+Bone* SetBoneOffsetTransform(const aiBone* nodeBone, Skeleton& skeleton, BoneIndexLookup& boneIndexLookup)
+{
+	uint32_t boneIndex = GetBoneIndex(nodeBone, boneIndexLookup);
+	Bone* bone = skeleton.bones[boneIndex].get();
+	bone->offsetTransform = ToMatrix4(nodeBone->mOffsetMatrix);
+	return bone;
+}
+
 int main(int argc, char* argv[])
 {
 	const std::optional<Arguments> argOpt = ParseArgs(argc, argv);
@@ -181,8 +245,42 @@ int main(int argc, char* argv[])
 	std::cout << "Importing " << args.inputFilename.u8string() << "..." << std::endl;
 
 	Model model;
+	BoneIndexLookup boneIndexLookup;
+
 	if (scene->HasMeshes())
 	{
+		printf("Build skeleton...\n");
+
+		model.skeleton = std::make_unique<Skeleton>();
+		BuildSkeleton(*scene->mRootNode, nullptr, *model.skeleton, boneIndexLookup);
+		for (uint32_t meshIndex = 0; meshIndex < scene->mNumMeshes; ++meshIndex)
+		{
+			const aiMesh* mesh = scene->mMeshes[meshIndex];
+			if (mesh->mPrimitiveTypes != aiPrimitiveType_TRIANGLE)
+			{
+				continue;
+			}
+			if (mesh->HasBones())
+			{
+				for (uint32_t b = 0; b < mesh->mNumBones; ++b)
+				{
+					const aiBone* bone = mesh->mBones[b];
+					SetBoneOffsetTransform(bone, *model.skeleton, boneIndexLookup);
+				}
+			}
+		}
+		for (std::unique_ptr<Bone>& bone : model.skeleton->bones)
+		{
+			bone->offsetTransform._41 *= args.scale;
+			bone->offsetTransform._42 *= args.scale;
+			bone->offsetTransform._43 *= args.scale;
+			bone->offsetTransform._41 *= args.scale;
+			bone->toParentTransform._41 *= args.scale;
+			bone->toParentTransform._42 *= args.scale;
+			bone->toParentTransform._43 *= args.scale;
+		}
+
+
 		std::cout << "Reading Mesh Data..." << std::endl;
 		for (uint32_t meshIndex = 0; meshIndex < scene->mNumMeshes; ++meshIndex)
 		{
@@ -272,6 +370,10 @@ int main(int argc, char* argv[])
 	
 	std::cout << "Saving Material..." << std::endl;
 	ModelIO::SaveMaterial(args.outputFilename, model);
+
+	printf("Saving Skeleton...\n");
+	ModelIO::SaveSkeleton(args.outputFilename, model);
+
 
 	return 0;
 }
