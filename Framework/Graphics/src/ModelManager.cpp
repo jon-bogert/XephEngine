@@ -35,6 +35,7 @@ xe::Graphics::ModelID xe::Graphics::ModelManager::LoadModel(const std::filesyste
 		ModelIO::LoadModel(filepath, *modelPtr);
 		ModelIO::LoadMaterial(filepath, *modelPtr);
 		ModelIO::LoadSkeleton(filepath, *modelPtr);
+		ModelIO::LoadAnimations(filepath, *modelPtr);
 	}
 	return modelID;
 }

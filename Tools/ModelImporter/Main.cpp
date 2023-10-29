@@ -365,14 +365,67 @@ int main(int argc, char* argv[])
 		}
 	}
 
+	if (scene->HasAnimations())
+	{
+		std::cout << "Building Animations..." << std::endl;
+		for (uint32_t animIndex = 0; animIndex < scene->mNumAnimations; ++animIndex)
+		{
+			const aiAnimation* aiAnim = scene->mAnimations[animIndex];
+			AnimationClip& animClip = model.animationClips.emplace_back();
+			if (aiAnim->mName.length > 0)
+			{
+				animClip.name = aiAnim->mName.C_Str();
+			}
+			else
+			{
+				animClip.name = "Anim" + std::to_string(animIndex);
+			}
+			animClip.durationInFrames = static_cast<float>(aiAnim->mDuration);
+			animClip.framesPerSecond = static_cast<float>(aiAnim->mTicksPerSecond);
+
+			std::cout << "Reading bone animations for " << animClip.name << "..." << std::endl;
+			animClip.boneAnimations.resize(model.skeleton->bones.size());
+			for (uint32_t boneAnimIndex = 0; boneAnimIndex < aiAnim->mNumChannels; ++boneAnimIndex)
+			{
+				const aiNodeAnim* aiBoneAnim = aiAnim->mChannels[boneAnimIndex];
+				const int boneIndex = boneIndexLookup[aiBoneAnim->mNodeName.C_Str()];
+				std::unique_ptr<Animation>& boneAnimation = animClip.boneAnimations[boneIndex];
+				boneAnimation = std::make_unique<Animation>();
+
+				AnimationBuilder builder;
+				for (uint32_t keyIndex = 0; keyIndex < aiBoneAnim->mNumPositionKeys; ++keyIndex)
+				{
+					aiVectorKey& posKey = aiBoneAnim->mPositionKeys[keyIndex];
+					builder.AddPositionKey(ToVector3(posKey.mValue)* args.scale, static_cast<float>(posKey.mTime));
+				}
+				for (uint32_t keyIndex = 0; keyIndex < aiBoneAnim->mNumRotationKeys; ++keyIndex)
+				{
+					aiQuatKey& rotKey = aiBoneAnim->mRotationKeys[keyIndex];
+					builder.AddRotationKey(ToQuaternion(rotKey.mValue), static_cast<float>(rotKey.mTime));
+				}
+				for (uint32_t keyIndex = 0; keyIndex < aiBoneAnim->mNumScalingKeys; ++keyIndex)
+				{
+					aiVectorKey& scaleKey = aiBoneAnim->mScalingKeys[keyIndex];
+					builder.AddScaleKey(ToVector3(scaleKey.mValue), static_cast<float>(scaleKey.mTime));
+				}
+				*boneAnimation = builder.Build();
+			}
+		}
+	}
+
 	std::cout << "Saving Model..." << std::endl;
 	ModelIO::SaveModel(args.outputFilename, model);
 	
 	std::cout << "Saving Material..." << std::endl;
 	ModelIO::SaveMaterial(args.outputFilename, model);
 
-	printf("Saving Skeleton...\n");
+	std::cout << "Saving Skeleton..." << std::endl;
 	ModelIO::SaveSkeleton(args.outputFilename, model);
+
+	std::cout << "Saving Animations..." << std::endl;
+	ModelIO::SaveAnimations(args.outputFilename, model);
+
+	std::cout << "All Completed!" << std::endl;
 
 
 	return 0;

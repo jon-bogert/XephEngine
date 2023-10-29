@@ -9,11 +9,19 @@ using namespace xe::Graphics::AnimationUtil;
 
 namespace
 {
-	void ComputeBoneTransformRecursive(const Bone* bone, BoneTransforms& boneTransforms)
+	void ComputeBoneTransformRecursive(const Bone* bone, BoneTransforms& boneTransforms, const Animator* animator)
 	{
 		if (bone != nullptr)
 		{
-			boneTransforms[bone->index] = bone->toParentTransform;
+			if (animator)
+			{
+				boneTransforms[bone->index] = animator->GetToParentTransform(bone);
+			}
+			else
+			{
+				boneTransforms[bone->index] = bone->toParentTransform;
+			}
+
 			if (bone->parent != nullptr)
 			{
 				boneTransforms[bone->index] = boneTransforms[bone->index] * boneTransforms[bone->parentIndex];
@@ -21,19 +29,19 @@ namespace
 
 			for (const Bone* child : bone->children)
 			{
-				ComputeBoneTransformRecursive(child, boneTransforms);
+				ComputeBoneTransformRecursive(child, boneTransforms, animator);
 			}
 		}
 	}
 }
 
-void xe::Graphics::AnimationUtil::ComputeBoneTransform(ModelID modelID, BoneTransforms& boneTransforms)
+void xe::Graphics::AnimationUtil::ComputeBoneTransform(ModelID modelID, BoneTransforms& boneTransforms, const Animator* animator)
 {
 	Model* model = ModelManager::GetModel(modelID);
 	if (model->skeleton != nullptr)
 	{
 		boneTransforms.resize(model->skeleton->bones.size(), Matrix4::Identity);
-		ComputeBoneTransformRecursive(model->skeleton->root, boneTransforms);
+		ComputeBoneTransformRecursive(model->skeleton->root, boneTransforms, animator);
 	}
 }
 

@@ -9,6 +9,7 @@ namespace xe::Graphics
 	class Animation
 	{
 		friend class AnimationBuilder;
+		friend class AnimationIO;
 
 		PositionKeys _positionKeys;
 		RotationKeys _rotationKeys;

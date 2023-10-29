@@ -16,7 +16,6 @@ namespace xe
 	class App final
 	{
 		using AppStateMap = std::map<std::string, std::unique_ptr<AppState>>;
-
 		AppStateMap _appStates;
 		AppState* _currentState = nullptr;
 		AppState* _nextState = nullptr;
