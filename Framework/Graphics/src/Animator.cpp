@@ -71,7 +71,8 @@ xe::Math::Matrix4 xe::Graphics::Animator::GetToParentTransform(const Bone* bone)
 
 	if (animation == nullptr)
 	{
-		return bone->toParentTransform;
+		return xe::Math::Matrix4::Identity;
+		//return bone->toParentTransform;
 	}
 
 	Transform transform = animation->GetTransform(_animationTime);

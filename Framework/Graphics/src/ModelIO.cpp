@@ -8,19 +8,19 @@
 void xe::Graphics::AnimationIO::Write(FILE* file, const Animation& animation)
 {
 	uint32_t count = animation._positionKeys.size();
-	fprintf_s(file, "PositionKeyCount: %i", count);
+	fprintf_s(file, "PositionKeyCount: %i\n", count);
 	for (auto& key : animation._positionKeys)
 	{
 		fprintf_s(file, "%f %f %f %f\n", key.time, key.key.x, key.key.y, key.key.z);
 	}
 	count = animation._rotationKeys.size();
-	fprintf_s(file, "RotationKeyCount: %i", count);
+	fprintf_s(file, "RotationKeyCount: %i\n", count);
 	for (auto& key : animation._rotationKeys)
 	{
 		fprintf_s(file, "%f %f %f %f %f\n", key.time, key.key.x, key.key.y, key.key.z, key.key.w);
 	}
 	count = animation._scaleKeys.size();
-	fprintf_s(file, "ScaleKeyCount: %i", count);
+	fprintf_s(file, "ScaleKeyCount: %i\n", count);
 	for (auto& key : animation._scaleKeys)
 	{
 		fprintf_s(file, "%f %f %f %f\n", key.time, key.key.x, key.key.y, key.key.z);
@@ -32,21 +32,21 @@ void xe::Graphics::AnimationIO::Read(FILE* file, Animation& animation)
 	AnimationBuilder builder;
 	uint32_t count = 0;
 	float time = 0.f;
-	fscanf_s(file, "PositionKeyCount: %i", &count);
+	fscanf_s(file, "PositionKeyCount: %i\n", &count);
 	for (uint32_t key = 0 ; key < count; ++key)
 	{
 		xe::Math::Vector3 pos;
 		fscanf_s(file, "%f %f %f %f\n", &time, &pos.x, &pos.y, &pos.z);
 		builder.AddPositionKey(pos, time);
 	}
-	fscanf_s(file, "RotationKeyCount: %i", &count);
+	fscanf_s(file, "RotationKeyCount: %i\n", &count);
 	for (uint32_t key = 0; key < count; ++key)
 	{
 		xe::Math::Quaternion rot;
 		fscanf_s(file, "%f %f %f %f %f\n", &time, &rot.x, &rot.y, &rot.z, &rot.w);
 		builder.AddRotationKey(rot, time);
 	}
-	fscanf_s(file, "ScaleKeyCount: %i", &count);
+	fscanf_s(file, "ScaleKeyCount: %i\n", &count);
 	for (uint32_t key = 0; key < count; ++key)
 	{
 		xe::Math::Vector3 sca;
