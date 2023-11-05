@@ -34,18 +34,20 @@ namespace xe::Graphics
 			int useSpecMap = 1;
 			int useShadowMap = 1;
 			float depthBias = 0.000042f;
-			uint32_t __ { 0 };
+			int useSkinning = 1;
 		};
 
 		using TransformBuffer = TypedContantBuffer<TransfromData>;
 		using LightingBuffer = TypedContantBuffer<DirectionalLight>;
 		using MaterialBuffer = TypedContantBuffer<Material>;
 		using SettingsBuffer = TypedContantBuffer<SettingsData>;
+		using BoneTransformBuffer = ConstantBuffer;
 
 		TransformBuffer _transformBuffer;
 		LightingBuffer _lightingBuffer;
 		MaterialBuffer _materialBuffer;
 		SettingsBuffer _settingsBuffer;
+		BoneTransformBuffer _boneTransformBuffer;
 
 		VertexShader _vertexShader;
 		PixelShader _pixelShader;

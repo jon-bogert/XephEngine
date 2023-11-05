@@ -1,6 +1,8 @@
 #include "Pch.h"
 #include "RenderObject.h"
 #include "Model.h"
+#include "Animator.h"
+#include "Skeleton.h"
 
 void xe::Graphics::RenderObject::Terminate()
 {
@@ -11,7 +13,7 @@ void xe::Graphics::RenderObject::Terminate()
 	meshBuffer.Terminate();
 }
 
-xe::Graphics::RenderGroup xe::Graphics::CreateRenderGroup(const xe::Graphics::Model& model)
+xe::Graphics::RenderGroup xe::Graphics::CreateRenderGroup(const xe::Graphics::Model& model, const Animator* animator)
 {
 	RenderGroup renderGroup;
 	renderGroup.reserve(model.meshData.size());
@@ -40,15 +42,17 @@ xe::Graphics::RenderGroup xe::Graphics::CreateRenderGroup(const xe::Graphics::Mo
 		}
 
 		renderObject.meshBuffer.Initialize(meshData.mesh);
+		renderObject.skeleton = model.skeleton.get();
+		renderObject.animator = animator;
 	}
 	return renderGroup;
 }
 
-xe::Graphics::RenderGroup xe::Graphics::CreateRenderGroup(ModelID modelID)
+xe::Graphics::RenderGroup xe::Graphics::CreateRenderGroup(ModelID modelID, const Animator* animator)
 {
 	Model* model = ModelManager::GetModel(modelID);
 	ASSERT(model, "RenderGroup -> ModelID %d is not loaded", modelID);
-	RenderGroup renderGroup = CreateRenderGroup(*model);
+	RenderGroup renderGroup = CreateRenderGroup(*model, animator);
 	for (auto& renderObject : renderGroup)
 	{
 		renderObject.modelID = modelID;

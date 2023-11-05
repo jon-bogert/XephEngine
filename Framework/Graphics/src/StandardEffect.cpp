@@ -3,9 +3,12 @@
 #include "Camera.h"
 #include "RenderObject.h"
 #include "VertexTypes.h"
+#include "AnimationUtil.h"
 
 using namespace xe;
 using namespace xe::Math;
+
+static constexpr size_t MAX_BONE_COUNT = 256;
 
 void xe::Graphics::StandardEffect::Initialize(const std::filesystem::path& path)
 {
@@ -13,6 +16,7 @@ void xe::Graphics::StandardEffect::Initialize(const std::filesystem::path& path)
 	_lightingBuffer.Initialize();
 	_materialBuffer.Initialize();
 	_settingsBuffer.Initialize();
+	_boneTransformBuffer.Initialize(MAX_BONE_COUNT * sizeof(xe::Math::Matrix4));
 
 	_vertexShader.Initialize<Vertex>(path);
 	_pixelShader.Initialize(path);
@@ -25,6 +29,7 @@ void xe::Graphics::StandardEffect::Terminate()
 	_pixelShader.Terminate();
 	_vertexShader.Terminate();
 
+	_boneTransformBuffer.Terminate();
 	_settingsBuffer.Terminate();
 	_materialBuffer.Terminate();
 	_lightingBuffer.Terminate();
@@ -47,6 +52,8 @@ void xe::Graphics::StandardEffect::Begin()
 
 	_settingsBuffer.BindVertexShader(3);
 	_settingsBuffer.BindPixelShader(3);
+
+	_boneTransformBuffer.BindVertexShader(4);
 
 	_sampler.BindVertexShader(0);
 	_sampler.BindPixelShader(0);
@@ -74,6 +81,7 @@ void xe::Graphics::StandardEffect::Draw(const RenderObject& renderObject)
 	settingsData.useSpecMap = _settingsData.useSpecMap > 0 && renderObject.specMapID != 0;
 	settingsData.useShadowMap = _settingsData.useShadowMap > 0 && _shadowMap != nullptr;
 	settingsData.depthBias = _settingsData.depthBias;
+	settingsData.useSkinning = _settingsData.useSkinning > 0 && renderObject.skeleton != nullptr && renderObject.animator != nullptr;
 	_settingsBuffer.Update(settingsData);
 
 	TransfromData transformData;
@@ -89,6 +97,19 @@ void xe::Graphics::StandardEffect::Draw(const RenderObject& renderObject)
 		_shadowMap->BindPixelShader(4);
 	}
 	_transformBuffer.Update(transformData);
+	if (settingsData.useSkinning)
+	{
+		AnimationUtil::BoneTransforms boneTransforms;
+		AnimationUtil::ComputeBoneTransform(renderObject.modelID, boneTransforms, renderObject.animator);
+		AnimationUtil::ApplyBoneOffsets(renderObject.modelID, boneTransforms);
+
+		for (auto& transform : boneTransforms)
+		{
+			transform = Transpose(transform);
+		}
+		boneTransforms.resize(MAX_BONE_COUNT);
+		_boneTransformBuffer.Update(boneTransforms.data());
+	}
 	_lightingBuffer.Update(*_directionalLight);
 	_materialBuffer.Update(renderObject.material);
 
@@ -153,6 +174,11 @@ void xe::Graphics::StandardEffect::DebugUI()
 			_settingsData.useShadowMap = (useShadowMap) ? 1 : 0;
 		}
 		ImGui::DragFloat("Depth Bias##", &_settingsData.depthBias, 0.0000001f, 0.f, 1.f, "%.6f");
+		bool useSkinning = _settingsData.useSkinning > 0;
+		if (ImGui::Checkbox("Use Skinning##", &useSkinning))
+		{
+			_settingsData.useSkinning = (useSkinning) ? 1 : 0;
+		}
 	}
 #endif
 }

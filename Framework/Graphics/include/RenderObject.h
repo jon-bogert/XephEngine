@@ -10,6 +10,8 @@
 namespace xe::Graphics
 {
 	struct Model;
+	struct Skeleton;
+	class Animator;
 	class RenderObject
 	{
 	public:
@@ -23,12 +25,15 @@ namespace xe::Graphics
 
 		ModelID modelID = 0;
 
+		const Skeleton* skeleton = nullptr;
+		const Animator* animator = nullptr;
+
 		void Terminate();
 	};
 
 	using RenderGroup = std::vector<RenderObject>;
-	[[nodiscard]] RenderGroup CreateRenderGroup(const Model& model);
-	[[nodiscard]] RenderGroup CreateRenderGroup(ModelID modelID);
+	[[nodiscard]] RenderGroup CreateRenderGroup(const Model& model, const Animator* animator = nullptr);
+	[[nodiscard]] RenderGroup CreateRenderGroup(ModelID modelID, const Animator* animator = nullptr);
 	void CleanupRenderGroup(RenderGroup& renderGroup);
 
 	template<typename Effect>

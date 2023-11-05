@@ -43,14 +43,14 @@ namespace xe::Graphics
 	struct Vertex
 	{
 		VERTEX_FORMAT(VE_Position | VE_Normal | VE_Tangent | VE_TexCoord | VE_BlendIndex | VE_BlendWeight);
-		static constexpr int MaxBoneWeights = 4;
+		static constexpr int MAX_BONE_WEIGHTS = 4;
 
 		Math::Vector3 position;
 		Math::Vector3 normal;
 		Math::Vector3 tangent;
 		Math::Vector2 uvCoord;
-		int boneIndices[MaxBoneWeights] = {};
-		float boneWeights[MaxBoneWeights] = {};
+		int boneIndices[MAX_BONE_WEIGHTS] = {};
+		float boneWeights[MAX_BONE_WEIGHTS] = {};
 	};
 }
 

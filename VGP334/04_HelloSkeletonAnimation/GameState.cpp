@@ -26,8 +26,8 @@ void GameState::Initialize()
 
 	ModelID modelID = ModelManager::LoadModel("../../Assets/Models/space-soldier/space-soldier.model");
 	_characterID = modelID;
-	_character = CreateRenderGroup(modelID);
 	_characterAnimator.Initialize(modelID);
+	_character = CreateRenderGroup(modelID, &_characterAnimator);
 
 	Mesh groundMesh = MeshBuilder::CreateGroundPlane(20, 20, 1.f);
 	_ground.meshBuffer.Initialize(groundMesh);

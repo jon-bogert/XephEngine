@@ -30,6 +30,7 @@ namespace xe::Graphics
 
 		static ModelID GetModelID(const std::filesystem::path& filepath);
 		static ModelID LoadModel(const std::filesystem::path& filepath);
+		static ModelID AddAnimation(ModelID id, const std::filesystem::path& filepath);
 
 		static Model* GetModel(ModelID id);
 

@@ -40,6 +40,13 @@ xe::Graphics::ModelID xe::Graphics::ModelManager::LoadModel(const std::filesyste
 	return modelID;
 }
 
+xe::Graphics::ModelID xe::Graphics::ModelManager::AddAnimation(ModelID id, const std::filesystem::path& filepath)
+{
+	auto modelIter = _modelManager->_inventory.find(id);
+	ASSERT(modelIter != _modelManager->_inventory.end(), "ModelManager: need to load the model first");
+	ModelIO::LoadAnimations(filepath, *modelIter->second)
+}
+
 xe::Graphics::Model* xe::Graphics::ModelManager::GetModel(ModelID id)
 {
 	auto model = _modelManager->_inventory.find(id);

@@ -19,6 +19,7 @@ struct Arguments
 	stdfs::path inputFilename;
 	stdfs::path outputFilename;
 	float scale = 1.f;
+	bool animOnly = false;
 };
 
 std::optional<Arguments> ParseArgs(int argc, char* argv[])
@@ -37,6 +38,11 @@ std::optional<Arguments> ParseArgs(int argc, char* argv[])
 		if (strcmp(argv[i], "-scale") == 0)
 		{
 			args.scale = atof(argv[i + 1]);
+			++i;
+		}
+		if (strcmp(argv[i], "-anim_only") == 0)
+		{
+			args.animOnly = argv[i + 1] == "1";
 			++i;
 		}
 	}
@@ -280,59 +286,85 @@ int main(int argc, char* argv[])
 			bone->toParentTransform._43 *= args.scale;
 		}
 
-
-		std::cout << "Reading Mesh Data..." << std::endl;
-		for (uint32_t meshIndex = 0; meshIndex < scene->mNumMeshes; ++meshIndex)
+		if (!args.animOnly)
 		{
-			const aiMesh* aiMesh = scene->mMeshes[meshIndex];
-			if (aiMesh->mPrimitiveTypes != aiPrimitiveType_TRIANGLE)
+			std::cout << "Reading Mesh Data..." << std::endl;
+			for (uint32_t meshIndex = 0; meshIndex < scene->mNumMeshes; ++meshIndex)
 			{
-				continue;
-			}
-
-			const uint32_t numVertices = aiMesh->mNumVertices;
-			const uint32_t numFaces = aiMesh->mNumFaces;
-			const uint32_t numIndices = numFaces * 3;
-
-			Model::MeshData& meshData = model.meshData.emplace_back();
-
-			std::cout << "Reading Material Index..." << std::endl;
-			meshData.materialIndex = aiMesh->mMaterialIndex;
-
-			std::cout << "Reading vertices..." << std::endl;
-
-			Mesh& mesh = meshData.mesh;
-			mesh.vertices.reserve(numVertices);
-
-			const aiVector3D* positions = aiMesh->mVertices;
-			const aiVector3D* normals = aiMesh->mNormals;
-			const aiVector3D* tangents = aiMesh->HasTangentsAndBitangents() ? aiMesh->mTangents : nullptr;
-			const aiVector3D* texCoords = aiMesh->HasTextureCoords(0) ? aiMesh->mTextureCoords[0] : nullptr;
-			for (uint32_t v = 0; v < numVertices; ++v)
-			{
-				Vertex& vertex = mesh.vertices.emplace_back();
-				vertex.position = ToVector3(positions[v]) * args.scale;
-				vertex.normal = ToVector3(normals[v]);
-				vertex.tangent = tangents ? ToVector3(tangents[v]) : Vector3::Zero;
-				if (texCoords)
+				const aiMesh* aiMesh = scene->mMeshes[meshIndex];
+				if (aiMesh->mPrimitiveTypes != aiPrimitiveType_TRIANGLE)
 				{
-					vertex.uvCoord = { texCoords[v].x, texCoords[v].y };
+					continue;
 				}
-			}
 
-			std::cout << "Reading indices..." << std::endl;
-			mesh.indices.reserve(numIndices);
-			const auto& aiFaces = aiMesh->mFaces;
-			for (uint32_t i = 0; i < numFaces; ++i)
-			{
-				const aiFace& aiFace = aiFaces[i];
-				mesh.indices.push_back(aiFace.mIndices[0]);
-				mesh.indices.push_back(aiFace.mIndices[1]);
-				mesh.indices.push_back(aiFace.mIndices[2]);
+				const uint32_t numVertices = aiMesh->mNumVertices;
+				const uint32_t numFaces = aiMesh->mNumFaces;
+				const uint32_t numIndices = numFaces * 3;
+
+				Model::MeshData& meshData = model.meshData.emplace_back();
+
+				std::cout << "Reading Material Index..." << std::endl;
+				meshData.materialIndex = aiMesh->mMaterialIndex;
+
+				std::cout << "Reading vertices..." << std::endl;
+
+				Mesh& mesh = meshData.mesh;
+				mesh.vertices.reserve(numVertices);
+
+				const aiVector3D* positions = aiMesh->mVertices;
+				const aiVector3D* normals = aiMesh->mNormals;
+				const aiVector3D* tangents = aiMesh->HasTangentsAndBitangents() ? aiMesh->mTangents : nullptr;
+				const aiVector3D* texCoords = aiMesh->HasTextureCoords(0) ? aiMesh->mTextureCoords[0] : nullptr;
+				for (uint32_t v = 0; v < numVertices; ++v)
+				{
+					Vertex& vertex = mesh.vertices.emplace_back();
+					vertex.position = ToVector3(positions[v]) * args.scale;
+					vertex.normal = ToVector3(normals[v]);
+					vertex.tangent = tangents ? ToVector3(tangents[v]) : Vector3::Zero;
+					if (texCoords)
+					{
+						vertex.uvCoord = { texCoords[v].x, texCoords[v].y };
+					}
+				}
+
+				std::cout << "Reading indices..." << std::endl;
+				mesh.indices.reserve(numIndices);
+				const auto& aiFaces = aiMesh->mFaces;
+				for (uint32_t i = 0; i < numFaces; ++i)
+				{
+					const aiFace& aiFace = aiFaces[i];
+					mesh.indices.push_back(aiFace.mIndices[0]);
+					mesh.indices.push_back(aiFace.mIndices[1]);
+					mesh.indices.push_back(aiFace.mIndices[2]);
+				}
+
+				if (aiMesh->HasBones())
+				{
+					std::cout << "Reading bone weights..." << std::endl;
+					std::vector<int> numWeightsAdded(mesh.vertices.size());
+					for (uint32_t b = 0; b < aiMesh->mNumBones; ++b)
+					{
+						const aiBone* bone = aiMesh->mBones[b];
+						uint32_t boneIndex = GetBoneIndex(bone, boneIndexLookup);
+						for (uint32_t w = 0; w < bone->mNumWeights; ++w)
+						{
+							const aiVertexWeight& weight = bone->mWeights[w];
+							Vertex& vertex = mesh.vertices[weight.mVertexId];
+							int& count = numWeightsAdded[weight.mVertexId];
+							if (count < Vertex::MAX_BONE_WEIGHTS)
+							{
+								vertex.boneIndices[count] = boneIndex;
+								vertex.boneWeights[count] = weight.mWeight;
+								++count;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
-	if (scene->HasMaterials())
+
+	if (!args.animOnly && scene->HasMaterials())
 	{
 		std::cout << "Reading Material Data....\n" << std::endl;
 
@@ -412,15 +444,17 @@ int main(int argc, char* argv[])
 			}
 		}
 	}
+	if (!args.animOnly)
+	{
+		std::cout << "Saving Model..." << std::endl;
+		ModelIO::SaveModel(args.outputFilename, model);
 
-	std::cout << "Saving Model..." << std::endl;
-	ModelIO::SaveModel(args.outputFilename, model);
-	
-	std::cout << "Saving Material..." << std::endl;
-	ModelIO::SaveMaterial(args.outputFilename, model);
+		std::cout << "Saving Material..." << std::endl;
+		ModelIO::SaveMaterial(args.outputFilename, model);
 
-	std::cout << "Saving Skeleton..." << std::endl;
-	ModelIO::SaveSkeleton(args.outputFilename, model);
+		std::cout << "Saving Skeleton..." << std::endl;
+		ModelIO::SaveSkeleton(args.outputFilename, model);
+	}
 
 	std::cout << "Saving Animations..." << std::endl;
 	ModelIO::SaveAnimations(args.outputFilename, model);
