@@ -44,7 +44,8 @@ xe::Graphics::ModelID xe::Graphics::ModelManager::AddAnimation(ModelID id, const
 {
 	auto modelIter = _modelManager->_inventory.find(id);
 	ASSERT(modelIter != _modelManager->_inventory.end(), "ModelManager: need to load the model first");
-	ModelIO::LoadAnimations(filepath, *modelIter->second)
+	ModelIO::LoadAnimations(filepath, *modelIter->second);
+	return 0;
 }
 
 xe::Graphics::Model* xe::Graphics::ModelManager::GetModel(ModelID id)

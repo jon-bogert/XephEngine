@@ -4,6 +4,7 @@
 
 using namespace xe::Core;
 using namespace xe::Graphics;
+using namespace xe::Physics;
 using namespace xe;
 
 void xe::App::ChangeState(const std::string& stateName)
@@ -33,6 +34,9 @@ void xe::App::Run(const AppConfig& config)
 	TextureManager::Initialize("../../Assets/Textures");
 	ModelManager::Initialize();
 
+	PhysicsWorld::Settings physSettings;
+	PhysicsWorld::Initialize(physSettings);
+
 	ASSERT(_currentState, "App -- No app state found");
 
 	_currentState->Initialize();
@@ -61,6 +65,7 @@ void xe::App::Run(const AppConfig& config)
 		auto deltaTime = TimeUtil::DeltaTime();
 		if (deltaTime < 0.5f)
 		{
+			PhysicsWorld::Update(deltaTime);
 			_currentState->Update(deltaTime);
 		}
 
@@ -77,6 +82,7 @@ void xe::App::Run(const AppConfig& config)
 		graphicsSystem.EndRender();
 	}
 
+	PhysicsWorld::Terminate();
 	_currentState->Terminate();
 	ModelManager::Terminate();
 	TextureManager::Terminate();

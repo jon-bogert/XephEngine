@@ -1,6 +1,8 @@
 #ifndef __XE_MATH_QUATERNION_H__
 #define __XE_MATH_QUATERNION_H__
 
+#include <cmath>
+
 namespace xe::Math
 {
     struct Matrix4;

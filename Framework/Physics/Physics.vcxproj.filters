@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Include">
+      <UniqueIdentifier>{143b46a7-e8a3-476e-bef3-2fa65c297484}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{649ec94d-cd98-4731-b838-5fc9eac71b64}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Rigidbody.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pch.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Common.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Physics.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhysicsWorld.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhysicsDebugDrawer.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhysicsObject.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Rigidbody.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pch.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PhysicsWorld.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PhysicsDebugDrawer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

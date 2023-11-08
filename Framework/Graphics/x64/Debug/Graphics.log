@@ -1,2 +1,4 @@
-﻿  StandardEffect.cpp
+﻿  ModelManager.cpp
+  WaterEffect.cpp
+  Generating Code...
   Graphics.vcxproj -> C:\repos\C++\XephEngine\x64\Debug\Graphics.lib

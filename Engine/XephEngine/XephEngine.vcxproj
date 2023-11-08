@@ -182,6 +182,9 @@
     <ProjectReference Include="..\..\Framework\Math\Math.vcxproj">
       <Project>{559783d1-4643-41a5-8def-067cf092c1e7}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Physics\Physics.vcxproj">
+      <Project>{4df7e7df-d169-421b-b0ba-ab37f454b4f6}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\App.cpp" />

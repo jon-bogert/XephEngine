@@ -1,6 +1,8 @@
 #ifndef __XE_MATH_VECTOR3_H__
 #define __XE_MATH_VECTOR3_H__
 
+#include <array>
+
 namespace xe::Math
 {
 	struct Vector3
