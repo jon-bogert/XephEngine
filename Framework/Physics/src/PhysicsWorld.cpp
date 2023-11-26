@@ -47,7 +47,7 @@ void xe::Physics::PhysicsWorld::DebugUI()
 
 void xe::Physics::PhysicsWorld::Register(PhysicsObject* physObj)
 {
-	if (std::find(_physicsObjects.begin(), _physicsObjects.end(), physObj) == _physicsObjects.end())
+	if (std::find(_physicsObjects.begin(), _physicsObjects.end(), physObj) != _physicsObjects.end())
 	{
 		ASSERT(false, "PhysicsWorld::Register -> object already added");
 		return;
@@ -57,6 +57,10 @@ void xe::Physics::PhysicsWorld::Register(PhysicsObject* physObj)
 	if (physObj->GetRigidbody() != nullptr)
 	{
 		_dynamicWorld->addRigidBody(physObj->GetRigidbody());
+	}
+	if (physObj->GetSoftbody() != nullptr)
+	{
+		_softbodyWorld->addSoftBody(physObj->GetSoftbody());
 	}
 }
 
@@ -68,6 +72,10 @@ void xe::Physics::PhysicsWorld::Unregister(PhysicsObject* physObj)
 		if (physObj->GetRigidbody() != nullptr)
 		{
 			_dynamicWorld->removeRigidBody(physObj->GetRigidbody());
+		}
+		if (physObj->GetSoftbody() != nullptr)
+		{
+			_softbodyWorld->removeSoftBody(physObj->GetSoftbody());
 		}
 		_physicsObjects.erase(iter);
 	}
@@ -82,10 +90,16 @@ void xe::Physics::PhysicsWorld::_Initialize(const Settings& settings)
 	_solver = new btSequentialImpulseConstraintSolver();
 	_dynamicWorld = new btDiscreteDynamicsWorld(_dispatcher, _interface, _solver, _collisionConfiguration);
 	_dynamicWorld->setGravity(settings.gravity);
+	_dynamicWorld->setDebugDrawer(_debugDrawer.Unwrap());
+
+	_softbodyWorld = new btSoftRigidDynamicsWorld(_dispatcher, _interface, _solver, _collisionConfiguration);
+	_softbodyWorld->setGravity(settings.gravity);
+	_softbodyWorld->setDebugDrawer(_debugDrawer.Unwrap());
 }
 
 void xe::Physics::PhysicsWorld::_Terminate()
 {
+	SafeDelete(_softbodyWorld);
 	SafeDelete(_dynamicWorld);
 	SafeDelete(_solver);
 	SafeDelete(_interface);
@@ -96,6 +110,7 @@ void xe::Physics::PhysicsWorld::_Terminate()
 void xe::Physics::PhysicsWorld::_Update(const float deltaTime)
 {
 	_dynamicWorld->stepSimulation(deltaTime, _settings.simulationSteps, _settings.fixedTimeStep);
+	_softbodyWorld->stepSimulation(deltaTime, _settings.simulationSteps, _settings.fixedTimeStep);
 	for (PhysicsObject* obj : _physicsObjects)
 	{
 		obj->Update(deltaTime);
@@ -120,5 +135,12 @@ void xe::Physics::PhysicsWorld::_DebugUI()
 		}
 		_debugDrawer.SetDebugMode(debugMode);
 		_dynamicWorld->debugDrawWorld();
+		_softbodyWorld->debugDrawWorld();
 	}
+}
+
+btSoftBody* xe::Physics::PhysicsWorld::CreateSoftbody(int nodeCount)
+{
+	btSoftBody* softbody = new btSoftBody(&_softbodyWorld->getWorldInfo(), nodeCount, nullptr, nullptr);
+	return softbody;
 }

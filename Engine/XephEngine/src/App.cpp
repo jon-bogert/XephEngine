@@ -82,8 +82,8 @@ void xe::App::Run(const AppConfig& config)
 		graphicsSystem.EndRender();
 	}
 
-	PhysicsWorld::Terminate();
 	_currentState->Terminate();
+	PhysicsWorld::Terminate();
 	ModelManager::Terminate();
 	TextureManager::Terminate();
 	SimpleDraw::Terminate();

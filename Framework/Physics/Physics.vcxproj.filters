@@ -30,6 +30,12 @@
     <ClInclude Include="include\PhysicsObject.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\CollisionShape.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Softbody.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Rigidbody.cpp">
@@ -42,6 +48,12 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\PhysicsDebugDrawer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CollisionShape.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Softbody.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

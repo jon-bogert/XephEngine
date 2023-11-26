@@ -48,6 +48,11 @@ namespace xe::Physics
 		btDiscreteDynamicsWorld* _dynamicWorld = nullptr;
 		btSequentialImpulseConstraintSolver* _solver = nullptr;
 
+		//For Soft Bodies
+		btSoftRigidDynamicsWorld* _softbodyWorld = nullptr;
+		friend class Softbody;
+		btSoftBody* CreateSoftbody(int nodeCount);
+
 		using PhysicsObjects = std::vector<PhysicsObject*>;
 		PhysicsObjects _physicsObjects;
 	};

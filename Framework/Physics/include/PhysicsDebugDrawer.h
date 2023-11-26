@@ -26,6 +26,7 @@ namespace xe::Physics
 		void ReportErrorWarning(const char* warningString) { _drawer.reportErrorWarning(warningString); }
 		void SetDebugMode(int debugMode) { _drawer.setDebugMode(debugMode); }
 		int GetDebugMode() const { return _drawer.getDebugMode(); }
+		btIDebugDraw* Unwrap() { return &_drawer; }
 
 	private:
 		Impl::_PhysicsDebugDrawer _drawer;

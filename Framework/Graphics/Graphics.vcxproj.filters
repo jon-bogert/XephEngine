@@ -144,6 +144,9 @@
     <ClInclude Include="include\Animator.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\ParticleEffect.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -240,6 +243,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\Animator.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ParticleEffect.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

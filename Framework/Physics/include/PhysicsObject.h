@@ -15,6 +15,7 @@ namespace xe::Physics
 	private:
 		virtual void Update(const float deltaTime) = 0;
 		virtual btRigidBody* GetRigidbody() { return nullptr; }
+		virtual btSoftBody* GetSoftbody() { return nullptr; }
 	};
 }
 

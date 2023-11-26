@@ -188,6 +188,7 @@
     <ClInclude Include="include\Model.h" />
     <ClInclude Include="include\ModelIO.h" />
     <ClInclude Include="include\ModelManager.h" />
+    <ClInclude Include="include\ParticleEffect.h" />
     <ClInclude Include="include\PixelShader.h" />
     <ClInclude Include="include\PostProcEffect.h" />
     <ClInclude Include="include\RenderObject.h" />
@@ -225,6 +226,7 @@
     <ClCompile Include="src\MeshBuilder.cpp" />
     <ClCompile Include="src\ModelIO.cpp" />
     <ClCompile Include="src\ModelManager.cpp" />
+    <ClCompile Include="src\ParticleEffect.cpp" />
     <ClCompile Include="src\Pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
