@@ -26,9 +26,10 @@ void GameState::Initialize()
 
 	ModelID modelID = ModelManager::LoadModel("../../Assets/Models/space-soldier/space-soldier.model");
 	ModelManager::AddAnimation(modelID, "../../Assets/Models/space-soldier/space-soldier-walking-back.animset");
-	//ModelManager::AddAnimation(modelID, "../../Assets/Models/space-soldier/space-soldier-walking.animset");
+	ModelManager::AddAnimation(modelID, "../../Assets/Models/space-soldier/space-soldier-walking.animset");
 	_characterID = modelID;
 	_characterAnimator.Initialize(modelID);
+	//_characterAnimator.SetMoveBlend(0, 3, 2, 0, 0);
 	_character = CreateRenderGroup(modelID, &_characterAnimator);
 
 	Mesh groundMesh = MeshBuilder::CreateGroundPlane(20, 20, 1.f);
@@ -50,8 +51,11 @@ void GameState::Terminate()
 
 void GameState::Update(const float& deltaTime)
 {
-	_fps = 1.f / deltaTime;
 	UpdateCameraControl(deltaTime);
+
+	Vector2 axis;
+	xe::InputSystem::GetKeyAxisComposite2D(&axis.x, xe::Key::Left, xe::Key::Right, xe::Key::Down, xe::Key::Up);
+	_characterAnimator.UpdateBlendMove(axis);
 	_characterAnimator.Update(deltaTime);
 }
 
@@ -98,6 +102,10 @@ void GameState::DebugUI()
 	if (ImGui::Button("Play Animation"))
 	{
 		_characterAnimator.PlayAnimation(_animIndex, _loopAnimation);
+	}
+	if (ImGui::Button("Blend Animation"))
+	{
+		_characterAnimator.StartBlend(_animIndex, 2.f);
 	}
 	_standardEffect.DebugUI();
 	ImGui::End();

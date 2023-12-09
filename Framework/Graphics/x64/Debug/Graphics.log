@@ -1,14 +1,8 @@
-﻿  AnimationUtil.cpp
-  Animator.cpp
-C:\repos\C++\XephEngine\Framework\Graphics\src\Animator.cpp(16,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\repos\C++\XephEngine\Framework\Graphics\src\Animator.cpp(27,19): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\repos\C++\XephEngine\Framework\Graphics\src\Animator.cpp(45,56): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
-C:\repos\C++\XephEngine\Framework\Graphics\src\Animator.cpp(71,56): warning C4244: 'argument': conversion from 'const float' to 'const unsigned __int64', possible loss of data
-C:\repos\C++\XephEngine\Framework\Graphics\src\Animator.cpp(89,56): warning C4244: 'argument': conversion from 'const float' to 'const unsigned __int64', possible loss of data
-C:\repos\C++\XephEngine\Framework\Graphics\src\Animator.cpp(102,61): warning C4244: 'argument': conversion from 'const float' to 'const unsigned __int64', possible loss of data
-  RenderObject.cpp
-C:\repos\C++\XephEngine\Framework\Graphics\src\RenderObject.cpp(54,2): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 4 has type 'xe::Graphics::ModelID'
-C:\repos\C++\XephEngine\Framework\Graphics\src\RenderObject.cpp(54,2): message : consider using '%zd' in the format string
-  StandardEffect.cpp
-  Generating Code...
-  Graphics.vcxproj -> C:\repos\C++\XephEngine\x64\Debug\Graphics.lib
+﻿  Animator.cpp
+D:\repos\C++\XephEngine\Framework\Graphics\src\Animator.cpp(27,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine\Framework\Graphics\src\Animator.cpp(38,19): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\repos\C++\XephEngine\Framework\Graphics\src\Animator.cpp(65,56): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+D:\repos\C++\XephEngine\Framework\Graphics\src\Animator.cpp(91,56): warning C4244: 'argument': conversion from 'const float' to 'const unsigned __int64', possible loss of data
+D:\repos\C++\XephEngine\Framework\Graphics\src\Animator.cpp(113,56): warning C4244: 'argument': conversion from 'const float' to 'const unsigned __int64', possible loss of data
+D:\repos\C++\XephEngine\Framework\Graphics\src\Animator.cpp(126,61): warning C4244: 'argument': conversion from 'const float' to 'const unsigned __int64', possible loss of data
+  Graphics.vcxproj -> D:\repos\C++\XephEngine\x64\Debug\Graphics.lib

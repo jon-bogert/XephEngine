@@ -78,8 +78,8 @@ void GameState::DebugUI()
 		ImGui::ColorEdit4("Ambient##Light", &_directionalLight.ambient.r);
 		ImGui::ColorEdit4("Diffuse##Light", &_directionalLight.diffuse.r);
 		ImGui::ColorEdit4("Specular##Light", &_directionalLight.specular.r);
-
 	}
+
 	ImGui::NewLine();
 	bool updateCharacter = false;
 	if (ImGui::DragFloat("Yaw##", &_yaw, 0.01f))
@@ -134,7 +134,6 @@ void GameState::UpdateCameraControl(const float& deltaTime)
 	}
 	if (InputSystem::GetMouseHold(Mouse::Button::Right))
 	{
-
 		Vector2 mouseDelta;
 		InputSystem::GetMouseDelta(&mouseDelta.x);
 		_camera.Yaw(mouseDelta.x * turnSpeed * deltaTime);
