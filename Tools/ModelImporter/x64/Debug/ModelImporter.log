@@ -4,6 +4,18 @@ C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(65,36): warning C424
 C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(66,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(67,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(68,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(38,50): warning C4305: 'initializing': truncation from 'double' to 'btScalar'
+C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1232,17): warning C4244: 'initializing': conversion from 'double' to 'btScalar', possible loss of data
+C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1357,21): warning C4244: '+=': conversion from 'double' to 'btScalar', possible loss of data
+C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1361,21): warning C4244: 'initializing': conversion from 'double' to 'btScalar', possible loss of data
+C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1385,20): warning C4244: '=': conversion from 'double' to 'btScalar', possible loss of data
+C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1387,23): warning C4244: '=': conversion from 'double' to 'btScalar', possible loss of data
 C:\repos\C++\XephEngine\Tools\ModelImporter\Main.cpp(40,21): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\repos\C++\XephEngine\Tools\ModelImporter\Main.cpp(121,4): warning C4018: '<': signed/unsigned mismatch
+C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1269,17): warning C4244: 'initializing': conversion from 'double' to 'btScalar', possible loss of data
+C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1303,4): message : see reference to function template instantiation 'void btSoftBody::updateFace<btDbvtNode>(DBVTNODE *,bool,bool)' being compiled
+          with
+          [
+              DBVTNODE=btDbvtNode
+          ]
   ModelImporter.vcxproj -> C:\repos\C++\XephEngine\x64\Debug\ModelImporter.exe

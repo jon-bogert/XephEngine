@@ -1,6 +1,8 @@
 #include "Pch.h"
 #include "Animator.h"
 
+using namespace xe::Math;
+
 void xe::Graphics::Animator::Initialize(ModelID id)
 {
 	_modelID = id;
@@ -16,10 +18,28 @@ void xe::Graphics::Animator::PlayAnimation(int clipIndex, bool looping)
 	_animationTime = 0.f;
 }
 
+void xe::Graphics::Animator::StartBlend(int nextIndex, float time)
+{
+	if (_isBlending && _blendTimer / _blendTimeTotal > 0.5f)
+	{
+		_clipIndex = _nextClipIndex;
+	}
+	_nextClipIndex = nextIndex;
+	_blendTimeTotal = time;
+	_invBlendTimeTotal = 1.f / time;
+	_isBlending = true;
+}
+
 void xe::Graphics::Animator::Update(const float deltaTime)
 {
 	if (_clipIndex < 0)
 		return;
+
+	if (_isBlending)
+	{
+		if (BlendUpdate(deltaTime))
+			return;
+	}
 
 	Model* model = ModelManager::GetModel(_modelID);
 	const AnimationClip& animClip = model->animationClips[_clipIndex];
@@ -76,5 +96,37 @@ xe::Math::Matrix4 xe::Graphics::Animator::GetToParentTransform(const Bone* bone)
 	}
 
 	Transform transform = animation->GetTransform(_animationTime);
+
+	if (_isBlending)
+	{
+		const AnimationClip& nextAnimClip = model->animationClips[_clipIndex];
+		const Animation* nextAnimation = nextAnimClip.boneAnimations[bone->index].get();
+
+		Transform nextTransform = nextAnimation->GetTransform(_animationTime);
+		
+		Transform finalTransform;
+		float t = _blendTimer * _invBlendTimeTotal;
+		finalTransform.position = Lerp(transform.position, nextTransform.position, t);
+		finalTransform.rotation = Quaternion::Slerp(transform.rotation, nextTransform.rotation, t);
+		finalTransform.scale = Lerp(transform.scale, nextTransform.scale, t);
+
+		return finalTransform.Matrix();
+	}
+
 	return transform.Matrix();
+}
+
+bool xe::Graphics::Animator::BlendUpdate(const float deltaTime)
+{
+	if (_blendTimer >= _blendTimeTotal)
+	{
+		_isBlending = false;
+		_blendTimer = 0;
+		_clipIndex = _nextClipIndex;
+		return false;
+	}
+
+	_blendTimer += deltaTime;
+
+	return true;
 }

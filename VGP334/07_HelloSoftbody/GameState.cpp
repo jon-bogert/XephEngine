@@ -140,7 +140,6 @@ void GameState::UpdateCameraControl(const float& deltaTime)
 	}
 	if (InputSystem::GetMouseHold(Mouse::Button::Right))
 	{
-
 		Vector2 mouseDelta;
 		InputSystem::GetMouseDelta(&mouseDelta.x);
 		_camera.Yaw(mouseDelta.x * turnSpeed * deltaTime);
