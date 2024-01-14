@@ -1,6 +1,1 @@
-﻿  Pch.cpp
-  TimeUtil.cpp
-  Window.cpp
-  WindowMessageHandler.cpp
-  Generating Code...
-  Core.vcxproj -> C:\repos\C++\XephEngine\x64\Debug\Core.lib
+﻿  Core.vcxproj -> C:\repos\C++\XephEngine\x64\Debug\Core.lib

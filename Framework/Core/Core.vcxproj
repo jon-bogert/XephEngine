@@ -163,15 +163,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\BlockAllocator.h" />
     <ClInclude Include="include\Common.h" />
     <ClInclude Include="include\Core.h" />
     <ClInclude Include="include\DebugUtil.h" />
     <ClInclude Include="include\TimeUtil.h" />
+    <ClInclude Include="include\TypedAllocator.h" />
     <ClInclude Include="include\Window.h" />
     <ClInclude Include="include\WindowMessageHandler.h" />
     <ClInclude Include="src\Pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\BlockAllocator.cpp" />
     <ClCompile Include="src\Pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
