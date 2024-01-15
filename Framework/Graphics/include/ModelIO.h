@@ -26,4 +26,4 @@ namespace xe::Graphics
 	}
 }
 
-#endif //__XE_GRAPHICS_MODELIO_H__
+#endif //!__XE_GRAPHICS_MODELIO_H__

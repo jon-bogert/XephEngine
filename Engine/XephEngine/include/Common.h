@@ -9,4 +9,4 @@
 #include "XephInput/include/XephInput/InputSystem.h"
 #include "XephInput/include/XephInput/Enums.h"
 
-#endif // XE_XEPHENGINE_COMMON_H
+#endif // !XE_XEPHENGINE_COMMON_H

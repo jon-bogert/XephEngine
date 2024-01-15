@@ -15,31 +15,6 @@ namespace xe::Graphics
 
 	class BloomEffect
 	{
-		struct SettingsData
-		{
-			float width;
-			float height;
-			float multiplier;
-			uint32_t padding = 0;
-		};
-
-		using SettingsBuffer = TypedContantBuffer<SettingsData>;
-		SettingsBuffer _settingsBuffer;
-
-		RenderTarget _horizontalBlurRenderTarget;
-		RenderTarget _verticalBlurRenderTarget;
-
-		VertexShader _vertexShader;
-		PixelShader _horizontalPixelShader;
-		PixelShader _verticalPixelShader;
-
-		Sampler _sampler;
-
-		const Texture* _sourceTexture = nullptr;
-
-		uint32_t _blurIterations = 1;
-		float _blurSaturation = 1.f;
-
 	public:
 		void Initialize();
 		void Terminate();
@@ -51,18 +26,44 @@ namespace xe::Graphics
 
 		void DebugUI();
 
-		void SetSourceTexture(const Texture& texture) { _sourceTexture = &texture; }
-		const Texture& GetHorizontalBlurTexture() const { return _horizontalBlurRenderTarget; }
-		const Texture& GetVerticalBlurTexture() const { return _verticalBlurRenderTarget; }
-		const Texture& GetResultTexture() const { return _verticalBlurRenderTarget; }
+		void SetSourceTexture(const Texture& texture) { m_sourceTexture = &texture; }
+		const Texture& GetHorizontalBlurTexture() const { return m_horizontalBlurRenderTarget; }
+		const Texture& GetVerticalBlurTexture() const { return m_verticalBlurRenderTarget; }
+		const Texture& GetResultTexture() const { return m_verticalBlurRenderTarget; }
 
-		uint32_t GetBlurIterations() { return _blurIterations; }
-		float GetBlurSaturation() { return _blurSaturation; }
+		uint32_t GetBlurIterations() { return m_blurIterations; }
+		float GetBlurSaturation() { return m_blurSaturation; }
 
-		void SetBlurIterations(uint32_t blurIter) { _blurIterations = blurIter; }
-		void SetBlurSaturation(float blurSat) { _blurSaturation = blurSat; }
+		void SetBlurIterations(uint32_t blurIter) { m_blurIterations = blurIter; }
+		void SetBlurSaturation(float blurSat) { m_blurSaturation = blurSat; }
+
+	private:
+		struct SettingsData
+		{
+			float width;
+			float height;
+			float multiplier;
+			uint32_t padding = 0;
+		};
+
+		using SettingsBuffer = TypedContantBuffer<SettingsData>;
+		SettingsBuffer m_settingsBuffer;
+
+		RenderTarget m_horizontalBlurRenderTarget;
+		RenderTarget m_verticalBlurRenderTarget;
+
+		VertexShader m_vertexShader;
+		PixelShader m_horizontalPixelShader;
+		PixelShader m_verticalPixelShader;
+
+		Sampler m_sampler;
+
+		const Texture* m_sourceTexture = nullptr;
+
+		uint32_t m_blurIterations = 1;
+		float m_blurSaturation = 1.f;
 
 	};
 }
 
-#endif // __XE_GRAPHICS_BLOOMEFFECT_H__
+#endif // !__XE_GRAPHICS_BLOOMEFFECT_H__

@@ -6,17 +6,17 @@
 
 xe::Physics::Rigidbody::~Rigidbody()
 {
-	ASSERT(_rigidbody == nullptr, "Rigidbody: terminate must be called");
+	ASSERT(m_rigidbody == nullptr, "Rigidbody: terminate must be called");
 }
 
 void xe::Physics::Rigidbody::Initialize(xe::Graphics::Transform& graphicsTransform, const CollisionShape& shape, float mass)
 {
-	_graphicsTransform = &graphicsTransform;
-	_mass = mass;
+	m_graphicsTransform = &graphicsTransform;
+	m_mass = mass;
 
-	_motionState = new btDefaultMotionState(ConvertTobtTransform(graphicsTransform));
-	_rigidbody = new btRigidBody(_mass, _motionState, shape.GetCollisionShape());
-	_rigidbody->setRestitution(0.5f);
+	m_motionState = new btDefaultMotionState(ConvertTobtTransform(graphicsTransform));
+	m_rigidbody = new btRigidBody(m_mass, m_motionState, shape.GetCollisionShape());
+	m_rigidbody->setRestitution(0.5f);
 
 	PhysicsWorld::Get().Register(this);
 }
@@ -24,31 +24,31 @@ void xe::Physics::Rigidbody::Initialize(xe::Graphics::Transform& graphicsTransfo
 void xe::Physics::Rigidbody::Terminate()
 {
 	PhysicsWorld::Get().Unregister(this);
-	SafeDelete(_motionState);
-	SafeDelete(_rigidbody);
-	_graphicsTransform = nullptr;
+	SafeDelete(m_motionState);
+	SafeDelete(m_rigidbody);
+	m_graphicsTransform = nullptr;
 }
 
 void xe::Physics::Rigidbody::SetPosition(xe::Math::Vector3 position)
 {
-	_graphicsTransform->position = position;
-	_rigidbody->setWorldTransform(ConvertTobtTransform(*_graphicsTransform));
+	m_graphicsTransform->position = position;
+	m_rigidbody->setWorldTransform(ConvertTobtTransform(*m_graphicsTransform));
 }
 
 void xe::Physics::Rigidbody::SetVelocity(xe::Math::Vector3 velocity)
 {
-	_rigidbody->activate();
-	_rigidbody->setLinearVelocity(velocity);
+	m_rigidbody->activate();
+	m_rigidbody->setLinearVelocity(velocity);
 }
 
 bool xe::Physics::Rigidbody::IsDynamic() const
 {
-	return _mass > 0.f;
+	return m_mass > 0.f;
 }
 
 void xe::Physics::Rigidbody::Update(const float deltaTime)
 {
-	btTransform worldTransform = _rigidbody->getWorldTransform();
-	_graphicsTransform->position = worldTransform.getOrigin();
-	_graphicsTransform->rotation = worldTransform.getRotation();
+	btTransform worldTransform = m_rigidbody->getWorldTransform();
+	m_graphicsTransform->position = worldTransform.getOrigin();
+	m_graphicsTransform->rotation = worldTransform.getRotation();
 }

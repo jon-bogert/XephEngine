@@ -232,4 +232,4 @@ namespace xe::Math
 	};
 }
 
-#endif
+#endif //!__XE_MATH_MATRIX4_H__

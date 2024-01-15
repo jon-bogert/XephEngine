@@ -9,11 +9,6 @@ namespace xe::Graphics
 
 	class ModelManager final
 	{
-		static ModelManager& Get();
-
-		using ModelCache = std::map<ModelID, std::unique_ptr<Model>>;
-		ModelCache _inventory;
-
 	public:
 
 		ModelManager() = default;
@@ -34,7 +29,12 @@ namespace xe::Graphics
 
 		static Model* GetModel(ModelID id);
 
+	private:
+		static ModelManager& Get();
+
+		using ModelCache = std::map<ModelID, std::unique_ptr<Model>>;
+		ModelCache m_inventory;
 	};
 }
 
-#endif // __XE_GRAPHICS_MODELMANAGER_H__
+#endif //!__XE_GRAPHICS_MODELMANAGER_H__

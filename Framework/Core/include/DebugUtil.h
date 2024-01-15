@@ -4,12 +4,22 @@
 #include "TimeUtil.h"
 
 #ifdef _DEBUG
+#ifdef _CONSOLE
 #define LOG(format, ...)\
 	do{\
 		char buffer[256];\
 		int res = snprintf(buffer, std::size(buffer), "{%.3f}:" ##format##"\n", xe::Core::TimeUtil::Time(), __VA_ARGS__);\
-		OutputDebugStringA(buffer);\
+        printf(buffer);/
+        OutputDebugStringA(buffer);\
 	} while(false)
+#else // _CONSOLE
+#define LOG(format, ...)\
+	do{\
+		char buffer[256];\
+		int res = snprintf(buffer, std::size(buffer), "{%.3f}:" ##format##"\n", xe::Core::TimeUtil::Time(), __VA_ARGS__);\
+        OutputDebugStringA(buffer);\
+	} while(false)
+#endif // _CONSOLE
 
 #define ASSERT(condition, format, ...)\
 	do{\
@@ -41,4 +51,4 @@ private:
 
 
 
-#endif // XE_CORE_DEBUGUTIL_H
+#endif // !__XE_CORE_DEBUGUTIL_H__

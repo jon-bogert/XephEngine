@@ -15,4 +15,4 @@ namespace xe
 	};
 }
 
-#endif
+#endif //!__XEPHENGINE_APPSTATE_H__

@@ -6,9 +6,6 @@ namespace xe::Physics
 	{
 		friend class Rigidbody;
 
-		btCollisionShape* _collisionShape = nullptr;
-		btCollisionShape* GetCollisionShape() const { return _collisionShape; }
-
 	public:
 		CollisionShape() = default;
 		~CollisionShape();
@@ -18,6 +15,10 @@ namespace xe::Physics
 		void InitializeHull(const xe::Math::Vector3& halfExtends, const xe::Math::Vector3& origin);
 		void InitializeEmpty();
 		void Termainate();
+
+	private:
+		btCollisionShape* m_collisionShape = nullptr;
+		btCollisionShape* GetCollisionShape() const { return m_collisionShape; }
 	};
 }
-#endif //__XE_PHYSICS_COLLISIONSHAPE_H__
+#endif //!__XE_PHYSICS_COLLISIONSHAPE_H__

@@ -47,71 +47,71 @@ void xe::Physics::PhysicsWorld::DebugUI()
 
 void xe::Physics::PhysicsWorld::Register(PhysicsObject* physObj)
 {
-	if (std::find(_physicsObjects.begin(), _physicsObjects.end(), physObj) != _physicsObjects.end())
+	if (std::find(m_physicsObjects.begin(), m_physicsObjects.end(), physObj) != m_physicsObjects.end())
 	{
 		ASSERT(false, "PhysicsWorld::Register -> object already added");
 		return;
 	}
 
-	_physicsObjects.push_back(physObj);
+	m_physicsObjects.push_back(physObj);
 	if (physObj->GetRigidbody() != nullptr)
 	{
-		_dynamicWorld->addRigidBody(physObj->GetRigidbody());
+		m_dynamicWorld->addRigidBody(physObj->GetRigidbody());
 	}
 	if (physObj->GetSoftbody() != nullptr)
 	{
-		_softbodyWorld->addSoftBody(physObj->GetSoftbody());
+		m_softbodyWorld->addSoftBody(physObj->GetSoftbody());
 	}
 }
 
 void xe::Physics::PhysicsWorld::Unregister(PhysicsObject* physObj)
 {
-	auto iter = std::find(_physicsObjects.begin(), _physicsObjects.end(), physObj);
-	if (iter != _physicsObjects.end())
+	auto iter = std::find(m_physicsObjects.begin(), m_physicsObjects.end(), physObj);
+	if (iter != m_physicsObjects.end())
 	{
 		if (physObj->GetRigidbody() != nullptr)
 		{
-			_dynamicWorld->removeRigidBody(physObj->GetRigidbody());
+			m_dynamicWorld->removeRigidBody(physObj->GetRigidbody());
 		}
 		if (physObj->GetSoftbody() != nullptr)
 		{
-			_softbodyWorld->removeSoftBody(physObj->GetSoftbody());
+			m_softbodyWorld->removeSoftBody(physObj->GetSoftbody());
 		}
-		_physicsObjects.erase(iter);
+		m_physicsObjects.erase(iter);
 	}
 }
 
 void xe::Physics::PhysicsWorld::_Initialize(const Settings& settings)
 {
-	_settings = settings;
-	_collisionConfiguration = new btDefaultCollisionConfiguration();
-	_dispatcher = new btCollisionDispatcher(_collisionConfiguration);
-	_interface = new btDbvtBroadphase();
-	_solver = new btSequentialImpulseConstraintSolver();
-	_dynamicWorld = new btDiscreteDynamicsWorld(_dispatcher, _interface, _solver, _collisionConfiguration);
-	_dynamicWorld->setGravity(settings.gravity);
-	_dynamicWorld->setDebugDrawer(_debugDrawer.Unwrap());
+	m_settings = settings;
+	m_collisionConfiguration = new btDefaultCollisionConfiguration();
+	m_dispatcher = new btCollisionDispatcher(m_collisionConfiguration);
+	m_interface = new btDbvtBroadphase();
+	m_solver = new btSequentialImpulseConstraintSolver();
+	m_dynamicWorld = new btDiscreteDynamicsWorld(m_dispatcher, m_interface, m_solver, m_collisionConfiguration);
+	m_dynamicWorld->setGravity(settings.gravity);
+	m_dynamicWorld->setDebugDrawer(m_debugDrawer.Unwrap());
 
-	_softbodyWorld = new btSoftRigidDynamicsWorld(_dispatcher, _interface, _solver, _collisionConfiguration);
-	_softbodyWorld->setGravity(settings.gravity);
-	_softbodyWorld->setDebugDrawer(_debugDrawer.Unwrap());
+	m_softbodyWorld = new btSoftRigidDynamicsWorld(m_dispatcher, m_interface, m_solver, m_collisionConfiguration);
+	m_softbodyWorld->setGravity(settings.gravity);
+	m_softbodyWorld->setDebugDrawer(m_debugDrawer.Unwrap());
 }
 
 void xe::Physics::PhysicsWorld::_Terminate()
 {
-	SafeDelete(_softbodyWorld);
-	SafeDelete(_dynamicWorld);
-	SafeDelete(_solver);
-	SafeDelete(_interface);
-	SafeDelete(_dispatcher);
-	SafeDelete(_collisionConfiguration);
+	SafeDelete(m_softbodyWorld);
+	SafeDelete(m_dynamicWorld);
+	SafeDelete(m_solver);
+	SafeDelete(m_interface);
+	SafeDelete(m_dispatcher);
+	SafeDelete(m_collisionConfiguration);
 }
 
 void xe::Physics::PhysicsWorld::_Update(const float deltaTime)
 {
-	_dynamicWorld->stepSimulation(deltaTime, _settings.simulationSteps, _settings.fixedTimeStep);
-	_softbodyWorld->stepSimulation(deltaTime, _settings.simulationSteps, _settings.fixedTimeStep);
-	for (PhysicsObject* obj : _physicsObjects)
+	m_dynamicWorld->stepSimulation(deltaTime, m_settings.simulationSteps, m_settings.fixedTimeStep);
+	m_softbodyWorld->stepSimulation(deltaTime, m_settings.simulationSteps, m_settings.fixedTimeStep);
+	for (PhysicsObject* obj : m_physicsObjects)
 	{
 		obj->Update(deltaTime);
 	}
@@ -119,10 +119,10 @@ void xe::Physics::PhysicsWorld::_Update(const float deltaTime)
 
 void xe::Physics::PhysicsWorld::_DebugUI()
 {
-	ImGui::Checkbox("Render Physics", &_renderDebugUI);
-	if (_renderDebugUI)
+	ImGui::Checkbox("Render Physics", &m_renderDebugUI);
+	if (m_renderDebugUI)
 	{
-		int debugMode = _debugDrawer.GetDebugMode();
+		int debugMode = m_debugDrawer.GetDebugMode();
 		bool isEnabled = (debugMode & btIDebugDraw::DBG_DrawWireframe) > 0;
 		if (ImGui::Checkbox("[DGB]DrawWireframe", &isEnabled))
 		{
@@ -133,14 +133,14 @@ void xe::Physics::PhysicsWorld::_DebugUI()
 		{
 			debugMode = (isEnabled) ? debugMode | btIDebugDraw::DBG_DrawAabb : debugMode & ~btIDebugDraw::DBG_DrawAabb;
 		}
-		_debugDrawer.SetDebugMode(debugMode);
-		_dynamicWorld->debugDrawWorld();
-		_softbodyWorld->debugDrawWorld();
+		m_debugDrawer.SetDebugMode(debugMode);
+		m_dynamicWorld->debugDrawWorld();
+		m_softbodyWorld->debugDrawWorld();
 	}
 }
 
 btSoftBody* xe::Physics::PhysicsWorld::CreateSoftbody(int nodeCount)
 {
-	btSoftBody* softbody = new btSoftBody(&_softbodyWorld->getWorldInfo(), nodeCount, nullptr, nullptr);
+	btSoftBody* softbody = new btSoftBody(&m_softbodyWorld->getWorldInfo(), nodeCount, nullptr, nullptr);
 	return softbody;
 }

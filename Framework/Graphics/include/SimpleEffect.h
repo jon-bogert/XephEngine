@@ -13,13 +13,6 @@ namespace xe::Graphics
 
 	class SimpleEffect
 	{
-		const Camera* _camera = nullptr;
-
-		ConstantBuffer _constantBuffer;
-		VertexShader _vertexShader;
-		PixelShader _pixelShader;
-		Sampler _sampler;
-
 	public:
 		void Initialize();
 		void Terminate();
@@ -29,7 +22,15 @@ namespace xe::Graphics
 		void End();
 
 		void SetCamera(const Camera& camera);
+
+	private:
+		const Camera* m_camera = nullptr;
+
+		ConstantBuffer m_constantBuffer;
+		VertexShader m_vertexShader;
+		PixelShader m_pixelShader;
+		Sampler m_sampler;
 	};
 }
 
-#endif // XE_GRAPHICS_SIMPLEEFFECT_H
+#endif //!__XE_GRAPHICS_SIMPLEEFFECT_H__

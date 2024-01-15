@@ -79,4 +79,4 @@ namespace xe::Graphics
 // 23 234 255 109 244
 // 23 234 255 109 244
 
-#endif //__XE_GRAPHICS_VERTEXTYPES_H__
+#endif //!__XE_GRAPHICS_VERTEXTYPES_H__

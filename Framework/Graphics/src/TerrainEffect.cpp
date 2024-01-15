@@ -10,50 +10,50 @@ using namespace xe::Math;
 void xe::Graphics::TerrainEffect::Initialize()
 {
 	std::filesystem::path shaderFile = L"../../Assets/Shaders/Terrain.fx";
-	_vertexShader.Initialize<Vertex>(shaderFile);
-	_pixelShader.Initialize(shaderFile);
+	m_vertexShader.Initialize<Vertex>(shaderFile);
+	m_pixelShader.Initialize(shaderFile);
 
-	_transformBuffer.Initialize();
-	_lightingBuffer.Initialize();
-	_materialBuffer.Initialize();
-	_settingsBuffer.Initialize();
-	_sampler.Initialize(Sampler::Filter::Linear, Sampler::AddressMode::Wrap);
+	m_transformBuffer.Initialize();
+	m_lightingBuffer.Initialize();
+	m_materialBuffer.Initialize();
+	m_settingsBuffer.Initialize();
+	m_sampler.Initialize(Sampler::Filter::Linear, Sampler::AddressMode::Wrap);
 }
 
 void xe::Graphics::TerrainEffect::Terminate()
 {
-	_sampler.Terminate();
-	_settingsBuffer.Terminate();
-	_materialBuffer.Terminate();
-	_lightingBuffer.Terminate();
-	_transformBuffer.Terminate();
+	m_sampler.Terminate();
+	m_settingsBuffer.Terminate();
+	m_materialBuffer.Terminate();
+	m_lightingBuffer.Terminate();
+	m_transformBuffer.Terminate();
 
-	_pixelShader.Terminate();
-	_vertexShader.Terminate();
+	m_pixelShader.Terminate();
+	m_vertexShader.Terminate();
 }
 
 void xe::Graphics::TerrainEffect::Begin()
 {
-	_vertexShader.Bind();
-	_pixelShader.Bind();
+	m_vertexShader.Bind();
+	m_pixelShader.Bind();
 
-	_transformBuffer.BindVertexShader(0);
+	m_transformBuffer.BindVertexShader(0);
 
-	_lightingBuffer.BindPixelShader(1);
-	_lightingBuffer.BindVertexShader(1);
+	m_lightingBuffer.BindPixelShader(1);
+	m_lightingBuffer.BindVertexShader(1);
 
-	_materialBuffer.BindPixelShader(2);
+	m_materialBuffer.BindPixelShader(2);
 
-	_settingsBuffer.BindPixelShader(3);
-	_settingsBuffer.BindVertexShader(3);
+	m_settingsBuffer.BindPixelShader(3);
+	m_settingsBuffer.BindVertexShader(3);
 
-	_sampler.BindPixelShader(0);
-	_sampler.BindVertexShader(0);
+	m_sampler.BindPixelShader(0);
+	m_sampler.BindVertexShader(0);
 }
 
 void xe::Graphics::TerrainEffect::End()
 {
-	if (_shadowMap != nullptr)
+	if (m_shadowMap != nullptr)
 	{
 		Texture::UnbindPixelShader(2);
 	}
@@ -61,36 +61,36 @@ void xe::Graphics::TerrainEffect::End()
 
 void xe::Graphics::TerrainEffect::Draw(const RenderObject& renderObject)
 {
-	ASSERT(_camera != nullptr, "TerrainEffect: no camera specified");
-	ASSERT(_directionalLight != nullptr, "TerrainEffect: no light specified");
+	ASSERT(m_camera != nullptr, "TerrainEffect: no camera specified");
+	ASSERT(m_directionalLight != nullptr, "TerrainEffect: no light specified");
 
 	const Matrix4& matWorld = renderObject.transform.Matrix();
-	const Matrix4& matView = _camera->GetViewMatrix();
-	const Matrix4& matProj = _camera->GetProjectionMatrix();
+	const Matrix4& matView = m_camera->GetViewMatrix();
+	const Matrix4& matProj = m_camera->GetProjectionMatrix();
 
 	TransfromData transformData;
 	transformData.world = xe::Math::Transpose(matWorld);
 	transformData.wvp = Transpose(matWorld * matView * matProj);
-	transformData.viewPosition = _camera->GetPosition();
-	if (_shadowMap != nullptr && _lightCamera != nullptr)
+	transformData.viewPosition = m_camera->GetPosition();
+	if (m_shadowMap != nullptr && m_lightCamera != nullptr)
 	{
-		const xe::Math::Matrix4& matLightView = _lightCamera->GetViewMatrix();
-		const xe::Math::Matrix4& matLightProj = _lightCamera->GetProjectionMatrix();
+		const xe::Math::Matrix4& matLightView = m_lightCamera->GetViewMatrix();
+		const xe::Math::Matrix4& matLightProj = m_lightCamera->GetProjectionMatrix();
 		transformData.lwvp = Transpose(matWorld * matLightView * matLightProj);
 	}
 
 	SettingsData settingsData;
-	settingsData.useShadowMap = (_settingsData.useShadowMap > 0 && _shadowMap != nullptr) ? 1 : 0;
-	settingsData.depthBias = _settingsData.depthBias;
+	settingsData.useShadowMap = (m_settingsData.useShadowMap > 0 && m_shadowMap != nullptr) ? 1 : 0;
+	settingsData.depthBias = m_settingsData.depthBias;
 	if (settingsData.useShadowMap)
 	{
-		_shadowMap->BindPixelShader(2);
+		m_shadowMap->BindPixelShader(2);
 	}
 
-	_transformBuffer.Update(transformData);
-	_settingsBuffer.Update(settingsData);
-	_lightingBuffer.Update(*_directionalLight);
-	_materialBuffer.Update(renderObject.material);
+	m_transformBuffer.Update(transformData);
+	m_settingsBuffer.Update(settingsData);
+	m_lightingBuffer.Update(*m_directionalLight);
+	m_materialBuffer.Update(renderObject.material);
 
 	TextureManager::BindPixelShader(renderObject.diffuseMapID, 0);
 	TextureManager::BindPixelShader(renderObject.specMapID, 1);
@@ -103,32 +103,32 @@ void xe::Graphics::TerrainEffect::DebugUI()
 #ifdef _DEBUG
 	if (ImGui::CollapsingHeader("Terrain##Effect", ImGuiTreeNodeFlags_DefaultOpen))
 	{
-		bool useShadowMap = _settingsData.useShadowMap > 0;
+		bool useShadowMap = m_settingsData.useShadowMap > 0;
 		if (ImGui::Checkbox("Use Shadow Map##Terrain", &useShadowMap))
 		{
-			_settingsData.useShadowMap = (useShadowMap) ? 1 : 0;
+			m_settingsData.useShadowMap = (useShadowMap) ? 1 : 0;
 		}
-		ImGui::DragFloat("Depth Bias##Terrain", &_settingsData.depthBias, 0.0000001f, 0.f, 1.f, "%.6f");
+		ImGui::DragFloat("Depth Bias##Terrain", &m_settingsData.depthBias, 0.0000001f, 0.f, 1.f, "%.6f");
 	}
 #endif // _DEBUG
 }
 
 void xe::Graphics::TerrainEffect::SetCamera(const Camera& camera)
 {
-	_camera = &camera;
+	m_camera = &camera;
 }
 
 void xe::Graphics::TerrainEffect::SetLightCamera(const Camera& camera)
 {
-	_lightCamera = &camera;
+	m_lightCamera = &camera;
 }
 
 void xe::Graphics::TerrainEffect::SetDirectionalLight(const DirectionalLight& directionalLight)
 {
-	_directionalLight = &directionalLight;
+	m_directionalLight = &directionalLight;
 }
 
 void xe::Graphics::TerrainEffect::SetShadowMap(const Texture& shadowMap)
 {
-	_shadowMap = &shadowMap;
+	m_shadowMap = &shadowMap;
 }

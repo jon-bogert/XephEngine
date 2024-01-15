@@ -11,4 +11,4 @@ namespace xe
 	App& MainApp();
 }
 
-#endif // __XE_XEPHENGINE_XEPHENGINE_H__
+#endif // !__XE_XEPHENGINE_XEPHENGINE_H__

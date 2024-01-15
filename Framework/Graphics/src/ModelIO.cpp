@@ -7,21 +7,21 @@
 
 void xe::Graphics::AnimationIO::Write(FILE* file, const Animation& animation)
 {
-	uint32_t count = animation._positionKeys.size();
+	uint32_t count = animation.m_positionKeys.size();
 	fprintf_s(file, "PositionKeyCount: %i\n", count);
-	for (auto& key : animation._positionKeys)
+	for (auto& key : animation.m_positionKeys)
 	{
 		fprintf_s(file, "%f %f %f %f\n", key.time, key.key.x, key.key.y, key.key.z);
 	}
-	count = animation._rotationKeys.size();
+	count = animation.m_rotationKeys.size();
 	fprintf_s(file, "RotationKeyCount: %i\n", count);
-	for (auto& key : animation._rotationKeys)
+	for (auto& key : animation.m_rotationKeys)
 	{
 		fprintf_s(file, "%f %f %f %f %f\n", key.time, key.key.x, key.key.y, key.key.z, key.key.w);
 	}
-	count = animation._scaleKeys.size();
+	count = animation.m_scaleKeys.size();
 	fprintf_s(file, "ScaleKeyCount: %i\n", count);
-	for (auto& key : animation._scaleKeys)
+	for (auto& key : animation.m_scaleKeys)
 	{
 		fprintf_s(file, "%f %f %f %f\n", key.time, key.key.x, key.key.y, key.key.z);
 	}

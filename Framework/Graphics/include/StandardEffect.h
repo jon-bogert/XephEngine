@@ -17,6 +17,23 @@ namespace xe::Graphics
 
 	class StandardEffect
 	{
+	public:
+		void Initialize(const std::filesystem::path&);
+		void Terminate();
+
+		void Begin();
+		void End();
+
+		void Draw(const RenderObject& renderObject);
+
+		void SetCamera(const Camera& camera);
+		void SetLightCamera(const Camera& camera);
+		void SetDirectionalLight(const DirectionalLight& directionalLight);
+		void SetShadowMap(const Texture& shadowMap);
+
+		void DebugUI();
+
+	private:
 		struct TransfromData
 		{
 			xe::Math::Matrix4 world;
@@ -43,38 +60,22 @@ namespace xe::Graphics
 		using SettingsBuffer = TypedContantBuffer<SettingsData>;
 		using BoneTransformBuffer = ConstantBuffer;
 
-		TransformBuffer _transformBuffer;
-		LightingBuffer _lightingBuffer;
-		MaterialBuffer _materialBuffer;
-		SettingsBuffer _settingsBuffer;
-		BoneTransformBuffer _boneTransformBuffer;
+		TransformBuffer m_transformBuffer;
+		LightingBuffer m_lightingBuffer;
+		MaterialBuffer m_materialBuffer;
+		SettingsBuffer m_settingsBuffer;
+		BoneTransformBuffer m_boneTransformBuffer;
 
-		VertexShader _vertexShader;
-		PixelShader _pixelShader;
-		Sampler _sampler;
+		VertexShader m_vertexShader;
+		PixelShader m_pixelShader;
+		Sampler m_sampler;
 
-		SettingsData _settingsData;
-		const Camera* _camera = nullptr;
-		const Camera* _lightCamera = nullptr;
-		const DirectionalLight* _directionalLight = nullptr;
-		const Texture* _shadowMap = nullptr;
-
-	public:
-		void Initialize(const std::filesystem::path&);
-		void Terminate();
-
-		void Begin();
-		void End();
-
-		void Draw(const RenderObject& renderObject);
-
-		void SetCamera(const Camera& camera);
-		void SetLightCamera(const Camera& camera);
-		void SetDirectionalLight(const DirectionalLight& directionalLight);
-		void SetShadowMap(const Texture& shadowMap);
-
-		void DebugUI();
+		SettingsData m_settingsData;
+		const Camera* m_camera = nullptr;
+		const Camera* m_lightCamera = nullptr;
+		const DirectionalLight* m_directionalLight = nullptr;
+		const Texture* m_shadowMap = nullptr;
 	};
 }
 
-#endif
+#endif //!__XE_GRAPHICS_STANDARDEFFECT_H__

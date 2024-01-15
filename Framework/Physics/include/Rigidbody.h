@@ -12,14 +12,6 @@ namespace xe::Physics
 	class CollisionShape;
 	class Rigidbody final : public PhysicsObject
 	{
-		btRigidBody* GetRigidbody() override { return _rigidbody; }
-
-		btRigidBody* _rigidbody = nullptr;
-		btDefaultMotionState* _motionState = nullptr;
-		float _mass = 0.f;
-		
-		xe::Graphics::Transform* _graphicsTransform = nullptr;
-
 	public:
 		Rigidbody() = default;
 		~Rigidbody() override;
@@ -33,8 +25,17 @@ namespace xe::Physics
 		bool IsDynamic() const;
 
 		void Update(const float deltaTime) override;
+
+	private:
+		btRigidBody* GetRigidbody() override { return m_rigidbody; }
+
+		btRigidBody* m_rigidbody = nullptr;
+		btDefaultMotionState* m_motionState = nullptr;
+		float m_mass = 0.f;
+
+		xe::Graphics::Transform* m_graphicsTransform = nullptr;
 	};
 }
 
-#endif // __XE_PHYSICS_RIGIDBODY_H__
+#endif //!__XE_PHYSICS_RIGIDBODY_H__
 

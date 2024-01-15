@@ -7,8 +7,6 @@ namespace xe::Physics
 	{
 		class _PhysicsDebugDrawer final : public btIDebugDraw
 		{
-			int _debugMode = 0;
-
 		public:
 			void drawLine(const btVector3& from, const btVector3& to, const btVector3& color) override;
 			void drawContactPoint(const btVector3& pointOn, const btVector3& normalOnB, btScalar distance, int lifeTime, const btVector3& color) override;
@@ -16,6 +14,9 @@ namespace xe::Physics
 			void draw3dText(const btVector3& location, const char* textString) override;
 			void setDebugMode(int debugMode) override;
 			int getDebugMode() const override;
+
+		private:
+			int m_debugMode = 0;
 		};
 	}
 
@@ -33,4 +34,4 @@ namespace xe::Physics
 	};
 }
 
-#endif // __XE_PHYSICS_PHYSICSDEBUGDRAWER_H__
+#endif //!__XE_PHYSICS_PHYSICSDEBUGDRAWER_H__

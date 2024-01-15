@@ -32,4 +32,4 @@ namespace xe::Graphics
 	};
 }
 
-#endif // __XE_GRAPHICS_MODEL_H__
+#endif //!__XE_GRAPHICS_MODEL_H__

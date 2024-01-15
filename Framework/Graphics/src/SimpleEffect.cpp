@@ -12,37 +12,37 @@ using namespace xe::Math;
 void xe::Graphics::SimpleEffect::Initialize()
 {
 	std::filesystem::path filePath = L"../../Assets/Shaders/DoTexture.fx";
-	_vertexShader.Initialize<VertexPX>(filePath);
-	_pixelShader.Initialize(filePath);
-	_constantBuffer.Initialize(sizeof(Matrix4));
-	_sampler.Initialize(Sampler::Filter::Linear, Sampler::AddressMode::Wrap);
+	m_vertexShader.Initialize<VertexPX>(filePath);
+	m_pixelShader.Initialize(filePath);
+	m_constantBuffer.Initialize(sizeof(Matrix4));
+	m_sampler.Initialize(Sampler::Filter::Linear, Sampler::AddressMode::Wrap);
 }
 
 void xe::Graphics::SimpleEffect::Terminate()
 {
-	_sampler.Terminate();
-	_constantBuffer.Terminate();
-	_pixelShader.Terminate();
-	_vertexShader.Terminate();
+	m_sampler.Terminate();
+	m_constantBuffer.Terminate();
+	m_pixelShader.Terminate();
+	m_vertexShader.Terminate();
 }
 
 void xe::Graphics::SimpleEffect::Begin()
 {
-	_vertexShader.Bind();
-	_pixelShader.Bind();
-	_constantBuffer.BindVertexShader(0);
-	_sampler.BindPixelShader(0);
+	m_vertexShader.Bind();
+	m_pixelShader.Bind();
+	m_constantBuffer.BindVertexShader(0);
+	m_sampler.BindPixelShader(0);
 }
 
 void xe::Graphics::SimpleEffect::Draw(const RenderObject& renderObject)
 {
 	Matrix4 matWorld = renderObject.transform.Matrix();
-	Matrix4 matView = _camera->GetViewMatrix();
-	Matrix4 matProj = _camera->GetProjectionMatrix();
+	Matrix4 matView = m_camera->GetViewMatrix();
+	Matrix4 matProj = m_camera->GetProjectionMatrix();
 	Matrix4 matFinal = matWorld * matView * matProj;
 	Matrix4 wvp = Transpose(matFinal);
 
-	_constantBuffer.Update(&wvp);
+	m_constantBuffer.Update(&wvp);
 
 	TextureManager::BindPixelShader(renderObject.diffuseMapID, 0);
 
@@ -56,5 +56,5 @@ void xe::Graphics::SimpleEffect::End()
 
 void xe::Graphics::SimpleEffect::SetCamera(const Camera& camera)
 {
-	_camera = &camera;
+	m_camera = &camera;
 }

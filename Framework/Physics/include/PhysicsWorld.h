@@ -36,26 +36,26 @@ namespace xe::Physics
 		void _Update(const float deltaTime);
 		void _DebugUI();
 
-		Settings _settings;
-		bool _renderDebugUI = false;
+		Settings m_settings;
+		bool m_renderDebugUI = false;
 
-		PhysicsDebugDrawer _debugDrawer;
+		PhysicsDebugDrawer m_debugDrawer;
 
 		//Bullet objects
-		btBroadphaseInterface* _interface = nullptr;
-		btCollisionDispatcher* _dispatcher = nullptr;
-		btDefaultCollisionConfiguration* _collisionConfiguration = nullptr;
-		btDiscreteDynamicsWorld* _dynamicWorld = nullptr;
-		btSequentialImpulseConstraintSolver* _solver = nullptr;
+		btBroadphaseInterface* m_interface = nullptr;
+		btCollisionDispatcher* m_dispatcher = nullptr;
+		btDefaultCollisionConfiguration* m_collisionConfiguration = nullptr;
+		btDiscreteDynamicsWorld* m_dynamicWorld = nullptr;
+		btSequentialImpulseConstraintSolver* m_solver = nullptr;
 
 		//For Soft Bodies
-		btSoftRigidDynamicsWorld* _softbodyWorld = nullptr;
+		btSoftRigidDynamicsWorld* m_softbodyWorld = nullptr;
 		friend class Softbody;
 		btSoftBody* CreateSoftbody(int nodeCount);
 
 		using PhysicsObjects = std::vector<PhysicsObject*>;
-		PhysicsObjects _physicsObjects;
+		PhysicsObjects m_physicsObjects;
 	};
 }
 
-#endif // __XE_PHYSICS_PHYSICSWORLD_H__
+#endif //!__XE_PHYSICS_PHYSICSWORLD_H__

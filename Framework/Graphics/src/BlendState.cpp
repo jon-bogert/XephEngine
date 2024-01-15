@@ -42,7 +42,7 @@ void xe::Graphics::BlendState::Clear()
 
 xe::Graphics::BlendState::~BlendState()
 {
-	ASSERT(_blendState == nullptr, "BLendState: need to call terinate");
+	ASSERT(m_blendState == nullptr, "BLendState: need to call terinate");
 }
 
 void xe::Graphics::BlendState::Initialize(Mode mode)
@@ -58,17 +58,17 @@ void xe::Graphics::BlendState::Initialize(Mode mode)
 	desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 
 	ID3D11Device* device = GraphicsSystem::Get().GetDevice();
-	HRESULT hResult = device->CreateBlendState(&desc, &_blendState);
+	HRESULT hResult = device->CreateBlendState(&desc, &m_blendState);
 	ASSERT(SUCCEEDED(hResult), "BlendState: failed to create blend state");
 }
 
 void xe::Graphics::BlendState::Terminate()
 {
-	SafeRelease(_blendState);
+	SafeRelease(m_blendState);
 }
 
 void xe::Graphics::BlendState::Set()
 {
 	ID3D11DeviceContext* context = GraphicsSystem::Get().GetContext();
-	context->OMSetBlendState(_blendState, nullptr, UINT_MAX);
+	context->OMSetBlendState(m_blendState, nullptr, UINT_MAX);
 }

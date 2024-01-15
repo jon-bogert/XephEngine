@@ -12,4 +12,4 @@ namespace xe::Graphics
 	};
 }
 
-#endif //__XE_GRAPHCS_SKELETON_H__
+#endif //!__XE_GRAPHCS_SKELETON_H__

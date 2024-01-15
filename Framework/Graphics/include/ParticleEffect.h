@@ -12,19 +12,6 @@ namespace xe::Graphics
 	class Camera;
 	class ParticleEffect
 	{
-		struct TransformData
-		{
-			xe::Math::Matrix4 wvp;
-		};
-		using TransformBuffer = TypedContantBuffer<TransformData>;
-		TransformBuffer _transformBuffer;
-
-		VertexShader _vertexShader;
-		PixelShader _pixelShader;
-		BlendState _blendState;
-
-		const Camera* _camera = nullptr;
-
 	public:
 		void Initialize();
 		void Terminate();
@@ -36,8 +23,22 @@ namespace xe::Graphics
 
 		void DebugUI();
 		void SetCamera(const Camera& camera);
+
+	private:
+		struct TransformData
+		{
+			xe::Math::Matrix4 wvp;
+		};
+		using TransformBuffer = TypedContantBuffer<TransformData>;
+		TransformBuffer m_transformBuffer;
+
+		VertexShader m_vertexShader;
+		PixelShader m_pixelShader;
+		BlendState m_blendState;
+
+		const Camera* m_camera = nullptr;
 	};
 }
 
 
-#endif //__XE_GRAPHICS_PARTICLEEFFECT_H__
+#endif //!__XE_GRAPHICS_PARTICLEEFFECT_H__

@@ -5,21 +5,21 @@ namespace xe::Physics
 {
 	CollisionShape::~CollisionShape()
 	{
-		ASSERT(_collisionShape == nullptr, "CollisionShape: must call terminate");
+		ASSERT(m_collisionShape == nullptr, "CollisionShape: must call terminate");
 	}
 	void CollisionShape::InitializeSphere(float radius)
 	{
-		ASSERT(_collisionShape == nullptr, "CollisionShape: is already initialized");
-		_collisionShape = new btSphereShape(radius);
+		ASSERT(m_collisionShape == nullptr, "CollisionShape: is already initialized");
+		m_collisionShape = new btSphereShape(radius);
 	}
 	void CollisionShape::InitializeBox(const xe::Math::Vector3& halfExtends)
 	{
-		ASSERT(_collisionShape == nullptr, "CollisionShape: is already initialized");
-		_collisionShape = new btBoxShape(halfExtends);
+		ASSERT(m_collisionShape == nullptr, "CollisionShape: is already initialized");
+		m_collisionShape = new btBoxShape(halfExtends);
 	}
 	void CollisionShape::InitializeHull(const xe::Math::Vector3& halfExtends, const xe::Math::Vector3& origin)
 	{
-		ASSERT(_collisionShape == nullptr, "CollisionShape: is already initialized");
+		ASSERT(m_collisionShape == nullptr, "CollisionShape: is already initialized");
 		btConvexHullShape* hullShape = new btConvexHullShape();
 		std::vector<xe::Math::Vector3> points
 		{
@@ -38,16 +38,16 @@ namespace xe::Physics
 			hullShape->addPoint(point + origin, false);
 		}
 		hullShape->recalcLocalAabb();
-		_collisionShape = hullShape;
+		m_collisionShape = hullShape;
 	}
 
 	void CollisionShape::InitializeEmpty()
 	{
-		ASSERT(_collisionShape == nullptr, "CollisionShape: is already initialized");
-		_collisionShape = new btEmptyShape();
+		ASSERT(m_collisionShape == nullptr, "CollisionShape: is already initialized");
+		m_collisionShape = new btEmptyShape();
 	}
 	void CollisionShape::Termainate()
 	{
-		SafeDelete(_collisionShape);
+		SafeDelete(m_collisionShape);
 	}
 }

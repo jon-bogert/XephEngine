@@ -28,32 +28,6 @@ namespace xe::Graphics
 			Count
 		};
 
-	private:
-		struct PPData
-		{
-			Mode mode = Mode::None;
-			float param0 = { 0.f };
-			float param1 = { 0.f };
-			float param2 = { 0.f };
-		};
-
-		using PostProcBuffer = TypedContantBuffer<PPData>;
-		PostProcBuffer _postProcBuffer;
-
-		VertexShader _vertexShader;
-		PixelShader _pixelShader;
-		Sampler _sampler;
-		std::array<const Texture*, 4> _textures;
-
-		Mode _mode = Mode::None;
-
-		float _mirrorScaleX = -1.f;
-		float _mirrorScaleY = -1.f;
-		Color _monochromeColor = xe::Colors::White;
-		float _blurAmt = 5.f;
-		float _chromAbAmt = 0.005f;
-
-	public:
 		void Initialize(const std::filesystem::path& filepath);
 		void Terminate();
 
@@ -66,7 +40,32 @@ namespace xe::Graphics
 		void DebugUI();
 
 		void SetMode(const Mode mode);
+
+	private:
+		struct PostProcData
+		{
+			Mode mode = Mode::None;
+			float param0 = { 0.f };
+			float param1 = { 0.f };
+			float param2 = { 0.f };
+		};
+
+		using PostProcBuffer = TypedContantBuffer<PostProcData>;
+		PostProcBuffer m_postProcBuffer;
+
+		VertexShader m_vertexShader;
+		PixelShader m_pixelShader;
+		Sampler m_sampler;
+		std::array<const Texture*, 4> m_textures;
+
+		Mode m_mode = Mode::None;
+
+		float m_mirrorScaleX = -1.f;
+		float m_mirrorScaleY = -1.f;
+		Color m_monochromeColor = xe::Colors::White;
+		float m_blurAmt = 5.f;
+		float m_chromAbAmt = 0.005f;
 	};
 }
 
-#endif // __XE_GRAPHICS_POSTPROCEFFECT_H__
+#endif //!__XE_GRAPHICS_POSTPROCEFFECT_H__

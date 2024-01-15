@@ -16,101 +16,101 @@ namespace
 
 void xe::Graphics::Animator::Initialize(ModelID id)
 {
-	_modelID = id;
-	_isLooping = false;
-	_animationTime = 0.f;
-	_clipIndex = -1;
+	m_modelID = id;
+	m_isLooping = false;
+	m_animationTime = 0.f;
+	m_clipIndex = -1;
 }
 
 void xe::Graphics::Animator::PlayAnimation(int clipIndex, bool looping)
 {
-	_clipIndex = clipIndex;
-	_isLooping = looping;
-	_animationTime = 0.f;
+	m_clipIndex = clipIndex;
+	m_isLooping = looping;
+	m_animationTime = 0.f;
 }
 
 void xe::Graphics::Animator::StartBlend(int nextIndex, float time)
 {
-	if (_isBlending && _blendTimer / _blendTimeTotal > 0.5f)
+	if (m_isBlending && m_blendTimer / m_blendTimeTotal > 0.5f)
 	{
-		_clipIndex = _nextClipIndex;
+		m_clipIndex = m_nextClipIndex;
 	}
-	_nextClipIndex = nextIndex;
-	_blendTimeTotal = time;
-	_invBlendTimeTotal = 1.f / time;
-	_isBlending = true;
+	m_nextClipIndex = nextIndex;
+	m_blendTimeTotal = time;
+	m_invBlendTimeTotal = 1.f / time;
+	m_isBlending = true;
 }
 
 void xe::Graphics::Animator::SetMoveBlend(int idle, int fwd, int bkwd, int right, int left)
 {
-	_blendMoveMode = true;
-	_blendMoveInfo.idle = idle;
-	_blendMoveInfo.frwd = fwd;
-	_blendMoveInfo.bkwd = bkwd;
-	_blendMoveInfo.right = right;
-	_blendMoveInfo.left = left;
+	m_blendMoveMode = true;
+	m_blendMoveInfo.idle = idle;
+	m_blendMoveInfo.frwd = fwd;
+	m_blendMoveInfo.bkwd = bkwd;
+	m_blendMoveInfo.right = right;
+	m_blendMoveInfo.left = left;
 }
 
 void xe::Graphics::Animator::Update(const float deltaTime)
 {
-	if (_clipIndex < 0)
+	if (m_clipIndex < 0)
 		return;
 
-	if (_isBlending)
+	if (m_isBlending)
 	{
 		BlendUpdate(deltaTime);
 	}
 
-	Model* model = ModelManager::GetModel(_modelID);
-	const AnimationClip& animClip = model->animationClips[_clipIndex];
-	_animationTime += animClip.framesPerSecond * deltaTime;
-	if (_animationTime > animClip.durationInFrames)
+	Model* model = ModelManager::GetModel(m_modelID);
+	const AnimationClip& animClip = model->animationClips[m_clipIndex];
+	m_animationTime += animClip.framesPerSecond * deltaTime;
+	if (m_animationTime > animClip.durationInFrames)
 	{
-		if (_isLooping)
+		if (m_isLooping)
 		{
-			while (_animationTime >= animClip.durationInFrames)
+			while (m_animationTime >= animClip.durationInFrames)
 			{
-				_animationTime -= animClip.durationInFrames;
+				m_animationTime -= animClip.durationInFrames;
 			}
 		}
 		else
 		{
-			_animationTime = animClip.durationInFrames;
+			m_animationTime = animClip.durationInFrames;
 		}
 	}
 }
 
 bool xe::Graphics::Animator::isFinished() const
 {
-	if (_isLooping || _clipIndex < 0)
+	if (m_isLooping || m_clipIndex < 0)
 	{
 		return false;
 	}
 
-	Model* model = ModelManager::GetModel(_modelID);
-	const AnimationClip& animClip = model->animationClips[_clipIndex];
-	return _animationTime >= animClip.durationInFrames;
+	Model* model = ModelManager::GetModel(m_modelID);
+	const AnimationClip& animClip = model->animationClips[m_clipIndex];
+	return m_animationTime >= animClip.durationInFrames;
 }
 
 size_t xe::Graphics::Animator::GetAnimationCount() const
 {
-	Model* model = ModelManager::GetModel(_modelID);
+	Model* model = ModelManager::GetModel(m_modelID);
 	return model->animationClips.size();
 }
 
 xe::Math::Matrix4 xe::Graphics::Animator::GetToParentTransform(const Bone* bone) const
 {
-	if (_blendMoveMode)
+	if (m_blendMoveMode)
 	{
 		return BlendMoveTransform(bone);
 	}
-	if (_clipIndex < 0)
+	if (m_clipIndex < 0)
 	{
 		return bone->toParentTransform;
 	}
 
-	Model* model = ModelManager::GetModel(_modelID);
-	const AnimationClip& animClip = model->animationClips[_clipIndex];
+	Model* model = ModelManager::GetModel(m_modelID);
+	const AnimationClip& animClip = model->animationClips[m_clipIndex];
 	const Animation* animation = animClip.boneAnimations[bone->index].get();
 
 	if (animation == nullptr)
@@ -119,17 +119,17 @@ xe::Math::Matrix4 xe::Graphics::Animator::GetToParentTransform(const Bone* bone)
 		//return bone->toParentTransform;
 	}
 
-	Transform transform = animation->GetTransform(_animationTime);
+	Transform transform = animation->GetTransform(m_animationTime);
 
-	if (_isBlending)
+	if (m_isBlending)
 	{
-		const AnimationClip& nextAnimClip = model->animationClips[_nextClipIndex];
+		const AnimationClip& nextAnimClip = model->animationClips[m_nextClipIndex];
 		const Animation* nextAnimation = nextAnimClip.boneAnimations[bone->index].get();
 
-		Transform nextTransform = nextAnimation->GetTransform(_animationTime);
+		Transform nextTransform = nextAnimation->GetTransform(m_animationTime);
 		
 		Transform finalTransform;
-		float t = _blendTimer * _invBlendTimeTotal;
+		float t = m_blendTimer * m_invBlendTimeTotal;
 		finalTransform.position = Lerp(transform.position, nextTransform.position, t);
 		finalTransform.rotation = Quaternion::Slerp(transform.rotation, nextTransform.rotation, t);
 		finalTransform.scale = Lerp(transform.scale, nextTransform.scale, t);
@@ -142,37 +142,37 @@ xe::Math::Matrix4 xe::Graphics::Animator::GetToParentTransform(const Bone* bone)
 
 xe::Math::Matrix4 xe::Graphics::Animator::BlendMoveTransform(const Bone* bone) const
 {
-	if (_blendMoveInfo.idle < 0 ||
-		_blendMoveInfo.frwd < 0 || 
-		_blendMoveInfo.bkwd < 0 || 
-		_blendMoveInfo.right < 0 || 
-		_blendMoveInfo.left < 0)
+	if (m_blendMoveInfo.idle < 0 ||
+		m_blendMoveInfo.frwd < 0 || 
+		m_blendMoveInfo.bkwd < 0 || 
+		m_blendMoveInfo.right < 0 || 
+		m_blendMoveInfo.left < 0)
 		return bone->toParentTransform;
 
 	//idle
-	Model* model = ModelManager::GetModel(_modelID);
-	const AnimationClip& idelAnimClip = model->animationClips[_blendMoveInfo.idle];
+	Model* model = ModelManager::GetModel(m_modelID);
+	const AnimationClip& idelAnimClip = model->animationClips[m_blendMoveInfo.idle];
 	const Animation* idleAnimation = idelAnimClip.boneAnimations[bone->index].get();
-	Transform idleTransform = idleAnimation->GetTransform(_animationTime);
+	Transform idleTransform = idleAnimation->GetTransform(m_animationTime);
 
 	Transform yTransform{};
 
 	AnimationClip* yAnimClip = nullptr;
 	//front back
-	if (_blendMoveInfo.axis.y > 0)
+	if (m_blendMoveInfo.axis.y > 0)
 	{
-		yAnimClip = &model->animationClips[_blendMoveInfo.frwd];
+		yAnimClip = &model->animationClips[m_blendMoveInfo.frwd];
 	}
-	else if (_blendMoveInfo.axis.y < 0)
+	else if (m_blendMoveInfo.axis.y < 0)
 	{
-		yAnimClip = &model->animationClips[_blendMoveInfo.bkwd];
+		yAnimClip = &model->animationClips[m_blendMoveInfo.bkwd];
 	}
 	if (yAnimClip != nullptr)
 	{
 		const Animation* yAnimation = yAnimClip->boneAnimations[bone->index].get();
-		Transform moveTransform = yAnimation->GetTransform(_animationTime);
+		Transform moveTransform = yAnimation->GetTransform(m_animationTime);
 
-		float t = fabsf(_blendMoveInfo.axis.x);
+		float t = fabsf(m_blendMoveInfo.axis.x);
 		yTransform.position = Lerp(idleTransform.position, moveTransform.position, t);
 		yTransform.rotation = Quaternion::Slerp(idleTransform.rotation, moveTransform.rotation, t);
 		yTransform.scale = Lerp(idleTransform.scale, moveTransform.scale, t);
@@ -196,14 +196,14 @@ xe::Math::Matrix4 xe::Graphics::Animator::BlendMoveTransform(const Bone* bone) c
 
 bool xe::Graphics::Animator::BlendUpdate(const float deltaTime)
 {
-	if (_blendTimer >= _blendTimeTotal)
+	if (m_blendTimer >= m_blendTimeTotal)
 	{
-		_isBlending = false;
-		_blendTimer = 0;
-		_clipIndex = _nextClipIndex;
+		m_isBlending = false;
+		m_blendTimer = 0;
+		m_clipIndex = m_nextClipIndex;
 		return false;
 	}
-	_blendTimer += deltaTime;
+	m_blendTimer += deltaTime;
 
 	return true;
 }

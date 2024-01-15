@@ -32,5 +32,5 @@ namespace xe::Graphics
 	}
 }
 
-#endif // XE_GRAPHICS_SIMPLEDRAW_H
+#endif //!__XE_GRAPHICS_SIMPLEDRAW_H__
 

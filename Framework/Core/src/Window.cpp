@@ -15,8 +15,8 @@ LRESULT CALLBACK WindowMessageHandler(HWND handle, UINT message, WPARAM wParam, 
 
 void xe::Core::Window::Initialize(HINSTANCE instance, std::wstring appName, uint32_t width, uint32_t height)
 {
-	_instance = instance;
-	_appName = appName;
+	m_instance = instance;
+	m_appName = appName;
 
 	WNDCLASSEX wcex;
 	wcex.cbSize = sizeof(WNDCLASSEX);
@@ -29,7 +29,7 @@ void xe::Core::Window::Initialize(HINSTANCE instance, std::wstring appName, uint
 	wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 	wcex.lpszMenuName = nullptr;
-	wcex.lpszClassName = _appName.c_str();
+	wcex.lpszClassName = m_appName.c_str();
 	wcex.hIconSm = LoadIcon(nullptr, IDI_APPLICATION);
 
 	RegisterClassEx(&wcex);
@@ -44,10 +44,10 @@ void xe::Core::Window::Initialize(HINSTANCE instance, std::wstring appName, uint
 	const int left = (screenWidth - winWidth) / 2;
 	const int top = (screenHeight - winHeight) / 2;
 
-	_window = CreateWindow
+	m_window = CreateWindow
 	(
-		_appName.c_str(),
-		_appName.c_str(),
+		m_appName.c_str(),
+		m_appName.c_str(),
 		WS_OVERLAPPEDWINDOW,
 		left, top,
 		winWidth, winHeight,
@@ -55,21 +55,21 @@ void xe::Core::Window::Initialize(HINSTANCE instance, std::wstring appName, uint
 		instance, nullptr
 	);
 
-	ShowWindow(_window, SW_SHOWNORMAL);
+	ShowWindow(m_window, SW_SHOWNORMAL);
 	SetCursorPos(screenWidth / 2, screenHeight / 2);
 
-	_isActive = (_window);
+	m_isActive = (m_window);
 
 }
 
 void xe::Core::Window::Terminate()
 {
-	DestroyWindow(_window);
+	DestroyWindow(m_window);
 
-	UnregisterClass(_appName.c_str(), _instance);
+	UnregisterClass(m_appName.c_str(), m_instance);
 
-	_window = nullptr;
-	_instance = nullptr;
+	m_window = nullptr;
+	m_instance = nullptr;
 }
 
 void xe::Core::Window::ProcessMessage()
@@ -82,7 +82,7 @@ void xe::Core::Window::ProcessMessage()
 
 			if (msg.message == WM_QUIT)
 			{
-				_isActive = false;
+				m_isActive = false;
 			}
 	}
 }

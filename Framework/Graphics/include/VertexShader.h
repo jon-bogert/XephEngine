@@ -5,9 +5,6 @@ namespace xe::Graphics
 {
 	class VertexShader final
 	{
-		ID3D11VertexShader* _vertexShader = nullptr;
-		ID3D11InputLayout* _inputLayout = nullptr;
-
 	public:
 		template<class VertexType>
 		void Initialize(const std::filesystem::path& filePath)
@@ -17,7 +14,11 @@ namespace xe::Graphics
 		void Initialize(const std::filesystem::path& filePath, uint32_t format);
 		void Terminate();
 		void Bind();
+
+	private:
+		ID3D11VertexShader* m_vertexShader = nullptr;
+		ID3D11InputLayout* m_inputLayout = nullptr;
 	};
 }
 
-#endif
+#endif //!__XE_GRAPHICS_VERTEXSHADER_H__

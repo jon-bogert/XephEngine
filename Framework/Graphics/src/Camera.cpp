@@ -8,12 +8,12 @@ using namespace xe::Graphics;
 
 void Camera::SetMode(ProjectionMode mode)
 {
-	_projectionMode = mode;
+	m_projectionMode = mode;
 }
 
 void Camera::SetPosition(const xe::Math::Vector3& position)
 {
-	_position = position;
+	m_position = position;
 }
 
 void Camera::SetDirection(const xe::Math::Vector3& direction)
@@ -21,74 +21,74 @@ void Camera::SetDirection(const xe::Math::Vector3& direction)
 	// Prevent setting direction straight up or down
 	auto dir = xe::Math::Normalize(direction);
 	if (xe::Math::Abs(xe::Math::Dot(dir, xe::Math::Vector3::YAxis)) < 0.995f)
-		_direction = dir;
+		m_direction = dir;
 }
 
 void Camera::SetLookAt(const xe::Math::Vector3& target)
 {
-	SetDirection(target - _position);
+	SetDirection(target - m_position);
 }
 
 void Camera::SetFov(float fov)
 {
 	constexpr float kMinFov = 10.0f * xe::Math::Const::DegToRad;
 	constexpr float kMaxFov = 170.0f * xe::Math::Const::DegToRad;
-	_fov = xe::Math::Clamp(fov, kMinFov, kMaxFov);
+	m_fov = xe::Math::Clamp(fov, kMinFov, kMaxFov);
 }
 
 void Camera::SetAspectRatio(float ratio)
 {
-	_aspectRatio = ratio;
+	m_aspectRatio = ratio;
 }
 
 float xe::Graphics::Camera::GetAspectRatio()
 {
-	return _aspectRatio;
+	return m_aspectRatio;
 }
 
 void Camera::SetSize(float width, float height)
 {
-	_width = width;
-	_height = height;
+	m_width = width;
+	m_height = height;
 }
 
 void Camera::SetNearPlane(float nearPlane)
 {
-	_nearPlane = nearPlane;
+	m_nearPlane = nearPlane;
 }
 
 void Camera::SetFarPlane(float farPlane)
 {
-	_farPlane = farPlane;
+	m_farPlane = farPlane;
 }
 
 void Camera::Walk(float distance)
 {
-	_position += _direction * distance;
+	m_position += m_direction * distance;
 }
 
 void Camera::Strafe(float distance)
 {
-	const xe::Math::Vector3 right = xe::Math::Normalize(Cross(xe::Math::Vector3::YAxis, _direction));
-	_position += right * distance;
+	const xe::Math::Vector3 right = xe::Math::Normalize(Cross(xe::Math::Vector3::YAxis, m_direction));
+	m_position += right * distance;
 }
 
 void Camera::Rise(float distance)
 {
-	_position += xe::Math::Vector3::YAxis * distance;
+	m_position += xe::Math::Vector3::YAxis * distance;
 }
 
 void Camera::Yaw(float radian)
 {
 	xe::Math::Matrix4 matRotate = xe::Math::Matrix4::RotationY(radian);
-	_direction = xe::Math::TransformNormal(_direction, matRotate);
+	m_direction = xe::Math::TransformNormal(m_direction, matRotate);
 }
 
 void Camera::Pitch(float radian)
 {
-	const xe::Math::Vector3 right = xe::Math::Normalize(Cross(xe::Math::Vector3::YAxis, _direction));
+	const xe::Math::Vector3 right = xe::Math::Normalize(Cross(xe::Math::Vector3::YAxis, m_direction));
 	const xe::Math::Matrix4 matRot = xe::Math::Matrix4::RotationAxis(right, radian);
-	const xe::Math::Vector3 newLook = xe::Math::TransformNormal(_direction, matRot);
+	const xe::Math::Vector3 newLook = xe::Math::TransformNormal(m_direction, matRot);
 	SetDirection(newLook);
 }
 
@@ -96,27 +96,27 @@ void Camera::Zoom(float amount)
 {
 	constexpr float minZoom = 170.0f * xe::Math::Const::DegToRad;
 	constexpr float maxZoom = 10.0f * xe::Math::Const::DegToRad;
-	_fov = xe::Math::Clamp(_fov - amount, maxZoom, minZoom);
+	m_fov = xe::Math::Clamp(m_fov - amount, maxZoom, minZoom);
 }
 
 const xe::Math::Vector3& Camera::GetPosition() const
 {
-	return _position;
+	return m_position;
 }
 
 const xe::Math::Vector3& Camera::GetDirection() const
 {
-	return _direction;
+	return m_direction;
 }
 
 xe::Math::Matrix4 Camera::GetViewMatrix() const
 {
-	const xe::Math::Vector3 l = _direction;
+	const xe::Math::Vector3 l = m_direction;
 	const xe::Math::Vector3 r = xe::Math::Normalize(xe::Math::Cross(xe::Math::Vector3::YAxis, l));
 	const xe::Math::Vector3 u = xe::Math::Normalize(xe::Math::Cross(l, r));
-	const float x = -xe::Math::Dot(r, _position);
-	const float y = -xe::Math::Dot(u, _position);
-	const float z = -xe::Math::Dot(l, _position);
+	const float x = -xe::Math::Dot(r, m_position);
+	const float y = -xe::Math::Dot(u, m_position);
+	const float z = -xe::Math::Dot(l, m_position);
 
 	return
 	{
@@ -129,16 +129,16 @@ xe::Math::Matrix4 Camera::GetViewMatrix() const
 
 xe::Math::Matrix4 Camera::GetProjectionMatrix() const
 {
-	return (_projectionMode == ProjectionMode::Perspective) ? GetPerspectiveMatrix() : GetOrthographicMatrix();
+	return (m_projectionMode == ProjectionMode::Perspective) ? GetPerspectiveMatrix() : GetOrthographicMatrix();
 }
 
 xe::Math::Matrix4 Camera::GetPerspectiveMatrix() const
 {
-	const float a = (_aspectRatio == 0.0f) ? GraphicsSystem::Get().GetBackBufferAspectRatio() : _aspectRatio;
-	const float h = 1.0f / tan(_fov * 0.5f);
+	const float a = (m_aspectRatio == 0.0f) ? GraphicsSystem::Get().GetBackBufferAspectRatio() : m_aspectRatio;
+	const float h = 1.0f / tan(m_fov * 0.5f);
 	const float w = h / a;
-	const float zf = _farPlane;
-	const float zn = _nearPlane;
+	const float zf = m_farPlane;
+	const float zn = m_nearPlane;
 	const float q = zf / (zf - zn);
 
 	return {
@@ -151,10 +151,10 @@ xe::Math::Matrix4 Camera::GetPerspectiveMatrix() const
 
 xe::Math::Matrix4 Camera::GetOrthographicMatrix() const
 {
-	const float w = (_width == 0.0f) ? GraphicsSystem::Get().GetBackBufferWidth() : _width;
-	const float h = (_height == 0.0f) ? GraphicsSystem::Get().GetBackBufferHeight() : _height;
-	const float f = _farPlane;
-	const float n = _nearPlane;
+	const float w = (m_width == 0.0f) ? GraphicsSystem::Get().GetBackBufferWidth() : m_width;
+	const float h = (m_height == 0.0f) ? GraphicsSystem::Get().GetBackBufferHeight() : m_height;
+	const float f = m_farPlane;
+	const float n = m_nearPlane;
 	return 	{
 		2 / w, 0.0f,  0.0f,        0.0f,
 		0.0f,  2 / h, 0.0f,        0.0f,

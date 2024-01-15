@@ -9,10 +9,10 @@ using namespace xe;
 
 void xe::App::ChangeState(const std::string& stateName)
 {
-	auto iter = _appStates.find(stateName);
-	if (iter != _appStates.end())
+	auto iter = m_appStates.find(stateName);
+	if (iter != m_appStates.end())
 	{
-		_nextState = iter->second.get();
+		m_nextState = iter->second.get();
 	}
 }
 
@@ -37,14 +37,14 @@ void xe::App::Run(const AppConfig& config)
 	PhysicsWorld::Settings physSettings;
 	PhysicsWorld::Initialize(physSettings);
 
-	ASSERT(_currentState, "App -- No app state found");
+	ASSERT(m_currentState, "App -- No app state found");
 
-	_currentState->Initialize();
-	_isRunning = true;
+	m_currentState->Initialize();
+	m_isRunning = true;
 
 	
 
-	while (_isRunning)
+	while (m_isRunning)
 	{
 		window.ProcessMessage();
 
@@ -55,34 +55,34 @@ void xe::App::Run(const AppConfig& config)
 			continue;
 		}
 
-		if (_nextState != nullptr)
+		if (m_nextState != nullptr)
 		{
-			_currentState->Terminate();
-			_currentState = std::exchange(_nextState, nullptr);
-			_currentState->Initialize();
+			m_currentState->Terminate();
+			m_currentState = std::exchange(m_nextState, nullptr);
+			m_currentState->Initialize();
 		}
 
 		auto deltaTime = TimeUtil::DeltaTime();
 		if (deltaTime < 0.5f)
 		{
 			PhysicsWorld::Update(deltaTime);
-			_currentState->Update(deltaTime);
+			m_currentState->Update(deltaTime);
 		}
 
 		GraphicsSystem& graphicsSystem = GraphicsSystem::Get();
 		graphicsSystem.BeginRender();
 		{
-			_currentState->Draw();
+			m_currentState->Draw();
 			DebugUI::BeginDraw();
 			{
-				_currentState->DebugUI();
+				m_currentState->DebugUI();
 			}
 			DebugUI::EndDraw();
 		}
 		graphicsSystem.EndRender();
 	}
 
-	_currentState->Terminate();
+	m_currentState->Terminate();
 	PhysicsWorld::Terminate();
 	ModelManager::Terminate();
 	TextureManager::Terminate();
@@ -94,5 +94,5 @@ void xe::App::Run(const AppConfig& config)
 
 void xe::App::Quit()
 {
-	_isRunning = false;
+	m_isRunning = false;
 }

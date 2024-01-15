@@ -79,4 +79,4 @@ namespace xe::Math
     };
 }
 
-#endif
+#endif //!__XE_MATH_QUATERNION_H__

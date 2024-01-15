@@ -14,4 +14,4 @@ namespace xe::Graphics::DebugUI
 	void EndDraw();
 }
 
-#endif
+#endif //!__XE_GRAPHICS_DEBUGUI_H__

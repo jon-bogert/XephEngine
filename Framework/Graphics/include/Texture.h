@@ -4,9 +4,6 @@ namespace xe::Graphics
 {
 	class Texture
 	{
-	protected:
-		ID3D11ShaderResourceView* _shaderResourceView = nullptr;
-
 	public:
 		static void UnbindPixelShader(uint32_t slot);
 
@@ -32,11 +29,13 @@ namespace xe::Graphics
 		void BindVertexShader(uint32_t slot) const;
 		void BindPixelShader(uint32_t slot) const;
 
-		void* GetRawData() const { return _shaderResourceView; }
+		void* GetRawData() const { return m_shaderResourceView; }
 
 	protected:
 		DXGI_FORMAT GetDXGIFormat(Format format);
+
+		ID3D11ShaderResourceView* m_shaderResourceView = nullptr;
 	};
 }
 
-#endif // XE_GRAPHICS_TEXTURE_H
+#endif //!__XE_GRAPHICS_TEXTURE_H__

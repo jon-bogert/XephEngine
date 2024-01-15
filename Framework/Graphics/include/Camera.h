@@ -53,22 +53,22 @@ namespace xe::Graphics
 		xe::Math::Matrix4 GetOrthographicMatrix() const;
 
 	private:
-		ProjectionMode _projectionMode = ProjectionMode::Perspective;
+		ProjectionMode m_projectionMode = ProjectionMode::Perspective;
 
-		xe::Math::Vector3 _position = xe::Math::Vector3::Zero;
-		xe::Math::Vector3 _direction = xe::Math::Vector3::ZAxis;
+		xe::Math::Vector3 m_position = xe::Math::Vector3::Zero;
+		xe::Math::Vector3 m_direction = xe::Math::Vector3::ZAxis;
 
 		// 0 aspect ratio = use back buffer dimension
-		float _fov = 60.0f * xe::Math::Const::DegToRad;
-		float _aspectRatio = 0.0f;
+		float m_fov = 60.0f * xe::Math::Const::DegToRad;
+		float m_aspectRatio = 0.0f;
 
 		// 0 width or height = use back buffer dimension
-		float _width = 0.0f;
-		float _height = 0.0f;
+		float m_width = 0.0f;
+		float m_height = 0.0f;
 
-		float _nearPlane = 0.01f;
-		float _farPlane = 10000.0f;
+		float m_nearPlane = 0.01f;
+		float m_farPlane = 10000.0f;
 	};
 }
 
-#endif // XE_GRAPHICS_CAMERA_H
+#endif // !__XE_GRAPHICS_CAMERA_H__

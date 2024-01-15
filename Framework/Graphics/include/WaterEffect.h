@@ -16,6 +16,24 @@ namespace xe::Graphics
 
 	class WaterEffect final
 	{
+	public:
+		void Initialize();
+		void Terminate();
+
+		void Begin();
+		void End();
+
+		void Update(const float deltaTime);
+		void Draw(const RenderObject& renderObject);
+
+		void DebugUI();
+
+		void SetCamera(const Camera& camera);
+		void SetLightCamera(const Camera& camera);
+		void SetDirectionalLight(const DirectionalLight& directionalLight);
+		void SetShadowMap(const Texture& shadowMap);
+
+	private:
 		struct TransfromData
 		{
 			xe::Math::Matrix4 world;
@@ -39,38 +57,21 @@ namespace xe::Graphics
 		using MaterialBuffer = TypedContantBuffer<Material>;
 		using SettingsBuffer = TypedContantBuffer<SettingsData>;
 
-		TransformBuffer _transformBuffer;
-		LightingBuffer _lightingBuffer;
-		MaterialBuffer _materialBuffer;
-		SettingsBuffer _settingsBuffer;
+		TransformBuffer m_transformBuffer;
+		LightingBuffer m_lightingBuffer;
+		MaterialBuffer m_materialBuffer;
+		SettingsBuffer m_settingsBuffer;
 
-		VertexShader _vertexShader;
-		PixelShader _pixelShader;
-		Sampler _sampler;
+		VertexShader m_vertexShader;
+		PixelShader m_pixelShader;
+		Sampler m_sampler;
 
-		SettingsData _settingsData;
-		const Camera* _camera = nullptr;
-		const Camera* _lightCamera = nullptr;
-		const DirectionalLight* _directionalLight = nullptr;
-		const Texture* _shadowMap = nullptr;
-
-	public:
-		void Initialize();
-		void Terminate();
-
-		void Begin();
-		void End();
-
-		void Update(const float deltaTime);
-		void Draw(const RenderObject& renderObject);
-
-		void DebugUI();
-
-		void SetCamera(const Camera& camera);
-		void SetLightCamera(const Camera& camera);
-		void SetDirectionalLight(const DirectionalLight& directionalLight);
-		void SetShadowMap(const Texture& shadowMap);
+		SettingsData m_settingsData;
+		const Camera* m_camera = nullptr;
+		const Camera* m_lightCamera = nullptr;
+		const DirectionalLight* m_directionalLight = nullptr;
+		const Texture* m_shadowMap = nullptr;
 	};
 }
 
-#endif // __XE_GRAPHICS_WATEREFFECT_H__
+#endif //!__XE_GRAPHICS_WATEREFFECT_H__

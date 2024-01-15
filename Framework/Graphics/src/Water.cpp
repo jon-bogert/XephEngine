@@ -3,10 +3,10 @@
 
 void xe::Graphics::Water::Initialize(const Mesh& mesh)
 {
-	_mesh = mesh;
+	m_mesh = mesh;
 }
 
 xe::Graphics::Mesh& xe::Graphics::Water::GetMesh()
 {
-	return _mesh;
+	return m_mesh;
 }

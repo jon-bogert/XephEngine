@@ -28,7 +28,7 @@ LRESULT xe::Graphics::GraphicsSystem::GraphicsSystemMessageHandler(HWND handle, 
 
 xe::Graphics::GraphicsSystem::~GraphicsSystem()
 {
-	ASSERT(_d3dDevice == nullptr, "GraphicsSystem must be terminated before cleanup");
+	ASSERT(m_d3dDevice == nullptr, "GraphicsSystem must be terminated before cleanup");
 }
 
 void xe::Graphics::GraphicsSystem::Initialize(HWND window, bool isFullscreen)
@@ -83,14 +83,14 @@ void xe::Graphics::GraphicsSystem::_Initialize(HWND window, bool isFullscreen)
 		1,
 		D3D11_SDK_VERSION,
 		&swapChainDesc,
-		&_swapChain,
-		&_d3dDevice,
+		&m_swapChain,
+		&m_d3dDevice,
 		nullptr,
-		&_immediateContext
+		&m_immediateContext
 	);
 
 	ASSERT(SUCCEEDED(hResult), "GraphicsSystem failt to initialize device or swap chain");
-	_swapChain->GetDesc(&_swapChainDesc);
+	m_swapChain->GetDesc(&m_swapChainDesc);
 
 	Resize(GetBackBufferWidth(), GetBackBufferHeight());
 	windowMessageHandler.Hook(window, GraphicsSystemMessageHandler);
@@ -100,42 +100,42 @@ void xe::Graphics::GraphicsSystem::_Terminate()
 {
 	windowMessageHandler.UnHook();
 
-	SafeRelease(_depthStencilView);
-	SafeRelease(_depthStencilBuffer);
-	SafeRelease(_renderTargetView);
-	SafeRelease(_swapChain);
-	SafeRelease(_immediateContext);
-	SafeRelease(_d3dDevice);
+	SafeRelease(m_depthStencilView);
+	SafeRelease(m_depthStencilBuffer);
+	SafeRelease(m_renderTargetView);
+	SafeRelease(m_swapChain);
+	SafeRelease(m_immediateContext);
+	SafeRelease(m_d3dDevice);
 }
 
 void xe::Graphics::GraphicsSystem::ToggleFullscreen()
 {
 	BOOL fullscreen;
-	_swapChain->GetFullscreenState(&fullscreen, nullptr);
-	_swapChain->SetFullscreenState(!fullscreen, nullptr);
+	m_swapChain->GetFullscreenState(&fullscreen, nullptr);
+	m_swapChain->SetFullscreenState(!fullscreen, nullptr);
 }
 
 void xe::Graphics::GraphicsSystem::Resize(uint32_t width, uint32_t height)
 {
-	_immediateContext->OMSetRenderTargets(0, nullptr, nullptr);
+	m_immediateContext->OMSetRenderTargets(0, nullptr, nullptr);
 
-	SafeRelease(_renderTargetView);
-	SafeRelease(_depthStencilView);
+	SafeRelease(m_renderTargetView);
+	SafeRelease(m_depthStencilView);
 
 	HRESULT hResult;
 	if (width != GetBackBufferWidth() || height != GetBackBufferHeight())
 	{
-		hResult = _swapChain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
+		hResult = m_swapChain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
 		ASSERT(SUCCEEDED(hResult), "GraphicsSystem failed to access the swap chain view");
 
-		_swapChain->GetDesc(&_swapChainDesc);
+		m_swapChain->GetDesc(&m_swapChainDesc);
 	}
 
 	ID3D11Texture2D* backBuffer = nullptr;
-	hResult = _swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer));
+	hResult = m_swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer));
 	ASSERT(SUCCEEDED(hResult), "GraphicsSystem failed to get back buffer");
 
-	hResult = _d3dDevice->CreateRenderTargetView(backBuffer, nullptr, &_renderTargetView);
+	hResult = m_d3dDevice->CreateRenderTargetView(backBuffer, nullptr, &m_renderTargetView);
 	SafeRelease(backBuffer);
 	ASSERT(SUCCEEDED(hResult), "GraphicsSystem failt to create render target");
 
@@ -151,71 +151,71 @@ void xe::Graphics::GraphicsSystem::Resize(uint32_t width, uint32_t height)
 	descDepth.BindFlags = D3D11_BIND_DEPTH_STENCIL;
 	descDepth.CPUAccessFlags = 0;
 	descDepth.MiscFlags = 0;
-	hResult = _d3dDevice->CreateTexture2D(&descDepth, nullptr, &_depthStencilBuffer);
+	hResult = m_d3dDevice->CreateTexture2D(&descDepth, nullptr, &m_depthStencilBuffer);
 	ASSERT(SUCCEEDED(hResult), "GraphicsSystem failed to create stencil buffer");
 
 	D3D11_DEPTH_STENCIL_VIEW_DESC descDSV{};
 	descDSV.Format = descDepth.Format;
 	descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
 	descDSV.Texture2D.MipSlice = 0;
-	hResult = _d3dDevice->CreateDepthStencilView(_depthStencilBuffer, &descDSV, &_depthStencilView);
+	hResult = m_d3dDevice->CreateDepthStencilView(m_depthStencilBuffer, &descDSV, &m_depthStencilView);
 	ASSERT(SUCCEEDED(hResult), "GraphicsSystem failed to create depth stencil view");
 
-	_immediateContext->OMSetRenderTargets(1, &_renderTargetView, _depthStencilView);
-	_viewport.Width = static_cast<float>(GetBackBufferWidth());
-	_viewport.Height = static_cast<float>(GetBackBufferHeight());
-	_viewport.MinDepth = 0.f;
-	_viewport.MaxDepth = 1.f;
-	_viewport.TopLeftX = 0;
-	_viewport.TopLeftY = 0;
-	_immediateContext->RSSetViewports(1, &_viewport);
+	m_immediateContext->OMSetRenderTargets(1, &m_renderTargetView, m_depthStencilView);
+	m_viewport.Width = static_cast<float>(GetBackBufferWidth());
+	m_viewport.Height = static_cast<float>(GetBackBufferHeight());
+	m_viewport.MinDepth = 0.f;
+	m_viewport.MaxDepth = 1.f;
+	m_viewport.TopLeftX = 0;
+	m_viewport.TopLeftY = 0;
+	m_immediateContext->RSSetViewports(1, &m_viewport);
 }
 
 void xe::Graphics::GraphicsSystem::BeginRender()
 {
-	_immediateContext->OMSetRenderTargets(1, &_renderTargetView, _depthStencilView);
-	_immediateContext->ClearRenderTargetView(_renderTargetView, (FLOAT*)(&_clearColor));
-	_immediateContext->ClearDepthStencilView(_depthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0.f);
+	m_immediateContext->OMSetRenderTargets(1, &m_renderTargetView, m_depthStencilView);
+	m_immediateContext->ClearRenderTargetView(m_renderTargetView, (FLOAT*)(&m_clearColor));
+	m_immediateContext->ClearDepthStencilView(m_depthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0.f);
 }
 
 void xe::Graphics::GraphicsSystem::EndRender()
 {
-	_swapChain->Present(_vSync, 0);
+	m_swapChain->Present(m_vSync, 0);
 }
 
 void xe::Graphics::GraphicsSystem::ResetRenderTarget()
 {
-	_immediateContext->OMSetRenderTargets(1, &_renderTargetView, _depthStencilView);
+	m_immediateContext->OMSetRenderTargets(1, &m_renderTargetView, m_depthStencilView);
 }
 
 void xe::Graphics::GraphicsSystem::ResetViewport()
 {
-	_immediateContext->RSSetViewports(1, &_viewport);
+	m_immediateContext->RSSetViewports(1, &m_viewport);
 }
 
 void xe::Graphics::GraphicsSystem::SetClearColor(const Color& color)
 {
-	_clearColor = color;
+	m_clearColor = color;
 }
 
 void xe::Graphics::GraphicsSystem::SetVSync(bool isOn)
 {
-	_vSync = (isOn) ? 1: 0;
+	m_vSync = (isOn) ? 1: 0;
 }
 
 Color xe::Graphics::GraphicsSystem::GetClearColor() const
 {
-	return _clearColor;
+	return m_clearColor;
 }
 
 uint32_t xe::Graphics::GraphicsSystem::GetBackBufferWidth() const
 {
-	return _swapChainDesc.BufferDesc.Width;
+	return m_swapChainDesc.BufferDesc.Width;
 }
 
 uint32_t xe::Graphics::GraphicsSystem::GetBackBufferHeight() const
 {
-	return _swapChainDesc.BufferDesc.Height;
+	return m_swapChainDesc.BufferDesc.Height;
 }
 
 float xe::Graphics::GraphicsSystem::GetBackBufferAspectRatio() const

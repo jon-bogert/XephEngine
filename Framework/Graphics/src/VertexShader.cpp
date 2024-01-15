@@ -74,7 +74,7 @@ void xe::Graphics::VertexShader::Initialize(const std::filesystem::path& filePat
 		shaderBlob->GetBufferPointer(),
 		shaderBlob->GetBufferSize(),
 		nullptr,
-		&_vertexShader
+		&m_vertexShader
 	);
 	ASSERT(SUCCEEDED(hResult), "Failed to create vertex shader");
 
@@ -88,7 +88,7 @@ void xe::Graphics::VertexShader::Initialize(const std::filesystem::path& filePat
 		(UINT)vertexLayout.size(),
 		shaderBlob->GetBufferPointer(),
 		shaderBlob->GetBufferSize(),
-		&_inputLayout
+		&m_inputLayout
 	);
 	ASSERT(SUCCEEDED(hResult), "Failed to create input layout");
 	SafeRelease(shaderBlob);
@@ -97,16 +97,16 @@ void xe::Graphics::VertexShader::Initialize(const std::filesystem::path& filePat
 
 void xe::Graphics::VertexShader::Terminate()
 {
-	SafeRelease(_inputLayout);
-	SafeRelease(_vertexShader);
+	SafeRelease(m_inputLayout);
+	SafeRelease(m_vertexShader);
 }
 
 void xe::Graphics::VertexShader::Bind()
 {
 	ID3D11DeviceContext* context = GraphicsSystem::Get().GetContext();
 
-	context->VSSetShader(_vertexShader, nullptr, 0);
-	context->IASetInputLayout(_inputLayout);
+	context->VSSetShader(m_vertexShader, nullptr, 0);
+	context->IASetInputLayout(m_inputLayout);
 }
 
 

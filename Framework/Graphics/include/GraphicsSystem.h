@@ -7,28 +7,6 @@ namespace xe::Graphics
 {
 	class GraphicsSystem final
 	{
-		static LRESULT CALLBACK GraphicsSystemMessageHandler(HWND handle, UINT message, WPARAM wParam, LPARAM lParam);
-
-		ID3D11Device* _d3dDevice;
-		ID3D11DeviceContext* _immediateContext;
-
-		IDXGISwapChain* _swapChain = nullptr;
-		ID3D11RenderTargetView* _renderTargetView = nullptr;
-
-		ID3D11Texture2D* _depthStencilBuffer = nullptr;
-		ID3D11DepthStencilView* _depthStencilView = nullptr;
-
-		DXGI_SWAP_CHAIN_DESC _swapChainDesc{};
-		D3D11_VIEWPORT _viewport{};
-
-		Color _clearColor = {0.1f, 0.1f, 0.1f, 0.1f};
-		UINT _vSync = 1;
-
-		GraphicsSystem(const GraphicsSystem&) = delete;
-		GraphicsSystem(const GraphicsSystem&&) = delete;
-		GraphicsSystem& operator=(const GraphicsSystem&) = delete;
-		GraphicsSystem& operator=(const GraphicsSystem&&) = delete;
-
 	public:
 		GraphicsSystem() = default;
 		~GraphicsSystem();
@@ -59,8 +37,31 @@ namespace xe::Graphics
 
 		float GetBackBufferAspectRatio() const;
 
-		ID3D11Device* GetDevice() { return _d3dDevice; }
-		ID3D11DeviceContext* GetContext() { return _immediateContext; }
+		ID3D11Device* GetDevice() { return m_d3dDevice; }
+		ID3D11DeviceContext* GetContext() { return m_immediateContext; }
+
+	private:
+		static LRESULT CALLBACK GraphicsSystemMessageHandler(HWND handle, UINT message, WPARAM wParam, LPARAM lParam);
+
+		ID3D11Device* m_d3dDevice;
+		ID3D11DeviceContext* m_immediateContext;
+
+		IDXGISwapChain* m_swapChain = nullptr;
+		ID3D11RenderTargetView* m_renderTargetView = nullptr;
+
+		ID3D11Texture2D* m_depthStencilBuffer = nullptr;
+		ID3D11DepthStencilView* m_depthStencilView = nullptr;
+
+		DXGI_SWAP_CHAIN_DESC m_swapChainDesc{};
+		D3D11_VIEWPORT m_viewport{};
+
+		Color m_clearColor = { 0.1f, 0.1f, 0.1f, 0.1f };
+		UINT m_vSync = 1;
+
+		GraphicsSystem(const GraphicsSystem&) = delete;
+		GraphicsSystem(const GraphicsSystem&&) = delete;
+		GraphicsSystem& operator=(const GraphicsSystem&) = delete;
+		GraphicsSystem& operator=(const GraphicsSystem&&) = delete;
 	};
 }
-#endif
+#endif //!__XE_GRAPHICS_GRAPHICSSYSTEM_H__

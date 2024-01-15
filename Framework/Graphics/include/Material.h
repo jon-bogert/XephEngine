@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XE_GRAPHICS_MATERIAL_H__
+#define __XE_GRAPHICS_MATERIAL_H__
 
 #include "Colors.h"
 
@@ -15,3 +16,5 @@ namespace xe::Graphics
 		uint32_t __[2] = { 0 };
 	};
 }
+
+#endif //!__XE_GRAPHICS_MATERIAL_H__

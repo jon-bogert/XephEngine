@@ -41,7 +41,7 @@ namespace
 
 xe::Graphics::Sampler::~Sampler()
 {
-	ASSERT(_sampler == nullptr, "Sampler: need to call termainate befire destructor");
+	ASSERT(m_sampler == nullptr, "Sampler: need to call termainate befire destructor");
 }
 
 void xe::Graphics::Sampler::Initialize(Filter filter, AddressMode addressMode)
@@ -63,23 +63,23 @@ void xe::Graphics::Sampler::Initialize(Filter filter, AddressMode addressMode)
 	desc.MaxLOD = D3D11_FLOAT32_MAX;
 
 	ID3D11Device* device = GraphicsSystem::Get().GetDevice();
-	HRESULT hResult = device->CreateSamplerState(&desc, &_sampler);
+	HRESULT hResult = device->CreateSamplerState(&desc, &m_sampler);
 	ASSERT(SUCCEEDED(hResult), "Sampler: failed to initialize");
 }
 
 void xe::Graphics::Sampler::Terminate()
 {
-	SafeRelease(_sampler);
+	SafeRelease(m_sampler);
 }
 
 void xe::Graphics::Sampler::BindVertexShader(uint32_t slot)
 {
 	ID3D11DeviceContext* context = GraphicsSystem::Get().GetContext();
-	context->VSSetSamplers(slot, 1, &_sampler);
+	context->VSSetSamplers(slot, 1, &m_sampler);
 }
 
 void xe::Graphics::Sampler::BindPixelShader(uint32_t slot)
 {
 	ID3D11DeviceContext* context = GraphicsSystem::Get().GetContext();
-	context->PSSetSamplers(slot, 1, &_sampler);
+	context->PSSetSamplers(slot, 1, &m_sampler);
 }

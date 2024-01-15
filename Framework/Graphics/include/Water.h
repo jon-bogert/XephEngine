@@ -1,5 +1,5 @@
-#ifndef __SE_GRAPHICS_WATER_H__
-#define __SE_GRAPHICS_WATER_H__
+#ifndef __XE_GRAPHICS_WATER_H__
+#define __XE_GRAPHICS_WATER_H__
 
 #include "MeshTypes.h"
 
@@ -7,13 +7,14 @@ namespace xe::Graphics
 {
 	class Water
 	{
-		Mesh _mesh;
-		uint32_t _rows = 0;
-		uint32_t _columns = 0;
-
 	public:
 		void Initialize(const Mesh& mesh);
 		Mesh& GetMesh();
+
+	private:
+		Mesh m_mesh;
+		uint32_t m_rows = 0;
+		uint32_t m_columns = 0;
 	};
 }
-#endif // __SE_GRAPHICS_WATER_H__
+#endif //!__XE_GRAPHICS_WATER_H__

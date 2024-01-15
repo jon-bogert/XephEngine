@@ -19,4 +19,4 @@ namespace xe::Physics
 	};
 }
 
-#endif // __XE_PHYSICS_PHYSICSOBJECT_H__
+#endif //!__XE_PHYSICS_PHYSICSOBJECT_H__
