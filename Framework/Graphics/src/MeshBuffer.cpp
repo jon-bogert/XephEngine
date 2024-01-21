@@ -15,8 +15,8 @@ void xe::Graphics::MeshBuffer::Initialize(const void* vertices, uint32_t vertexS
 
 void xe::Graphics::MeshBuffer::Terminate()
 {
-	SafeRelease(m_vertexBuffer);
-	SafeRelease(m_indexBuffer);
+	SafeRelease(_vertexBuffer);
+	SafeRelease(_indexBuffer);
 }
 
 void xe::Graphics::MeshBuffer::SetTopology(Topology topology)
@@ -24,59 +24,59 @@ void xe::Graphics::MeshBuffer::SetTopology(Topology topology)
 	switch (topology)
 	{
 	case Topology::Points:
-		m_topology = D3D11_PRIMITIVE_TOPOLOGY_POINTLIST;
+		_topology = D3D11_PRIMITIVE_TOPOLOGY_POINTLIST;
 		break;
 	case Topology::Lines:
-		m_topology = D3D11_PRIMITIVE_TOPOLOGY_LINELIST;
+		_topology = D3D11_PRIMITIVE_TOPOLOGY_LINELIST;
 		break;
 	case Topology::Triangles:
-		m_topology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+		_topology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 		break;
 	}
 }
 
 void xe::Graphics::MeshBuffer::Update(const void* vertices, uint32_t vertexCount)
 {
-	m_vertexCount = vertexCount;
+	_vertexCount = vertexCount;
 	ID3D11DeviceContext* context = GraphicsSystem::Get().GetContext();
 
 	D3D11_MAPPED_SUBRESOURCE resource;
-	context->Map(m_vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
-	std::memcpy(resource.pData, vertices, (vertexCount * m_vertexSize));
-	context->Unmap(m_vertexBuffer, 0);
+	context->Map(_vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
+	std::memcpy(resource.pData, vertices, (vertexCount * _vertexSize));
+	context->Unmap(_vertexBuffer, 0);
 }
 
 void xe::Graphics::MeshBuffer::Draw() const
 {
 	ID3D11DeviceContext* context = GraphicsSystem::Get().GetContext();
 
-	context->IASetPrimitiveTopology(m_topology);
+	context->IASetPrimitiveTopology(_topology);
 
-	UINT stride = m_vertexSize;
+	UINT stride = _vertexSize;
 	UINT offset = 0;
-	context->IASetVertexBuffers(0, 1, &m_vertexBuffer, &stride, &offset);
-	if (m_indexBuffer)
+	context->IASetVertexBuffers(0, 1, &_vertexBuffer, &stride, &offset);
+	if (_indexBuffer)
 	{
-		context->IASetIndexBuffer(m_indexBuffer, DXGI_FORMAT_R32_UINT, 0);
-		context->DrawIndexed(m_indexCount, 0, 0);
+		context->IASetIndexBuffer(_indexBuffer, DXGI_FORMAT_R32_UINT, 0);
+		context->DrawIndexed(_indexCount, 0, 0);
 	}
 	else
 	{
-		context->Draw((UINT)m_vertexCount, 0);
+		context->Draw((UINT)_vertexCount, 0);
 	}
 }
 
 void xe::Graphics::MeshBuffer::CreateVertexBuffer(const void* vertices, uint32_t vertexSize, uint32_t vertexCount)
 {
-	m_vertexSize = vertexSize;
-	m_vertexCount = vertexCount;
+	_vertexSize = vertexSize;
+	_vertexCount = vertexCount;
 
 	const bool isDynamic = (vertices == nullptr);
 
 	ID3D11Device* device = GraphicsSystem::Get().GetDevice();
 
 	D3D11_BUFFER_DESC bufferDesc{};
-	bufferDesc.ByteWidth = static_cast<UINT>(m_vertexSize * vertexCount);
+	bufferDesc.ByteWidth = static_cast<UINT>(_vertexSize * vertexCount);
 	bufferDesc.Usage = (isDynamic) ? D3D11_USAGE_DYNAMIC : D3D11_USAGE_DEFAULT;
 	bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	bufferDesc.CPUAccessFlags = (isDynamic) ? D3D11_CPU_ACCESS_WRITE : 0;
@@ -86,7 +86,7 @@ void xe::Graphics::MeshBuffer::CreateVertexBuffer(const void* vertices, uint32_t
 	D3D11_SUBRESOURCE_DATA initData{};
 	initData.pSysMem = vertices;
 
-	HRESULT hResult = device->CreateBuffer(&bufferDesc, ((isDynamic) ? nullptr : &initData), &m_vertexBuffer);
+	HRESULT hResult = device->CreateBuffer(&bufferDesc, ((isDynamic) ? nullptr : &initData), &_vertexBuffer);
 	ASSERT(SUCCEEDED(hResult), "Failed to create vertex data");
 }
 
@@ -94,7 +94,7 @@ void xe::Graphics::MeshBuffer::CreateIndexBuffer(const uint32_t* indices, uint32
 {
 	if (indexCount == 0) return;
 
-	m_indexCount = indexCount;
+	_indexCount = indexCount;
 
 	ID3D11Device* device = GraphicsSystem::Get().GetDevice();
 
@@ -108,6 +108,6 @@ void xe::Graphics::MeshBuffer::CreateIndexBuffer(const uint32_t* indices, uint32
 	D3D11_SUBRESOURCE_DATA initData{};
 	initData.pSysMem = indices;
 
-	HRESULT hResult = device->CreateBuffer(&bufferDesc, &initData, &m_indexBuffer);
+	HRESULT hResult = device->CreateBuffer(&bufferDesc, &initData, &_indexBuffer);
 	ASSERT(SUCCEEDED(hResult), "Failed to create index data");
 }

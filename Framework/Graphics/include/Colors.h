@@ -212,4 +212,4 @@ namespace xe {
 	} // namespace Colors
 } // namespace xe
 
-#endif // !__XE_GRAPGICS_COLORS_H__
+#endif // #ifndef XE_GRAPGICS_COLORS_H

@@ -19,4 +19,4 @@ namespace xe::Graphics
 	using Mesh = MeshBase<Vertex>;
 }
 
-#endif // !__XE_GRAPHICS_MESHTYPES_H__
+#endif // XE_GRAPHICS_MESHTYPES_H

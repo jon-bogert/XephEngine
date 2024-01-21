@@ -29,7 +29,7 @@ void xe::Graphics::PixelShader::Initialize(const std::filesystem::path& filePath
 		shaderBlob->GetBufferPointer(),
 		shaderBlob->GetBufferSize(),
 		nullptr,
-		&m_pixelShader
+		&_pixelShader
 	);
 	ASSERT(SUCCEEDED(hResult), "Failed to create pixel shader");
 	SafeRelease(shaderBlob);
@@ -38,11 +38,11 @@ void xe::Graphics::PixelShader::Initialize(const std::filesystem::path& filePath
 
 void xe::Graphics::PixelShader::Terminate()
 {
-	SafeRelease(m_pixelShader);
+	SafeRelease(_pixelShader);
 }
 
 void xe::Graphics::PixelShader::Bind()
 {
 	ID3D11DeviceContext* context = GraphicsSystem::Get().GetContext();
-	context->PSSetShader(m_pixelShader, nullptr, 0);
+	context->PSSetShader(_pixelShader, nullptr, 0);
 }

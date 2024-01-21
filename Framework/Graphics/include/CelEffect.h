@@ -17,21 +17,6 @@ namespace xe::Graphics
 
 	class CelEffect
 	{
-	public:
-		void Initialize(const std::filesystem::path&);
-		void Terminate();
-
-		void Begin();
-		void End();
-
-		void Draw(const RenderObject& renderObject);
-
-		void SetCamera(const Camera& camera);
-		void SetDirectionalLight(const DirectionalLight& directionalLight);
-
-		void DebugUI();
-
-	private:
 		struct TransfromData
 		{
 			xe::Math::Matrix4 world;
@@ -50,19 +35,33 @@ namespace xe::Graphics
 		using MaterialBuffer = TypedContantBuffer<Material>;
 		using SettingsBuffer = TypedContantBuffer<SettingsData>;
 
-		TransformBuffer m_transformBuffer;
-		LightingBuffer m_lightingBuffer;
-		MaterialBuffer m_materialBuffer;
-		SettingsBuffer m_settingsBuffer;
+		TransformBuffer _transformBuffer;
+		LightingBuffer _lightingBuffer;
+		MaterialBuffer _materialBuffer;
+		SettingsBuffer _settingsBuffer;
 
-		VertexShader m_vertexShader;
-		PixelShader m_pixelShader;
-		Sampler m_sampler;
+		VertexShader _vertexShader;
+		PixelShader _pixelShader;
+		Sampler _sampler;
 
-		SettingsData m_settingsData;
-		const Camera* m_camera = nullptr;
-		const DirectionalLight* m_directionalLight = nullptr;
+		SettingsData _settingsData;
+		const Camera* _camera = nullptr;
+		const DirectionalLight* _directionalLight = nullptr;
+
+	public:
+		void Initialize(const std::filesystem::path&);
+		void Terminate();
+
+		void Begin();
+		void End();
+
+		void Draw(const RenderObject& renderObject);
+
+		void SetCamera(const Camera& camera);
+		void SetDirectionalLight(const DirectionalLight& directionalLight);
+
+		void DebugUI();
 	};
 }
 
-#endif //!__XE_GRAPHICS_CELEFFECT_H__
+#endif

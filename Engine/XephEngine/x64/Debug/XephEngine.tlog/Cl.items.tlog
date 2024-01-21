@@ -1,3 +1,6 @@
-D:\repos\C++\XephEngine\Engine\XephEngine\src\App.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\App.obj
-D:\repos\C++\XephEngine\Engine\XephEngine\src\Pch.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\Pch.obj
-D:\repos\C++\XephEngine\Engine\XephEngine\src\XephEngine.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\XephEngine.obj
+C:\repos\C++\XephEngine\Engine\XephEngine\src\App.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\App.obj
+C:\repos\C++\XephEngine\Engine\XephEngine\src\GameObject.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\GameObject.obj
+C:\repos\C++\XephEngine\Engine\XephEngine\src\GameObjectFactory.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\GameObjectFactory.obj
+C:\repos\C++\XephEngine\Engine\XephEngine\src\Pch.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\Pch.obj
+C:\repos\C++\XephEngine\Engine\XephEngine\src\XephEngine.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\XephEngine.obj
+C:\repos\C++\XephEngine\Engine\XephEngine\src\TransformComponent.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\TransformComponent.obj

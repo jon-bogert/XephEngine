@@ -5,6 +5,8 @@ namespace xe::Graphics
 {
 	class Sampler final
 	{
+		ID3D11SamplerState* _sampler = nullptr;
+
 	public:
 		enum class Filter { Point, Linear, Anisotropic };
 		enum class AddressMode { Border, Clamp, Mirror, Wrap };
@@ -22,10 +24,7 @@ namespace xe::Graphics
 
 		void BindVertexShader(uint32_t slot);
 		void BindPixelShader(uint32_t slot);
-
-	private:
-		ID3D11SamplerState* m_sampler = nullptr;
 	};
 }
 
-#endif //!__XE_GRAPHICS_SAMPLER_H__
+#endif // XE_GRAPHICS_SAMPLER_H

@@ -4,7 +4,7 @@
 
 xe::Graphics::RenderTarget::~RenderTarget()
 {
-	ASSERT(m_renderTargetView == nullptr && m_depthStencilView == nullptr, "RenderTarget need to call terminate");
+	ASSERT(_renderTargetView == nullptr && _depthStencilView == nullptr, "RenderTarget need to call terminate");
 }
 
 void xe::Graphics::RenderTarget::Initialize(const std::filesystem::path& path)
@@ -32,10 +32,10 @@ void xe::Graphics::RenderTarget::Initialize(uint32_t width, uint32_t height, For
 	HRESULT hResult = device->CreateTexture2D(&desc, nullptr, &texture);
 	ASSERT(SUCCEEDED(hResult), "RenderTarget: failed to create texture");
 
-	hResult = device->CreateShaderResourceView(texture, nullptr, &m_shaderResourceView);
+	hResult = device->CreateShaderResourceView(texture, nullptr, &_shaderResourceView);
 	ASSERT(SUCCEEDED(hResult), "RenderTarget: failed to create shader resource view");
 
-	hResult = device->CreateRenderTargetView(texture, nullptr, &m_renderTargetView);
+	hResult = device->CreateRenderTargetView(texture, nullptr, &_renderTargetView);
 	ASSERT(SUCCEEDED(hResult), "RenderTarget: failed to create render target view");
 
 	desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
@@ -43,25 +43,25 @@ void xe::Graphics::RenderTarget::Initialize(uint32_t width, uint32_t height, For
 	hResult = device->CreateTexture2D(&desc, nullptr, &texture);
 	ASSERT(SUCCEEDED(hResult), "RenderTarget: failed to create depth stencil texture");
 
-	hResult = device->CreateDepthStencilView(texture, nullptr, &m_depthStencilView);
+	hResult = device->CreateDepthStencilView(texture, nullptr, &_depthStencilView);
 	ASSERT(SUCCEEDED(hResult), "RenderTarget: failed to create depth stencil view");
 
 	SafeRelease(texture);
 
-	m_viewport.TopLeftX = 0.f;
-	m_viewport.TopLeftY = 0.f;
-	m_viewport.Width = static_cast<float>(width);
-	m_viewport.Height = static_cast<float>(height);
-	m_viewport.MinDepth = 0.f;
-	m_viewport.MaxDepth = 1.f;
+	_viewport.TopLeftX = 0.f;
+	_viewport.TopLeftY = 0.f;
+	_viewport.Width = static_cast<float>(width);
+	_viewport.Height = static_cast<float>(height);
+	_viewport.MinDepth = 0.f;
+	_viewport.MaxDepth = 1.f;
 }
 
 void xe::Graphics::RenderTarget::Terminate()
 {
 	Texture::Terminate();
 
-	SafeRelease(m_depthStencilView);
-	SafeRelease(m_renderTargetView);
+	SafeRelease(_depthStencilView);
+	SafeRelease(_renderTargetView);
 }
 
 void xe::Graphics::RenderTarget::BeginDraw(Color clearColor)
@@ -70,19 +70,19 @@ void xe::Graphics::RenderTarget::BeginDraw(Color clearColor)
 
 	//store the current versions
 	UINT numViewports = 1;
-	context->OMGetRenderTargets(1, &m_oldRenderTargetView, &m_oldDepthStencilView);
-	context->RSGetViewports(&numViewports, &m_oldViewport);
+	context->OMGetRenderTargets(1, &_oldRenderTargetView, &_oldDepthStencilView);
+	context->RSGetViewports(&numViewports, &_oldViewport);
 
 	//apply the render target versions
-	context->ClearRenderTargetView(m_renderTargetView, &clearColor.r);
-	context->ClearDepthStencilView(m_depthStencilView, D3D11_CLEAR_DEPTH, 1.f, 0.f);
-	context->OMSetRenderTargets(1, &m_renderTargetView, m_depthStencilView);
-	context->RSSetViewports(1, &m_viewport);
+	context->ClearRenderTargetView(_renderTargetView, &clearColor.r);
+	context->ClearDepthStencilView(_depthStencilView, D3D11_CLEAR_DEPTH, 1.f, 0.f);
+	context->OMSetRenderTargets(1, &_renderTargetView, _depthStencilView);
+	context->RSSetViewports(1, &_viewport);
 }
 
 void xe::Graphics::RenderTarget::EndDraw()
 {
 	ID3D11DeviceContext* context = GraphicsSystem::Get().GetContext();
-	context->OMSetRenderTargets(1, &m_oldRenderTargetView, m_oldDepthStencilView);
-	context->RSSetViewports(1, &m_oldViewport);
+	context->OMSetRenderTargets(1, &_oldRenderTargetView, _oldDepthStencilView);
+	context->RSSetViewports(1, &_oldViewport);
 }

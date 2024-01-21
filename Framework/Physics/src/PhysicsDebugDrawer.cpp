@@ -29,10 +29,10 @@ void xe::Physics::Impl::_PhysicsDebugDrawer::draw3dText(const btVector3& locatio
 
 void xe::Physics::Impl::_PhysicsDebugDrawer::setDebugMode(int debugMode)
 {
-	m_debugMode = debugMode;
+	_debugMode = debugMode;
 }
 
 int xe::Physics::Impl::_PhysicsDebugDrawer::getDebugMode() const
 {
-	return m_debugMode;
+	return _debugMode;
 }

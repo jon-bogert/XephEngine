@@ -131,7 +131,7 @@
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)Engine;$(SolutionDir)Framework;$(SolutionDir)External;$(SolutionDir)External\Bullet</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)Engine;$(SolutionDir)Framework;$(SolutionDir)External;$(SolutionDir)External\Bullet;$(SolutionDir)External\yaml-cpp\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -150,7 +150,7 @@
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)Engine;$(SolutionDir)Framework;$(SolutionDir)External;$(SolutionDir)External\Bullet</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)Engine;$(SolutionDir)Framework;$(SolutionDir)External;$(SolutionDir)External\Bullet;$(SolutionDir)External\yaml-cpp\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -166,8 +166,13 @@
     <ClInclude Include="include\App.h" />
     <ClInclude Include="include\AppState.h" />
     <ClInclude Include="include\Common.h" />
+    <ClInclude Include="include\Component.h" />
+    <ClInclude Include="include\GameObject.h" />
+    <ClInclude Include="include\GameObjectFactory.h" />
+    <ClInclude Include="include\TypeIDs.h" />
     <ClInclude Include="include\XephEngine.h" />
     <ClInclude Include="src\Pch.h" />
+    <ClInclude Include="include\TransformComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\External\XephInput\XephInput.vcxproj">
@@ -188,6 +193,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\App.cpp" />
+    <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="src\GameObjectFactory.cpp" />
     <ClCompile Include="src\Pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -195,6 +202,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\XephEngine.cpp" />
+    <ClCompile Include="src\TransformComponent.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

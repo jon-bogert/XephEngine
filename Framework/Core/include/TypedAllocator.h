@@ -32,4 +32,4 @@ namespace xe::Core
 	};
 }
 
-#endif //!__XE_CORE_TYPEDALLOCATOR_H__
+#endif //__XE_CORE_TYPEDALLOCATOR_H__

@@ -24,6 +24,19 @@
     <ClInclude Include="include\AppState.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\GameObject.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Component.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TransformComponent.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TypeIDs.h" />
+    <ClInclude Include="include\GameObjectFactory.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -33,6 +46,15 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\XephEngine.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TransformComponent.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjectFactory.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

@@ -5,6 +5,17 @@ namespace xe::Core
 {
 	class BlockAllocator
 	{
+		std::string _name;
+		std::vector<void*>_freeBocks;
+
+		void* _data = nullptr;
+		size_t _blockSize = 0;
+		size_t _capacity = 0;
+		size_t _blocksAllocatedCurrent = 0;
+		size_t _blocksAllocatedTotal = 0;
+		size_t _blocksFreed = 0;
+		size_t _blocksHighest = 0;
+
 	public:
 		BlockAllocator(const char* name, size_t blockSize, size_t capacity);
 		virtual ~BlockAllocator();
@@ -15,19 +26,7 @@ namespace xe::Core
 
 		void* Allocate();
 		void Free(void* ptr);
-
-	private:
-		std::string _name;
-		std::vector<void*>_freeBocks;
-
-		void* m_data = nullptr;
-		size_t m_blockSize = 0;
-		size_t m_capacity = 0;
-		size_t m_blocksAllocatedCurrent = 0;
-		size_t m_blocksAllocatedTotal = 0;
-		size_t m_blocksFreed = 0;
-		size_t m_blocksHighest = 0;
 	};
 }
 
-#endif // !__XE_CORE_BLOCKALLOCATOR_H__
+#endif // __XE_CORE_BLOCKALLOCATOR_H__

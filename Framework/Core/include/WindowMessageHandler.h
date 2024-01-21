@@ -8,15 +8,16 @@ namespace xe::Core
 	public:
 		using Callback = LRESULT(CALLBACK*)(HWND, UINT, WPARAM, LPARAM);
 
+	private:
+		HWND _window = nullptr;
+		Callback _previousCallback = nullptr;
+	public:
+
 		void Hook(HWND window, Callback cb);
 		void UnHook();
 
 		LRESULT ForwardMessage(HWND window, UINT message, WPARAM wParam, LPARAM lParam);
-
-	private:
-		HWND m_window = nullptr;
-		Callback m_previousCallback = nullptr;
 	};
 }
 
-#endif //!__XE_CORE_WINDOWMESSAGEHANDLER_H__
+#endif

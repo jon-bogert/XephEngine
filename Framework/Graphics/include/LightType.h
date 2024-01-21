@@ -15,4 +15,4 @@ namespace xe::Graphics
 	};
 }
 
-#endif // !__XE_GRAPHICS_LIGHTTYPE_H__
+#endif // __XE_GRAPHICS_LIGHTTYPE_H__

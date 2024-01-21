@@ -1,5 +1,4 @@
-#ifndef __XE_GRAPHICS_TEXTUREMANAGER_H__
-#define __XE_GRAPHICS_TEXTUREMANAGER_H__
+#pragma once
 
 #include "Texture.h"
 
@@ -8,6 +7,19 @@ namespace xe::Graphics
 	using TextureID = size_t;
 	class TextureManager final
 	{
+		using Inventory = std::unordered_map<TextureID, std::unique_ptr<Texture>>;
+		Inventory _inventory;
+		std::filesystem::path _rootDir;
+
+		inline static std::unique_ptr<TextureManager> inst = nullptr;
+
+		static TextureManager& Get();
+
+		TextureManager(const TextureManager&) = delete;
+		TextureManager(const TextureManager&&) = delete;
+		TextureManager& operator=(const TextureManager&) = delete;
+		TextureManager& operator=(const TextureManager&&) = delete;
+
 	public:
 		TextureManager();
 		~TextureManager();
@@ -33,19 +45,6 @@ namespace xe::Graphics
 		void _BindVertexShader(TextureID id, uint32_t slot);
 		void _BindPixelShader(TextureID id, uint32_t slot);
 
-		static TextureManager& Get();
 
-		TextureManager(const TextureManager&) = delete;
-		TextureManager(const TextureManager&&) = delete;
-		TextureManager& operator=(const TextureManager&) = delete;
-		TextureManager& operator=(const TextureManager&&) = delete;
-
-		inline static std::unique_ptr<TextureManager> inst = nullptr;
-
-		using Inventory = std::unordered_map<TextureID, std::unique_ptr<Texture>>;
-		Inventory m_inventory;
-		std::filesystem::path m_rootDir;
 	};
 }
-
-#endif //!__XE_GRAPHICS_TEXTUREMANAGER_H__

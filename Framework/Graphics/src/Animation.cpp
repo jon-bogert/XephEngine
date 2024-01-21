@@ -49,77 +49,77 @@ xe::Graphics::Transform xe::Graphics::Animation::GetTransform(float time) const
 float xe::Graphics::Animation::GetDuration() const
 {
 	
-	return m_duration;
+	return _duration;
 }
 
 xe::Math::Vector3 xe::Graphics::Animation::GetPosition(float time) const
 {
-	for (uint32_t i = 0; i < m_positionKeys.size(); ++i)
+	for (uint32_t i = 0; i < _positionKeys.size(); ++i)
 	{
-		if (time < m_positionKeys[i].time)
+		if (time < _positionKeys[i].time)
 		{
 			if (i > 0)
 			{
-				float t = GetLerpTime(m_positionKeys[i - 1].time, m_positionKeys[i].time, time, m_positionKeys[i].easeType);
-				return xe::Math::Lerp(m_positionKeys[i - 1].key, m_positionKeys[i].key, t);
+				float t = GetLerpTime(_positionKeys[i - 1].time, _positionKeys[i].time, time, _positionKeys[i].easeType);
+				return xe::Math::Lerp(_positionKeys[i - 1].key, _positionKeys[i].key, t);
 			}
 			else
 			{
-				return m_positionKeys[i].key;
+				return _positionKeys[i].key;
 			}
 		}
 	}
-	if (!m_positionKeys.empty())
+	if (!_positionKeys.empty())
 	{
-		return m_positionKeys.back().key;
+		return _positionKeys.back().key;
 	}
 	return xe::Math::Vector3::Zero;
 }
 
 xe::Math::Quaternion xe::Graphics::Animation::GetRotation(float time) const
 {
-	for (uint32_t i = 0; i < m_rotationKeys.size(); ++i)
+	for (uint32_t i = 0; i < _rotationKeys.size(); ++i)
 	{
-		if (time < m_rotationKeys[i].time)
+		if (time < _rotationKeys[i].time)
 		{
 			if (i > 0)
 			{
-				float t = GetLerpTime(m_rotationKeys[i - 1].time, m_rotationKeys[i].time, time, m_rotationKeys[i].easeType);
-				return xe::Math::Quaternion::Slerp(m_rotationKeys[i - 1].key, m_rotationKeys[i].key, t);
+				float t = GetLerpTime(_rotationKeys[i - 1].time, _rotationKeys[i].time, time, _rotationKeys[i].easeType);
+				return xe::Math::Quaternion::Slerp(_rotationKeys[i - 1].key, _rotationKeys[i].key, t);
 			}
 			else
 			{
-				return m_rotationKeys[i].key;
+				return _rotationKeys[i].key;
 			}
 		}
 	}
-	if (!m_rotationKeys.empty())
+	if (!_rotationKeys.empty())
 	{
-		return m_rotationKeys.back().key;
+		return _rotationKeys.back().key;
 	}
 	return xe::Math::Quaternion::Identity;
 }
 
 xe::Math::Vector3 xe::Graphics::Animation::GetScale(float time) const
 {
-	for (uint32_t i = 0; i < m_scaleKeys.size(); ++i)
+	for (uint32_t i = 0; i < _scaleKeys.size(); ++i)
 	{
-		if (time < m_scaleKeys[i].time)
+		if (time < _scaleKeys[i].time)
 		{
 			if (i > 0)
 			{
-				float t = GetLerpTime(m_scaleKeys[i - 1].time, m_scaleKeys[i].time, time, m_scaleKeys[i].easeType);
-				return xe::Math::Lerp(m_scaleKeys[i - 1].key, m_scaleKeys[i].key, t);
+				float t = GetLerpTime(_scaleKeys[i - 1].time, _scaleKeys[i].time, time, _scaleKeys[i].easeType);
+				return xe::Math::Lerp(_scaleKeys[i - 1].key, _scaleKeys[i].key, t);
 			}
 			else
 			{
-				return m_scaleKeys[i].key;
+				return _scaleKeys[i].key;
 			}
 		}
 	}
-	if (!m_scaleKeys.empty())
+	if (!_scaleKeys.empty())
 	{
-		return m_scaleKeys.back().key;
+		return _scaleKeys.back().key;
 	}
 	return xe::Math::Vector3::One;
 }

@@ -42,4 +42,4 @@ namespace xe::Graphics
 	};
 }
 
-#endif //!__XE_GRAPHICS_MESHBUILDER_H__
+#endif

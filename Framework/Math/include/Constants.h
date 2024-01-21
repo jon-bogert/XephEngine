@@ -10,4 +10,4 @@ namespace xe::Math::Const
     constexpr const float RadToDeg = 180.0f / Pi;
 }
 
-#endif //!_XE_MATH_CONSTANTS_H__
+#endif

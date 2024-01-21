@@ -16,4 +16,4 @@ namespace xe::Graphics
 	};
 }
 
-#endif //!__XE_GRAPHICS_ANIMATIONCLIP_H__
+#endif

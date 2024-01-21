@@ -33,4 +33,4 @@ namespace xe::Graphics
 	using ScaleKeys = Keyframes<xe::Math::Vector3>;
 }
 
-#endif //!__XE_GRAPHICS_KEYFRAME_H__
+#endif //__XE_GRAPHICS_KEYFRAME_H__

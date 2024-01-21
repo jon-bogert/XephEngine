@@ -5,6 +5,8 @@ namespace xe::Graphics
 {
 	class BlendState final
 	{
+		ID3D11BlendState* _blendState = nullptr;
+
 	public:
 		static void Clear();
 		enum class Mode { Opaque, AlphaBlend, AlphaPremultiplied, Additive };
@@ -19,11 +21,8 @@ namespace xe::Graphics
 		void Terminate();
 
 		void Set();
-
-	private:
-		ID3D11BlendState* m_blendState = nullptr;
 	};
 }
 
-#endif //!__XE_GRAPHICS_BLENDSTATE_H__
+#endif
 

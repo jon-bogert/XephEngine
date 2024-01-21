@@ -7,4 +7,4 @@ namespace xe::Core::TimeUtil
 	float DeltaTime();
 }
 
-#endif // !__XE_CORE_TIMEUTIL_H__
+#endif // XE_CORE_TIMEUTIL_H

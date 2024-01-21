@@ -27,7 +27,7 @@ xe::Graphics::ModelID xe::Graphics::ModelManager::GetModelID(const std::filesyst
 xe::Graphics::ModelID xe::Graphics::ModelManager::LoadModel(const std::filesystem::path& filepath)
 {
 	const ModelID modelID = GetModelID(filepath);
-	auto [iter, success] = _modelManager->m_inventory.insert({ modelID, nullptr });
+	auto [iter, success] = _modelManager->_inventory.insert({ modelID, nullptr });
 	if (success)
 	{
 		std::unique_ptr<Model>& modelPtr = iter->second;
@@ -42,16 +42,16 @@ xe::Graphics::ModelID xe::Graphics::ModelManager::LoadModel(const std::filesyste
 
 xe::Graphics::ModelID xe::Graphics::ModelManager::AddAnimation(ModelID id, const std::filesystem::path& filepath)
 {
-	auto modelIter = _modelManager->m_inventory.find(id);
-	ASSERT(modelIter != _modelManager->m_inventory.end(), "ModelManager: need to load the model first");
+	auto modelIter = _modelManager->_inventory.find(id);
+	ASSERT(modelIter != _modelManager->_inventory.end(), "ModelManager: need to load the model first");
 	ModelIO::LoadAnimations(filepath, *modelIter->second);
 	return 0;
 }
 
 xe::Graphics::Model* xe::Graphics::ModelManager::GetModel(ModelID id)
 {
-	auto model = _modelManager->m_inventory.find(id);
-	if (model != _modelManager->m_inventory.end())
+	auto model = _modelManager->_inventory.find(id);
+	if (model != _modelManager->_inventory.end())
 	{
 		return model->second.get();
 	}

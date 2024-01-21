@@ -5,6 +5,8 @@ namespace xe::Graphics
 {
 	class ConstantBuffer
 	{
+		ID3D11Buffer* _constantBuffer = nullptr;
+
 	public:
 		ConstantBuffer() = default;
 		virtual ~ConstantBuffer();
@@ -16,9 +18,6 @@ namespace xe::Graphics
 
 		void BindVertexShader(uint32_t slot);
 		void BindPixelShader(uint32_t slot);
-
-	private:
-		ID3D11Buffer* m_constantBuffer = nullptr;
 	};
 
 
@@ -39,4 +38,4 @@ namespace xe::Graphics
 	};
 }
 
-#endif // !_XE_GRAPHICS_CONSTBUFFER_H_
+#endif // XE_GRAPHICS_CONSTBUFFER_H

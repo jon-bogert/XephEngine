@@ -7,20 +7,20 @@ using namespace xe::Graphics;
 
 xe::Physics::Softbody::~Softbody()
 {
-	ASSERT(m_softbody == nullptr, "Softbody: terminate must be called");
+	ASSERT(_softbody == nullptr, "Softbody: terminate must be called");
 }
 
 void xe::Physics::Softbody::Initialize(Graphics::Mesh& mesh, float mass, const std::vector<int>& fixedNodeIndices)
 {
-	m_mesh = &mesh;
-	m_softbody = PhysicsWorld::Get().CreateSoftbody(mesh.vertices.size());
+	_mesh = &mesh;
+	_softbody = PhysicsWorld::Get().CreateSoftbody(mesh.vertices.size());
 
-	btSoftBody::Material* physMat = m_softbody->appendMaterial();
+	btSoftBody::Material* physMat = _softbody->appendMaterial();
 	physMat->m_kAST = 1.f;
-	m_softbody->m_cfg.kMT = 0.2f;
+	_softbody->m_cfg.kMT = 0.2f;
 	for (size_t i = 0; i < mesh.vertices.size(); ++i)
 	{
-		m_softbody->m_nodes[i].m_x = mesh.vertices[i].position;
+		_softbody->m_nodes[i].m_x = mesh.vertices[i].position;
 	}
 	for (size_t i = 0; i < mesh.indices.size(); i += 6)
 	{
@@ -29,14 +29,14 @@ void xe::Physics::Softbody::Initialize(Graphics::Mesh& mesh, float mass, const s
 		int index2 = mesh.indices[i + 5];
 		int index3 = mesh.indices[i + 2];
 
-		m_softbody->appendLink(index0, index1);
-		m_softbody->appendLink(index1, index2);
-		m_softbody->appendLink(index2, index3);
-		m_softbody->appendLink(index3, index1);
+		_softbody->appendLink(index0, index1);
+		_softbody->appendLink(index1, index2);
+		_softbody->appendLink(index2, index3);
+		_softbody->appendLink(index3, index1);
 	}
 	for (auto fixedNode : fixedNodeIndices)
 	{
-		m_softbody->m_nodes[fixedNode].m_im = 0.f;
+		_softbody->m_nodes[fixedNode].m_im = 0.f;
 	}
 	PhysicsWorld::Get().Register(this);
 }
@@ -44,13 +44,13 @@ void xe::Physics::Softbody::Initialize(Graphics::Mesh& mesh, float mass, const s
 void xe::Physics::Softbody::Terminate()
 {
 	PhysicsWorld::Get().Unregister(this);
-	SafeDelete(m_softbody);
+	SafeDelete(_softbody);
 }
 
 void xe::Physics::Softbody::Update(const float deltaTime)
 {
-	for (size_t i = 0; i < m_mesh->vertices.size(); ++i)
+	for (size_t i = 0; i < _mesh->vertices.size(); ++i)
 	{
-		m_mesh->vertices[i].position = m_softbody->m_nodes[i].m_x;
+		_mesh->vertices[i].position = _softbody->m_nodes[i].m_x;
 	}
 }

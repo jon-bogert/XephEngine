@@ -6,7 +6,7 @@ using namespace xe::Graphics;
 
 xe::Graphics::ConstantBuffer::~ConstantBuffer()
 {
-	ASSERT(m_constantBuffer == nullptr, "ConstantBuffer not release");
+	ASSERT(_constantBuffer == nullptr, "ConstantBuffer not release");
 }
 
 void xe::Graphics::ConstantBuffer::Initialize(uint32_t bufferSize)
@@ -20,29 +20,29 @@ void xe::Graphics::ConstantBuffer::Initialize(uint32_t bufferSize)
 	desc.StructureByteStride = 0;
 
 	ID3D11Device* device = GraphicsSystem::Get().GetDevice();
-	HRESULT hResult = device->CreateBuffer(&desc, nullptr, &m_constantBuffer);
+	HRESULT hResult = device->CreateBuffer(&desc, nullptr, &_constantBuffer);
 	ASSERT(SUCCEEDED(hResult), "ConstantBuffer failed to create constant buffer");
 }
 
 void xe::Graphics::ConstantBuffer::Terminate()
 {
-	SafeRelease(m_constantBuffer);
+	SafeRelease(_constantBuffer);
 }
 
 void xe::Graphics::ConstantBuffer::Update(const void* data) const
 {
 	ID3D11DeviceContext* context = GraphicsSystem::Get().GetContext();
-	context->UpdateSubresource(m_constantBuffer, 0, nullptr, data, 0, 0);
+	context->UpdateSubresource(_constantBuffer, 0, nullptr, data, 0, 0);
 }
 
 void xe::Graphics::ConstantBuffer::BindVertexShader(uint32_t slot)
 {
 	ID3D11DeviceContext* context = GraphicsSystem::Get().GetContext();
-	context->VSSetConstantBuffers(slot, 1, &m_constantBuffer);
+	context->VSSetConstantBuffers(slot, 1, &_constantBuffer);
 }
 
 void xe::Graphics::ConstantBuffer::BindPixelShader(uint32_t slot)
 {
 	ID3D11DeviceContext* context = GraphicsSystem::Get().GetContext();
-	context->PSSetConstantBuffers(slot, 1, &m_constantBuffer);
+	context->PSSetConstantBuffers(slot, 1, &_constantBuffer);
 }

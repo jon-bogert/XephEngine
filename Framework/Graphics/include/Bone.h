@@ -21,4 +21,4 @@ namespace xe::Graphics
 	};
 }
 
-#endif //!__XE_GRAPHICS_BONE_H__
+#endif //__XE_GRAPHICS_BONE_H__

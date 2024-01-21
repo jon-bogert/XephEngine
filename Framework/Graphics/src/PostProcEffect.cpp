@@ -23,59 +23,59 @@ namespace
 
 void xe::Graphics::PostProcEffect::Initialize(const std::filesystem::path& filepath)
 {
-	m_vertexShader.Initialize<VertexPX>(filepath);
-	m_pixelShader.Initialize(filepath);
+	_vertexShader.Initialize<VertexPX>(filepath);
+	_pixelShader.Initialize(filepath);
 
-	m_sampler.Initialize(Sampler::Filter::Point, Sampler::AddressMode::Wrap);
-	m_postProcBuffer.Initialize();
+	_sampler.Initialize(Sampler::Filter::Point, Sampler::AddressMode::Wrap);
+	_postProcBuffer.Initialize();
 }
 
 void xe::Graphics::PostProcEffect::Terminate()
 {
-	m_postProcBuffer.Terminate();
-	m_sampler.Terminate();
-	m_pixelShader.Terminate();
-	m_vertexShader.Terminate();
+	_postProcBuffer.Terminate();
+	_sampler.Terminate();
+	_pixelShader.Terminate();
+	_vertexShader.Terminate();
 }
 
 void xe::Graphics::PostProcEffect::Begin()
 {
-	m_vertexShader.Bind();
-	m_pixelShader.Bind();
-	m_sampler.BindPixelShader(0);
+	_vertexShader.Bind();
+	_pixelShader.Bind();
+	_sampler.BindPixelShader(0);
 
-	for (uint32_t i = 0; i < m_textures.size(); ++i)
+	for (uint32_t i = 0; i < _textures.size(); ++i)
 	{
-		if (m_textures[i])
+		if (_textures[i])
 		{
-			m_textures[i]->BindPixelShader(i);
+			_textures[i]->BindPixelShader(i);
 		}
 	}
 
-	PostProcData data;
-	data.mode = m_mode;
+	PPData data;
+	data.mode = _mode;
 
-	switch (m_mode)
+	switch (_mode)
 	{
 	case Mode::None:
 		break;
 	case Mode::Monochrome:
-		data.param0 = m_monochromeColor.r;
-		data.param1 = m_monochromeColor.g;
-		data.param2 = m_monochromeColor.b;
+		data.param0 = _monochromeColor.r;
+		data.param1 = _monochromeColor.g;
+		data.param2 = _monochromeColor.b;
 		break;
 	case Mode::Invert:
 		break;
 	case Mode::Mirror:
-		data.param0 = m_mirrorScaleX;
-		data.param1 = m_mirrorScaleY;
+		data.param0 = _mirrorScaleX;
+		data.param1 = _mirrorScaleY;
 		break;
 	case Mode::Blur:
 	{
 		const uint32_t screenWidth = GraphicsSystem::Get().GetBackBufferWidth();
 		const uint32_t screenHeight = GraphicsSystem::Get().GetBackBufferHeight();
-		data.param0 = m_blurAmt / screenWidth;
-		data.param1 = m_blurAmt / screenHeight;
+		data.param0 = _blurAmt / screenWidth;
+		data.param1 = _blurAmt / screenHeight;
 		break;
 	}
 	case Mode::Combine2:
@@ -83,18 +83,18 @@ void xe::Graphics::PostProcEffect::Begin()
 	case Mode::MotionBlur:
 		break;
 	case Mode::ChromAberr:
-		data.param0 = m_chromAbAmt;
+		data.param0 = _chromAbAmt;
 		break;
 	}
-	m_postProcBuffer.Update(data);
-	m_postProcBuffer.BindPixelShader(0);
+	_postProcBuffer.Update(data);
+	_postProcBuffer.BindPixelShader(0);
 }
 
 void xe::Graphics::PostProcEffect::End()
 {
-	for (uint32_t i = 0; i < m_textures.size(); ++i)
+	for (uint32_t i = 0; i < _textures.size(); ++i)
 	{
-		m_textures[i]->UnbindPixelShader(i);
+		_textures[i]->UnbindPixelShader(i);
 	}
 }
 
@@ -105,8 +105,8 @@ void xe::Graphics::PostProcEffect::Draw(const RenderObject& renderObj)
 
 void xe::Graphics::PostProcEffect::SetTexture(const Texture* texture, uint32_t slot)
 {
-	ASSERT(slot < m_textures.size(), "PostProcEffect -> invalid slot index");
-	m_textures[slot] = texture;
+	ASSERT(slot < _textures.size(), "PostProcEffect -> invalid slot index");
+	_textures[slot] = texture;
 }
 
 void xe::Graphics::PostProcEffect::DebugUI()
@@ -114,21 +114,21 @@ void xe::Graphics::PostProcEffect::DebugUI()
 #ifdef _DEBUG
 	if (ImGui::CollapsingHeader("Post Processing Effect##", ImGuiTreeNodeFlags_DefaultOpen))
 	{
-		int currentMode = static_cast<int>(m_mode);
+		int currentMode = static_cast<int>(_mode);
 		if (ImGui::Combo("Mode##", &currentMode, modeNames, static_cast<int>(Mode::Count)))
 		{
-			m_mode = static_cast<Mode>(currentMode);
+			_mode = static_cast<Mode>(currentMode);
 		}
-		ImGui::DragFloat("Mirror Scale X##", &m_mirrorScaleX, 0.1f, -1.f, 1.f);
-		ImGui::DragFloat("Mirror Scale Y##", &m_mirrorScaleY, 0.1f, -1.f, 1.f);
-		ImGui::ColorEdit3("Monochrome Color##", &m_monochromeColor.r);
-		ImGui::DragFloat("Blur Amount##", &m_blurAmt, 1.f, 0.f, 100.f);
-		ImGui::DragFloat("Chromatic Aberration Amount##", &m_chromAbAmt, 0.001, 0.0f, 0.01f);
+		ImGui::DragFloat("Mirror Scale X##", &_mirrorScaleX, 0.1f, -1.f, 1.f);
+		ImGui::DragFloat("Mirror Scale Y##", &_mirrorScaleY, 0.1f, -1.f, 1.f);
+		ImGui::ColorEdit3("Monochrome Color##", &_monochromeColor.r);
+		ImGui::DragFloat("Blur Amount##", &_blurAmt, 1.f, 0.f, 100.f);
+		ImGui::DragFloat("Chromatic Aberration Amount##", &_chromAbAmt, 0.001, 0.0f, 0.01f);
 	}
 #endif // _DEBUG
 }
 
 void xe::Graphics::PostProcEffect::SetMode(const Mode mode)
 {
-	m_mode = mode;
+	_mode = mode;
 }

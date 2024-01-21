@@ -46,4 +46,4 @@ namespace xe::Graphics
 	}
 }
 
-#endif //!__XE_GRAPHICS_RENDEROBJECT_H__
+#endif //XE_GRAPHICS_RENDEROBJECT_H

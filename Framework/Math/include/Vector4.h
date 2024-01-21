@@ -27,4 +27,4 @@ namespace xe::Math
 	};
 }
 
-#endif //!__XE_MATH_VECTOR4_H__
+#endif

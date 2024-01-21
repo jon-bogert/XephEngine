@@ -8,6 +8,9 @@ namespace xe::Physics
 {
 	class Softbody final : public PhysicsObject
 	{
+		btSoftBody* _softbody = nullptr;
+		Graphics::Mesh* _mesh = nullptr;
+
 	public:
 		Softbody() = default;
 		~Softbody();
@@ -16,12 +19,8 @@ namespace xe::Physics
 		void Terminate();
 
 		void Update(const float deltaTime) override;
-		btSoftBody* GetSoftbody() override { return m_softbody; }
-
-	private:
-		btSoftBody* m_softbody = nullptr;
-		Graphics::Mesh* m_mesh = nullptr;
+		btSoftBody* GetSoftbody() override { return _softbody; }
 	};
 }
 
-#endif //!__XE_PHYSICS_SOFTBODY_H__
+#endif // __XE_PHYSICS_SOFTBODY_H__

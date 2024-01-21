@@ -15,27 +15,27 @@ namespace
 
 AnimationBuilder& xe::Graphics::AnimationBuilder::AddPositionKey(const xe::Math::Vector3& position, float time, EaseType easeType)
 {
-	PushKey(m_workingCopy.m_positionKeys, position, time, easeType);
-	m_workingCopy.m_duration = xe::Math::Max(m_workingCopy.m_duration, time);
+	PushKey(_workingCopy._positionKeys, position, time, easeType);
+	_workingCopy._duration = xe::Math::Max(_workingCopy._duration, time);
 	return *this;
 }
 
 AnimationBuilder& xe::Graphics::AnimationBuilder::AddRotationKey(const xe::Math::Quaternion& rotation, float time, EaseType easeType)
 {
-	PushKey(m_workingCopy.m_rotationKeys, rotation, time, easeType);
-	m_workingCopy.m_duration = xe::Math::Max(m_workingCopy.m_duration, time);
+	PushKey(_workingCopy._rotationKeys, rotation, time, easeType);
+	_workingCopy._duration = xe::Math::Max(_workingCopy._duration, time);
 	return *this;
 }
 
 AnimationBuilder& xe::Graphics::AnimationBuilder::AddScaleKey(const xe::Math::Vector3& scale, float time, EaseType easeType)
 {
-	PushKey(m_workingCopy.m_scaleKeys, scale, time, easeType);
-	m_workingCopy.m_duration = xe::Math::Max(m_workingCopy.m_duration, time);
+	PushKey(_workingCopy._scaleKeys, scale, time, easeType);
+	_workingCopy._duration = xe::Math::Max(_workingCopy._duration, time);
 	return *this;
 }
 
 Animation xe::Graphics::AnimationBuilder::Build()
 {
-	ASSERT(!m_workingCopy.m_positionKeys.empty() || !m_workingCopy.m_rotationKeys.empty() || !m_workingCopy.m_scaleKeys.empty(), "AnimationBuilder: Could not build Animation");
-	return std::move(m_workingCopy);
+	ASSERT(!_workingCopy._positionKeys.empty() || !_workingCopy._rotationKeys.empty() || !_workingCopy._scaleKeys.empty(), "AnimationBuilder: Could not build Animation");
+	return std::move(_workingCopy);
 }

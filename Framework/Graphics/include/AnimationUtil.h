@@ -13,4 +13,4 @@ namespace xe::Graphics::AnimationUtil
 	void DrawSkeleton(ModelID modelID, const BoneTransforms& boneTransforms);
 }
 
-#endif //!__XE_GRAPHICS_ANIMATIONUTIL_H__
+#endif

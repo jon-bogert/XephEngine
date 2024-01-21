@@ -13,6 +13,24 @@ namespace xe::Graphics
 	class RenderObject;
 	class ShadowEffect
 	{
+		struct TransformData
+		{
+			xe::Math::Matrix4 wvp;
+		};
+		using TransformBuffer = TypedContantBuffer<TransformData>;
+		TransformBuffer _transformBuffer;
+
+		VertexShader _vertexShader;
+		PixelShader _pixelShader;
+
+		const DirectionalLight* _directionalLight = nullptr;
+
+		Camera _lightCamera;
+		RenderTarget _depthMapRenderTarget;
+
+		xe::Math::Vector3 _focalPoint;
+		float _size = 24.f;
+
 	public:
 		void Initialize();
 		void Terminate();
@@ -23,34 +41,16 @@ namespace xe::Graphics
 		void Draw(const RenderObject& renderObj);
 
 		void DebugUI();
-		void SetDirectionalLight(const DirectionalLight& dirLight) { m_directionalLight = &dirLight; };
-		void SetFocalPoint(const xe::Math::Vector3& focalPnt) { m_focalPoint = focalPnt; };
-		void SetSize(const float size) { m_size = size; }
+		void SetDirectionalLight(const DirectionalLight& dirLight) { _directionalLight = &dirLight; };
+		void SetFocalPoint(const xe::Math::Vector3& focalPnt) { _focalPoint = focalPnt; };
+		void SetSize(const float size) { _size = size; }
 
-		const Camera& GetLightCamera() const { return m_lightCamera; }
-		const Texture& GetDephtMap() const { return m_depthMapRenderTarget; }
+		const Camera& GetLightCamera() const { return _lightCamera; }
+		const Texture& GetDephtMap() const { return _depthMapRenderTarget; }
 
 	private:
 		void UpdateLightCamera();
-
-		struct TransformData
-		{
-			xe::Math::Matrix4 wvp;
-		};
-		using TransformBuffer = TypedContantBuffer<TransformData>;
-		TransformBuffer m_transformBuffer;
-
-		VertexShader m_vertexShader;
-		PixelShader m_pixelShader;
-
-		const DirectionalLight* m_directionalLight = nullptr;
-
-		Camera m_lightCamera;
-		RenderTarget m_depthMapRenderTarget;
-
-		xe::Math::Vector3 m_focalPoint;
-		float m_size = 24.f;
 	};
 }
 
-#endif //!__XE_GRAPHICS_SHADOWEFFECT_H__
+#endif // __XE_GRAPHICS_SHADOWEFFECT_H__

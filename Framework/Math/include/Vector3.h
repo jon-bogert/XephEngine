@@ -39,4 +39,4 @@ namespace xe::Math
 	};
 }
 
-#endif //!__XE_MATH_VECTOR3_H__
+#endif

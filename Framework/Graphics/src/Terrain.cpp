@@ -13,49 +13,49 @@ void xe::Graphics::Terrain::Initialize(const std::filesystem::path& filename, fl
 	const uint32_t dimensions = static_cast<uint32_t>(sqrt(static_cast<float>(fileSize)));
 	fseek(file, 0L, SEEK_SET);
 
-	m_rows = dimensions;
-	m_columns = dimensions;
+	_rows = dimensions;
+	_columns = dimensions;
 
 	const float tileCount = 35;
 
-	m_mesh.vertices.resize(m_rows * m_columns);
-	for (uint32_t z = 0; z < m_rows; ++z)
+	_mesh.vertices.resize(_rows * _columns);
+	for (uint32_t z = 0; z < _rows; ++z)
 	{
-		for (uint32_t x = 0; x < m_columns; ++x)
+		for (uint32_t x = 0; x < _columns; ++x)
 		{
 			const int c = fgetc(file);
 			const float height = (c / 255.f) * heightScale;
-			const uint32_t index = x + (z * m_columns);
+			const uint32_t index = x + (z * _columns);
 
-			xe::Graphics::Vertex& vertex = m_mesh.vertices[index];
+			xe::Graphics::Vertex& vertex = _mesh.vertices[index];
 			const float posX = static_cast<float>(x);
 			const float posZ = static_cast<float>(z);
 			vertex.position = { posX, height, posZ };
 			vertex.normal = xe::Math::Vector3::YAxis;
-			vertex.uvCoord.x = (static_cast<float>(x) / m_columns) * tileCount;
-			vertex.uvCoord.y = (static_cast<float>(z) / m_rows) * tileCount;
+			vertex.uvCoord.x = (static_cast<float>(x) / _columns) * tileCount;
+			vertex.uvCoord.y = (static_cast<float>(z) / _rows) * tileCount;
 		}
 	}
 	fclose(file);
 
-	const uint32_t cells = (m_rows - 1) * (m_columns - 1);
-	m_mesh.indices.reserve(cells * 6);
-	for (uint32_t z = 0; z < m_rows - 1; ++z)
+	const uint32_t cells = (_rows - 1) * (_columns - 1);
+	_mesh.indices.reserve(cells * 6);
+	for (uint32_t z = 0; z < _rows - 1; ++z)
 	{
-		for (uint32_t x = 0; x < m_columns - 1; ++x)
+		for (uint32_t x = 0; x < _columns - 1; ++x)
 		{
-			const uint32_t bl = x + (z * m_columns);
-			const uint32_t tl = x + ((z + 1) * m_columns);
-			const uint32_t br = (x + 1) + (z * m_columns);
-			const uint32_t tr = (x + 1) + ((z + 1) * m_columns);
+			const uint32_t bl = x + (z * _columns);
+			const uint32_t tl = x + ((z + 1) * _columns);
+			const uint32_t br = (x + 1) + (z * _columns);
+			const uint32_t tr = (x + 1) + ((z + 1) * _columns);
 
-			m_mesh.indices.push_back(bl);
-			m_mesh.indices.push_back(tl);
-			m_mesh.indices.push_back(tr);
+			_mesh.indices.push_back(bl);
+			_mesh.indices.push_back(tl);
+			_mesh.indices.push_back(tr);
 
-			m_mesh.indices.push_back(bl);
-			m_mesh.indices.push_back(tr);
-			m_mesh.indices.push_back(br);
+			_mesh.indices.push_back(bl);
+			_mesh.indices.push_back(tr);
+			_mesh.indices.push_back(br);
 		}
 	}
 }
@@ -65,15 +65,15 @@ float xe::Graphics::Terrain::GetHeight(const xe::Math::Vector3& position) const
 	const int32_t x = static_cast<int32_t>(position.x);
 	const int32_t z = static_cast<int32_t>(position.z);
 
-	if (x < 0 || z < 0 || x + 1 >= m_columns || z + 1 >= m_rows)
+	if (x < 0 || z < 0 || x + 1 >= _columns || z + 1 >= _rows)
 	{
 		return 0.0f;
 	}
 
-	const uint32_t bl = x + (z * m_columns);
-	const uint32_t tl = x + ((z + 1) * m_columns);
-	const uint32_t br = (x + 1) + (z * m_columns);
-	const uint32_t tr = (x + 1) + ((z + 1) * m_columns);
+	const uint32_t bl = x + (z * _columns);
+	const uint32_t tl = x + ((z + 1) * _columns);
+	const uint32_t br = (x + 1) + (z * _columns);
+	const uint32_t tr = (x + 1) + ((z + 1) * _columns);
 
 	const float u = position.x - x;
 	const float v = position.z - z;
@@ -81,18 +81,18 @@ float xe::Graphics::Terrain::GetHeight(const xe::Math::Vector3& position) const
 	float height;
 	if (u > v) // bottom right triangle
 	{
-		const xe::Graphics::Vertex& a = m_mesh.vertices[br];
-		const xe::Graphics::Vertex& b = m_mesh.vertices[tr];
-		const xe::Graphics::Vertex& c = m_mesh.vertices[bl];
+		const xe::Graphics::Vertex& a = _mesh.vertices[br];
+		const xe::Graphics::Vertex& b = _mesh.vertices[tr];
+		const xe::Graphics::Vertex& c = _mesh.vertices[bl];
 		const float deltaAB = b.position.y - a.position.y;
 		const float deltaAC = c.position.y - a.position.y;
 		height = a.position.y + (deltaAB * v) + (deltaAC * (1 - u));
 	}
 	else // top left
 	{
-		const xe::Graphics::Vertex& a = m_mesh.vertices[tl];
-		const xe::Graphics::Vertex& b = m_mesh.vertices[tr];
-		const xe::Graphics::Vertex& c = m_mesh.vertices[bl];
+		const xe::Graphics::Vertex& a = _mesh.vertices[tl];
+		const xe::Graphics::Vertex& b = _mesh.vertices[tr];
+		const xe::Graphics::Vertex& c = _mesh.vertices[bl];
 		const float deltaAB = b.position.y - a.position.y;
 		const float deltaAC = c.position.y - a.position.y;
 		height = a.position.y + (deltaAB * u) + (deltaAC * (1 - v));
@@ -103,5 +103,5 @@ float xe::Graphics::Terrain::GetHeight(const xe::Math::Vector3& position) const
 
 xe::Graphics::Mesh& xe::Graphics::Terrain::GetMesh()
 {
-	return m_mesh;
+	return _mesh;
 }

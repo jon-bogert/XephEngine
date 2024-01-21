@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef __XE_GRAPHICS_TRANSFORM_H__
 #define __XE_GRAPHICS_TRANSFORM_H__
 
@@ -22,4 +24,4 @@ namespace xe::Graphics
 	};
 }
 
-#endif //!__XE_GRAPHICS_TRANSFORM_H__
+#endif //XE_GRAPHICS_TRANSFORM_H

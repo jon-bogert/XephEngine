@@ -160,4 +160,4 @@ namespace xe::Math
 	}
 }
 
-#endif //!__XE_MATH__XEMATH_H__
+#endif

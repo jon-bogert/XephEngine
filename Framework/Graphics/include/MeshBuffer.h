@@ -5,6 +5,15 @@ namespace xe::Graphics
 {
 	class MeshBuffer final
 	{
+		ID3D11Buffer* _vertexBuffer = nullptr;
+		ID3D11Buffer* _indexBuffer = nullptr;
+		D3D11_PRIMITIVE_TOPOLOGY _topology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+
+		uint32_t _vertexSize;
+		uint32_t _vertexCount;
+
+		uint32_t _indexCount;
+
 	public:
 		enum class Topology {Points, Lines, Triangles};
 
@@ -34,16 +43,7 @@ namespace xe::Graphics
 	private:
 		void CreateVertexBuffer(const void* vertices, uint32_t vertexSize, uint32_t vertexCount);
 		void CreateIndexBuffer(const uint32_t* indices, uint32_t indexCount);
-
-		ID3D11Buffer* m_vertexBuffer = nullptr;
-		ID3D11Buffer* m_indexBuffer = nullptr;
-		D3D11_PRIMITIVE_TOPOLOGY m_topology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
-
-		uint32_t m_vertexSize;
-		uint32_t m_vertexCount;
-
-		uint32_t m_indexCount;
 	};
 }
 
-#endif //!__XE_GRAPHICS_MESHBUFFER_H__
+#endif //XE_GRAPHICS_MESHBUFFER_H
