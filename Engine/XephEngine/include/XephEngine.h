@@ -5,6 +5,12 @@
 
 #include "App.h"
 #include "AppState.h"
+#include "GameObject.h"
+#include "TypeIDs.h"
+
+//Components
+#include "Component.h"
+#include "TransformComponent.h"
 
 namespace xe
 {
