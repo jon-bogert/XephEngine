@@ -1,28 +1,2 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (001_HelloWindow.vcxproj, 002_HelloShapes.vcxproj, 003_HelloCube.vcxproj, 004_HelloMeshBuilder.vcxproj, 005_HelloMeshSwitcher.vcxproj, 006_HelloSimpleDraw.vcxproj, 007_HelloImGui.vcxproj, 008_HelloRenderTargeti.vcxproj, 009_HelloSolarSystem.vcxproj, 01_HelloQuaternion.vcxproj, 01_HelloLighting.vcxproj, 01_HelloMemory.vcxproj, 02_HelloAnimation.vcxproj, 05_HelloPhysics.vcxproj, 07_HelloSoftbody.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (InputSystem.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  GameState.cpp
-C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(65,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(66,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(67,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(68,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(38,50): warning C4305: 'initializing': truncation from 'double' to 'btScalar'
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1232,17): warning C4244: 'initializing': conversion from 'double' to 'btScalar', possible loss of data
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1357,21): warning C4244: '+=': conversion from 'double' to 'btScalar', possible loss of data
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1361,21): warning C4244: 'initializing': conversion from 'double' to 'btScalar', possible loss of data
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1385,20): warning C4244: '=': conversion from 'double' to 'btScalar', possible loss of data
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1387,23): warning C4244: '=': conversion from 'double' to 'btScalar', possible loss of data
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1269,17): warning C4244: 'initializing': conversion from 'double' to 'btScalar', possible loss of data
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1303,4): message : see reference to function template instantiation 'void btSoftBody::updateFace<btDbvtNode>(DBVTNODE *,bool,bool)' being compiled
-          with
-          [
-              DBVTNODE=btDbvtNode
-          ]
-Core.lib(Pch.obj) : warning LNK4205: '' is missing current debugging information for referencing module; linking object as if no debug info
-Bullet.lib(btAlignedAllocator.obj) : warning LNK4205: '' is missing current debugging information for referencing module; linking object as if no debug info
-Bullet.lib(btDispatcher.obj) : warning LNK4205: '' is missing current debugging information for referencing module; linking object as if no debug info
-Bullet.lib(btQuickprof.obj) : warning LNK4205: '' is missing current debugging information for referencing module; linking object as if no debug info
-Bullet.lib(poly34.obj) : warning LNK4205: '' is missing current debugging information for referencing module; linking object as if no debug info
-Bullet.lib(btCollisionAlgorithm.obj) : warning LNK4205: '' is missing current debugging information for referencing module; linking object as if no debug info
-Bullet.lib(btHashedSimplePairCache.obj) : warning LNK4205: '' is missing current debugging information for referencing module; linking object as if no debug info
-Bullet.lib(btUnionFind.obj) : warning LNK4205: '' is missing current debugging information for referencing module; linking object as if no debug info
   02_HelloGameObject.vcxproj -> C:\repos\C++\XephEngine\x64\Debug\02_HelloGameObject.exe

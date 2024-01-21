@@ -6,6 +6,7 @@
 #include "App.h"
 #include "AppState.h"
 #include "GameObject.h"
+#include "GameObjectFactory.h"
 #include "TypeIDs.h"
 
 //Components

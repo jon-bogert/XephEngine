@@ -26,7 +26,9 @@ namespace xe
 		GameObject& GetGameObject() { return *m_gameObject; }
 		const GameObject& GetGameObject() const { return *m_gameObject; }
 
-		
+		//Serialization
+		virtual void Serialize(YAML::Node& components) {};
+		virtual void Deserialize(const yaml_val& data) {};
 
 	private:
 		friend class GameObject;

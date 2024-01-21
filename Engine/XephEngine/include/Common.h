@@ -9,4 +9,8 @@
 #include "XephInput/include/XephInput/InputSystem.h"
 #include "XephInput/include/XephInput/Enums.h"
 
+#define YAML_CPP_STATIC_DEFINE
+#include <yaml-cpp/yaml.h>
+using yaml_val = YAML::iterator::value_type;
+
 #endif // XE_XEPHENGINE_COMMON_H

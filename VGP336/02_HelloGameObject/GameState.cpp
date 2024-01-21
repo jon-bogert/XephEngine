@@ -9,7 +9,7 @@ void GameState::Initialize()
 	_camera.SetPosition({ 0.f, 1.5f, -4.f });
 	_camera.SetLookAt({ 0.f, 0.f, 0.f });
 
-	_gameObject.AddComponent<TransformComponent>();
+	GameObjectFactory::Make("../../Assets/Serialized/test.yaml", _gameObject);
 	_gameObject.Initialize();
 }
 

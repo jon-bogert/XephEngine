@@ -34,6 +34,9 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="include\TypeIDs.h" />
+    <ClInclude Include="include\GameObjectFactory.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -49,6 +52,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\TransformComponent.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjectFactory.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
