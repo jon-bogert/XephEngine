@@ -8,10 +8,17 @@
 #include "GameObject.h"
 #include "GameObjectFactory.h"
 #include "TypeIDs.h"
+#include "World.h"
 
 //Components
 #include "Component.h"
 #include "TransformComponent.h"
+#include "CameraComponent.h"
+
+//Services
+#include "CameraService.h"
+#include "Service.h"
+#include "UpdateService.h"
 
 namespace xe
 {

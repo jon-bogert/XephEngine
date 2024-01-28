@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __XE_XEPHENGINE_TRANSFORMCOMPONENT_H__
+#define __XE_XEPHENGINE_TRANSFORMCOMPONENT_H__
 #include "Component.h"
 namespace xe
 {
@@ -11,3 +12,5 @@ namespace xe
 		void Deserialize(const yaml_val& data);
 	};
 }
+
+#endif //!__XE_XEPHENGINE_TRANSFORMCOMPONENT_H__

@@ -9,6 +9,16 @@ namespace xe
 		Null,
 		Transform,
 		Camera,
+		FPSCamera,
+
+		Count
+	};
+
+	enum class ServiceID
+	{
+		Null,
+		Camera,
+		Update,
 
 		Count
 	};

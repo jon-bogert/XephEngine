@@ -1,27 +1,58 @@
 ﻿  Pch.cpp
-C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(65,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(66,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(67,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(68,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(38,50): warning C4305: 'initializing': truncation from 'double' to 'btScalar'
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1232,17): warning C4244: 'initializing': conversion from 'double' to 'btScalar', possible loss of data
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1357,21): warning C4244: '+=': conversion from 'double' to 'btScalar', possible loss of data
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1361,21): warning C4244: 'initializing': conversion from 'double' to 'btScalar', possible loss of data
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1385,20): warning C4244: '=': conversion from 'double' to 'btScalar', possible loss of data
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1387,23): warning C4244: '=': conversion from 'double' to 'btScalar', possible loss of data
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1269,17): warning C4244: 'initializing': conversion from 'double' to 'btScalar', possible loss of data
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1303,4): message : see reference to function template instantiation 'void btSoftBody::updateFace<btDbvtNode>(DBVTNODE *,bool,bool)' being compiled
+D:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(65,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Pch.cpp')
+  
+D:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(66,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Pch.cpp')
+  
+D:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(67,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Pch.cpp')
+  
+D:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(68,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Pch.cpp')
+  
+D:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(38,50): warning C4305: 'initializing': truncation from 'double' to 'btScalar'
+  (compiling source file 'src/Pch.cpp')
+  
+D:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1232,17): warning C4244: 'initializing': conversion from 'double' to 'btScalar', possible loss of data
+  (compiling source file 'src/Pch.cpp')
+  
+D:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1357,21): warning C4244: '+=': conversion from 'double' to 'btScalar', possible loss of data
+  (compiling source file 'src/Pch.cpp')
+  
+D:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1361,21): warning C4244: 'initializing': conversion from 'double' to 'btScalar', possible loss of data
+  (compiling source file 'src/Pch.cpp')
+  
+D:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1385,20): warning C4244: '=': conversion from 'double' to 'btScalar', possible loss of data
+  (compiling source file 'src/Pch.cpp')
+  
+D:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1387,23): warning C4244: '=': conversion from 'double' to 'btScalar', possible loss of data
+  (compiling source file 'src/Pch.cpp')
+  
+D:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1269,17): warning C4244: 'initializing': conversion from 'double' to 'btScalar', possible loss of data
+  (compiling source file 'src/Pch.cpp')
+  D:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1269,17):
+  the template instantiation context (the oldest one first) is
+  	D:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1303,4):
+  	see reference to function template instantiation 'void btSoftBody::updateFace<btDbvtNode>(DBVTNODE *,bool,bool)' being compiled
           with
           [
               DBVTNODE=btDbvtNode
           ]
+  
   CollisionShape.cpp
   PhysicsDebugDrawer.cpp
   PhysicsWorld.cpp
   Rigidbody.cpp
   Softbody.cpp
-C:\repos\C++\XephEngine\Framework\Physics\src\Softbody.cpp(16,67): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\repos\C++\XephEngine\Framework\Physics\src\Softbody.cpp(23,22): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\repos\C++\XephEngine\Framework\Physics\src\Softbody.cpp(54,52): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\repos\C++\XephEngine\Framework\Physics\src\Softbody.cpp(16,67): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file '/src/Softbody.cpp')
+  
+D:\repos\C++\XephEngine\Framework\Physics\src\Softbody.cpp(23,22): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file '/src/Softbody.cpp')
+  
+D:\repos\C++\XephEngine\Framework\Physics\src\Softbody.cpp(54,52): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file '/src/Softbody.cpp')
+  
   Generating Code...
-  Physics.vcxproj -> C:\repos\C++\XephEngine\x64\Debug\Physics.lib
+  Physics.vcxproj -> D:\repos\C++\XephEngine\x64\Debug\Physics.lib

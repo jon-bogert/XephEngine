@@ -1,6 +1,11 @@
-C:\repos\C++\XephEngine\Engine\XephEngine\src\App.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\App.obj
-C:\repos\C++\XephEngine\Engine\XephEngine\src\GameObject.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\GameObject.obj
-C:\repos\C++\XephEngine\Engine\XephEngine\src\GameObjectFactory.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\GameObjectFactory.obj
-C:\repos\C++\XephEngine\Engine\XephEngine\src\Pch.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\Pch.obj
-C:\repos\C++\XephEngine\Engine\XephEngine\src\XephEngine.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\XephEngine.obj
-C:\repos\C++\XephEngine\Engine\XephEngine\src\TransformComponent.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\TransformComponent.obj
+D:\repos\C++\XephEngine\Engine\XephEngine\src\FPSCameraComponent.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\FPSCameraComponent.obj
+D:\repos\C++\XephEngine\Engine\XephEngine\src\App.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\App.obj
+D:\repos\C++\XephEngine\Engine\XephEngine\src\CameraComponent.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\CameraComponent.obj
+D:\repos\C++\XephEngine\Engine\XephEngine\src\CameraService.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\CameraService.obj
+D:\repos\C++\XephEngine\Engine\XephEngine\src\GameObject.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\GameObject.obj
+D:\repos\C++\XephEngine\Engine\XephEngine\src\GameObjectFactory.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\GameObjectFactory.obj
+D:\repos\C++\XephEngine\Engine\XephEngine\src\Pch.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\Pch.obj
+D:\repos\C++\XephEngine\Engine\XephEngine\src\UpdateService.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\UpdateService.obj
+D:\repos\C++\XephEngine\Engine\XephEngine\src\World.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\World.obj
+D:\repos\C++\XephEngine\Engine\XephEngine\src\XephEngine.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\XephEngine.obj
+D:\repos\C++\XephEngine\Engine\XephEngine\src\TransformComponent.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\TransformComponent.obj

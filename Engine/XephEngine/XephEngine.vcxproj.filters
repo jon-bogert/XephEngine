@@ -7,6 +7,18 @@
     <Filter Include="Source">
       <UniqueIdentifier>{baedf5de-05a4-4738-bffa-3620d5347950}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include\Components">
+      <UniqueIdentifier>{c115a06c-f2a1-42ef-9579-1f01fe550693}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Services">
+      <UniqueIdentifier>{fcfa84da-6669-45a5-8381-28f36061a458}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Components">
+      <UniqueIdentifier>{b785aa8e-6d09-43f7-b9f6-31758c851123}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Services">
+      <UniqueIdentifier>{4fb22a02-666b-475b-b366-86f4445eb7f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\XephEngine.h">
@@ -27,15 +39,36 @@
     <ClInclude Include="include\GameObject.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Component.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\TransformComponent.h">
-      <Filter>Include</Filter>
-    </ClInclude>
     <ClInclude Include="include\TypeIDs.h" />
     <ClInclude Include="include\GameObjectFactory.h">
       <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Component.h">
+      <Filter>Include\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TransformComponent.h">
+      <Filter>Include\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Service.h">
+      <Filter>Include\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CameraService.h">
+      <Filter>Include\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CameraComponent.h">
+      <Filter>Include\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\World.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameObjectHandle.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FPSCameraComponent.h">
+      <Filter>Include\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UpdateService.h">
+      <Filter>Include\Services</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -51,11 +84,26 @@
     <ClCompile Include="src\GameObject.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="src\TransformComponent.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameObjectFactory.cpp">
       <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TransformComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CameraService.cpp">
+      <Filter>Source\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CameraComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\World.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FPSCameraComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UpdateService.cpp">
+      <Filter>Source\Services</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

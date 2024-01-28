@@ -3,6 +3,8 @@
 #include "GameObject.h"
 
 #include "TransformComponent.h"
+#include "CameraComponent.h"
+#include "FPSCameraComponent.h"
 
 using yaml_val = YAML::iterator::value_type;
 
@@ -28,6 +30,16 @@ void xe::GameObjectFactory::Make(const std::string& filePath, GameObject& gameOb
 		{
 			TransformComponent* transformComponent = gameObject.AddComponent<TransformComponent>();
 			transformComponent->Deserialize(component);
+		}
+		else if (componentName == "CameraComponent")
+		{
+			CameraComponent* cameraComponent = gameObject.AddComponent<CameraComponent>();
+			cameraComponent->Deserialize(component);
+		}
+		else if (componentName == "FPSCameraComponent")
+		{
+			FPSCameraComponent* fpsCameraComponent = gameObject.AddComponent<FPSCameraComponent>();
+			fpsCameraComponent->Deserialize(component);
 		}
 		else
 		{

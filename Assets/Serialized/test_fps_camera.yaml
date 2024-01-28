@@ -1,0 +1,28 @@
+components:
+  - type: TransformComponent
+    position:
+      x: 0
+      y: 1.5
+      z: -4
+    rotation:
+      x: 0
+      y: 0
+      z: 0
+      w: 0
+    scale:
+      x: 1
+      y: 1
+      z: 1
+  - type: CameraComponent
+    position:
+      x: 0
+      y: 1.5
+      z: -4
+    lookAt:
+      x: 0
+      y: 0
+      z: 0
+  - type: FPSCameraComponent
+    moveSpeed: 2
+    turnSpeed: 0.13
+    shiftSpeed: 10

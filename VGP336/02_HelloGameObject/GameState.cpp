@@ -9,8 +9,8 @@ void GameState::Initialize()
 	_camera.SetPosition({ 0.f, 1.5f, -4.f });
 	_camera.SetLookAt({ 0.f, 0.f, 0.f });
 
-	GameObjectFactory::Make("../../Assets/Serialized/test.yaml", _gameObject);
-	_gameObject.Initialize();
+	GameObjectFactory::Make("../../Assets/Serialized/test.yaml", m_gameObject);
+	m_gameObject.Initialize();
 }
 
 void GameState::Terminate()
@@ -30,7 +30,7 @@ void GameState::Draw()
 
 void GameState::DebugUI()
 {
-	_gameObject.DebugUI();
+	m_gameObject.DebugUI();
 }
 
 void GameState::UpdateCameraControl(const float& deltaTime)

@@ -165,14 +165,21 @@
   <ItemGroup>
     <ClInclude Include="include\App.h" />
     <ClInclude Include="include\AppState.h" />
+    <ClInclude Include="include\CameraComponent.h" />
+    <ClInclude Include="include\CameraService.h" />
     <ClInclude Include="include\Common.h" />
     <ClInclude Include="include\Component.h" />
+    <ClInclude Include="include\FPSCameraComponent.h" />
     <ClInclude Include="include\GameObject.h" />
     <ClInclude Include="include\GameObjectFactory.h" />
+    <ClInclude Include="include\GameObjectHandle.h" />
+    <ClInclude Include="include\Service.h" />
     <ClInclude Include="include\TypeIDs.h" />
+    <ClInclude Include="include\UpdateService.h" />
     <ClInclude Include="include\XephEngine.h" />
     <ClInclude Include="src\Pch.h" />
     <ClInclude Include="include\TransformComponent.h" />
+    <ClInclude Include="include\World.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\External\XephInput\XephInput.vcxproj">
@@ -192,7 +199,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\FPSCameraComponent.cpp" />
     <ClCompile Include="src\App.cpp" />
+    <ClCompile Include="src\CameraComponent.cpp" />
+    <ClCompile Include="src\CameraService.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\GameObjectFactory.cpp" />
     <ClCompile Include="src\Pch.cpp">
@@ -201,6 +211,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\UpdateService.cpp" />
+    <ClCompile Include="src\World.cpp" />
     <ClCompile Include="src\XephEngine.cpp" />
     <ClCompile Include="src\TransformComponent.cpp" />
   </ItemGroup>

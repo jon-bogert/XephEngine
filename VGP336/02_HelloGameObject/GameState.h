@@ -15,7 +15,7 @@ class GameState : public xe::AppState
 {
 protected:
 	xe::Graphics::Camera _camera;
-	xe::GameObject _gameObject;
+	xe::GameObject m_gameObject;
 
 public:
 
