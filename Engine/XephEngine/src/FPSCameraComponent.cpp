@@ -4,11 +4,13 @@
 #include "World.h"
 #include "UpdateService.h"
 #include "CameraComponent.h"
+#include "TransformComponent.h"
 
 using namespace xe::Math;
 
 void xe::FPSCameraComponent::Initialize()
 {
+	m_transformComponent = GetGameObject().GetComponent<TransformComponent>();
 	m_cameraComponent = GetGameObject().GetComponent<CameraComponent>();
 
 	UpdateService* updateService = GetGameObject().GetWorld().GetService<UpdateService>();
@@ -70,6 +72,8 @@ void xe::FPSCameraComponent::Update(const float deltaTime)
 	camera.Walk(moveAxis.z);
 	camera.Strafe(moveAxis.x);
 	camera.Rise(moveAxis.y);
+
+	m_transformComponent->position = camera.GetPosition();
 }
 
 void xe::FPSCameraComponent::Deserialize(const yaml_val& data)

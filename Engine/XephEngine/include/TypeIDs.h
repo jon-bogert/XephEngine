@@ -10,6 +10,8 @@ namespace xe
 		Transform,
 		Camera,
 		FPSCamera,
+		Model,
+		Mesh,
 
 		Count
 	};
@@ -19,6 +21,7 @@ namespace xe
 		Null,
 		Camera,
 		Update,
+		Render,
 
 		Count
 	};

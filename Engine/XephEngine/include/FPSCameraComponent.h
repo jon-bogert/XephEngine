@@ -5,6 +5,7 @@
 namespace xe
 {
 	class CameraComponent;
+	class TransformComponent;
 	class FPSCameraComponent final : public Component
 	{
 	public:
@@ -17,6 +18,7 @@ namespace xe
 		void Deserialize(const yaml_val& data) override;
 
 	private:
+		TransformComponent* m_transformComponent = nullptr;
 		CameraComponent* m_cameraComponent = nullptr;
 		float m_moveSpeed = 2.f;
 		float m_turnSpeed = 0.1f;

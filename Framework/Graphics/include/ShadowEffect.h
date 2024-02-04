@@ -46,7 +46,7 @@ namespace xe::Graphics
 		void SetSize(const float size) { _size = size; }
 
 		const Camera& GetLightCamera() const { return _lightCamera; }
-		const Texture& GetDephtMap() const { return _depthMapRenderTarget; }
+		const Texture& GetDepthMap() const { return _depthMapRenderTarget; }
 
 	private:
 		void UpdateLightCamera();

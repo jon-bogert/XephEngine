@@ -1,0 +1,46 @@
+name: Test Level
+capacity: 1000
+services:
+  - name: CameraService
+  - name: UpdateService
+  - name: RenderService
+    light-direction:
+      x: 1
+      y: -1
+      z: 1
+    ambient:
+      r: 0.4
+      g: 0.4
+      b: 0.4
+      a: 1
+    diffuse:
+      r: 0.7
+      g: 0.7
+      b: 0.7
+      a: 1
+    specular:
+      r: 0.9
+      g: 0.9
+      b: 0.9
+      a: 1
+game-objects:
+  - name: Main Camera
+    file: ../../Assets/Serialized/test_fps_camera.yaml
+    position:
+      x: 1
+      y: 1
+      z: -4
+  - name: Ground
+    file: ../../Assets/Serialized/test_ground.yaml
+  - name: TestObject0
+    file: ../../Assets/Serialized/test.yaml
+    position:
+      x: 3
+      y: 0
+      z: 0
+  - name: TestObject1
+    file: ../../Assets/Serialized/test.yaml
+    position:
+      x: 0
+      y: 2
+      z: 0

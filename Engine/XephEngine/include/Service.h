@@ -28,6 +28,9 @@ namespace xe
 		World& GetWorld() { return *m_world; }
 		const World& GetWorld() const { return *m_world; }
 
+		virtual void Serialize(YAML::Node& components) {};
+		virtual void Deserialize(const yaml_val& data) {};
+
 	private:
 		friend class World;
 		World* m_world = nullptr;

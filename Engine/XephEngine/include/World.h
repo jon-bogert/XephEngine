@@ -19,6 +19,8 @@ namespace xe
 		GameObject* CreateGameObject(const std::string& templatePath);
 		GameObject* GetGameObject(const GameObjectHandle& handle);
 		void DestroyGameObject(const GameObjectHandle& handle);
+
+		void LoadLevel(const std::string levelFile);
 		
 		template <typename ServiceType>
 		ServiceType* AddService()

@@ -1,0 +1,45 @@
+components:
+  - type: TransformComponent
+    position:
+      x: 0
+      y: 0
+      z: 0
+    rotation:
+      x: 0
+      y: 0
+      z: 0
+      w: 0
+    scale:
+      x: 1
+      y: 1
+      z: 1
+  - type: MeshComponent
+    shape:
+      type: plane
+      rows: 10
+      columns: 10
+      spacing: 1
+    material:
+      ambient:
+        r: 0.5
+        g: 0.5
+        b: 0.5
+        a: 1
+      diffuse:
+        r: 0.7
+        g: 0.7
+        b: 0.7
+        a: 1
+      specular:
+        r: 0.9
+        g: 0.9
+        b: 0.9
+        a: 1
+      emissive:
+        r: 0
+        g: 0
+        b: 0
+        a: 1
+      power: 15
+    textures:
+      diffuse: "../../Assets/Textures/misc/concrete.jpg"

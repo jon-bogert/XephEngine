@@ -22,7 +22,7 @@ void GameState::Initialize()
 	_standardEffect.SetCamera(_camera);
 	_standardEffect.SetDirectionalLight(_directionalLight);
 	_standardEffect.SetLightCamera(_shadowEffect.GetLightCamera());
-	_standardEffect.SetShadowMap(_shadowEffect.GetDephtMap());
+	_standardEffect.SetShadowMap(_shadowEffect.GetDepthMap());
 
 	_shadowEffect.Initialize();
 	_shadowEffect.SetDirectionalLight(_directionalLight);

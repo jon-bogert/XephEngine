@@ -2,6 +2,11 @@
 #include "World.h"
 
 #include "GameObjectFactory.h"
+#include "CameraService.h"
+#include "UpdateService.h"
+#include "RenderService.h"
+
+#include "TransformComponent.h"
 
 void xe::World::Initialize(uint32_t capacity)
 {
@@ -113,6 +118,63 @@ void xe::World::DestroyGameObject(const GameObjectHandle& handle)
     Slot& slot = m_gameObjectSlots[handle.m_index];
     slot.generation++;
     m_slotsToDestroy.push_back(handle.m_index);
+}
+
+void xe::World::LoadLevel(const std::string levelFile)
+{
+    if (!std::filesystem::exists(levelFile))
+    {
+        ASSERT(false, "World: Could not find level file");
+    }
+
+    YAML::Node levelInfo = YAML::LoadFile(levelFile);
+
+    for (yaml_val service : levelInfo["services"])
+    {
+        std::string serviceName = service["name"].as<std::string>();
+        if (serviceName == "CameraService")
+        {
+            CameraService* cameraService = AddService<CameraService>();
+            cameraService->Deserialize(service);
+        }
+        else if (serviceName == "UpdateService")
+        {
+            UpdateService* updateService = AddService<UpdateService>();
+            updateService->Deserialize(service);
+        }
+        else if (serviceName == "RenderService")
+        {
+            RenderService* renderService = AddService<RenderService>();
+            renderService->Deserialize(service);
+        }
+        else
+        {
+            ASSERT(false, "World: service%s is not defined", serviceName.c_str());
+        }
+    }
+    uint32_t capacity = levelInfo["capacity"].as<uint32_t>();
+    Initialize(capacity);
+
+    for (yaml_val gameObject : levelInfo["game-objects"])
+    {
+        std::string serializedFile = gameObject["file"].as<std::string>();
+        GameObject* obj = CreateGameObject(serializedFile);
+
+        if (obj != nullptr)
+        {
+            std::string name = gameObject["name"].as<std::string>();
+            obj->SetName(name);
+            if (gameObject["position"].IsDefined())
+            {
+                const float x = gameObject["position"]["x"].as<float>();
+                const float y = gameObject["position"]["y"].as<float>();
+                const float z = gameObject["position"]["z"].as<float>();
+
+                TransformComponent* transformComponent = obj->GetComponent<TransformComponent>();
+                transformComponent->position = { x, y, z };
+            }
+        }
+    }
 }
 
 bool xe::World::IsValid(const GameObjectHandle& handle)

@@ -11,12 +11,15 @@
 #include "World.h"
 
 //Components
-#include "Component.h"
-#include "TransformComponent.h"
 #include "CameraComponent.h"
+#include "Component.h"
+#include "MeshComponent.h"
+#include "ModelComponent.h"
+#include "TransformComponent.h"
 
 //Services
 #include "CameraService.h"
+#include "RenderService.h"
 #include "Service.h"
 #include "UpdateService.h"
 

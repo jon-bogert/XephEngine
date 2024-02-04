@@ -6,12 +6,7 @@ using namespace xe::Math;
 
 void GameState::Initialize()
 {
-	m_world.AddService<CameraService>();
-	m_world.AddService<UpdateService>();
-	m_world.Initialize(1000);
-	m_world.CreateGameObject("../../Assets/Serialized/test.yaml");
-	m_world.CreateGameObject("../../Assets/Serialized/test_camera.yaml");
-	m_world.CreateGameObject("../../Assets/Serialized/test_fps_camera.yaml");
+	m_world.LoadLevel("../../Assets/Scenes/test_level.yaml");
 }
 
 void GameState::Terminate()

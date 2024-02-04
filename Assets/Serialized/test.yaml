@@ -13,3 +13,5 @@ components:
       x: 1
       y: 1
       z: 1
+  - type: ModelComponent
+    file: ../../Assets/Models/space-soldier/space-soldier.model

@@ -70,6 +70,15 @@
     <ClInclude Include="include\UpdateService.h">
       <Filter>Include\Services</Filter>
     </ClInclude>
+    <ClInclude Include="include\RenderService.h">
+      <Filter>Include\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ModelComponent.h">
+      <Filter>Include\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MeshComponent.h">
+      <Filter>Include\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -104,6 +113,15 @@
     </ClCompile>
     <ClCompile Include="src\UpdateService.cpp">
       <Filter>Source\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderService.cpp">
+      <Filter>Source\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ModelComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MeshComponent.cpp">
+      <Filter>Source\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

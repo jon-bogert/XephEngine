@@ -4,7 +4,10 @@ D:\repos\C++\XephEngine\Engine\XephEngine\src\CameraComponent.cpp;D:\repos\C++\X
 D:\repos\C++\XephEngine\Engine\XephEngine\src\CameraService.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\CameraService.obj
 D:\repos\C++\XephEngine\Engine\XephEngine\src\GameObject.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\GameObject.obj
 D:\repos\C++\XephEngine\Engine\XephEngine\src\GameObjectFactory.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\GameObjectFactory.obj
+D:\repos\C++\XephEngine\Engine\XephEngine\src\MeshComponent.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\MeshComponent.obj
+D:\repos\C++\XephEngine\Engine\XephEngine\src\ModelComponent.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\ModelComponent.obj
 D:\repos\C++\XephEngine\Engine\XephEngine\src\Pch.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\Pch.obj
+D:\repos\C++\XephEngine\Engine\XephEngine\src\RenderService.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\RenderService.obj
 D:\repos\C++\XephEngine\Engine\XephEngine\src\UpdateService.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\UpdateService.obj
 D:\repos\C++\XephEngine\Engine\XephEngine\src\World.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\World.obj
 D:\repos\C++\XephEngine\Engine\XephEngine\src\XephEngine.cpp;D:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\XephEngine.obj
