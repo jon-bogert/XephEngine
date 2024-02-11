@@ -4,11 +4,23 @@
 
 #include "TransformComponent.h"
 #include "CameraComponent.h"
+#include "ColliderComponent.h"
 #include "FPSCameraComponent.h"
 #include "ModelComponent.h"
 #include "MeshComponent.h"
+#include "RigidbodyComponent.h"
 
 using yaml_val = YAML::iterator::value_type;
+
+namespace
+{
+	CustomMake tryMake;
+}
+
+void xe::GameObjectFactory::SetCustomMake(CustomMake customMake)
+{
+	tryMake = customMake;
+}
 
 void xe::GameObjectFactory::Make(const std::string& filePath, GameObject& gameObject)
 {
@@ -28,7 +40,11 @@ void xe::GameObjectFactory::Make(const std::string& filePath, GameObject& gameOb
 	for (const yaml_val& component : file["components"])
 	{
 		std::string componentName = component["type"].as<std::string>();
-		if (componentName == "TransformComponent")
+		if (tryMake(componentName.c_str(), component, gameObject)) // Custom Type
+		{
+			continue;
+		}
+		else if (componentName == "TransformComponent")
 		{
 			TransformComponent* transformComponent = gameObject.AddComponent<TransformComponent>();
 			transformComponent->Deserialize(component);
@@ -52,6 +68,16 @@ void xe::GameObjectFactory::Make(const std::string& filePath, GameObject& gameOb
 		{
 			MeshComponent* meshComponent = gameObject.AddComponent<MeshComponent>();
 			meshComponent->Deserialize(component);
+		}
+		else if (componentName == "RigidbodyComponent")
+		{
+			RigidbodyComponent* rigidbodyComponent = gameObject.AddComponent<RigidbodyComponent>();
+			rigidbodyComponent->Deserialize(component);
+		}
+		else if (componentName == "ColliderComponent")
+		{
+			ColliderComponent* colliderComponent = gameObject.AddComponent<ColliderComponent>();
+			colliderComponent->Deserialize(component);
 		}
 		else
 		{

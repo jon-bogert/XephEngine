@@ -4,8 +4,34 @@ using namespace xe;
 using namespace xe::Core;
 using namespace xe::Math;
 
+namespace
+{
+	bool CustomComponentMake(const std::string& compName, const yaml_val& data, GameObject& gameObject)
+	{
+		if (compName == "NewComponent")
+		{
+			//NewComponent* newComponent = gameObject.AddComponent<NewComponent>();
+			//newComponent->Deserialize(data);
+			return true;
+		}
+		return false;
+	}
+
+	bool CustomServiceMake(const std::string& serviceName, const yaml_val& data, GameObject& gameObject)
+	{
+		if (serviceName == "NewService")
+		{
+			//NewService* newService = gameObject.AddComponent<NewService>();
+			//newService->Deserialize(data);
+			return true;
+		}
+		return false;
+	}
+}
+
 void GameState::Initialize()
 {
+	GameObjectFactory::SetCustomMake(CustomComponentMake);
 	m_world.LoadLevel("../../Assets/Scenes/test_level.yaml");
 }
 

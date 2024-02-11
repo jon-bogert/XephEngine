@@ -85,4 +85,7 @@ void xe::Graphics::RenderTarget::EndDraw()
 	ID3D11DeviceContext* context = GraphicsSystem::Get().GetContext();
 	context->OMSetRenderTargets(1, &_oldRenderTargetView, _oldDepthStencilView);
 	context->RSSetViewports(1, &_oldViewport);
+
+	SafeRelease(_oldRenderTargetView);
+	SafeRelease(_oldDepthStencilView);
 }

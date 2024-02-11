@@ -5,8 +5,20 @@
 #include "CameraService.h"
 #include "UpdateService.h"
 #include "RenderService.h"
+#include "PhysicsService.h"
 
 #include "TransformComponent.h"
+#include "RigidbodyComponent.h"
+
+namespace
+{
+    CustomService tryMakeService;
+}
+
+void xe::World::SetCustomServiceMake(CustomService customService)
+{
+    tryMakeService = customService;
+}
 
 void xe::World::Initialize(uint32_t capacity)
 {
@@ -132,7 +144,11 @@ void xe::World::LoadLevel(const std::string levelFile)
     for (yaml_val service : levelInfo["services"])
     {
         std::string serviceName = service["name"].as<std::string>();
-        if (serviceName == "CameraService")
+        if (tryMakeService(serviceName, service, *this))
+        {
+            continue;
+        }
+        else if (serviceName == "CameraService")
         {
             CameraService* cameraService = AddService<CameraService>();
             cameraService->Deserialize(service);
@@ -146,6 +162,11 @@ void xe::World::LoadLevel(const std::string levelFile)
         {
             RenderService* renderService = AddService<RenderService>();
             renderService->Deserialize(service);
+        }
+        else if (serviceName == "PhysicsService")
+        {
+            PhysicsService* physicsService = AddService<PhysicsService>();
+            physicsService->Deserialize(service);
         }
         else
         {
@@ -172,6 +193,12 @@ void xe::World::LoadLevel(const std::string levelFile)
 
                 TransformComponent* transformComponent = obj->GetComponent<TransformComponent>();
                 transformComponent->position = { x, y, z };
+
+                RigidbodyComponent* rigidbodyComponent = obj->GetComponent<RigidbodyComponent>();
+                if (rigidbodyComponent != nullptr)
+                {
+                    rigidbodyComponent->SetPosition(transformComponent->position);
+                }
             }
         }
     }

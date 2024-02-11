@@ -12,6 +12,8 @@ namespace xe
 		FPSCamera,
 		Model,
 		Mesh,
+		Rigidbody,
+		Collider,
 
 		Count
 	};
@@ -22,6 +24,7 @@ namespace xe
 		Camera,
 		Update,
 		Render,
+		Physics,
 
 		Count
 	};

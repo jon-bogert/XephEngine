@@ -65,7 +65,7 @@ void xe::App::Run(const AppConfig& config)
 		auto deltaTime = TimeUtil::DeltaTime();
 		if (deltaTime < 0.5f)
 		{
-			PhysicsWorld::Update(deltaTime);
+			//PhysicsWorld::Update(deltaTime); -> Moved to Service
 			_currentState->Update(deltaTime);
 		}
 

@@ -18,12 +18,12 @@ void xe::Physics::Rigidbody::Initialize(xe::Graphics::Transform& graphicsTransfo
 	_rigidbody = new btRigidBody(_mass, _motionState, shape.GetCollisionShape());
 	_rigidbody->setRestitution(0.5f);
 
-	PhysicsWorld::Get().Register(this);
+	//PhysicsWorld::Get().Register(this); -> Moved to Component
 }
 
 void xe::Physics::Rigidbody::Terminate()
 {
-	PhysicsWorld::Get().Unregister(this);
+	//PhysicsWorld::Get().Unregister(this); -> Moved to Component
 	SafeDelete(_motionState);
 	SafeDelete(_rigidbody);
 	_graphicsTransform = nullptr;

@@ -8,7 +8,7 @@ components:
       x: 0
       y: 0
       z: 0
-      w: 0
+      w: 1
     scale:
       x: 1
       y: 1
@@ -43,3 +43,16 @@ components:
       power: 15
     textures:
       diffuse: "../../Assets/Textures/misc/concrete.jpg"
+  - type: ColliderComponent
+    shape:
+      type: hull
+      half-extends:
+        x: 5
+        y: 0.1
+        z: 5
+      origin:
+        x: 0
+        y: 0.1
+        z: 0
+  - type: RigidbodyComponent
+    mass: 0

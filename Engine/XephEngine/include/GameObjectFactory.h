@@ -4,8 +4,12 @@
 namespace xe
 {
 	class GameObject;
+
+	using CustomMake = std::function<bool(const std::string&, const yaml_val&, GameObject&)>;
+
 	namespace GameObjectFactory
 	{
+		void SetCustomMake(CustomMake customMake);
 		void Make(const std::string& filePath, GameObject& gameObject);
 	}
 }

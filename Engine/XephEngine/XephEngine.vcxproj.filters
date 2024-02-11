@@ -79,6 +79,15 @@
     <ClInclude Include="include\MeshComponent.h">
       <Filter>Include\Components</Filter>
     </ClInclude>
+    <ClInclude Include="include\RigidbodyComponent.h">
+      <Filter>Include\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ColliderComponent.h">
+      <Filter>Include\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhysicsService.h">
+      <Filter>Include\Services</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -122,6 +131,15 @@
     </ClCompile>
     <ClCompile Include="src\MeshComponent.cpp">
       <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RigidbodyComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ColliderComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PhysicsService.cpp">
+      <Filter>Source\Services</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

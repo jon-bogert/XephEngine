@@ -45,6 +45,27 @@ void xe::Physics::PhysicsWorld::DebugUI()
 	physicsWorld->_DebugUI();
 }
 
+void xe::Physics::PhysicsWorld::SetGravity(const xe::Math::Vector3& gravity)
+{
+	physicsWorld->_settings.gravity = gravity;
+	if (physicsWorld->_dynamicWorld != nullptr)
+	{
+		physicsWorld->_dynamicWorld->setGravity(gravity);
+	}
+	if (physicsWorld->_softbodyWorld != nullptr)
+	{
+		physicsWorld->_softbodyWorld->setGravity(gravity);
+	}
+}
+void xe::Physics::PhysicsWorld::SetSimulationSteps(const uint32_t steps)
+{
+	physicsWorld->_settings.simulationSteps = steps;
+}
+void xe::Physics::PhysicsWorld::SetFixedTimeStep(const float timeStep)
+{
+	physicsWorld->_settings.fixedTimeStep = timeStep;
+}
+
 void xe::Physics::PhysicsWorld::Register(PhysicsObject* physObj)
 {
 	if (std::find(_physicsObjects.begin(), _physicsObjects.end(), physObj) != _physicsObjects.end())
@@ -110,7 +131,7 @@ void xe::Physics::PhysicsWorld::_Terminate()
 void xe::Physics::PhysicsWorld::_Update(const float deltaTime)
 {
 	_dynamicWorld->stepSimulation(deltaTime, _settings.simulationSteps, _settings.fixedTimeStep);
-	_softbodyWorld->stepSimulation(deltaTime, _settings.simulationSteps, _settings.fixedTimeStep);
+	//_softbodyWorld->stepSimulation(deltaTime, _settings.simulationSteps, _settings.fixedTimeStep);
 	for (PhysicsObject* obj : _physicsObjects)
 	{
 		obj->Update(deltaTime);

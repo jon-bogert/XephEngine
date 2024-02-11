@@ -121,11 +121,13 @@ void xe::Graphics::GraphicsSystem::Resize(uint32_t width, uint32_t height)
 
 	SafeRelease(_renderTargetView);
 	SafeRelease(_depthStencilView);
+	SafeRelease(_depthStencilBuffer);
 
 	HRESULT hResult;
 	if (width != GetBackBufferWidth() || height != GetBackBufferHeight())
 	{
-		hResult = _swapChain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
+		//hResult = _swapChain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
+		hResult = _swapChain->ResizeBuffers(2, width, height, DXGI_FORMAT_UNKNOWN, 0);
 		ASSERT(SUCCEEDED(hResult), "GraphicsSystem failed to access the swap chain view");
 
 		_swapChain->GetDesc(&_swapChainDesc);

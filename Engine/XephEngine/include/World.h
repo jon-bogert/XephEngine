@@ -6,9 +6,12 @@
 
 namespace xe
 {
+	using CustomService = std::function<bool(const std::string&, const yaml_val&, World&)>;
 	class World final
 	{
 	public:
+		static void SetCustomServiceMake(CustomService customService);
+
 		void Initialize(uint32_t capacity);
 		void Terminate();
 
