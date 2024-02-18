@@ -88,6 +88,15 @@
     <ClInclude Include="include\PhysicsService.h">
       <Filter>Include\Services</Filter>
     </ClInclude>
+    <ClInclude Include="include\SoundEffectComponent.h">
+      <Filter>Include\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SoundBankComponent.h">
+      <Filter>Include\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AnimatorComponent.h">
+      <Filter>Include\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -140,6 +149,15 @@
     </ClCompile>
     <ClCompile Include="src\PhysicsService.cpp">
       <Filter>Source\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SoundEffectComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SoundBankComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AnimatorComponent.cpp">
+      <Filter>Source\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

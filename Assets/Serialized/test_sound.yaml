@@ -1,0 +1,27 @@
+components:
+  - type: TransformComponent
+    position:
+      x: 0
+      y: 0
+      z: 0
+    rotation:
+      x: 0
+      y: 0
+      z: 0
+      w: 1
+    scale:
+      x: 1
+      y: 1
+      z: 1
+  - type: SoundBankComponent
+    sounds:
+      - key: explosion
+        loop: false
+        filename: explosion.wav
+      - key: photongun1
+        loop: false
+        filename: photongun1.wav
+      - key: shot
+        loop: false
+        filename: shot-player.wav
+    

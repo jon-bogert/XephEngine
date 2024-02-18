@@ -28,8 +28,11 @@ void xe::GameObject::Terminate()
 
 void xe::GameObject::DebugUI()
 {
-	for (std::unique_ptr<Component>& component : m_components)
+	if (ImGui::CollapsingHeader(m_name.c_str()))
 	{
-		component->DebugUI();
+		for (std::unique_ptr<Component>& component : m_components)
+		{
+			component->DebugUI();
+		}
 	}
 }

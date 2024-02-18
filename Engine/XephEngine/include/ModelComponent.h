@@ -24,6 +24,9 @@ namespace xe
 	private:
 		std::string m_fileName;
 		Graphics::ModelID m_modelID;
+
+		using Animations = std::vector<std::string>;
+		Animations m_animations;
 	};
 }
 

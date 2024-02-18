@@ -6,6 +6,7 @@
 #include "ModelComponent.h"
 #include "MeshComponent.h"
 #include "TransformComponent.h"
+#include "AnimatorComponent.h"
 
 using namespace xe::Graphics;
 
@@ -119,7 +120,15 @@ void xe::RenderService::Register(const ModelComponent* modelComponent)
 	const GameObject& gameObject = modelComponent->GetGameObject();
 	entry.modelComponent = modelComponent;
 	entry.transformComponent = gameObject.GetComponent<TransformComponent>();
-	entry.renderGroup = CreateRenderGroup(modelComponent->GetModelID());
+
+	const Animator* animator = nullptr;
+	const AnimatorComponent* animatorComponent = gameObject.GetComponent<AnimatorComponent>();
+	if (animatorComponent != nullptr)
+	{
+		animator = &animatorComponent->GetAnimator();
+	}
+
+	entry.renderGroup = CreateRenderGroup(modelComponent->GetModelID(), animator);
 }
 
 void xe::RenderService::Unregister(const ModelComponent* modelComponent)

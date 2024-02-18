@@ -9,6 +9,9 @@
 #include "ModelComponent.h"
 #include "MeshComponent.h"
 #include "RigidbodyComponent.h"
+#include "SoundEffectComponent.h"
+#include "SoundBankComponent.h"
+#include "AnimatorComponent.h"
 
 using yaml_val = YAML::iterator::value_type;
 
@@ -78,6 +81,21 @@ void xe::GameObjectFactory::Make(const std::string& filePath, GameObject& gameOb
 		{
 			ColliderComponent* colliderComponent = gameObject.AddComponent<ColliderComponent>();
 			colliderComponent->Deserialize(component);
+		}
+		else if (componentName == "SoundEffectComponent")
+		{
+			SoundEffectComponent* soundEffectComponent = gameObject.AddComponent<SoundEffectComponent>();
+			soundEffectComponent->Deserialize(component);
+		}
+		else if (componentName == "SoundBankComponent")
+		{
+			SoundBankComponent* soundBankComponent = gameObject.AddComponent<SoundBankComponent>();
+			soundBankComponent->Deserialize(component);
+		}
+		else if (componentName == "AnimatorComponent")
+		{
+			AnimatorComponent* animatorComponent = gameObject.AddComponent<AnimatorComponent>();
+			animatorComponent->Deserialize(component);
 		}
 		else
 		{

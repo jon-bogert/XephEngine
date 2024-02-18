@@ -1,0 +1,1 @@
+C:\repos\C++\XephEngine\External\DirectXTK\Audio\Bin\Desktop_2022\x64\Debug\DirectXTKAudioWin8.lib

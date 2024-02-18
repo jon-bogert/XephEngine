@@ -1,3 +1,4 @@
+C:\repos\C++\XephEngine\Engine\XephEngine\src\AnimatorComponent.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\AnimatorComponent.obj
 C:\repos\C++\XephEngine\Engine\XephEngine\src\ColliderComponent.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\ColliderComponent.obj
 C:\repos\C++\XephEngine\Engine\XephEngine\src\FPSCameraComponent.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\FPSCameraComponent.obj
 C:\repos\C++\XephEngine\Engine\XephEngine\src\App.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\App.obj
@@ -11,6 +12,8 @@ C:\repos\C++\XephEngine\Engine\XephEngine\src\Pch.cpp;C:\repos\C++\XephEngine\En
 C:\repos\C++\XephEngine\Engine\XephEngine\src\PhysicsService.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\PhysicsService.obj
 C:\repos\C++\XephEngine\Engine\XephEngine\src\RenderService.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\RenderService.obj
 C:\repos\C++\XephEngine\Engine\XephEngine\src\RigidbodyComponent.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\RigidbodyComponent.obj
+C:\repos\C++\XephEngine\Engine\XephEngine\src\SoundBankComponent.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\SoundBankComponent.obj
+C:\repos\C++\XephEngine\Engine\XephEngine\src\SoundEffectComponent.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\SoundEffectComponent.obj
 C:\repos\C++\XephEngine\Engine\XephEngine\src\UpdateService.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\UpdateService.obj
 C:\repos\C++\XephEngine\Engine\XephEngine\src\World.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\World.obj
 C:\repos\C++\XephEngine\Engine\XephEngine\src\XephEngine.cpp;C:\repos\C++\XephEngine\Engine\XephEngine\x64\Debug\XephEngine.obj

@@ -11,12 +11,15 @@
 #include "World.h"
 
 //Components
+#include "AnimatorComponent.h"
 #include "CameraComponent.h"
 #include "ColliderComponent.h"
 #include "Component.h"
 #include "MeshComponent.h"
 #include "ModelComponent.h"
 #include "RigidbodyComponent.h"
+#include "SoundBankComponent.h"
+#include "SoundBankComponent.h"
 #include "TransformComponent.h"
 
 //Services

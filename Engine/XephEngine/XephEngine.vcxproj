@@ -163,6 +163,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\AnimatorComponent.h" />
     <ClInclude Include="include\App.h" />
     <ClInclude Include="include\AppState.h" />
     <ClInclude Include="include\CameraComponent.h" />
@@ -180,6 +181,8 @@
     <ClInclude Include="include\RenderService.h" />
     <ClInclude Include="include\RigidbodyComponent.h" />
     <ClInclude Include="include\Service.h" />
+    <ClInclude Include="include\SoundBankComponent.h" />
+    <ClInclude Include="include\SoundEffectComponent.h" />
     <ClInclude Include="include\TypeIDs.h" />
     <ClInclude Include="include\UpdateService.h" />
     <ClInclude Include="include\XephEngine.h" />
@@ -190,6 +193,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\External\XephInput\XephInput.vcxproj">
       <Project>{a3181ea0-4c3f-451b-a6fa-48ed49a44595}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Audio\Audio.vcxproj">
+      <Project>{c918b3f8-ed1c-4c1a-b1af-f57a6d7f65a3}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\Core\Core.vcxproj">
       <Project>{8ad805ae-7bab-40f4-a874-845fcd3f3bd5}</Project>
@@ -205,6 +211,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\AnimatorComponent.cpp" />
     <ClCompile Include="src\ColliderComponent.cpp" />
     <ClCompile Include="src\FPSCameraComponent.cpp" />
     <ClCompile Include="src\App.cpp" />
@@ -223,6 +230,8 @@
     <ClCompile Include="src\PhysicsService.cpp" />
     <ClCompile Include="src\RenderService.cpp" />
     <ClCompile Include="src\RigidbodyComponent.cpp" />
+    <ClCompile Include="src\SoundBankComponent.cpp" />
+    <ClCompile Include="src\SoundEffectComponent.cpp" />
     <ClCompile Include="src\UpdateService.cpp" />
     <ClCompile Include="src\World.cpp" />
     <ClCompile Include="src\XephEngine.cpp" />

@@ -5,6 +5,7 @@
 using namespace xe::Core;
 using namespace xe::Graphics;
 using namespace xe::Physics;
+using namespace xe::Audio;
 using namespace xe;
 
 void xe::App::ChangeState(const std::string& stateName)
@@ -33,6 +34,8 @@ void xe::App::Run(const AppConfig& config)
 	SimpleDraw::Initialize(config.debugDrawLimit);
 	TextureManager::Initialize("../../Assets/Textures");
 	ModelManager::Initialize();
+	AudioSystem::Initialize();
+	SoundEffectManager::Initialize("../../Assets/Audio");
 
 	PhysicsWorld::Settings physSettings;
 	PhysicsWorld::Initialize(physSettings);
@@ -62,6 +65,8 @@ void xe::App::Run(const AppConfig& config)
 			_currentState->Initialize();
 		}
 
+		AudioSystem::Update();
+
 		auto deltaTime = TimeUtil::DeltaTime();
 		if (deltaTime < 0.5f)
 		{
@@ -85,6 +90,8 @@ void xe::App::Run(const AppConfig& config)
 	_currentState->Terminate();
 	PhysicsWorld::Terminate();
 	ModelManager::Terminate();
+	SoundEffectManager::Terminate();
+	AudioSystem::Terminate();
 	TextureManager::Terminate();
 	SimpleDraw::Terminate();
 	DebugUI::Terminate();

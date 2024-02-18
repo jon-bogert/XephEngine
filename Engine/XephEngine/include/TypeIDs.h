@@ -14,6 +14,9 @@ namespace xe
 		Mesh,
 		Rigidbody,
 		Collider,
+		SoundEffect,
+		SoundBank,
+		Animator,
 
 		Count
 	};

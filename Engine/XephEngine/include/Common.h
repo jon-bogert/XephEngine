@@ -5,6 +5,7 @@
 #include <Graphics/include/Graphics.h>
 #include <Math/include/XEMath.h>
 #include <Physics/include/Physics.h>
+#include <Audio/include/Audio.h>
 
 #include "XephInput/include/XephInput/InputSystem.h"
 #include "XephInput/include/XephInput/Enums.h"

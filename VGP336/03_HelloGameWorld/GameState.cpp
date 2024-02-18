@@ -17,7 +17,7 @@ namespace
 		return false;
 	}
 
-	bool CustomServiceMake(const std::string& serviceName, const yaml_val& data, GameObject& gameObject)
+	bool CustomServiceMake(const std::string& serviceName, const yaml_val& data, World& gameObject)
 	{
 		if (serviceName == "NewService")
 		{
@@ -32,6 +32,7 @@ namespace
 void GameState::Initialize()
 {
 	GameObjectFactory::SetCustomMake(CustomComponentMake);
+	World::SetCustomServiceMake(CustomServiceMake);
 	m_world.LoadLevel("../../Assets/Scenes/test_level.yaml");
 }
 
