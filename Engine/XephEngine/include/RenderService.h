@@ -43,6 +43,7 @@ namespace xe
 			const MeshComponent* meshComponent = nullptr;
 			const TransformComponent* transformComponent = nullptr;
 			Graphics::RenderGroup renderGroup;
+			bool castShadow = true;
 		};
 		using RenderEntities = std::vector<Entry>;
 		RenderEntities m_renderEntries;

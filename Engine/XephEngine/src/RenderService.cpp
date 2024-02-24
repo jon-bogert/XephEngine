@@ -46,7 +46,8 @@ void xe::RenderService::Draw()
 		{
 			renderObject.transform = *entry.transformComponent;
 		}
-		DrawRenderGroup(m_shadowEffect, entry.renderGroup);
+		if (entry.castShadow)
+			DrawRenderGroup(m_shadowEffect, entry.renderGroup);
 	}
 	m_shadowEffect.End();
 
@@ -154,6 +155,7 @@ void xe::RenderService::Register(const MeshComponent* meshComponent)
 	const GameObject& gameObject = meshComponent->GetGameObject();
 	entry.meshComponent = meshComponent;
 	entry.transformComponent = gameObject.GetComponent<TransformComponent>();
+	entry.castShadow = meshComponent->CastShadow();
 	entry.renderGroup = CreateRenderGroup(meshComponent->GetModel());
 }
 

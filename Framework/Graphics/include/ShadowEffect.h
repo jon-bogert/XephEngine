@@ -18,7 +18,9 @@ namespace xe::Graphics
 			xe::Math::Matrix4 wvp;
 		};
 		using TransformBuffer = TypedContantBuffer<TransformData>;
+		using BoneTransformBuffer = ConstantBuffer;
 		TransformBuffer _transformBuffer;
+		BoneTransformBuffer _boneTransform;
 
 		VertexShader _vertexShader;
 		PixelShader _pixelShader;

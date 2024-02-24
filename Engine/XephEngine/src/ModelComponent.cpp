@@ -44,4 +44,9 @@ void xe::ModelComponent::Deserialize(const yaml_val& data)
 			m_animations.push_back(animation.as<std::string>());
 		}
 	}
+
+	if (data["cast-shadow"].IsDefined())
+	{
+		m_castShadow = data["cast-shadow"].as<bool>();
+	}
 }

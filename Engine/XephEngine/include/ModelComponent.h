@@ -15,6 +15,8 @@ namespace xe
 
 		void Deserialize(const yaml_val& data) override;
 
+		bool CastShadow() const { return m_castShadow; }
+
 		Graphics::ModelID GetModelID() const { return m_modelID; }
 		const Graphics::Model& GetModel() const
 		{
@@ -25,6 +27,7 @@ namespace xe
 		std::string m_fileName;
 		Graphics::ModelID m_modelID;
 
+		bool m_castShadow = true;
 		using Animations = std::vector<std::string>;
 		Animations m_animations;
 	};

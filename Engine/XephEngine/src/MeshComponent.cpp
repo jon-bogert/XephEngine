@@ -95,4 +95,9 @@ void xe::MeshComponent::Deserialize(const yaml_val& data)
 			materialData.specularMapName = data["textures"]["specular"].as<std::string>();
 		}
 	}
+
+	if (data["cast-shadow"].IsDefined())
+	{
+		m_castShadow = data["cast-shadow"].as<bool>();
+	}
 }

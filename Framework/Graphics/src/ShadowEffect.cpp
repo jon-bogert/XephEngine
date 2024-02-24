@@ -3,8 +3,11 @@
 
 #include "RenderObject.h"
 #include "VertexTypes.h"
+#include "AnimationUtil.h"
 
 namespace stdfs = std::filesystem;
+
+static constexpr size_t MaxBoneCount = 256;
 
 void xe::Graphics::ShadowEffect::Initialize()
 {
@@ -15,6 +18,7 @@ void xe::Graphics::ShadowEffect::Initialize()
 	_pixelShader.Initialize(shaderFile);
 
 	_transformBuffer.Initialize();
+	_boneTransform.Initialize(MaxBoneCount * sizeof(xe::Math::Matrix4));
 
 	constexpr uint32_t depthMapResolution = 4096;
 	_depthMapRenderTarget.Initialize(depthMapResolution, depthMapResolution, Texture::Format::RGBA_U32);
@@ -23,6 +27,7 @@ void xe::Graphics::ShadowEffect::Initialize()
 void xe::Graphics::ShadowEffect::Terminate()
 {
 	_depthMapRenderTarget.Terminate();
+	_boneTransform.Terminate();
 	_transformBuffer.Terminate();
 	_pixelShader.Terminate();
 	_vertexShader.Terminate();
@@ -35,6 +40,7 @@ void xe::Graphics::ShadowEffect::Begin()
 	_vertexShader.Bind();
 	_pixelShader.Bind();
 	_transformBuffer.BindVertexShader(0);
+	_boneTransform.BindVertexShader(1);
 
 	_depthMapRenderTarget.BeginDraw();
 }
@@ -53,6 +59,19 @@ void xe::Graphics::ShadowEffect::Draw(const RenderObject& renderObj)
 	TransformData data;
 	data.wvp = xe::Math::Transpose(matWorld * matView * matProj);
 	_transformBuffer.Update(data);
+
+	if (renderObj.skeleton != nullptr)
+	{
+		AnimationUtil::BoneTransforms boneTransforms;
+		AnimationUtil::ComputeBoneTransform(renderObj.modelID, boneTransforms, renderObj.animator);
+		AnimationUtil::ApplyBoneOffsets(renderObj.modelID, boneTransforms);
+		for (xe::Math::Matrix4& transform : boneTransforms)
+		{
+			transform = xe::Math::Transpose(transform);
+		}
+		boneTransforms.resize(MaxBoneCount);
+		_boneTransform.Update(boneTransforms.data());
+	}
 
 	renderObj.meshBuffer.Draw();
 }

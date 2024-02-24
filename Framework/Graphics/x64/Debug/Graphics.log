@@ -1,5 +1,2 @@
-﻿  GraphicsSystem.cpp
-C:\repos\C++\XephEngine\Framework\Graphics\src\GraphicsSystem.cpp(180,108): warning C4244: 'argument': conversion from 'float' to 'UINT8', possible loss of data
-  (compiling source file '/src/GraphicsSystem.cpp')
-  
+﻿  ShadowEffect.cpp
   Graphics.vcxproj -> C:\repos\C++\XephEngine\x64\Debug\Graphics.lib

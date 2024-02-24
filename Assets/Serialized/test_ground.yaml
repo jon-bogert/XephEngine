@@ -43,6 +43,7 @@ components:
       power: 15
     textures:
       diffuse: "../../Assets/Textures/misc/concrete.jpg"
+    cast-shadow: false
   - type: ColliderComponent
     shape:
       type: hull
