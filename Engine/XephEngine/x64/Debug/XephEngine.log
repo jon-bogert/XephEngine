@@ -1,52 +1,9 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (InputSystem.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Pch.cpp
-C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(65,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Pch.cpp')
-  
-C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(66,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Pch.cpp')
-  
-C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(67,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Pch.cpp')
-  
-C:\repos\C++\XephEngine\Framework\Math\include\Quaternion.h(68,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Pch.cpp')
-  
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(38,50): warning C4305: 'initializing': truncation from 'double' to 'btScalar'
-  (compiling source file 'src/Pch.cpp')
-  
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1232,17): warning C4244: 'initializing': conversion from 'double' to 'btScalar', possible loss of data
-  (compiling source file 'src/Pch.cpp')
-  
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1357,21): warning C4244: '+=': conversion from 'double' to 'btScalar', possible loss of data
-  (compiling source file 'src/Pch.cpp')
-  
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1361,21): warning C4244: 'initializing': conversion from 'double' to 'btScalar', possible loss of data
-  (compiling source file 'src/Pch.cpp')
-  
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1385,20): warning C4244: '=': conversion from 'double' to 'btScalar', possible loss of data
-  (compiling source file 'src/Pch.cpp')
-  
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1387,23): warning C4244: '=': conversion from 'double' to 'btScalar', possible loss of data
-  (compiling source file 'src/Pch.cpp')
-  
-C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1269,17): warning C4244: 'initializing': conversion from 'double' to 'btScalar', possible loss of data
-  (compiling source file 'src/Pch.cpp')
-  C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1269,17):
-  the template instantiation context (the oldest one first) is
-  	C:\repos\C++\XephEngine\External\Bullet\BulletSoftBody\btSoftBody.h(1303,4):
-  	see reference to function template instantiation 'void btSoftBody::updateFace<btDbvtNode>(DBVTNODE *,bool,bool)' being compiled
-          with
-          [
-              DBVTNODE=btDbvtNode
-          ]
-  
   AnimatorComponent.cpp
+  CameraComponent.cpp
 C:\repos\C++\XephEngine\Engine\XephEngine\src\AnimatorComponent.cpp(31,26): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data
   (compiling source file '/src/AnimatorComponent.cpp')
   
-  App.cpp
-  CameraComponent.cpp
   CameraService.cpp
   ColliderComponent.cpp
   FPSCameraComponent.cpp

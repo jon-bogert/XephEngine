@@ -15,6 +15,7 @@ namespace xe
 		void Terminate() override;
 		void Update(const float deltaTime) override;
 
+		void Serialize(YAML::Node& data) override;
 		void Deserialize(const yaml_val& data) override;
 
 	private:

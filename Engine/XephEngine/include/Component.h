@@ -21,6 +21,7 @@ namespace xe
 		virtual void Terminate(){}
 		virtual void Update(const float deltaTime) {}
 		virtual void DebugUI() {}
+		virtual void EditorUI() {}
 		virtual uint32_t GetTypeID() const = 0;
 
 		GameObject& GetGameObject() { return *m_gameObject; }

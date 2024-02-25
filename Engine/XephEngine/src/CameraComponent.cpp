@@ -18,6 +18,17 @@ void xe::CameraComponent::Terminate()
 	cameraService->Unregister(this);
 }
 
+void xe::CameraComponent::Serialize(YAML::Node& data)
+{
+	data["position"]["x"] = m_camera.GetPosition().x;
+	data["position"]["y"] = m_camera.GetPosition().y;
+	data["position"]["z"] = m_camera.GetPosition().z;
+
+	//data["lookAt"]["x"] = m_camera.GetLookAt().x;
+	//data["lookAt"]["y"] = m_camera.GetLookAt().y;
+	//data["lookAt"]["z"] = m_camera.GetLookAt().z;
+}
+
 void xe::CameraComponent::Deserialize(const yaml_val& data)
 {
 	m_camera.SetPosition({

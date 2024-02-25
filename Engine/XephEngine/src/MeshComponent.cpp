@@ -18,6 +18,12 @@ void xe::MeshComponent::Terminate()
 	renderService->Unregister(this);
 }
 
+void xe::MeshComponent::Serialize(YAML::Node& data)
+{
+	data["type"] = "MeshComponent";
+	data["shape"] = m_shapeData;
+}
+
 void xe::MeshComponent::Deserialize(const yaml_val& data)
 {
 	Model::MeshData& meshData = m_model.meshData.emplace_back();
@@ -25,6 +31,7 @@ void xe::MeshComponent::Deserialize(const yaml_val& data)
 	if (data["shape"].IsDefined())
 	{
 		std::string type = data["shape"]["type"].as<std::string>();
+		m_shapeData = data["shape"];
 		if (type == "cube")
 		{
 			const float size = data["shape"]["size"].as<float>();

@@ -12,11 +12,15 @@ namespace xe
 
 		void Initialize() override;
 		void Terminate() override;
+
+		void Serialize(YAML::Node& data) override;
 		void Deserialize(const yaml_val& data) override;
 
 	private:
 		friend class RigidbodyComponent;
 		Physics::CollisionShape m_collisionShape;
+
+		YAML::Node m_shapeData;
 	};
 }
 

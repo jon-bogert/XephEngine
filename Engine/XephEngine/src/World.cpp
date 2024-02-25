@@ -10,6 +10,8 @@
 #include "TransformComponent.h"
 #include "RigidbodyComponent.h"
 
+#include "XephEngine.h"
+
 namespace
 {
     CustomService tryMakeService;
@@ -53,8 +55,10 @@ void xe::World::Terminate()
     for (auto& servicePtr : m_services)
     {
         servicePtr->Terminate();
+        servicePtr.reset();
     }
 
+    m_services.clear();
     m_initialized = false;
 }
 
@@ -86,6 +90,35 @@ void xe::World::DebugUI()
         {
             slot.gameObject->DebugUI();
         }
+    }
+
+    if (ImGui::Button("Edit##GameWorld"))
+    {
+        MainApp().ChangeState("EditorState");
+    }
+}
+
+void xe::World::EditorUI()
+{
+    for (auto& servicePtr : m_services)
+    {
+        servicePtr->EditorUI();
+    }
+    for (Slot& slot : m_gameObjectSlots)
+    {
+        if (slot.gameObject != nullptr)
+        {
+            slot.gameObject->EditorUI();
+        }
+    }
+    if (ImGui::Button("Save World##GameWorld"))
+    {
+        SaveLevel(m_levelPath);
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Exit##World"))
+    {
+        MainApp().ChangeState("GameState");
     }
 }
 
@@ -139,6 +172,7 @@ void xe::World::LoadLevel(const std::string levelFile)
         ASSERT(false, "World: Could not find level file");
     }
 
+    m_levelPath = levelFile;
     YAML::Node levelInfo = YAML::LoadFile(levelFile);
 
     for (yaml_val service : levelInfo["services"])
@@ -202,6 +236,28 @@ void xe::World::LoadLevel(const std::string levelFile)
             }
         }
     }
+}
+
+void xe::World::SaveLevel(const std::string levelFile)
+{
+}
+
+void xe::World::SavePrefab(const std::string& prefabFile, const GameObjectHandle& handle)
+{
+    GameObject* obj = GetGameObject(handle);
+    if (obj == nullptr)
+        return;
+    
+    YAML::Node data;
+    obj->Serialize(data);
+
+    if (!std::filesystem::exists(prefabFile))
+        std::filesystem::create_directories(prefabFile);
+
+    std::ofstream file(prefabFile);
+    file << data;
+
+    file.close();
 }
 
 bool xe::World::IsValid(const GameObjectHandle& handle)

@@ -13,9 +13,16 @@ void xe::ColliderComponent::Terminate()
 	m_collisionShape.Termainate();
 }
 
+void xe::ColliderComponent::Serialize(YAML::Node& data)
+{
+	data["type"] = "ColliderComponent";
+	data["shape"] = m_shapeData;
+}
+
 void xe::ColliderComponent::Deserialize(const yaml_val& data)
 {
 	const YAML::Node& shape = data["shape"];
+	m_shapeData = data["shape"];
 
 	const std::string type = shape["type"].as<std::string>();
 	if (type == "empty")

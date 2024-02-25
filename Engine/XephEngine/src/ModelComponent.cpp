@@ -31,6 +31,24 @@ void xe::ModelComponent::Terminate()
 	renderService->Unregister(this);
 }
 
+void xe::ModelComponent::Serialize(YAML::Node& data)
+{
+	data["type"] = "ModelComponent";
+	if (!m_fileName.empty())
+	{
+		data["file"] = m_fileName;
+	}
+	if (!m_animations.empty())
+	{
+		YAML::Node animations = data["animations"];
+		for (std::string& anim : m_animations)
+		{
+			animations.push_back(anim);
+		}
+	}
+	data["cast-shadow"] = m_castShadow;
+}
+
 void xe::ModelComponent::Deserialize(const yaml_val& data)
 {
 	if (data["file"].IsDefined())

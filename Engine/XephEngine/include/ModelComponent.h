@@ -13,6 +13,7 @@ namespace xe
 		void Initialize() override;
 		void Terminate() override;
 
+		void Serialize(YAML::Node& data) override;
 		void Deserialize(const yaml_val& data) override;
 
 		bool CastShadow() const { return m_castShadow; }

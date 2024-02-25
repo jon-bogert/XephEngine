@@ -16,6 +16,7 @@ namespace xe
 		Graphics::Camera& GetCamera() { return m_camera; }
 		const Graphics::Camera& GetCamera() const { return m_camera; }
 
+		void Serialize(YAML::Node& data) override;
 		void Deserialize(const yaml_val& data) override;
 
 	private:

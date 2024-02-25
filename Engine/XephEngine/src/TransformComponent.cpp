@@ -6,6 +6,24 @@ void xe::TransformComponent::DebugUI()
 	Graphics::SimpleDraw::AddTransfrom(Matrix());
 }
 
+void xe::TransformComponent::Serialize(YAML::Node& data)
+{
+	data["type"] = "TransformComoponent";
+
+	data["position"]["x"] = position.x;
+	data["position"]["y"] = position.y;
+	data["position"]["z"] = position.z;
+
+	data["rotation"]["x"] = rotation.x;
+	data["rotation"]["y"] = rotation.y;
+	data["rotation"]["z"] = rotation.z;
+	data["rotation"]["w"] = rotation.w;
+
+	data["scale"]["x"] = scale.x;
+	data["scale"]["y"] = scale.y;
+	data["scale"]["z"] = scale.z;
+}
+
 void xe::TransformComponent::Deserialize(const yaml_val& data)
 {
 	position.x = data["position"]["x"].as<float>();

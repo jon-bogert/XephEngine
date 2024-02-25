@@ -19,6 +19,21 @@ void xe::SoundBankComponent::Terminate()
 
 }
 
+void xe::SoundBankComponent::Serialize(YAML::Node& data)
+{
+	data["type"] = "SoundBankComponent";
+	YAML::Node sounds = data["sounds"];
+
+	for (const auto& pair : m_soundEffects)
+	{
+		YAML::Node soundData;
+		soundData["key"] = pair.first;
+		soundData["filename"] = pair.second.filename;
+		soundData["loop"] = pair.second.doLoop;
+		sounds.push_back(soundData);
+	}
+}
+
 void xe::SoundBankComponent::Deserialize(const yaml_val& data)
 {
 	for (yaml_val sound : data["sounds"])

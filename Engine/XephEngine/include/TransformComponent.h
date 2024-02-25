@@ -9,7 +9,8 @@ namespace xe
 		SET_TYPE_ID(ComponentID::Transform)
 		void DebugUI() override;
 
-		void Deserialize(const yaml_val& data);
+		void Serialize(YAML::Node& data) override;
+		void Deserialize(const yaml_val& data) override;
 	};
 }
 

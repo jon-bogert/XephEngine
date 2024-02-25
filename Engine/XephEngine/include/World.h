@@ -18,12 +18,15 @@ namespace xe
 		void Update(const float deltaTime);
 		void Draw();
 		void DebugUI();
+		void EditorUI();
 
 		GameObject* CreateGameObject(const std::string& templatePath);
 		GameObject* GetGameObject(const GameObjectHandle& handle);
 		void DestroyGameObject(const GameObjectHandle& handle);
 
 		void LoadLevel(const std::string levelFile);
+		void SaveLevel(const std::string levelFile);
+		void SavePrefab(const std::string& prefabFile, const GameObjectHandle& handle);
 		
 		template <typename ServiceType>
 		ServiceType* AddService()
@@ -61,6 +64,8 @@ namespace xe
 
 		using Services = std::vector<std::unique_ptr<Service>>;
 		Services m_services;
+
+		std::string m_levelPath;
 		
 		using GameObjectSlots = std::vector<Slot>;
 		GameObjectSlots m_gameObjectSlots;

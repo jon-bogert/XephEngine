@@ -30,6 +30,8 @@ void xe::GameObjectFactory::Make(const std::string& filePath, GameObject& gameOb
 	if (!std::filesystem::exists(filePath))
 		ASSERT(false, "file path doesn't exist");
 
+	gameObject.SetTemplate(filePath);
+
 	YAML::Node file;
 	try
 	{

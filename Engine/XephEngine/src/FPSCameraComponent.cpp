@@ -76,6 +76,13 @@ void xe::FPSCameraComponent::Update(const float deltaTime)
 	m_transformComponent->position = camera.GetPosition();
 }
 
+void xe::FPSCameraComponent::Serialize(YAML::Node& data)
+{
+	data["moveSpeed"] = m_moveSpeed;
+	data["turnSpeed"] = m_turnSpeed;
+	data["shiftSpeed"] = m_shiftSpeed;
+}
+
 void xe::FPSCameraComponent::Deserialize(const yaml_val& data)
 {
 	m_moveSpeed = data["moveSpeed"].as<float>();

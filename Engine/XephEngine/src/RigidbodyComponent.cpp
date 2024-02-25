@@ -25,6 +25,12 @@ void xe::RigidbodyComponent::Terminate()
 	m_rigidbody.Terminate();
 }
 
+void xe::RigidbodyComponent::Serialize(YAML::Node& data)
+{
+	data["type"] = "RigidbodyComponent";
+	data["mass"] = m_mass;
+}
+
 void xe::RigidbodyComponent::Deserialize(const yaml_val& data)
 {
 	m_mass = data["mass"].as<float>();

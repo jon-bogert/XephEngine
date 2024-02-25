@@ -13,6 +13,7 @@ namespace xe
 		void Terminate();
 
 		void DebugUI();
+		void EditorUI();
 
 		void SetName(const std::string& name) { m_name = std::move(name); }
 		const std::string& GetName() const { return m_name; }
@@ -78,11 +79,16 @@ namespace xe
 			return nullptr;
 		}
 
+		void Serialize(YAML::Node& data);
+		void SetTemplate(const std::string& templatePath) { m_templatePath = templatePath; }
+		std::string GetTemplatePath() const { return m_templatePath; }
+
 	private:
 		friend class World;
 		World* m_world = nullptr;
 		GameObjectHandle m_handle;
 
+		std::string m_templatePath;
 		std::string m_name = "GameObject";
 		bool m_initialized = false;
 		uint32_t m_guid = NULL;

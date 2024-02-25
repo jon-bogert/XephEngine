@@ -1,0 +1,35 @@
+components:
+  - type: TransformComponent
+    position:
+      x: 0
+      y: 0
+      z: 0
+    rotation:
+      x: 0
+      y: 0
+      z: 0
+      w: 1
+    scale:
+      x: 1
+      y: 1
+      z: 1
+  - type: ModelComponent
+    file: ../../Assets/Models/space-soldier/space-soldier.model
+    animations:
+      - ../../Assets/Models/space-soldier/space-soldier.animset
+      - ../../Assets/Models/space-soldier/space-soldier-walking.animset
+      - ../../Assets/Models/space-soldier/space-soldier-walking-back.animset
+  - type: ColliderComponent
+    shape:
+      type: hull
+      half-extends:
+        x: 0.5
+        y: 1
+        z: 0.5
+      origin:
+        x: 0
+        y: 1
+        z: 0
+  - type: RigidbodyComponent
+    mass: 1
+  - type: AnimatorComponent

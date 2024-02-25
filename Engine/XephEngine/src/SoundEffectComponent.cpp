@@ -16,6 +16,13 @@ void xe::SoundEffectComponent::Terminate()
 
 }
 
+void xe::SoundEffectComponent::Serialize(YAML::Node& data)
+{
+	data["type"] = "SoundEffectComponent";
+	data["filename"] = m_filename;
+	data["loop"] = m_doLoop;
+}
+
 void xe::SoundEffectComponent::Deserialize(const yaml_val& data)
 {
 	m_filename = data["filename"].as<std::string>();

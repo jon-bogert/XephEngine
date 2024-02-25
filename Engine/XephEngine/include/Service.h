@@ -24,6 +24,7 @@ namespace xe
 		virtual void Update(const float deltaTime) {}
 		virtual void Draw() {}
 		virtual void DebugUI() {}
+		virtual void EditorUI() {}
 
 		World& GetWorld() { return *m_world; }
 		const World& GetWorld() const { return *m_world; }

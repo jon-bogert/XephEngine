@@ -2,6 +2,9 @@
 #include "GameObject.h"
 #include "TransformComponent.h"
 
+#include "World.h"
+#include "XephEngine.h"
+
 static uint32_t s_guid = 0;
 
 void xe::GameObject::Initialize()
@@ -35,4 +38,33 @@ void xe::GameObject::DebugUI()
 			component->DebugUI();
 		}
 	}
+}
+
+void xe::GameObject::EditorUI()
+{
+	if (ImGui::CollapsingHeader(m_name.c_str()))
+	{
+		for (std::unique_ptr<Component>& component : m_components)
+		{
+			component->EditorUI();
+		}
+	}
+
+	if (ImGui::Button(("Edit##" + m_name).c_str()))
+	{
+		//global data to load the prefab
+		MainApp().ChangeState("EditTemplateState");
+	}
+}
+
+void xe::GameObject::Serialize(YAML::Node& data)
+{
+	YAML::Node components;
+	for (auto& componentPtr : m_components)
+	{
+		YAML::Node compData;
+		componentPtr->Serialize(compData);
+		components.push_back(compData);
+	}
+	data["components"] = components;
 }
