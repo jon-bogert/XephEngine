@@ -15,11 +15,22 @@
 namespace
 {
     CustomService tryMakeService;
+    std::string s_editPrefabName = "";
 }
 
 void xe::World::SetCustomServiceMake(CustomService customService)
 {
     tryMakeService = customService;
+}
+
+void xe::World::SetEditObject(const std::string& objectName)
+{
+    s_editPrefabName = objectName;
+}
+
+const std::string& xe::World::GetEditObject()
+{
+    return s_editPrefabName;
 }
 
 void xe::World::Initialize(uint32_t capacity)
@@ -91,11 +102,6 @@ void xe::World::DebugUI()
             slot.gameObject->DebugUI();
         }
     }
-
-    if (ImGui::Button("Edit##GameWorld"))
-    {
-        MainApp().ChangeState("EditorState");
-    }
 }
 
 void xe::World::EditorUI()
@@ -110,15 +116,6 @@ void xe::World::EditorUI()
         {
             slot.gameObject->EditorUI();
         }
-    }
-    if (ImGui::Button("Save World##GameWorld"))
-    {
-        SaveLevel(m_levelPath);
-    }
-    ImGui::SameLine();
-    if (ImGui::Button("Exit##World"))
-    {
-        MainApp().ChangeState("GameState");
     }
 }
 
@@ -153,6 +150,18 @@ GameObject* xe::World::GetGameObject(const GameObjectHandle& handle)
         return nullptr;
 
     return m_gameObjectSlots[handle.m_index].gameObject.get();
+}
+
+GameObject* xe::World::GetGameObject(const std::string& name)
+{
+    for (auto& slot : m_gameObjectSlots)
+    {
+        if (slot.gameObject != nullptr && slot.gameObject->GetName() == name)
+        {
+            return slot.gameObject.get();
+        }
+    }
+    return nullptr;
 }
 
 void xe::World::DestroyGameObject(const GameObjectHandle& handle)
@@ -212,14 +221,18 @@ void xe::World::LoadLevel(const std::string levelFile)
 
     for (yaml_val gameObject : levelInfo["game-objects"])
     {
+        std::string name = gameObject["name"].as<std::string>();
+        if (!s_editPrefabName.empty() && s_editPrefabName != name && name != "Main Camera")
+        {
+            continue;
+        }
         std::string serializedFile = gameObject["file"].as<std::string>();
         GameObject* obj = CreateGameObject(serializedFile);
 
         if (obj != nullptr)
         {
-            std::string name = gameObject["name"].as<std::string>();
             obj->SetName(name);
-            if (gameObject["position"].IsDefined())
+            if (s_editPrefabName.empty() && gameObject["position"].IsDefined())
             {
                 const float x = gameObject["position"]["x"].as<float>();
                 const float y = gameObject["position"]["y"].as<float>();

@@ -40,3 +40,8 @@ void xe::PhysicsService::Unregister(RigidbodyComponent& rigidbodyComponent)
 {
 	PhysicsWorld::Get().Unregister(&rigidbodyComponent.m_rigidbody);
 }
+
+void xe::PhysicsService::SetEnabled(bool enabled)
+{
+	PhysicsWorld::SetEnabled(enabled);
+}

@@ -53,7 +53,8 @@ void xe::GameObject::EditorUI()
 	if (ImGui::Button(("Edit##" + m_name).c_str()))
 	{
 		//global data to load the prefab
-		MainApp().ChangeState("EditTemplateState");
+		World::SetEditObject(m_name);
+		MainApp().ChangeState("EditPrefabState");
 	}
 }
 

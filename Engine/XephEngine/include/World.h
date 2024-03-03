@@ -11,6 +11,8 @@ namespace xe
 	{
 	public:
 		static void SetCustomServiceMake(CustomService customService);
+		static void SetEditObject(const std::string& objectName);
+		static const std::string& GetEditObject();
 
 		void Initialize(uint32_t capacity);
 		void Terminate();
@@ -22,11 +24,13 @@ namespace xe
 
 		GameObject* CreateGameObject(const std::string& templatePath);
 		GameObject* GetGameObject(const GameObjectHandle& handle);
+		GameObject* GetGameObject(const std::string& name);
 		void DestroyGameObject(const GameObjectHandle& handle);
 
 		void LoadLevel(const std::string levelFile);
 		void SaveLevel(const std::string levelFile);
 		void SavePrefab(const std::string& prefabFile, const GameObjectHandle& handle);
+		const std::string& GetLevelFile() const { return m_levelPath; }
 		
 		template <typename ServiceType>
 		ServiceType* AddService()

@@ -45,6 +45,11 @@ void xe::Physics::PhysicsWorld::DebugUI()
 	physicsWorld->_DebugUI();
 }
 
+void xe::Physics::PhysicsWorld::SetEnabled(bool enabled)
+{
+	physicsWorld->_enabled = enabled;
+}
+
 void xe::Physics::PhysicsWorld::SetGravity(const xe::Math::Vector3& gravity)
 {
 	physicsWorld->_settings.gravity = gravity;
@@ -130,6 +135,9 @@ void xe::Physics::PhysicsWorld::_Terminate()
 
 void xe::Physics::PhysicsWorld::_Update(const float deltaTime)
 {
+	if (!_enabled)
+		return;
+
 	_dynamicWorld->stepSimulation(deltaTime, _settings.simulationSteps, _settings.fixedTimeStep);
 	//_softbodyWorld->stepSimulation(deltaTime, _settings.simulationSteps, _settings.fixedTimeStep);
 	for (PhysicsObject* obj : _physicsObjects)
@@ -140,6 +148,9 @@ void xe::Physics::PhysicsWorld::_Update(const float deltaTime)
 
 void xe::Physics::PhysicsWorld::_DebugUI()
 {
+	if (!_enabled)
+		return;
+
 	ImGui::Checkbox("Render Physics", &_renderDebugUI);
 	if (_renderDebugUI)
 	{

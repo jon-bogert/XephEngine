@@ -13,6 +13,8 @@ namespace xe
 		void Initialize() override;
 		void Terminate() override;
 
+		void EditorUI() override;
+
 		void Serialize(YAML::Node& data) override;
 		void Deserialize(const yaml_val& data) override;
 

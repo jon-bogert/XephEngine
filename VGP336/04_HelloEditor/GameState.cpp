@@ -1,38 +1,14 @@
 #include "GameState.h"
+#include "CustomFactory.h"
 
 using namespace xe;
 using namespace xe::Core;
 using namespace xe::Math;
 
-namespace
-{
-	bool CustomComponentMake(const std::string& compName, const yaml_val& data, GameObject& gameObject)
-	{
-		if (compName == "NewComponent")
-		{
-			//NewComponent* newComponent = gameObject.AddComponent<NewComponent>();
-			//newComponent->Deserialize(data);
-			return true;
-		}
-		return false;
-	}
-
-	bool CustomServiceMake(const std::string& serviceName, const yaml_val& data, World& gameObject)
-	{
-		if (serviceName == "NewService")
-		{
-			//NewService* newService = gameObject.AddComponent<NewService>();
-			//newService->Deserialize(data);
-			return true;
-		}
-		return false;
-	}
-}
-
 void GameState::Initialize()
 {
-	GameObjectFactory::SetCustomMake(CustomComponentMake);
-	World::SetCustomServiceMake(CustomServiceMake);
+	GameObjectFactory::SetCustomMake(Customs::CustomComponentMake);
+	World::SetCustomServiceMake(Customs::CustomServiceMake);
 	m_world.LoadLevel("../../Assets/Scenes/test_level.yaml");
 }
 
@@ -54,7 +30,13 @@ void GameState::Draw()
 
 void GameState::DebugUI()
 {
+	ImGui::Begin("Game", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 	m_world.DebugUI();
+	if (ImGui::Button("Edit##GameWorld"))
+	{
+		MainApp().ChangeState("EditorState");
+	}
+	ImGui::End();
 }
 
 void GameState::UpdateCameraControl(const float& deltaTime)

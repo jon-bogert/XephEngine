@@ -19,6 +19,8 @@ namespace xe
 		void Register(RigidbodyComponent& rigidbodyComponent);
 		void Unregister(RigidbodyComponent& rigidbodyComponent);
 
+		void SetEnabled(bool enabled);
+
 	private:
 	};
 }

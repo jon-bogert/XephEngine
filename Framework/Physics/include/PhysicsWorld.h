@@ -26,6 +26,7 @@ namespace xe::Physics
 		static void Update(const float deltaTime);
 		static void DebugUI();
 
+		static void SetEnabled(bool enabled);
 		static void SetGravity(const xe::Math::Vector3& gravity);
 		static void SetSimulationSteps(const uint32_t steps);
 		static void SetFixedTimeStep(const float timeStep);
@@ -42,6 +43,7 @@ namespace xe::Physics
 
 		Settings _settings;
 		bool _renderDebugUI = false;
+		bool _enabled = true;
 
 		PhysicsDebugDrawer _debugDrawer;
 

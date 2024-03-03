@@ -5,11 +5,13 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="EditorState.cpp" />
     <ClCompile Include="EditPrefabState.cpp" />
+    <ClCompile Include="CustomFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameState.h" />
     <ClInclude Include="TypeIDs.h" />
     <ClInclude Include="EditorState.h" />
     <ClInclude Include="EditPrefabState.h" />
+    <ClInclude Include="CustomFactory.h" />
   </ItemGroup>
 </Project>

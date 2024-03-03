@@ -1,24 +1,3 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (InputSystem.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  AnimatorComponent.cpp
-  CameraComponent.cpp
-C:\repos\C++\XephEngine\Engine\XephEngine\src\AnimatorComponent.cpp(31,26): warning C4267: 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data
-  (compiling source file '/src/AnimatorComponent.cpp')
-  
-  CameraService.cpp
-  ColliderComponent.cpp
-  FPSCameraComponent.cpp
-  GameObject.cpp
-  GameObjectFactory.cpp
   MeshComponent.cpp
-  ModelComponent.cpp
-  PhysicsService.cpp
-  RenderService.cpp
-  RigidbodyComponent.cpp
-  SoundBankComponent.cpp
-  SoundEffectComponent.cpp
-  TransformComponent.cpp
-  UpdateService.cpp
-  World.cpp
-  XephEngine.cpp
-  Generating Code...
   XephEngine.vcxproj -> C:\repos\C++\XephEngine\x64\Debug\XephEngine.lib

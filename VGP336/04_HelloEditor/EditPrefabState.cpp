@@ -1,43 +1,30 @@
 #include "EditPrefabState.h"
+#include "CustomFactory.h"
 
 using namespace xe;
 using namespace xe::Core;
 using namespace xe::Math;
 
-namespace
-{
-	bool CustomComponentMake(const std::string& compName, const yaml_val& data, GameObject& gameObject)
-	{
-		if (compName == "NewComponent")
-		{
-			//NewComponent* newComponent = gameObject.AddComponent<NewComponent>();
-			//newComponent->Deserialize(data);
-			return true;
-		}
-		return false;
-	}
-
-	bool CustomServiceMake(const std::string& serviceName, const yaml_val& data, World& gameObject)
-	{
-		if (serviceName == "NewService")
-		{
-			//NewService* newService = gameObject.AddComponent<NewService>();
-			//newService->Deserialize(data);
-			return true;
-		}
-		return false;
-	}
-}
-
 void EditPrefabState::Initialize()
 {
-	GameObjectFactory::SetCustomMake(CustomComponentMake);
-	World::SetCustomServiceMake(CustomServiceMake);
+	GameObjectFactory::SetCustomMake(Customs::CustomComponentMake);
+	World::SetCustomServiceMake(Customs::CustomServiceMake);
 	m_world.LoadLevel("../../Assets/Scenes/test_level.yaml");
+
+	PhysicsService* physics = m_world.GetService<PhysicsService>();
+	if (physics != nullptr)
+	{
+		physics->SetEnabled(false);
+	}
 }
 
 void EditPrefabState::Terminate()
 {
+	PhysicsService* physics = m_world.GetService<PhysicsService>();
+	if (physics != nullptr)
+	{
+		physics->SetEnabled(true);
+	}
 	m_world.Terminate();
 }
 
@@ -54,11 +41,24 @@ void EditPrefabState::Draw()
 
 void EditPrefabState::DebugUI()
 {
+	ImGui::Begin("Edit Template", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 	m_world.EditorUI();
+	if (ImGui::Button("Save##EditPrefab"))
+	{
+		GameObject* obj = m_world.GetGameObject(World::GetEditObject());
+		m_world.SavePrefab(obj->GetTemplatePath(), obj->GetHandle());
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Reload##EditPrefab"))
+	{
+		MainApp().ChangeState("EditPrefabState");
+	}
+	ImGui::SameLine();
 	if (ImGui::Button("Exit##EditTemplate"))
 	{
 		MainApp().ChangeState("EditorState");
 	}
+	ImGui::End();
 }
 
 void EditPrefabState::UpdateCameraControl(const float& deltaTime)

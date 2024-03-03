@@ -18,10 +18,32 @@ void xe::MeshComponent::Terminate()
 	renderService->Unregister(this);
 }
 
+void xe::MeshComponent::EditorUI()
+{
+	std::string headerTag = "MeshComponent##" + GetGameObject().GetName();
+	if (ImGui::CollapsingHeader(headerTag.c_str()))
+	{
+		Material& material = m_model.materialData[0].material;
+		ImGui::ColorEdit4("Ambient", &material.ambient.r);
+		ImGui::ColorEdit4("Diffuse", &material.diffuse.r);
+		ImGui::ColorEdit4("Specular", &material.specular.r);
+		ImGui::ColorEdit4("Emissive", &material.emissive.r);
+		ImGui::DragFloat("Power", &material.power);
+		ImGui::Checkbox("Cast Shadow", &m_castShadow);
+		if (ImGui::Button(("Update##" + GetGameObject().GetName()).c_str()))
+		{
+			RenderService* renderer = GetGameObject().GetWorld().GetService<RenderService>();
+			renderer->Unregister(this);
+			renderer->Register(this);
+		}
+	}
+}
+
 void xe::MeshComponent::Serialize(YAML::Node& data)
 {
 	data["type"] = "MeshComponent";
 	data["shape"] = m_shapeData;
+	//TODO - Assign Material Properties
 }
 
 void xe::MeshComponent::Deserialize(const yaml_val& data)
